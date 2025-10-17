@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Twój plan dla: {{ plan.query.city }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Plan podróży: {{ plan.query.city }} na {{ plan.query.days }} dni (Styl: {{ plan.query.style }})</h1>
+    
+    <h2>Szacowany budżet</h2>
+    <p>Całkowity koszt: <strong>{{ plan.cost.total_pln }} PLN</strong></p>
+    <p>Koszt w walucie lokalnej: {{ plan.cost.total_local }} {{ plan.cost.currency }}</p>
+    
+    <h2>Pogoda (dane przykładowe)</h2>
+    <p>Średnia temperatura: {{ plan.weather.temperatura }}°C</p>
+    <p>Warunki: {{ plan.weather.opis }}</p>
+    
+    <h2>Główne atrakcje (dane przykładowe)</h2>
+    <ul>
+        {% for attraction in plan.attractions %}
+        <li>{{ attraction.name }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
