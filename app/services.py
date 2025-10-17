@@ -1,4 +1,5 @@
 # app/services.py
+from .api_clients import get_weather, get_attractions, get_exchange_rate
 
 # KROK 1: Tymczasowa, uproszczona baza danych kosztów dziennych (w EUR)
 # W przyszłości te dane będą pochodzić z bazy danych.
@@ -19,47 +20,50 @@ CITY_COSTS = {
 
 def get_plan_details(city: str, days: int, style: str) -> dict:
     """
-    Główna funkcja serwisu. Oblicza szczegóły planu podróży.
-    Na tym etapie używa danych tymczasowych.
+    Główna funkcja serwisu, obsługująca dynamiczne miasta.
     """
-    if city not in CITY_COSTS:
-        # Prosta obsługa błędu, gdy miasto nie jest obsługiwane
-        return {"error": f"Przepraszamy, miasto '{city}' nie jest jeszcze obsługiwane."}
+    # KROK 1: Zawsze próbuj pobrać dane z zewnętrznych API
+    weather_info = get_weather(city)
+    attractions_list = get_attractions(city)
 
-    city_data = CITY_COSTS[city]
-    style_data = city_data.get(style)
+    # KROK 2: Sprawdź, czy mamy dane o kosztach dla tego miasta
+    if city in CITY_COSTS:
+        city_data = CITY_COSTS[city]
+        style_data = city_data.get(style)
 
-    if not style_data:
-        return {"error": f"Nieprawidłowy styl podróży: '{style}'."}
+        if not style_data:
+            # To zabezpieczenie na wypadek błędnego stylu, nawet dla znanego miasta
+            return {"error": f"Nieprawidłowy styl podróży: '{style}'."}
 
-    # KROK 2: Obliczenia
-    daily_cost = sum(style_data.values())
-    total_cost_local = daily_cost * days
+        daily_cost = sum(style_data.values())
+        total_cost_local = daily_cost * days
 
-    # KROK 3: Tymczasowe przeliczenie waluty (założenie 1 EUR = 4.3 PLN)
-    # W przyszłości ta funkcja zostanie zastąpiona wywołaniem API.
-    exchange_rate_pln = 4.3 
-    total_cost_pln = total_cost_local * exchange_rate_pln
+        exchange_rate_pln = get_exchange_rate(city_data["waluta"], "PLN")
+        
+        if not exchange_rate_pln:
+            total_cost_pln = None
+        else:
+            total_cost_pln = total_cost_local * exchange_rate_pln
 
-    # KROK 4: Tymczasowe dane pogodowe i atrakcje
-    # Zostaną zastąpione przez wywołania API (Geoapify, OpenWeatherMap).
-    weather_info = {"temperatura": 15, "opis": "Częściowe zachmurzenie"}
-    attractions_list = [
-        {"name": "Główna atrakcja miasta 1"},
-        {"name": "Popularne muzeum"},
-        {"name": "Znany zabytek"}
-    ]
-    
-    # KROK 5: Zwrócenie ustrukturyzowanej odpowiedzi
-    result = {
-        "query": {"city": city, "days": days, "style": style},
-        "cost": {
-            "total_pln": round(total_cost_pln, 2),
+        cost_info = {
+            "total_pln": round(total_cost_pln, 2) if total_cost_pln is not None else None,
             "total_local": round(total_cost_local, 2),
             "currency": city_data["waluta"]
-        },
-        "weather": weather_info,
-        "attractions": attractions_list
+        }
+    else:
+        # Jeśli nie mamy danych o kosztach, przygotuj pustą strukturę
+        cost_info = {
+            "total_pln": None,
+            "total_local": None,
+            "currency": None
+        }
+
+    # KROK 3: Zwrócenie ustrukturyzowanej odpowiedzi
+    result = {
+        "query": {"city": city, "days": days, "style": style},
+        "cost": cost_info,
+        "weather": weather_info or {"opis": "Brak danych pogodowych"},
+        "attractions": attractions_list or [{"name": "Brak danych o atrakcjach"}]
     }
     
     return result

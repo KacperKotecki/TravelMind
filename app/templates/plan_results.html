@@ -7,14 +7,18 @@
     <h1>Plan podróży: {{ plan.query.city }} na {{ plan.query.days }} dni (Styl: {{ plan.query.style }})</h1>
     
     <h2>Szacowany budżet</h2>
-    <p>Całkowity koszt: <strong>{{ plan.cost.total_pln }} PLN</strong></p>
-    <p>Koszt w walucie lokalnej: {{ plan.cost.total_local }} {{ plan.cost.currency }}</p>
+    {% if plan.cost.total_pln is not none %}
+        <p>Całkowity koszt: <strong>{{ plan.cost.total_pln }} PLN</strong></p>
+        <p>Koszt w walucie lokalnej: {{ plan.cost.total_local }} {{ plan.cost.currency }}</p>
+    {% else %}
+        <p>Dla tego miasta nie mamy jeszcze danych o szacunkowych kosztach.</p>
+    {% endif %}
     
-    <h2>Pogoda (dane przykładowe)</h2>
+    <h2>Pogoda</h2>
     <p>Średnia temperatura: {{ plan.weather.temperatura }}°C</p>
     <p>Warunki: {{ plan.weather.opis }}</p>
     
-    <h2>Główne atrakcje (dane przykładowe)</h2>
+    <h2>Główne atrakcje</h2>
     <ul>
         {% for attraction in plan.attractions %}
         <li>{{ attraction.name }}</li>
