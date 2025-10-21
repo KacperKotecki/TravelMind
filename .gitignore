@@ -1,16 +1,18 @@
 .venv
 venv
-ENV
-env
+
+
+*.env
+.env
 
 __pycache__/
 *.pyc
 
 *.sqlite3
+*.sqlite
 *.db
 dev.db
 
-.env
 .flaskenv
 
 instance/
@@ -19,3 +21,12 @@ instance/
 Thumbs.db
 
 .idea/
+
+# Foldery cache Pythona
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Foldery specyficzne dla IDE (np. VS Code)
+.vscode/
