@@ -28,5 +28,3 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Foldery specyficzne dla IDE (np. VS Code)
-.vscode/

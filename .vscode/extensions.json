@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    // Podstawa do pracy z Pythonem (linting, debugowanie)
+    "ms-python.python",
+
+    // Formater, który gwarantuje ten sam styl kodu u każdego
+    "ms-python.black-formatter",
+
+    // Absolutny "must-have" do pracy zespołowej z Gitem
+    "eamodio.gitlens"
+  ]
+}
