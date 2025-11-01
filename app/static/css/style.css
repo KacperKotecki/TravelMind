@@ -1,0 +1,392 @@
+/* ========================================= */
+/* GLOBALNE ZMIENNE I RESETOWANIE      */
+/* ========================================= */
+
+:root {
+    --color-primary: #0077b6;      /* Głęboki Błękit Oceanu (Akcent) */
+    --color-secondary: #00b4d8;    /* Jasny Błękit Nieba (Akcja) */
+    --color-accent: #e76f51;       /* Ciepły Koral/Ziemia (Budżet, Błędy) */
+    --color-text: #264653;         /* Ciemny Turkus/Las (Tekst główny) */
+    --color-background: #f0f8ff;   /* Bardzo Jasny Błękit/Chmura (Tło strony) */
+    --color-card-bg: #ffffff;      /* Czysta Biel dla kart/kontenerów */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Globalny kontener */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--color-card-bg); /* Używamy białego tła dla czystości */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+}
+
+/* Nagłówki */
+h1, h2 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: var(--color-primary);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* --- NAGŁÓWEK I NAWIGACJA (base.html) --- */
+header {
+    background: var(--color-white);
+    box-shadow: 0 2px 4px var(--color-shadow);
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--color-secondary);
+}
+
+/* --- GŁÓWNA ZAWARTOŚĆ --- */
+main {
+    flex-grow: 1;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- SEKCJA GŁÓWNA (HERO) DLA index.html --- */
+.hero-section {
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Pamiętaj o dodaniu pliku travel-background.jpg do app/static/images/ */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('images/travel-background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-white);
+}
+
+.hero-section .container {
+    max-width: 500px;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    color: var(--color-text);
+}
+
+.hero-section h1 {
+    color: var(--color-primary);
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hero-section p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: #4b5563;
+}
+
+/* --- FORMULARZE (index.html) --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.25);
+    outline: none;
+}
+
+/* --- PRZYCISKI --- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: var(--color-secondary); /* Jasny Błękit Nieba dla akcji */
+    color: var(--color-white);
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    background-color: #0096c7; /* Ciemniejszy błękit */
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: var(--color-white);
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+/* --- KOMUNIKATY FLASH (base.html) --- */
+.flash-messages {
+    max-width: 800px;
+    margin: 1rem auto 1.5rem;
+    padding: 0 1.5rem;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #2a9d8f; /* Spokojniejszy turkus */
+    border: 1px solid #2a9d8f;
+}
+
+.alert-error {
+    background-color: #fcebe6;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
+/* ========================================= */
+/* WYNIKI PLANU (plan_results.html)    */
+/* ========================================= */
+
+.plan-results {
+    padding: 3rem;
+    max-width: 900px;
+}
+
+.plan-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.plan-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.subtitle {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Odznaki */
+.badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.days-badge {
+    background-color: #ade8f4; /* Akcent Jasny Błękit */
+    color: var(--color-primary);
+}
+
+.style-badge {
+    background-color: #ccdff0; /* Subtelny Błękit */
+    color: var(--color-primary);
+}
+
+/* --- GRID INFORMACYJNY (Karty: Pogoda i Budżet) --- */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    background-color: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    border-left: 5px solid var(--color-primary); /* Głęboki błękit - motyw wiodący */
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.card h2 .icon {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.main-cost strong {
+    font-size: 1.4rem;
+    color: var(--color-accent); /* Ciepły Koral dla budżetu */
+}
+
+/* --- SEKCJA ATRAKCJI --- */
+.attractions-section {
+    padding: 1.5rem 0;
+}
+
+.attraction-list {
+    list-style: none;
+    padding: 0;
+}
+
+.attraction-item {
+    background-color: var(--color-card-bg);
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--color-secondary); /* Akcent Jasny Błękit */
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Przyciski Akcji */
+.action-buttons {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* --- STOPKA (base.html) --- */
+footer {
+    background: var(--color-text); /* Ciemny Turkus/Las */
+    color: #90b3c2;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+footer a {
+    color: #c7dbec;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--color-white);
+}
+
+
+/* ========================================= */
+/* RESPONSYWNOŚĆ                */
+/* ========================================= */
+@media (max-width: 900px) {
+    .container {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Nawigacja na telefonach */
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-links {
+        margin-top: 10px;
+    }
+    .nav-links li {
+        margin: 0 10px;
+    }
+
+    /* Strona wyników - stosy zamiast grida */
+    .info-grid {
+        grid-template-columns: 1fr; 
+    }
+}

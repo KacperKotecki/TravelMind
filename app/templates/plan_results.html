@@ -3,26 +3,48 @@
 {% block title %}Twój plan dla: {{ plan.query.city }}{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Plan podróży: {{ plan.query.city }} na {{ plan.query.days }} dni (Styl: {{ plan.query.style }})</h1>
+<div class="container plan-results">
     
-    <h2>Szacowany budżet</h2>
-    {% if plan.cost.total_pln is not none %}
-        <p>Całkowity koszt: <strong>{{ plan.cost.total_pln }} PLN</strong></p>
-        <p>Koszt w walucie lokalnej: {{ plan.cost.total_local }} {{ plan.cost.currency }}</p>
-    {% else %}
-        <p>Dla tego miasta nie mamy jeszcze danych o szacunkowych kosztach.</p>
-    {% endif %}
+    <header class="plan-header">
+        <h1>Plan podróży: {{ plan.query.city }}</h1>
+        <p class="subtitle">
+            <span class="badge days-badge">{{ plan.query.days }} dni</span>
+            <span class="badge style-badge">{{ plan.query.style }}</span>
+        </p>
+    </header>
+
+    <div class="info-grid">
+        
+        <div class="card weather-card">
+            <h2><span class="icon">☀️</span> Pogoda</h2>
+            <div class="weather-details">
+                <p>Średnia temperatura: <strong>{{ plan.weather.temperatura }}°C</strong></p>
+                <p>Warunki: {{ plan.weather.opis }}</p>
+            </div>
+        </div>
+        
+        <div class="card budget-card">
+            <h2><span class="icon">💰</span> Szacowany budżet</h2>
+            {% if plan.cost.total_pln is not none %}
+                <p class="main-cost">Całkowity koszt: <strong>{{ plan.cost.total_pln }} PLN</strong></p>
+                <p>Koszt w walucie lokalnej: {{ plan.cost.total_local }} {{ plan.cost.currency }}</p>
+            {% else %}
+                <p class="info-note">Dla tego miasta nie mamy jeszcze danych o szacunkowych kosztach.</p>
+            {% endif %}
+        </div>
+    </div>
     
-    <h2>Pogoda</h2>
-    <p>Średnia temperatura: {{ plan.weather.temperatura }}°C</p>
-    <p>Warunki: {{ plan.weather.opis }}</p>
-    
-    <h2>Główne atrakcje</h2>
-    <ul>
-        {% for attraction in plan.attractions %}
-        <li>{{ attraction.name }}</li>
-        {% endfor %}
-    </ul>
+    <div class="attractions-section">
+        <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
+        <ul class="attraction-list">
+            {% for attraction in plan.attractions %}
+            <li class="attraction-item">{{ attraction.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn btn-secondary"><span class="icon">📄</span> Pobierz jako PDF</button>
+    </div>
 </div>
 {% endblock %}

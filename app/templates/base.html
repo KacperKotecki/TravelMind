@@ -5,16 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}TravelMind{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head_extras %}{% endblock %} 
 </head>
 <body>
     <header>
-        <h1>TravelMind</h1>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('main.index') }}">TravelMind</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('main.index') }}">Stwórz Plan</a></li>
+                <li><a href="#">O nas</a></li>
+            </ul>
+        </nav>
     </header>
+
     <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </main>
+    
     <footer>
-        <p>&copy; 2025 TravelMind</p>
+        <p>&copy; 2025 TravelMind | <a href="#">Prywatność</a></p>
     </footer>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
