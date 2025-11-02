@@ -22,11 +22,15 @@ class GeneratedPlan(db.Model):
     country = db.Column(db.String(100))
     days = db.Column(db.Integer, nullable=False)
     travel_style = db.Column(db.String(50), nullable=False)
+    vacation_type = db.Column(db.String(50))
     
     total_cost_pln = db.Column(db.Float)
     total_cost_local_currency = db.Column(db.Float)
     local_currency_code = db.Column(db.String(3))
-    
+
+    weather_data = db.Column(db.JSON) #dane z open-meteo
+    attractions_data = db.Column(db.JSON) #dane z google places
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
