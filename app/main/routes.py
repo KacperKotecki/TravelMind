@@ -8,7 +8,17 @@ def index():
     if form.validate_on_submit():
         # Przekierowujemy dane do widoku, który wygeneruje plan
         city = form.city.data
-        days = form.days.data
+        start = form.start_date.data
+        end = form.end_date.data
         style = form.travel_style.data
+
+        # Oblicz liczbę dni na podstawie wybranych dat (włącznie)
+        if start and end:
+            delta = (end - start).days
+            days = delta + 1 if delta >= 0 else 1
+        else:
+            # fallback na wypadek braku dat — zachowaj krótki domyśl
+            days = 3
+
         return redirect(url_for('plans.show_plan', city=city, days=days, style=style))
     return render_template('index.html', form=form)
