@@ -20,5 +20,15 @@ def index():
             # fallback na wypadek braku dat — zachowaj krótki domyśl
             days = 3
 
-        return redirect(url_for('plans.show_plan', city=city, days=days, style=style))
+        # Dołącz daty jako parametry zapytania, aby widok planów mógł pobrać pogodę dla zakresu
+        params = {}
+        try:
+            if start:
+                params['start'] = start.isoformat()
+            if end:
+                params['end'] = end.isoformat()
+        except Exception:
+            # jeśli start/end nie są obiektami daty, pomiń
+            pass
+        return redirect(url_for('plans.show_plan', city=city, days=days, style=style, **params))
     return render_template('index.html', form=form)

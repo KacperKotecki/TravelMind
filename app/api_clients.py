@@ -40,14 +40,64 @@ def _weather_code_to_polish(code: int) -> str:
     return mapping.get(code, 'Nieznane warunki pogodowe')
 
 
-def get_weather(city: str) -> dict | None:
-    """Pobiera aktualne dane pogodowe dla danego miasta za pomocą Open-Meteo.
+def _weather_code_to_icon(code: int) -> str:
+    """Mapuje kod pogodowy Open-Meteo na prostą ikonę (emoji)."""
+    icons = {
+        0: '☀️',
+        1: '🌤️',
+        2: '⛅',
+        3: '☁️',
+        45: '🌫️',
+        48: '🌫️',
+        51: '🌧️',
+        53: '🌧️',
+        55: '🌧️',
+        56: '🌧️',
+        57: '🌧️',
+        61: '🌦️',
+        63: '🌧️',
+        65: '⛈️',
+        66: '🌧️',
+        67: '🌧️',
+        71: '🌨️',
+        73: '🌨️',
+        75: '❄️',
+        77: '❄️',
+        80: '🌦️',
+        81: '🌧️',
+        82: '🌧️',
+        85: '🌨️',
+        86: '🌨️',
+        95: '⛈️',
+        96: '⛈️',
+        99: '⛈️'
+    }
+    try:
+        return icons.get(int(code), '🔆')
+    except Exception:
+        return '🔆'
 
-    Procedura:
-    - pobierz współrzędne miasta za pomocą `get_coordinates_for_city` (Geoapify)
-    - wywołaj Open-Meteo z parametrem current_weather=true
-    - przetłumacz weathercode na opis po polsku i zwróć strukturę:
-      {"temperatura": <int_C>, "opis": <str>} lub None w przypadku błędu
+
+def _format_date_val(val):
+    # Akceptujemy daty jako obiekty date/datetime lub jako string YYYY-MM-DD
+    from datetime import date, datetime
+    if val is None:
+        return None
+    if isinstance(val, date):
+        return val.isoformat()
+    if isinstance(val, datetime):
+        return val.date().isoformat()
+    # załóżmy że jest to już string
+    return str(val)
+
+
+def get_weather(city: str, start_date=None, end_date=None) -> dict | None:
+    """Pobiera dane pogodowe dla danego miasta.
+
+    Jeśli przekazano start_date i end_date (YYYY-MM-DD lub obiekty date),
+    pobierz dane dzienne z Open-Meteo dla całego zakresu (daily arrays).
+    Zwraca strukturę zawierającą 'daily': [ {date, temperatura_min, temperatura_max, opis, opad, wiatr} , ... ]
+    W przypadku braku zakresu zachowuje częściową kompatybilność z poprzednią implementacją (current_weather + daily dla bieżącego dnia).
     """
     # Najpierw pobierz współrzędne (Geoapify)
     coords = get_coordinates_for_city(city)
@@ -62,22 +112,117 @@ def get_weather(city: str) -> dict | None:
         return None
 
     base_url = "https://api.open-meteo.com/v1/forecast"
-    params = {
-        "latitude": lat,
-        "longitude": lon,
-        "current_weather": True,
-        # Poprośmy też o hourly relative humidity oraz daily min/max temperatury
-        "hourly": "relativehumidity_2m",
-        "daily": "temperature_2m_max,temperature_2m_min",
-        "timezone": "auto",
-        "temperature_unit": "celsius"
-    }
+
+    s = _format_date_val(start_date)
+    e = _format_date_val(end_date)
+
+    # Jeśli mamy zakres dat - poprośmy o daily dla zakresu
+    if s and e:
+        # 'time' is not a valid daily variable for the API params (it's returned automatically),
+        # so do not include it in the 'daily' parameter.
+        params = {
+            "latitude": lat,
+            "longitude": lon,
+            "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode,windspeed_10m_max",
+            "start_date": s,
+            "end_date": e,
+            "timezone": "auto",
+            "temperature_unit": "celsius"
+        }
+    else:
+        # fallback: jak wcześniej - current weather + some daily
+        params = {
+            "latitude": lat,
+            "longitude": lon,
+            "current_weather": True,
+            "hourly": "relativehumidity_2m",
+            "daily": "temperature_2m_max,temperature_2m_min",
+            "timezone": "auto",
+            "temperature_unit": "celsius"
+        }
 
     try:
         response = requests.get(base_url, params=params, timeout=10)
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as http_err:
+            # Jeśli serwer zwrócił treść błędu, zaloguj ją — pomaga debugować 400/422 itp.
+            try:
+                body = response.text
+            except Exception:
+                body = '<brak treści odpowiedzi>'
+            current_app.logger.error(f"Błąd podczas zapytania do Open-Meteo: {http_err} - body: {body}")
+            return None
         data = response.json()
 
+        # Jeśli poproszono o zakres dat - skonstruuj listę dni
+        if s and e:
+            daily = data.get('daily', {})
+            times = daily.get('time', [])
+            t_max = daily.get('temperature_2m_max', [])
+            t_min = daily.get('temperature_2m_min', [])
+            precip = daily.get('precipitation_sum', [])
+            codes = daily.get('weathercode', [])
+            wind = daily.get('windspeed_10m_max', [])
+
+            daily_list = []
+            for i, d in enumerate(times):
+                item = {'date': d}
+                try:
+                    if i < len(t_max):
+                        item['temperatura_max'] = round(float(t_max[i]))
+                    if i < len(t_min):
+                        item['temperatura_min'] = round(float(t_min[i]))
+                    if i < len(precip):
+                        item['opad_mm'] = round(float(precip[i]), 2)
+                    if i < len(codes):
+                        item['weathercode'] = int(codes[i])
+                        item['opis'] = _weather_code_to_polish(int(codes[i]))
+                        # ikonka pogody (emoji)
+                        item['icon'] = _weather_code_to_icon(int(codes[i]))
+                    if i < len(wind):
+                        try:
+                            # Open-Meteo wind in m/s? for 10m it's m/s; convert to km/h
+                            item['wiatr_kmh'] = round(float(wind[i]) * 3.6, 1)
+                        except Exception:
+                            pass
+                except Exception:
+                    pass
+                # Formatowanie etykiety daty bez roku (np. '2 lis') dla widoku
+                try:
+                    from datetime import datetime
+                    dt = datetime.fromisoformat(d)
+                    month_names = {
+                        1: 'sty', 2: 'lut', 3: 'mar', 4: 'kwi', 5: 'maj', 6: 'cze',
+                        7: 'lip', 8: 'sie', 9: 'wrz', 10: 'paź', 11: 'lis', 12: 'gru'
+                    }
+                    item['date_label'] = f"{dt.day} {month_names.get(dt.month, '')}"
+                except Exception:
+                    # fallback: usuń rok z ISO 'YYYY-MM-DD' -> 'MM-DD' albo zostaw oryginał bez roku
+                    try:
+                        parts = str(d).split('-')
+                        if len(parts) >= 3:
+                            item['date_label'] = f"{int(parts[2])} {parts[1]}"
+                        else:
+                            item['date_label'] = d
+                    except Exception:
+                        item['date_label'] = d
+
+                daily_list.append(item)
+
+            # Przygotuj wynik z listą dni
+            result = {'daily': daily_list}
+            # Dla kompatybilności dodaj 'temperatura' jako średnią z pierwszego dnia jeśli dostępna
+            if daily_list:
+                first = daily_list[0]
+                if 'temperatura_max' in first and 'temperatura_min' in first:
+                    result['temperatura'] = round((first['temperatura_max'] + first['temperatura_min']) / 2)
+                # add icon for first day for backward compatibility
+                if 'icon' in first:
+                    result['icon'] = first.get('icon')
+            return result
+
+        # fallback: zachowaj wcześniejszy przepływ jeśli nie było zakresu
         current = data.get('current_weather')
         if not current:
             current_app.logger.warning(f"Brak current_weather w odpowiedzi Open-Meteo dla: {city}")
@@ -96,13 +241,11 @@ def get_weather(city: str) -> dict | None:
             times = hourly.get('time', [])
             humidities = hourly.get('relativehumidity_2m', [])
 
-            # Parsuj ISO daty na datetime i znajdź najbliższy czas do current['time']
             from datetime import datetime, timezone
 
             def _parse_iso_iso(s: str):
                 if not s:
                     return None
-                # Zamień końcowe 'Z' na +00:00 by fromisoformat zadziałało
                 try:
                     if s.endswith('Z'):
                         s2 = s[:-1] + '+00:00'
@@ -112,17 +255,14 @@ def get_weather(city: str) -> dict | None:
                     return dt
                 except Exception:
                     try:
-                        # próbuj prostszych formatów
                         return datetime.strptime(s, '%Y-%m-%dT%H:%M:%S')
                     except Exception:
                         return None
 
             cur_time = _parse_iso_iso(current.get('time'))
             parsed_times = [ _parse_iso_iso(t) for t in times ]
-            # Filtruj nieparowane wartości
             indexed = [(i, t) for i, t in enumerate(parsed_times) if t is not None]
             if cur_time is not None and indexed:
-                # Upewnij się, że porównania są w tej samej strefie
                 def _to_utc_naive(dt):
                     if dt.tzinfo is not None:
                         return dt.astimezone(timezone.utc).replace(tzinfo=None)
@@ -138,7 +278,6 @@ def get_weather(city: str) -> dict | None:
                         best_diff = diff
                         best_i = i
 
-                # Jeżeli znaleziono najbliższy indeks, pobierz wilgotność
                 if best_i is not None and best_i < len(humidities):
                     humidity = humidities[best_i]
                 else:
@@ -146,34 +285,33 @@ def get_weather(city: str) -> dict | None:
 
         description = _weather_code_to_polish(int(code))
         result = {"temperatura": round(float(temp)), "opis": description}
-        # Spróbuj odczytać temperatury dzienne (min/max) z sekcji 'daily'
+        try:
+            result['icon'] = _weather_code_to_icon(int(code))
+        except Exception:
+            pass
         daily = data.get('daily')
         if daily:
             d_times = daily.get('time', [])
             d_max = daily.get('temperature_2m_max', [])
             d_min = daily.get('temperature_2m_min', [])
-            # Dopasuj dzień na podstawie current['time'] (data)
             try:
                 from datetime import datetime
 
                 cur_date = None
                 ct = current.get('time')
                 if ct:
-                    # weź tylko część daty YYYY-MM-DD
                     cur_date = str(ct).split('T')[0]
 
                 if cur_date and d_times:
                     if cur_date in d_times:
                         idx = d_times.index(cur_date)
                     else:
-                        # jeśli brak dokładnego dopasowania, znajdź najbliższy dzień przez parsowanie
                         parsed = []
                         for i, s in enumerate(d_times):
                             try:
                                 parsed.append((i, datetime.fromisoformat(s)))
                             except Exception:
                                 continue
-                        # Spróbuj sparsować cur_date
                         try:
                             cur_dt = datetime.fromisoformat(cur_date)
                             best = None
@@ -196,13 +334,11 @@ def get_weather(city: str) -> dict | None:
             except Exception:
                 pass
         if humidity is not None:
-            # Zaokrąglij wilgotność do int i podaj w procentach
             try:
                 result['wilgotnosc'] = round(float(humidity))
             except (TypeError, ValueError):
                 pass
 
-        # Dodaj informacje o wietrze jeśli są dostępne
         windspeed = current.get('windspeed')
         if windspeed is not None:
             try:

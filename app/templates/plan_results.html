@@ -18,6 +18,23 @@
         <div class="card weather-card">
             <h2><span class="icon">☀️</span> Pogoda</h2>
             <div class="weather-details">
+                {% if plan.weather.daily is defined %}
+                <div class="daily-weather-list">
+                    {% for day in plan.weather.daily %}
+                    <div class="daily-item card">
+                        <h3>{{ day.date_label or day.date }}</h3>
+                        <p><strong><span class="weather-icon">{{ day.icon or '' }}</span> {{ day.opis or 'Brak danych' }}</strong></p>
+                        <p>Min / Max: <strong>{% if day.temperatura_min is defined %}{{ day.temperatura_min }}°C{% else %}-{% endif %}</strong> / <strong>{% if day.temperatura_max is defined %}{{ day.temperatura_max }}°C{% else %}-{% endif %}</strong></p>
+                        {% if day.opad_mm is defined %}
+                        <p>Opad: <strong>{{ day.opad_mm }} mm</strong></p>
+                        {% endif %}
+                        {% if day.wiatr_kmh is defined %}
+                        <p>Wiatr: <strong>{{ day.wiatr_kmh }} km/h</strong></p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
                 <p>Średnia temperatura: <strong>{{ plan.weather.temperatura }}°C</strong></p>
                 {% if plan.weather.temperatura_min is defined and plan.weather.temperatura_max is defined %}
                 <p>Min / Max: <strong>{{ plan.weather.temperatura_min }}°C</strong> / <strong>{{ plan.weather.temperatura_max }}°C</strong></p>
@@ -28,6 +45,7 @@
                 <p>Warunki: {{ plan.weather.opis }}</p>
                 {% if plan.weather.wiatr_kmh is defined %}
                 <p>Prędkość wiatru: {{ plan.weather.wiatr_kmh }} km/h</p>
+                {% endif %}
                 {% endif %}
             </div>
         </div>

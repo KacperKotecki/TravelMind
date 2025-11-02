@@ -18,12 +18,13 @@ CITY_COSTS = {
     }
 }
 
-def get_plan_details(city: str, days: int, style: str) -> dict:
+def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None) -> dict:
     """
     Główna funkcja serwisu, obsługująca dynamiczne miasta.
     """
     # KROK 1: Zawsze próbuj pobrać dane z zewnętrznych API
-    weather_info = get_weather(city)
+    # Pobierz pogodę dla zakresu dat jeśli są przekazane, w przeciwnym razie pobierz aktualną
+    weather_info = get_weather(city, start_date=start_date, end_date=end_date)
     attractions_list = get_attractions(city)
 
     # KROK 2: Sprawdź, czy mamy dane o kosztach dla tego miasta
@@ -60,7 +61,7 @@ def get_plan_details(city: str, days: int, style: str) -> dict:
 
     # KROK 3: Zwrócenie ustrukturyzowanej odpowiedzi
     result = {
-        "query": {"city": city, "days": days, "style": style},
+        "query": {"city": city, "days": days, "style": style, "start": start_date, "end": end_date},
         "cost": cost_info,
         "weather": weather_info or {"opis": "Brak danych pogodowych"},
         "attractions": attractions_list or [{"name": "Brak danych o atrakcjach"}]
