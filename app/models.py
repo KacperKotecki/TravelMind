@@ -1,6 +1,20 @@
 from datetime import datetime
 from . import db # Zostanie zaimportowane w kolejnym kroku
 
+
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+
+    generated_plans = db.relationship('GeneratedPlan', backref='user', lazy=True)
+
+    def __repr__(self):
+        return f'<User {self.email}>'
 class GeneratedPlan(db.Model):
     __tablename__ = 'generated_plans'
     id = db.Column(db.Integer, primary_key=True)
@@ -14,8 +28,8 @@ class GeneratedPlan(db.Model):
     local_currency_code = db.Column(db.String(3))
     
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    # W przyszłości, po dodaniu użytkowników:
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-
+    
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    
     def __repr__(self):
         return f'<GeneratedPlan for {self.city} ({self.days} days)>'
