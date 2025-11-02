@@ -19,7 +19,16 @@
             <h2><span class="icon">☀️</span> Pogoda</h2>
             <div class="weather-details">
                 <p>Średnia temperatura: <strong>{{ plan.weather.temperatura }}°C</strong></p>
+                {% if plan.weather.temperatura_min is defined and plan.weather.temperatura_max is defined %}
+                <p>Min / Max: <strong>{{ plan.weather.temperatura_min }}°C</strong> / <strong>{{ plan.weather.temperatura_max }}°C</strong></p>
+                {% endif %}
+                {% if plan.weather.wilgotnosc is defined %}
+                <p>Wilgotność: <strong>{{ plan.weather.wilgotnosc }}%</strong></p>
+                {% endif %}
                 <p>Warunki: {{ plan.weather.opis }}</p>
+                {% if plan.weather.wiatr_kmh is defined %}
+                <p>Prędkość wiatru: {{ plan.weather.wiatr_kmh }} km/h</p>
+                {% endif %}
             </div>
         </div>
         
