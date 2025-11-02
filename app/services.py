@@ -18,13 +18,80 @@ CITY_COSTS = {
     }
 }
 
-def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None) -> dict:
+def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None, lat: float = None, lon: float = None) -> dict:
     """
     Główna funkcja serwisu, obsługująca dynamiczne miasta.
     """
+    # Normalizuj nazwę miasta (usuń białe znaki na początku/końcu)
+    if isinstance(city, str):
+        city = city.strip()
+
+    # KROK 1: Przygotuj zakres dat dla pogody.
+    # Jeśli użytkownik nie podał start/end, wygeneruj zakres zaczynający się od dziś i trwający `days` dni.
+    if not start_date or not end_date:
+        try:
+            from datetime import date, timedelta
+            start = date.today()
+            end = start + timedelta(days=max(int(days) - 1, 0))
+            start_date = start.isoformat()
+            end_date = end.isoformat()
+        except Exception:
+            # jeśli coś pójdzie nie tak, pozostaw wartości None i pozwól get_weather działać w trybie fallback
+            start_date = None
+            end_date = None
+
     # KROK 1: Zawsze próbuj pobrać dane z zewnętrznych API
-    # Pobierz pogodę dla zakresu dat jeśli są przekazane, w przeciwnym razie pobierz aktualną
-    weather_info = get_weather(city, start_date=start_date, end_date=end_date)
+    # Przekaż współrzędne do get_weather jeśli zostały dostarczone (unikanie dodatkowego geokodowania)
+    weather_info = get_weather(city, start_date=start_date, end_date=end_date, lat=lat, lon=lon)
+
+    # Mapowanie kodów pogodowych -> klucze ikon SVG (server-side)
+    weathercode_to_key = {
+        0: 'clear',
+        1: 'partly-cloudy',
+        2: 'partly-cloudy',
+        3: 'cloudy',
+        45: 'fog',
+        48: 'fog',
+        51: 'drizzle',
+        53: 'drizzle',
+        55: 'drizzle',
+        56: 'drizzle',
+        57: 'drizzle',
+        61: 'rain',
+        63: 'rain',
+        65: 'rain',
+        66: 'rain',
+        67: 'rain',
+        71: 'snow',
+        73: 'snow',
+        75: 'snow',
+        77: 'snow',
+        80: 'rain',
+        81: 'rain',
+        82: 'rain',
+        85: 'snow',
+        86: 'snow',
+        95: 'thunder',
+        96: 'thunder',
+        99: 'thunder'
+    }
+
+    # Jeśli mamy listę dni pogodowych, przypisz icon_key na podstawie weathercode
+    if weather_info and isinstance(weather_info, dict):
+        daily = weather_info.get('daily')
+        if isinstance(daily, list):
+            for d in daily:
+                try:
+                    code = d.get('weathercode')
+                    if code is not None:
+                        d['icon_key'] = weathercode_to_key.get(int(code), 'unknown')
+                except Exception:
+                    d['icon_key'] = 'unknown'
+            # top-level icon_key (dla kompatybilności/widoku ogólnego)
+            if daily:
+                first = daily[0]
+                if 'icon_key' in first:
+                    weather_info['icon_key'] = first.get('icon_key')
     attractions_list = get_attractions(city)
 
     # KROK 2: Sprawdź, czy mamy dane o kosztach dla tego miasta

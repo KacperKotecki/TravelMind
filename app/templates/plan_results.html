@@ -13,17 +13,23 @@
         </p>
     </header>
 
-    <div class="info-grid">
-        
-        <div class="card weather-card">
-            <h2><span class="icon">☀️</span> Pogoda</h2>
-            <div class="weather-details">
+    <!-- Pogoda - górna sekcja -->
+    <div class="card weather-card weather-top">
+        <h2><span class="icon">☀️</span> Pogoda</h2>
+        <div class="weather-details">
                 {% if plan.weather.daily is defined %}
                 <div class="daily-weather-list">
                     {% for day in plan.weather.daily %}
                     <div class="daily-item card">
                         <h3>{{ day.date_label or day.date }}</h3>
-                        <p><strong><span class="weather-icon">{{ day.icon or '' }}</span> {{ day.opis or 'Brak danych' }}</strong></p>
+                        <p><strong>
+                            {% if day.icon_key %}
+                                <img class="weather-svg" src="{{ url_for('static', filename='icons/' ~ day.icon_key ~ '.svg') }}" alt="{{ day.opis }}">
+                            {% else %}
+                                <span class="weather-emoji">{{ day.icon_emoji or day.icon or '' }}</span>
+                            {% endif %}
+                            <span class="weather-icon-key {% if day.icon_key %}weather-{{ day.icon_key }}{% endif %}" data-weather="{{ day.weathercode or '' }}">{{ day.opis or 'Brak danych' }}</span>
+                        </strong></p>
                         <p>Min / Max: <strong>{% if day.temperatura_min is defined %}{{ day.temperatura_min }}°C{% else %}-{% endif %}</strong> / <strong>{% if day.temperatura_max is defined %}{{ day.temperatura_max }}°C{% else %}-{% endif %}</strong></p>
                         {% if day.opad_mm is defined %}
                         <p>Opad: <strong>{{ day.opad_mm }} mm</strong></p>
@@ -47,8 +53,10 @@
                 <p>Prędkość wiatru: {{ plan.weather.wiatr_kmh }} km/h</p>
                 {% endif %}
                 {% endif %}
-            </div>
         </div>
+    </div>
+
+    <div class="info-grid">
         
         <div class="card budget-card">
             <h2><span class="icon">💰</span> Szacowany budżet</h2>

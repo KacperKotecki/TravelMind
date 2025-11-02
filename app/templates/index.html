@@ -11,9 +11,14 @@
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
                 
-                <div class="form-group">
+                <div class="form-group" style="position:relative;">
                     {{ form.city.label }}
-                    {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry") }}
+                    {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry", id="city-input") }}
+                    <!-- kontener sugestii -->
+                    <div id="city-suggestions" class="suggestions" style="position:absolute;left:0;right:0;z-index:30;background:#fff;border:1px solid #ddd;border-radius:6px;display:none;max-height:220px;overflow:auto;"></div>
+                    <!-- ukryte pola z koordynatami (wypełniane przez autocomplete) -->
+                    <input type="hidden" name="city_lat" id="city-lat">
+                    <input type="hidden" name="city_lon" id="city-lon">
                 </div>
                 <div class="form-group">
                     {{ form.start_date.label }}
@@ -38,6 +43,51 @@
     </div>
     <script>
         (function() {
+            // Autocomplete dla pola miasta (wywołuje /api/geocode)
+            const cityInput = document.getElementById('city-input');
+            const suggestionsEl = document.getElementById('city-suggestions');
+            const cityLatEl = document.getElementById('city-lat');
+            const cityLonEl = document.getElementById('city-lon');
+
+            let acTimer = null;
+            function clearSuggestions(){ suggestionsEl.innerHTML=''; suggestionsEl.style.display='none'; }
+            function renderSuggestions(items){
+                if(!items || !items.length){ clearSuggestions(); return; }
+                suggestionsEl.innerHTML = '';
+                items.forEach(it => {
+                    const el = document.createElement('div');
+                    el.className = 'suggestion-item';
+                    el.style.padding = '8px 10px';
+                    el.style.cursor = 'pointer';
+                    el.textContent = it.name;
+                    el.dataset.lat = it.lat;
+                    el.dataset.lon = it.lon;
+                    el.addEventListener('click', () => {
+                        cityInput.value = it.name;
+                        cityLatEl.value = it.lat;
+                        cityLonEl.value = it.lon;
+                        clearSuggestions();
+                    });
+                    suggestionsEl.appendChild(el);
+                });
+                suggestionsEl.style.display = 'block';
+            }
+
+            cityInput && cityInput.addEventListener('input', (e)=>{
+                cityLatEl.value = '';
+                cityLonEl.value = '';
+                const q = (e.target.value || '').trim();
+                if(acTimer) clearTimeout(acTimer);
+                if(!q || q.length < 2){ clearSuggestions(); return; }
+                acTimer = setTimeout(()=>{
+                    fetch(`/api/geocode?q=${encodeURIComponent(q)}`)
+                        .then(r => r.json())
+                        .then(data => renderSuggestions(data))
+                        .catch(()=> clearSuggestions());
+                }, 250);
+            });
+            document.addEventListener('click', (ev)=>{ if(!ev.target.closest('#city-suggestions') && ev.target !== cityInput) clearSuggestions(); });
+
             const start = document.getElementById('start_date');
             const end = document.getElementById('end_date');
             const info = document.getElementById('days-info');
