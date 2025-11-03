@@ -47,83 +47,83 @@ def _weather_code_to_polish(code: int) -> str:
 def _weather_code_to_icon(code: int) -> str:
     """Mapuje kod pogodowy Open-Meteo na prostą ikonę (emoji)."""
     icons = {
-        0: '☀️',
-        1: '🌤️',
-        2: '⛅',
-        3: '☁️',
-        45: '🌫️',
-        48: '🌫️',
-        51: '🌧️',
-        53: '🌧️',
-        55: '🌧️',
-        56: '🌧️',
-        57: '🌧️',
-        61: '🌦️',
-        63: '🌧️',
-        65: '⛈️',
-        66: '🌧️',
-        67: '🌧️',
-        71: '🌨️',
-        73: '🌨️',
-        75: '❄️',
-        77: '❄️',
-        80: '🌦️',
-        81: '🌧️',
-        82: '🌧️',
-        85: '🌨️',
-        86: '🌨️',
-        95: '⛈️',
-        96: '⛈️',
-        99: '⛈️'
+        0: "☀️",
+        1: "🌤️",
+        2: "⛅",
+        3: "☁️",
+        45: "🌫️",
+        48: "🌫️",
+        51: "🌧️",
+        53: "🌧️",
+        55: "🌧️",
+        56: "🌧️",
+        57: "🌧️",
+        61: "🌦️",
+        63: "🌧️",
+        65: "⛈️",
+        66: "🌧️",
+        67: "🌧️",
+        71: "🌨️",
+        73: "🌨️",
+        75: "❄️",
+        77: "❄️",
+        80: "🌦️",
+        81: "🌧️",
+        82: "🌧️",
+        85: "🌨️",
+        86: "🌨️",
+        95: "⛈️",
+        96: "⛈️",
+        99: "⛈️",
     }
     try:
-        return icons.get(int(code), '🔆')
+        return icons.get(int(code), "🔆")
     except Exception:
-        return '🔆'
+        return "🔆"
 
 
 def _weather_code_to_key(code: int) -> str:
     """Zwraca krótki klucz opisowy dla typu pogody, przydatny do CSS/ikonek."""
     mapping = {
-        0: 'clear',
-        1: 'partly-sunny',
-        2: 'partly-cloudy',
-        3: 'cloudy',
-        45: 'fog',
-        48: 'fog',
-        51: 'drizzle',
-        53: 'drizzle',
-        55: 'drizzle',
-        56: 'freezing-drizzle',
-        57: 'freezing-drizzle',
-        61: 'rain',
-        63: 'rain',
-        65: 'heavy-rain',
-        66: 'freezing-rain',
-        67: 'freezing-rain',
-        71: 'snow',
-        73: 'snow',
-        75: 'heavy-snow',
-        77: 'snow-grains',
-        80: 'showers',
-        81: 'showers',
-        82: 'showers-heavy',
-        85: 'snow-showers',
-        86: 'snow-showers',
-        95: 'thunder',
-        96: 'thunder-hail',
-        99: 'thunder-hail'
+        0: "clear",
+        1: "partly-sunny",
+        2: "partly-cloudy",
+        3: "cloudy",
+        45: "fog",
+        48: "fog",
+        51: "drizzle",
+        53: "drizzle",
+        55: "drizzle",
+        56: "freezing-drizzle",
+        57: "freezing-drizzle",
+        61: "rain",
+        63: "rain",
+        65: "heavy-rain",
+        66: "freezing-rain",
+        67: "freezing-rain",
+        71: "snow",
+        73: "snow",
+        75: "heavy-snow",
+        77: "snow-grains",
+        80: "showers",
+        81: "showers",
+        82: "showers-heavy",
+        85: "snow-showers",
+        86: "snow-showers",
+        95: "thunder",
+        96: "thunder-hail",
+        99: "thunder-hail",
     }
     try:
-        return mapping.get(int(code), 'unknown')
+        return mapping.get(int(code), "unknown")
     except Exception:
-        return 'unknown'
-
+        return "unknown"
 
 
 def _format_date_val(val):
     # Akceptujemy daty jako obiekty date/datetime lub jako string YYYY-MM-DD
     from datetime import date, datetime
+
     if val is None:
         return None
     if isinstance(val, date):
@@ -138,8 +138,8 @@ def normalize_to_ascii(s: str) -> str:
     """Prosta transliteracja do ASCII: Łódź -> Lodz"""
     if not s:
         return s
-    nk = unicodedata.normalize('NFKD', s)
-    return ''.join(c for c in nk if not unicodedata.combining(c))
+    nk = unicodedata.normalize("NFKD", s)
+    return "".join(c for c in nk if not unicodedata.combining(c))
 
 
 def build_geocode_variants(raw: str) -> list:
@@ -156,22 +156,31 @@ def build_geocode_variants(raw: str) -> list:
         return []
 
     # znormalizuj wielokrotne spacje
-    s = re.sub(r'\s+', ' ', s)
+    s = re.sub(r"\s+", " ", s)
 
     variants = []
     # pełny (oryginalny)
     variants.append(s)
 
     # pierwszy token przed przecinkiem (zwykle nazwa miasta)
-    first = s.split(',')[0].strip()
+    first = s.split(",")[0].strip()
     if first and first not in variants:
         variants.append(first)
 
     # usuń typy administracyjne (heurystyka)
-    admin_words = [r'\bwojew[dóo]ztwo\b', r'\bpowiat\b', r'\bgmina\b', r'\bregion\b', r'\bmiasto\b', r'\bwoj\b', r'\bpolska\b', r'\bpoland\b']
-    pattern = re.compile('|'.join(admin_words), flags=re.IGNORECASE)
-    first_clean = pattern.sub('', first).strip()
-    first_clean = re.sub(r'\s+', ' ', first_clean)
+    admin_words = [
+        r"\bwojew[dóo]ztwo\b",
+        r"\bpowiat\b",
+        r"\bgmina\b",
+        r"\bregion\b",
+        r"\bmiasto\b",
+        r"\bwoj\b",
+        r"\bpolska\b",
+        r"\bpoland\b",
+    ]
+    pattern = re.compile("|".join(admin_words), flags=re.IGNORECASE)
+    first_clean = pattern.sub("", first).strip()
+    first_clean = re.sub(r"\s+", " ", first_clean)
     if first_clean and first_clean not in variants:
         variants.append(first_clean)
 
@@ -183,7 +192,13 @@ def build_geocode_variants(raw: str) -> list:
     return variants
 
 
-def get_weather(city: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None) -> dict | None:
+def get_weather(
+    city: str = None,
+    start_date=None,
+    end_date=None,
+    lat: float = None,
+    lon: float = None,
+) -> dict | None:
     """Pobiera dane pogodowe dla danego miasta.
 
     Jeśli przekazano start_date i end_date (YYYY-MM-DD lub obiekty date),
@@ -191,22 +206,28 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
     Zwraca strukturę zawierającą 'daily': [ {date, temperatura_min, temperatura_max, opis, opad, wiatr} , ... ]
     W przypadku braku zakresu zachowuje częściową kompatybilność z poprzednią implementacją (current_weather + daily dla bieżącego dnia).
     """
-    # Jeśli współrzędne zostały przekazane jawnie, użyj ich.
+    # Jeśli współrzędne (lat, lon) nie zostały przekazane, spróbuj je uzyskać z nazwy miasta
     if lat is None or lon is None:
-        # Najpierw pobierz współrzędne (Geoapify lub Open-Meteo fallback)
         if not city:
-            current_app.logger.error("get_weather: brak city oraz współrzędnych lat/lon")
-            return None
-        coords = get_coordinates_for_city(city)
-        if not coords:
-            current_app.logger.warning(f"Nie udało się pobrać współrzędnych dla: {city}")
+            current_app.logger.error(
+                "get_weather: brak 'city' oraz współrzędnych 'lat'/'lon'"
+            )
             return None
 
-    lat = coords.get("lat")
-    lon = coords.get("lon")
+        coords = get_coordinates_for_city(city)
+        if not coords:
+            current_app.logger.warning(
+                f"Nie udało się pobrać współrzędnych dla: {city}"
+            )
+            return None
+
+        lat = coords.get("lat")
+        lon = coords.get("lon")
+
+    # Sprawdzenie, czy na pewno mamy współrzędne
     if lat is None or lon is None:
         current_app.logger.error(
-            f"Nieprawidłowe współrzędne dla miasta: {city} -> {coords}"
+            f"Nieprawidłowe lub brakujące współrzędne dla zapytania pogodowego (miasto: {city})"
         )
         return None
 
@@ -231,22 +252,32 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
             try:
                 body = response.text
             except Exception:
-                body = '<brak treści odpowiedzi>'
-            current_app.logger.error(f"Błąd podczas zapytania do Open-Meteo: {http_err} - body: {body}")
+                body = "<brak treści odpowiedzi>"
+            current_app.logger.error(
+                f"Błąd podczas zapytania do Open-Meteo: {http_err} - body: {body}"
+            )
 
             # Próba automatycznego dopasowania zakresu dat jeśli API wskazuje ograniczony zakres
             # (np. "Parameter 'start_date' is out of allowed range from 2025-08-01 to 2025-11-17")
             retried_success = False
             try:
-                if response.status_code == 400 and body and 'out of allowed range' in body:
+                if (
+                    response.status_code == 400
+                    and body
+                    and "out of allowed range" in body
+                ):
                     import re
-                    m = re.search(r"from\s+(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})", body)
+
+                    m = re.search(
+                        r"from\s+(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})", body
+                    )
                     if m:
                         allowed_start = m.group(1)
                         allowed_end = m.group(2)
                         # jeśli mieliśmy s/e to spróbuj je przyciąć do zakresu i ponowić zapytanie
                         if s and e:
                             from datetime import datetime
+
                             try:
                                 req_s = datetime.fromisoformat(s).date()
                                 req_e = datetime.fromisoformat(e).date()
@@ -256,25 +287,31 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
                                 new_s = max(req_s, a_s)
                                 new_e = min(req_e, a_e)
                                 if new_s <= new_e:
-                                    params['start_date'] = new_s.isoformat()
-                                    params['end_date'] = new_e.isoformat()
+                                    params["start_date"] = new_s.isoformat()
+                                    params["end_date"] = new_e.isoformat()
                                 else:
                                     # Żądany zakres nie pokrywa się z dozwolonym zakresem.
                                     # W takim wypadku pobierzemy pełny dozwolony zakres zwrócony przez API.
-                                    params['start_date'] = a_s.isoformat()
-                                    params['end_date'] = a_e.isoformat()
-                                    current_app.logger.info(f"Przycinam zakres dat do dozwolonego przez API: {params['start_date']} - {params['end_date']} i ponawiam zapytanie")
+                                    params["start_date"] = a_s.isoformat()
+                                    params["end_date"] = a_e.isoformat()
+                                    current_app.logger.info(
+                                        f"Przycinam zakres dat do dozwolonego przez API: {params['start_date']} - {params['end_date']} i ponawiam zapytanie"
+                                    )
                                     # ponów zapytanie raz
-                                    retry_resp = requests.get(base_url, params=params, timeout=10)
+                                    retry_resp = requests.get(
+                                        base_url, params=params, timeout=10
+                                    )
                                     try:
                                         retry_resp.raise_for_status()
                                     except requests.exceptions.HTTPError as http_err2:
-                                        current_app.logger.error(f"Retry Open-Meteo failed: {http_err2} - body: {retry_resp.text}")
+                                        current_app.logger.error(
+                                            f"Retry Open-Meteo failed: {http_err2} - body: {retry_resp.text}"
+                                        )
                                     else:
                                         # zastąpiamy response danymi z retry i pozwalamy dalszemu kodowi je przetworzyć
                                         response = retry_resp
                                         retried_success = True
-                                        
+
                             except Exception:
                                 pass
             except Exception:
@@ -330,6 +367,7 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
             # Filtruj nieparowane wartości
             indexed = [(i, t) for i, t in enumerate(parsed_times) if t is not None]
             if cur_time is not None and indexed:
+
                 def _to_utc_naive(dt):
                     if dt.tzinfo is not None:
                         return dt.astimezone(timezone.utc).replace(tzinfo=None)
