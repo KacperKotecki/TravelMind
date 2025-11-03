@@ -363,9 +363,17 @@ main {
 }
 
 .weather-emoji {
-    font-size: 1.6rem;
+    font-size: 1.9rem; /* ~30px - większa i czytelna */
     margin-right: 8px;
     vertical-align: middle;
+    line-height: 1;
+}
+
+/* Upewnij się, że opis i emoji są ładnie wyrównane */
+.daily-item p strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .weather-icon-key {

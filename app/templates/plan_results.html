@@ -23,11 +23,8 @@
                     <div class="daily-item card">
                         <h3>{{ day.date_label or day.date }}</h3>
                         <p><strong>
-                            {% if day.icon_key %}
-                                <img class="weather-svg" src="{{ url_for('static', filename='icons/' ~ day.icon_key ~ '.svg') }}" alt="{{ day.opis }}">
-                            {% else %}
-                                <span class="weather-emoji">{{ day.icon_emoji or day.icon or '' }}</span>
-                            {% endif %}
+                            <!-- Zastępujemy ładowanie SVG prostą emoji/ikonką wklejoną inline -->
+                            <span class="weather-emoji">{{ day.icon_emoji or day.icon or '🌤️' }}</span>
                             <span class="weather-icon-key {% if day.icon_key %}weather-{{ day.icon_key }}{% endif %}" data-weather="{{ day.weathercode or '' }}">{{ day.opis or 'Brak danych' }}</span>
                         </strong></p>
                         <p>Min / Max: <strong>{% if day.temperatura_min is defined %}{{ day.temperatura_min }}°C{% else %}-{% endif %}</strong> / <strong>{% if day.temperatura_max is defined %}{{ day.temperatura_max }}°C{% else %}-{% endif %}</strong></p>

@@ -52,19 +52,51 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
     if isinstance(city, str):
         city = city.strip()
 
-    # KROK 1: Przygotuj zakres dat dla pogody.
-    # Jeśli użytkownik nie podał start/end, wygeneruj zakres zaczynający się od dziś i trwający `days` dni.
-    if not start_date or not end_date:
-        try:
-            from datetime import date, timedelta
+    # KROK 1: Przygotuj zakres dat dla pogody i wymuś maksymalnie 16 dni (jeśli użytkownik poda zakres lub days)
+    max_days = 16
+    from datetime import date, timedelta, datetime
+
+    # Jeśli użytkownik podał start_date i end_date, spróbuj je sparsować i przyciąć do max_days
+    try:
+        if start_date and end_date:
+            # oczekujemy formatu YYYY-MM-DD lub obiektów date/datetime
+            if isinstance(start_date, str):
+                s_date = datetime.fromisoformat(start_date).date()
+            elif isinstance(start_date, datetime):
+                s_date = start_date.date()
+            else:
+                s_date = start_date
+
+            if isinstance(end_date, str):
+                e_date = datetime.fromisoformat(end_date).date()
+            elif isinstance(end_date, datetime):
+                e_date = end_date.date()
+            else:
+                e_date = end_date
+
+            # jeśli zakres jest odwrotny, zamień
+            if e_date < s_date:
+                s_date, e_date = e_date, s_date
+
+            requested_days = (e_date - s_date).days + 1
+            if requested_days > max_days:
+                # przytnij koniec zakresu
+                e_date = s_date + timedelta(days=max_days - 1)
+            start_date = s_date.isoformat()
+            end_date = e_date.isoformat()
+            days = min(int(days), max_days)
+        else:
+            # jeśli nie podano zakresu dat, wygeneruj od dziś na podstawie days (ogranicz do max_days)
             start = date.today()
-            end = start + timedelta(days=max(int(days) - 1, 0))
+            days_int = min(int(days), max_days)
+            end = start + timedelta(days=max(days_int - 1, 0))
             start_date = start.isoformat()
             end_date = end.isoformat()
-        except Exception:
-            # jeśli coś pójdzie nie tak, pozostaw wartości None i pozwól get_weather działać w trybie fallback
-            start_date = None
-            end_date = None
+            days = days_int
+    except Exception:
+        # W razie problemów pozostaw wartości None aby get_weather mógł próbować fallback
+        start_date = start_date
+        end_date = end_date
 
     # KROK 1: Zawsze próbuj pobrać dane z zewnętrznych API
     # Przekaż współrzędne do get_weather jeśli zostały dostarczone (unikanie dodatkowego geokodowania)
@@ -113,6 +145,27 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
                         d['icon_key'] = weathercode_to_key.get(int(code), 'unknown')
                 except Exception:
                     d['icon_key'] = 'unknown'
+            # Mapowanie icon_key -> emoji (fallback, server-side)
+            icon_to_emoji = {
+                'clear': '☀️',
+                'partly-cloudy': '⛅',
+                'cloudy': '☁️',
+                'fog': '🌫️',
+                'drizzle': '🌦️',
+                'rain': '🌧️',
+                'snow': '❄️',
+                'thunder': '⛈️',
+                'unknown': '🌤️'
+            }
+            for d in daily:
+                try:
+                    key = d.get('icon_key')
+                    if key:
+                        d['icon_emoji'] = icon_to_emoji.get(key, '🌤️')
+                    else:
+                        d['icon_emoji'] = d.get('icon_emoji') or '🌤️'
+                except Exception:
+                    d['icon_emoji'] = '🌤️'
             # top-level icon_key (dla kompatybilności/widoku ogólnego)
             if daily:
                 first = daily[0]
