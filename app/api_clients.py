@@ -1,5 +1,8 @@
 # app/api_clients.py
+import re
+import unicodedata
 import requests
+from functools import lru_cache
 from flask import current_app
 
 def _weather_code_to_polish(code: int) -> str:
@@ -128,6 +131,55 @@ def _format_date_val(val):
         return val.date().isoformat()
     # załóżmy że jest to już string
     return str(val)
+
+
+def normalize_to_ascii(s: str) -> str:
+    """Prosta transliteracja do ASCII: Łódź -> Lodz"""
+    if not s:
+        return s
+    nk = unicodedata.normalize('NFKD', s)
+    return ''.join(c for c in nk if not unicodedata.combining(c))
+
+
+def build_geocode_variants(raw: str) -> list:
+    """Zwraca listę wariantów zapytania geokodującego w kolejności próby.
+
+    Przykład:
+      'Łódź, Województwo łódzkie, Polska' -> ['Łódź, Województwo łódzkie, Polska', 'Łódź', 'Lodz']
+    """
+    if not raw:
+        return []
+
+    s = str(raw).strip()
+    if not s:
+        return []
+
+    # znormalizuj wielokrotne spacje
+    s = re.sub(r'\s+', ' ', s)
+
+    variants = []
+    # pełny (oryginalny)
+    variants.append(s)
+
+    # pierwszy token przed przecinkiem (zwykle nazwa miasta)
+    first = s.split(',')[0].strip()
+    if first and first not in variants:
+        variants.append(first)
+
+    # usuń typy administracyjne (heurystyka)
+    admin_words = [r'\bwojew[dóo]ztwo\b', r'\bpowiat\b', r'\bgmina\b', r'\bregion\b', r'\bmiasto\b', r'\bwoj\b', r'\bpolska\b', r'\bpoland\b']
+    pattern = re.compile('|'.join(admin_words), flags=re.IGNORECASE)
+    first_clean = pattern.sub('', first).strip()
+    first_clean = re.sub(r'\s+', ' ', first_clean)
+    if first_clean and first_clean not in variants:
+        variants.append(first_clean)
+
+    # transliteracja ASCII
+    first_ascii = normalize_to_ascii(first_clean)
+    if first_ascii and first_ascii not in variants:
+        variants.append(first_ascii)
+
+    return variants
 
 
 def get_weather(city: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None) -> dict | None:
@@ -437,62 +489,81 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
         return None
 
 
+@lru_cache(maxsize=256)
 def get_coordinates_for_city(city: str) -> dict | None:
-    """
-    Pobiera współrzędne geograficzne (szerokość i długość) dla danego miasta.
-    """
-    # Najpierw spróbuj Geoapify, ale jeśli klucz jest nieprawidłowy lub brak wyników,
-    # spróbuj automatycznie geokodowania przez Open-Meteo (bez klucza).
-    api_key = current_app.config.get('GEOAPIFY_API_KEY')
-    if api_key:
-        base_url = "https://api.geoapify.com/v1/geocode/search"
-        params = {
-            "text": city,
-            "format": "json",
-            "apiKey": api_key,
-            "limit": 1
-        }
+    """Pobiera współrzędne geograficzne (szerokość i długość) dla danego miasta.
 
-        try:
-            response = requests.get(base_url, params=params, timeout=8)
-            # Jeśli autoryzacja nie przeszła, zaloguj i spróbuj fallback
-            if response.status_code == 401:
-                current_app.logger.warning("Geoapify zwrócił 401 Unauthorized - spróbuję fallback geokodowania.")
-            else:
-                response.raise_for_status()
-                data = response.json()
-                if data.get('results'):
-                    location = data['results'][0]
-                    return {"lat": location['lat'], "lon": location['lon']}
+    Implementuje prostą strategię prób: dla każdego wariantu zapytania (pełne, tylko miasto, ASCII)
+    spróbuj najpierw Geoapify (jeśli jest klucz), a potem Open-Meteo jako fallback.
+    """
+    if not city:
+        return None
+
+    api_key = current_app.config.get('GEOAPIFY_API_KEY')
+
+    variants = build_geocode_variants(city)
+    # upewnij się, że zawsze jest co najmniej oryginalny string
+    if not variants:
+        variants = [city]
+
+    for attempt in variants:
+        # 1) Geoapify (jeśli mamy klucz)
+        if api_key:
+            base_url = "https://api.geoapify.com/v1/geocode/search"
+            params = {
+                "text": attempt,
+                "format": "json",
+                "apiKey": api_key,
+                "limit": 1
+            }
+            try:
+                response = requests.get(base_url, params=params, timeout=8)
+                if response.status_code == 401:
+                    current_app.logger.warning("Geoapify zwrócił 401 Unauthorized - spróbuję fallback geokodowania.")
                 else:
-                    current_app.logger.info(f"Geoapify: brak wyników dla miasta: {city}")
+                    response.raise_for_status()
+                    data = response.json()
+                    if data.get('results'):
+                        location = data['results'][0]
+                        lat = location.get('lat')
+                        lon = location.get('lon')
+                        if lat is not None and lon is not None:
+                            current_app.logger.info(f"Geoapify: znaleziono współrzędne dla '{attempt}' (original='{city}')")
+                            return {"lat": lat, "lon": lon}
+                    else:
+                        current_app.logger.debug(f"Geoapify: brak wyników dla: '{attempt}'")
+            except requests.exceptions.RequestException as e:
+                current_app.logger.debug(f"Geoapify request failed for '{attempt}': {e}")
+
+        # 2) Open-Meteo fallback
+        try:
+            om_url = "https://geocoding-api.open-meteo.com/v1/search"
+            om_params = {"name": attempt, "count": 1, "language": "pl"}
+            om_resp = requests.get(om_url, params=om_params, timeout=8)
+            om_resp.raise_for_status()
+            om_data = om_resp.json()
+            results = om_data.get('results')
+            if not results:
+                current_app.logger.debug(f"Open-Meteo geocoding: brak wyników dla: '{attempt}'")
+                # spróbuj następny wariant
+                continue
+            first = results[0]
+            lat = first.get('latitude')
+            lon = first.get('longitude')
+            if lat is None or lon is None:
+                current_app.logger.debug(f"Open-Meteo geocoding: niepełne dane dla: '{attempt}' -> {first}")
+                continue
+            current_app.logger.info(f"Open-Meteo: znaleziono współrzędne dla '{attempt}' (original='{city}')")
+            return {"lat": lat, "lon": lon}
 
         except requests.exceptions.RequestException as e:
-            current_app.logger.error(f"Błąd podczas zapytania Geoapify Geocoding API: {e}")
+            current_app.logger.debug(f"Open-Meteo request failed for '{attempt}': {e}")
+            # spróbuj następny wariant
+            continue
 
-    # Fallback: Open-Meteo geocoding (nie wymaga klucza)
-    try:
-        om_url = "https://geocoding-api.open-meteo.com/v1/search"
-        om_params = {"name": city, "count": 1, "language": "pl"}
-        om_resp = requests.get(om_url, params=om_params, timeout=8)
-        om_resp.raise_for_status()
-        om_data = om_resp.json()
-        results = om_data.get('results')
-        if not results:
-            current_app.logger.warning(f"Open-Meteo geocoding: brak wyników dla miasta: {city}")
-            return None
-        first = results[0]
-        # Open-Meteo zwraca pola 'latitude' i 'longitude'
-        lat = first.get('latitude')
-        lon = first.get('longitude')
-        if lat is None or lon is None:
-            current_app.logger.error(f"Open-Meteo geocoding: niepełne dane dla: {city} -> {first}")
-            return None
-        return {"lat": lat, "lon": lon}
-
-    except requests.exceptions.RequestException as e:
-        current_app.logger.error(f"Błąd podczas zapytania Open-Meteo Geocoding API: {e}")
-        return None
+    # Jeśli wszystkie warianty się nie powiodły
+    current_app.logger.warning(f"Nie udało się pobrać współrzędnych dla: {city} (próbowano wariantów: {variants})")
+    return None
 
 
 def get_attractions(city: str, limit: int = 5) -> list | None:

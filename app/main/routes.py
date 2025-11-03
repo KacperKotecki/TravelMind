@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, current_app
 from . import main
 from .forms import PlanGeneratorForm
+from ..api_clients import build_geocode_variants
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -52,10 +53,18 @@ def api_geocode():
     q = q.strip()
     if not q:
         return jsonify([])
+
+    # Upraszczamy zapytanie dla lepszych wyników geokodowania - użyjemy zwykle tylko nazwy miasta
+    try:
+        variants = build_geocode_variants(q)
+        # wybierz drugi wariant (zwykle sama nazwa miasta) jeśli istnieje, inaczej pierwszy
+        search_q = variants[1] if len(variants) > 1 else variants[0]
+    except Exception:
+        search_q = q
     try:
         import requests
         om_url = "https://geocoding-api.open-meteo.com/v1/search"
-        params = {"name": q, "count": 6, "language": "pl"}
+        params = {"name": search_q, "count": 6, "language": "pl"}
         resp = requests.get(om_url, params=params, timeout=6)
         resp.raise_for_status()
         data = resp.json()
