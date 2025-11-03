@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from flask_migrate import Migrate
+import logging
 
 db = SQLAlchemy()
 
@@ -11,6 +12,11 @@ def create_app(config_name: str):
     """
     app = Flask(__name__)
     app.config.from_object(config[config_name])
+
+    # Konfiguracja logowania
+    if app.config['DEBUG']:
+        logging.basicConfig(level=logging.INFO)
+        app.logger.setLevel(logging.INFO)
 
     # Inicjalizacja rozszerzeń
     db.init_app(app)

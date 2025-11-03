@@ -3,12 +3,18 @@
 /* ========================================= */
 
 :root {
-    --color-primary: #0077b6;      /* Głęboki Błękit Oceanu (Akcent) */
-    --color-secondary: #00b4d8;    /* Jasny Błękit Nieba (Akcja) */
-    --color-accent: #e76f51;       /* Ciepły Koral/Ziemia (Budżet, Błędy) */
-    --color-text: #264653;         /* Ciemny Turkus/Las (Tekst główny) */
-    --color-background: #f0f8ff;   /* Bardzo Jasny Błękit/Chmura (Tło strony) */
-    --color-card-bg: #ffffff;      /* Czysta Biel dla kart/kontenerów */
+    --color-primary: #0077b6;
+    /* Głęboki Błękit Oceanu (Akcent) */
+    --color-secondary: #00b4d8;
+    /* Jasny Błękit Nieba (Akcja) */
+    --color-accent: #e76f51;
+    /* Ciepły Koral/Ziemia (Budżet, Błędy) */
+    --color-text: #264653;
+    /* Ciemny Turkus/Las (Tekst główny) */
+    --color-background: #f0f8ff;
+    /* Bardzo Jasny Błękit/Chmura (Tło strony) */
+    --color-card-bg: #ffffff;
+    /* Czysta Biel dla kart/kontenerów */
     --color-shadow: rgba(0, 0, 0, 0.1);
     --color-white: #ffffff;
 }
@@ -34,13 +40,15 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-    background: var(--color-card-bg); /* Używamy białego tła dla czystości */
+    background: var(--color-card-bg);
+    /* Używamy białego tła dla czystości */
     border-radius: 12px;
     box-shadow: 0 4px 10px var(--color-shadow);
 }
 
 /* Nagłówki */
-h1, h2 {
+h1,
+h2 {
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -114,7 +122,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     /* Pamiętaj o dodaniu pliku travel-background.jpg do app/static/images/ */
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('images/travel-background.jpg');
     background-size: cover;
@@ -186,14 +194,16 @@ main {
 
 .btn-primary {
     width: 100%;
-    background-color: var(--color-secondary); /* Jasny Błękit Nieba dla akcji */
+    background-color: var(--color-secondary);
+    /* Jasny Błękit Nieba dla akcji */
     color: var(--color-white);
     padding: 1rem;
     font-size: 1.1rem;
 }
 
 .btn-primary:hover {
-    background-color: #0096c7; /* Ciemniejszy błękit */
+    background-color: #0096c7;
+    /* Ciemniejszy błękit */
     transform: translateY(-1px);
 }
 
@@ -222,7 +232,8 @@ main {
 
 .alert-success {
     background-color: #d1fae5;
-    color: #2a9d8f; /* Spokojniejszy turkus */
+    color: #2a9d8f;
+    /* Spokojniejszy turkus */
     border: 1px solid #2a9d8f;
 }
 
@@ -269,12 +280,14 @@ main {
 }
 
 .days-badge {
-    background-color: #ade8f4; /* Akcent Jasny Błękit */
+    background-color: #ade8f4;
+    /* Akcent Jasny Błękit */
     color: var(--color-primary);
 }
 
 .style-badge {
-    background-color: #ccdff0; /* Subtelny Błękit */
+    background-color: #ccdff0;
+    /* Subtelny Błękit */
     color: var(--color-primary);
 }
 
@@ -292,7 +305,8 @@ main {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s;
-    border-left: 5px solid var(--color-primary); /* Głęboki błękit - motyw wiodący */
+    border-left: 5px solid var(--color-primary);
+    /* Głęboki błękit - motyw wiodący */
 }
 
 .card:hover {
@@ -373,7 +387,110 @@ main {
 
 .main-cost strong {
     font-size: 1.4rem;
-    color: var(--color-accent); /* Ciepły Koral dla budżetu */
+    color: var(--color-accent);
+    /* Ciepły Koral dla budżetu */
+}
+
+/* ========================================= */
+/* KARTY ATRAKCJI (plan_results.html)      */
+/* ========================================= */
+
+.attractions-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.attraction-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Domyślnie jedna kolumna */
+    gap: 1.5rem;
+}
+
+.attraction-card {
+    background-color: var(--color-card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    /* Aby zaokrąglenia działały poprawnie */
+}
+
+.attraction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.attraction-card .card-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+    /* Lekko szare tło dla nagłówka */
+    border-bottom: 1px solid #e9ecef;
+}
+
+.attraction-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    /* Zapobiega kurczeniu się ikony */
+}
+
+.attraction-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.attraction-card .card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.attraction-address {
+    font-style: italic;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.attraction-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.rating-badge {
+    background-color: #fff3cd;
+    color: #856404;
+    font-weight: bold;
+}
+
+.price-badge {
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.attraction-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.type-badge {
+    background-color: #e2e3e5;
+    color: #495057;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
 }
 
 /* --- SEKCJA ATRAKCJI --- */
@@ -389,7 +506,8 @@ main {
 .attraction-item {
     background-color: var(--color-card-bg);
     padding: 1rem 1.5rem;
-    border-left: 3px solid var(--color-secondary); /* Akcent Jasny Błękit */
+    border-left: 3px solid var(--color-secondary);
+    /* Akcent Jasny Błękit */
     margin-bottom: 10px;
     border-radius: 6px;
     font-size: 1.1rem;
@@ -404,7 +522,8 @@ main {
 
 /* --- STOPKA (base.html) --- */
 footer {
-    background: var(--color-text); /* Ciemny Turkus/Las */
+    background: var(--color-text);
+    /* Ciemny Turkus/Las */
     color: #90b3c2;
     text-align: center;
     padding: 1rem 0;
@@ -432,20 +551,28 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+
     /* Nawigacja na telefonach */
     nav {
         flex-direction: column;
         text-align: center;
     }
+
     .nav-links {
         margin-top: 10px;
     }
+
     .nav-links li {
         margin: 0 10px;
     }
 
     /* Strona wyników - stosy zamiast grida */
     .info-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
+    }
+
+    .attraction-cards {
+        grid-template-columns: 1fr;
+        /* Na mniejszych ekranach zawsze jedna kolumna */
     }
 }

@@ -71,11 +71,43 @@
     
     <div class="attractions-section">
         <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
-        <ul class="attraction-list">
+        <div class="attraction-cards">
             {% for attraction in plan.attractions %}
-            <li class="attraction-item">{{ attraction.name }}</li>
+            <div class="attraction-card">
+                <div class="card-header">
+                    {% if attraction.icon %}
+                    <img src="{{ attraction.icon }}" alt="Ikona dla {{ attraction.name }}" class="attraction-icon">
+                    {% endif %}
+                    <h3 class="attraction-name">{{ attraction.name }}</h3>
+                </div>
+                <div class="card-body">
+                    {% if attraction.address %}
+                    <p class="attraction-address">{{ attraction.address }}</p>
+                    {% endif %}
+                    
+                    <div class="attraction-meta">
+                        {% if attraction.rating %}
+                        <span class="badge rating-badge">⭐ {{ attraction.rating }}</span>
+                        {% endif %}
+                        
+                        {% if attraction.price_level %}
+                        <span class="badge price-badge">
+                            {% for i in range(attraction.price_level) %}${% endfor %}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    {% if attraction.types %}
+                    <div class="attraction-types">
+                        {% for type in attraction.types[:4] %}
+                        <span class="badge type-badge">{{ type.replace('_', ' ') | title }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 
     <div class="action-buttons">

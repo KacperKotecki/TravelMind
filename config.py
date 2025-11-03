@@ -13,6 +13,7 @@ class BaseConfig:
     # API Keys
     OPENWEATHERMAP_API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY')
     GEOAPIFY_API_KEY = os.environ.get('GEOAPIFY_API_KEY')
+    GOOGLE_PLACES_API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY')
 
 
 class DevelopmentConfig(BaseConfig):
