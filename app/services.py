@@ -6,17 +6,43 @@ from .api_clients import get_weather, get_attractions, get_exchange_rate
 CITY_COSTS = {
     "Paryż": {
         "waluta": "EUR",
-        "Ekonomiczny": {"nocleg": 35, "wyzywienie": 30, "atrakcje": 15, "transport": 10},
-        "Standardowy": {"nocleg": 80, "wyzywienie": 60, "atrakcje": 40, "transport": 15},
-        "Komfortowy": {"nocleg": 200, "wyzywienie": 120, "atrakcje": 80, "transport": 40},
+        "Ekonomiczny": {
+            "nocleg": 35,
+            "wyzywienie": 30,
+            "atrakcje": 15,
+            "transport": 10,
+        },
+        "Standardowy": {
+            "nocleg": 80,
+            "wyzywienie": 60,
+            "atrakcje": 40,
+            "transport": 15,
+        },
+        "Komfortowy": {
+            "nocleg": 200,
+            "wyzywienie": 120,
+            "atrakcje": 80,
+            "transport": 40,
+        },
     },
     "Rzym": {
         "waluta": "EUR",
         "Ekonomiczny": {"nocleg": 30, "wyzywienie": 25, "atrakcje": 15, "transport": 8},
-        "Standardowy": {"nocleg": 70, "wyzywienie": 50, "atrakcje": 35, "transport": 12},
-        "Komfortowy": {"nocleg": 180, "wyzywienie": 100, "atrakcje": 70, "transport": 35},
-    }
+        "Standardowy": {
+            "nocleg": 70,
+            "wyzywienie": 50,
+            "atrakcje": 35,
+            "transport": 12,
+        },
+        "Komfortowy": {
+            "nocleg": 180,
+            "wyzywienie": 100,
+            "atrakcje": 70,
+            "transport": 35,
+        },
+    },
 }
+
 
 def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None, lat: float = None, lon: float = None) -> dict:
     """
@@ -107,31 +133,29 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
         total_cost_local = daily_cost * days
 
         exchange_rate_pln = get_exchange_rate(city_data["waluta"], "PLN")
-        
+
         if not exchange_rate_pln:
             total_cost_pln = None
         else:
             total_cost_pln = total_cost_local * exchange_rate_pln
 
         cost_info = {
-            "total_pln": round(total_cost_pln, 2) if total_cost_pln is not None else None,
+            "total_pln": (
+                round(total_cost_pln, 2) if total_cost_pln is not None else None
+            ),
             "total_local": round(total_cost_local, 2),
-            "currency": city_data["waluta"]
+            "currency": city_data["waluta"],
         }
     else:
         # Jeśli nie mamy danych o kosztach, przygotuj pustą strukturę
-        cost_info = {
-            "total_pln": None,
-            "total_local": None,
-            "currency": None
-        }
+        cost_info = {"total_pln": None, "total_local": None, "currency": None}
 
-    # KROK 3: Zwrócenie ustrukturyzowanej odpowiedzi
+    # KROK 3: Zwrócenie ustrukturyzowanej odpowiedzi (bez atrakcji)
     result = {
         "query": {"city": city, "days": days, "style": style, "start": start_date, "end": end_date},
         "cost": cost_info,
         "weather": weather_info or {"opis": "Brak danych pogodowych"},
-        "attractions": attractions_list or [{"name": "Brak danych o atrakcjach"}]
+        "attractions": [],  # Zwracamy pustą listę, bo dane załaduje JS
     }
-    
+
     return result

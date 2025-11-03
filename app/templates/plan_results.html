@@ -71,42 +71,16 @@
     
     <div class="attractions-section">
         <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
-        <div class="attraction-cards">
-            {% for attraction in plan.attractions %}
-            <div class="attraction-card">
-                <div class="card-header">
-                    {% if attraction.icon %}
-                    <img src="{{ attraction.icon }}" alt="Ikona dla {{ attraction.name }}" class="attraction-icon">
-                    {% endif %}
-                    <h3 class="attraction-name">{{ attraction.name }}</h3>
-                </div>
-                <div class="card-body">
-                    {% if attraction.address %}
-                    <p class="attraction-address">{{ attraction.address }}</p>
-                    {% endif %}
-                    
-                    <div class="attraction-meta">
-                        {% if attraction.rating %}
-                        <span class="badge rating-badge">⭐ {{ attraction.rating }}</span>
-                        {% endif %}
-                        
-                        {% if attraction.price_level %}
-                        <span class="badge price-badge">
-                            {% for i in range(attraction.price_level) %}${% endfor %}
-                        </span>
-                        {% endif %}
-                    </div>
-
-                    {% if attraction.types %}
-                    <div class="attraction-types">
-                        {% for type in attraction.types[:4] %}
-                        <span class="badge type-badge">{{ type.replace('_', ' ') | title }}</span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
+        
+        <!-- Kontener na karty atrakcji, który będzie wypełniany przez JS -->
+        <div class="attraction-cards" id="attractions-container">
+            
+            <!-- Symbol ładowania, który zostanie zastąpiony przez dane -->
+            <div class="loader-container">
+                <p>Ładowanie atrakcji...</p>
             </div>
-            {% endfor %}
+
+            <!-- Karty atrakcji zostaną wstawione tutaj dynamicznie -->
         </div>
     </div>
 
@@ -114,4 +88,105 @@
         <button class="btn btn-secondary"><span class="icon">📄</span> Pobierz jako PDF</button>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const city = "{{ plan.query.city }}";
+    const attractionsContainer = document.getElementById('attractions-container');
+
+    // Funkcja do tworzenia pojedynczej karty atrakcji
+    function createAttractionCard(attraction) {
+        // Pusty szablon karty
+        const card = document.createElement('div');
+        card.className = 'attraction-card';
+
+        // Nagłówek z ikoną i nazwą
+        const header = document.createElement('div');
+        header.className = 'card-header';
+        if (attraction.icon) {
+            const icon = document.createElement('img');
+            icon.src = attraction.icon;
+            icon.alt = `Ikona dla ${attraction.name}`;
+            icon.className = 'attraction-icon';
+            header.appendChild(icon);
+        }
+        const name = document.createElement('h3');
+        name.className = 'attraction-name';
+        name.textContent = attraction.name;
+        header.appendChild(name);
+
+        // Ciało karty z adresem, oceną, ceną i typami
+        const body = document.createElement('div');
+        body.className = 'card-body';
+        if (attraction.address) {
+            const address = document.createElement('p');
+            address.className = 'attraction-address';
+            address.textContent = attraction.address;
+            body.appendChild(address);
+        }
+
+        const meta = document.createElement('div');
+        meta.className = 'attraction-meta';
+        if (attraction.rating) {
+            const rating = document.createElement('span');
+            rating.className = 'badge rating-badge';
+            rating.textContent = `⭐ ${attraction.rating}`;
+            meta.appendChild(rating);
+        }
+        if (attraction.price_level) {
+            const price = document.createElement('span');
+            price.className = 'badge price-badge';
+            price.textContent = '$'.repeat(attraction.price_level);
+            meta.appendChild(price);
+        }
+        body.appendChild(meta);
+
+        if (attraction.types && attraction.types.length > 0) {
+            const typesContainer = document.createElement('div');
+            typesContainer.className = 'attraction-types';
+            attraction.types.slice(0, 4).forEach(type => {
+                const typeBadge = document.createElement('span');
+                typeBadge.className = 'badge type-badge';
+                typeBadge.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                typesContainer.appendChild(typeBadge);
+            });
+            body.appendChild(typesContainer);
+        }
+
+        card.appendChild(header);
+        card.appendChild(body);
+        return card;
+    }
+
+    // Wywołanie API
+    fetch(`/plan/api/attractions/${city}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Problem z siecią lub serwerem.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Wyczyść kontener z komunikatu "ładowanie"
+            attractionsContainer.innerHTML = '';
+
+            if (data.attractions && data.attractions.length > 0) {
+                // Dodaj każdą atrakcję do kontenera
+                data.attractions.forEach(attraction => {
+                    const card = createAttractionCard(attraction);
+                    attractionsContainer.appendChild(card);
+                });
+            } else {
+                // Pokaż komunikat, jeśli nie ma atrakcji
+                attractionsContainer.innerHTML = '<p>Nie znaleziono atrakcji dla tego miasta.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Błąd podczas pobierania atrakcji:', error);
+            attractionsContainer.innerHTML = '<p class="alert alert-error">Wystąpił błąd podczas ładowania atrakcji. Spróbuj odświeżyć stronę.</p>';
+        });
+});
+</script>
 {% endblock %}
