@@ -23,6 +23,8 @@ class GeneratedPlan(db.Model):
     days = db.Column(db.Integer, nullable=False)
     travel_style = db.Column(db.String(50), nullable=False)
     vacation_type = db.Column(db.String(50))
+    data_start = db.Column(db.Date)
+    data_end = db.Column(db.Date)
     
     total_cost_pln = db.Column(db.Float)
     total_cost_local_currency = db.Column(db.Float)
