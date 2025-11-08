@@ -1,5 +1,7 @@
 from datetime import datetime
 from . import db # Zostanie zaimportowane w kolejnym kroku
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
@@ -37,3 +39,24 @@ class GeneratedPlan(db.Model):
     
     def __repr__(self):
         return f'<GeneratedPlan for {self.city} ({self.days} days)>'
+
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+
+    plans = db.relationship('GeneratedPlan', backref='user', lazy=True)
+
+    def set_password(self, password):
+        """Hashuje podane hasło i zapisuje hash w bazie danych"""
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        """Weryfikuje podane hasło z hashem zapisanym w bazie danych"""
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return f'<User {self.email}>'
