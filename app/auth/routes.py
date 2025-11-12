@@ -4,10 +4,12 @@ from app.auth import auth
 from app.auth.forms import LoginForm, RegistrationForm
 from app.models import User
 from app import db
+from flask_login import login_required, , current_user
 
 
 # Rejestracja użytkowników
 @auth.route('/register', methods=['GET', 'POST'])
+@login_required
 def register():
     """Obsługuje rejestrację nowych użytkowników"""
     if current_user.is_authenticated:
