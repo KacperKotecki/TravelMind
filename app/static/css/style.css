@@ -326,6 +326,39 @@ main {
     align-items: center;
 }
 
+/* --- Nearby places card --- */
+.nearby-card {
+    border-left-color: #ffb703; /* warm accent */
+}
+.nearby-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.nearby-item {
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff, #fcfeff);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.nearby-name {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+.nearby-address {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+.muted {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
 /* Weather top full-width card - wyróżnione tło i akcent */
 .weather-top {
     margin-bottom: 2rem;

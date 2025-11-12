@@ -1,5 +1,5 @@
 # app/services.py
-from .api_clients import get_weather, get_attractions, get_exchange_rate
+from .api_clients import get_weather, get_attractions, get_exchange_rate, get_nearby_places, get_coordinates_for_city
 
 # KROK 1: Tymczasowa, uproszczona baza danych kosztów dziennych (w EUR)
 # W przyszłości te dane będą pochodzić z bazy danych.
@@ -173,6 +173,22 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
                     weather_info['icon_key'] = first.get('icon_key')
     attractions_list = get_attractions(city)
 
+    # Jeśli mamy współrzędne (lub możemy je pobrać), spróbuj znaleźć miejsca w promieniu 30 km
+    nearby = None
+    try:
+        use_lat = lat
+        use_lon = lon
+        if use_lat is None or use_lon is None:
+            coords = get_coordinates_for_city(city)
+            if coords:
+                use_lat = coords.get("lat")
+                use_lon = coords.get("lon")
+
+        if use_lat is not None and use_lon is not None:
+            nearby = get_nearby_places(use_lat, use_lon, radius_km=30, limit=12)
+    except Exception:
+        nearby = None
+
     # KROK 2: Sprawdź, czy mamy dane o kosztach dla tego miasta
     if city in CITY_COSTS:
         city_data = CITY_COSTS[city]
@@ -209,6 +225,14 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
         "cost": cost_info,
         "weather": weather_info or {"opis": "Brak danych pogodowych"},
         "attractions": [],  # Zwracamy pustą listę, bo dane załaduje JS
+        "nearby_places": nearby or [],
     }
+
+    # Dodaj współrzędne centrum (jeśli dostępne) aby mapy mogły się wycentrować
+    try:
+        if 'use_lat' in locals() and use_lat is not None and 'use_lon' in locals() and use_lon is not None:
+            result['center'] = {'lat': use_lat, 'lon': use_lon}
+    except Exception:
+        pass
 
     return result
