@@ -20,18 +20,16 @@
                     <input type="hidden" name="city_lat" id="city-lat">
                     <input type="hidden" name="city_lon" id="city-lon">
                 </div>
-                <div class="form-group">
-                    {{ form.start_date.label }}
-                    {{ form.start_date(class="form-control", type="date", id="start_date") }}
+                <div class="form-group" style="display: none;">
+                    {{ form.start_date(id="start_date") }}
                 </div>
-                <div class="form-group">
-                    {{ form.end_date.label }}
-                    {{ form.end_date(class="form-control", type="date", id="end_date") }}
+                <div class="form-group" style="display: none;">
+                    {{ form.end_date(id="end_date") }}
                 </div>
 
                 <div class="form-group">
-                    <label for="datepicker">Wybierz zakres dat (nowy kalendarz)</label>
-                    <input id="datepicker" class="form-control"/>
+                    <label for="datepicker">Wybierz zakres dat</label>
+                    <input id="datepicker" class="form-control" placeholder="Wybierz datę początkową i końcową"/>
                 </div>
 
                 <div class="form-group">
@@ -49,12 +47,59 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const startInput = document.getElementById('start_date');
+            const endInput = document.getElementById('end_date');
+            const infoEl = document.getElementById('days-info');
+            const errorEl = document.getElementById('date-error');
+            const submitBtn = document.getElementById('submit-btn');
+            const datepickerEl = document.getElementById('datepicker');
+
+            function formatDate(date) {
+                const d = new Date(date);
+                let month = '' + (d.getMonth() + 1);
+                let day = '' + d.getDate();
+                const year = d.getFullYear();
+
+                if (month.length < 2) 
+                    month = '0' + month;
+                if (day.length < 2) 
+                    day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+
+            function updateDateInfo(startDate, endDate) {
+                if (!startDate || !endDate) {
+                    infoEl.textContent = '';
+                    errorEl.textContent = '';
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                const diffMs = endDate - startDate;
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                const days = diffDays >= 0 ? diffDays + 1 : 0;
+
+                if (days <= 0) {
+                    infoEl.textContent = '';
+                    errorEl.textContent = 'Data powrotu musi być po dacie wyjazdu.';
+                    submitBtn.disabled = true;
+                } else if (days > 14) {
+                    infoEl.textContent = `Wybrano ${days} dni`;
+                    errorEl.textContent = 'Maksymalny dozwolony przedział to 14 dni.';
+                    submitBtn.disabled = true;
+                } else {
+                    infoEl.textContent = `Wybrano ${days} dni`;
+                    errorEl.textContent = '';
+                    submitBtn.disabled = false;
+                }
+            }
+
             const maxDate = new Date();
             maxDate.setDate(maxDate.getDate() + 45);
 
-            // Inicjalizacja nowego kalendarza Litepicker
-            new Litepicker({ 
-                element: document.getElementById('datepicker'),
+            const picker = new Litepicker({ 
+                element: datepickerEl,
                 singleMode: false,
                 allowRepick: true,
                 lang: 'pl-PL',
@@ -64,8 +109,16 @@
                 maxDays: 14,
                 setup: (picker) => {
                     picker.on('selected', (date1, date2) => {
-                        // Tutaj w przyszłości podepniemy logikę
-                        console.log('Wybrano zakres:', date1.dateInstance, 'do', date2.dateInstance);
+                        if (date1 && date2) {
+                            startInput.value = formatDate(date1.dateInstance);
+                            endInput.value = formatDate(date2.dateInstance);
+                            updateDateInfo(date1.dateInstance, date2.dateInstance);
+                        }
+                    });
+                    picker.on('clear:selection', () => {
+                        startInput.value = '';
+                        endInput.value = '';
+                        updateDateInfo(null, null);
                     });
                 }
             });
@@ -114,57 +167,6 @@
                 }, 250);
             });
             document.addEventListener('click', (ev)=>{ if(!ev.target.closest('#city-suggestions') && ev.target !== cityInput) clearSuggestions(); });
-
-            const start = document.getElementById('start_date');
-            const end = document.getElementById('end_date');
-            const info = document.getElementById('days-info');
-            const error = document.getElementById('date-error');
-            const submit = document.getElementById('submit-btn');
-
-            const maxDateForInputs = new Date();
-            maxDateForInputs.setDate(maxDateForInputs.getDate() + 45);
-            const maxDateString = maxDateForInputs.toISOString().split('T')[0];
-            if (start) start.max = maxDateString;
-            if (end) end.max = maxDateString;
-
-            function updateInfo() {
-                if (!start || !end || !info || !error || !submit) return;
-                const sVal = start.value;
-                const eVal = end.value;
-                if (sVal && eVal) {
-                    const s = new Date(sVal);
-                    const e = new Date(eVal);
-                    const diffMs = e - s;
-                    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-                    const days = diffDays >= 0 ? diffDays + 1 : 0;
-                    if (days <= 0) {
-                        info.textContent = '';
-                        error.textContent = 'Data powrotu musi być po dacie wyjazdu.';
-                        submit.disabled = true;
-                    } else if (days > 14) {
-                        info.textContent = `Wybrano ${days} dni`;
-                        error.textContent = 'Maksymalny dozwolony przedział to 14 dni.';
-                        submit.disabled = true;
-                    } else {
-                        info.textContent = `Wybrano ${days} dni`;
-                        error.textContent = '';
-                        submit.disabled = false;
-                    }
-                    // set minimum for end date to help user
-                    end.min = sVal;
-                } else {
-                    info.textContent = '';
-                    error.textContent = '';
-                    submit.disabled = false;
-                    // reset min
-                    end.min = '';
-                }
-            }
-
-            start && start.addEventListener('change', updateInfo);
-            end && end.addEventListener('change', updateInfo);
-            
-            updateInfo();
         });
     </script>
 {% endblock %}
