@@ -28,6 +28,12 @@
                     {{ form.end_date.label }}
                     {{ form.end_date(class="form-control", type="date", id="end_date") }}
                 </div>
+
+                <div class="form-group">
+                    <label for="datepicker">Wybierz zakres dat (nowy kalendarz)</label>
+                    <input id="datepicker" class="form-control"/>
+                </div>
+
                 <div class="form-group">
                     <small id="days-info" class="form-text text-muted"></small>
                     <div id="date-error" class="text-danger" role="alert" aria-live="polite"></div>
@@ -42,7 +48,28 @@
         </div>
     </div>
     <script>
-        (function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const maxDate = new Date();
+            maxDate.setDate(maxDate.getDate() + 45);
+
+            // Inicjalizacja nowego kalendarza Litepicker
+            new Litepicker({ 
+                element: document.getElementById('datepicker'),
+                singleMode: false,
+                allowRepick: true,
+                lang: 'pl-PL',
+                format: 'DD.MM.YYYY',
+                minDate: Date.now(),
+                maxDate: maxDate,
+                maxDays: 14,
+                setup: (picker) => {
+                    picker.on('selected', (date1, date2) => {
+                        // Tutaj w przyszłości podepniemy logikę
+                        console.log('Wybrano zakres:', date1.dateInstance, 'do', date2.dateInstance);
+                    });
+                }
+            });
+
             // Autocomplete dla pola miasta (wywołuje /api/geocode)
             const cityInput = document.getElementById('city-input');
             const suggestionsEl = document.getElementById('city-suggestions');
@@ -94,6 +121,12 @@
             const error = document.getElementById('date-error');
             const submit = document.getElementById('submit-btn');
 
+            const maxDateForInputs = new Date();
+            maxDateForInputs.setDate(maxDateForInputs.getDate() + 45);
+            const maxDateString = maxDateForInputs.toISOString().split('T')[0];
+            if (start) start.max = maxDateString;
+            if (end) end.max = maxDateString;
+
             function updateInfo() {
                 if (!start || !end || !info || !error || !submit) return;
                 const sVal = start.value;
@@ -108,9 +141,9 @@
                         info.textContent = '';
                         error.textContent = 'Data powrotu musi być po dacie wyjazdu.';
                         submit.disabled = true;
-                    } else if (days > 16) {
+                    } else if (days > 14) {
                         info.textContent = `Wybrano ${days} dni`;
-                        error.textContent = 'Maksymalny dozwolony przedział to 16 dni.';
+                        error.textContent = 'Maksymalny dozwolony przedział to 14 dni.';
                         submit.disabled = true;
                     } else {
                         info.textContent = `Wybrano ${days} dni`;
@@ -130,8 +163,8 @@
 
             start && start.addEventListener('change', updateInfo);
             end && end.addEventListener('change', updateInfo);
-            // init on load
-            document.addEventListener('DOMContentLoaded', updateInfo);
-        })();
+            
+            updateInfo();
+        });
     </script>
 {% endblock %}

@@ -6,6 +6,7 @@
     <title>{% block title %}TravelMind{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='pics/logo.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
     {% block head_extras %}{% endblock %} 
 </head>
 <body>
@@ -38,6 +39,7 @@
     <footer>
         <p>&copy; 2025 TravelMind | <a href="#">Prywatność</a></p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
