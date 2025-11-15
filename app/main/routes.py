@@ -89,3 +89,6 @@ def api_geocode():
     except Exception as e:
         current_app.logger.error(f"Błąd geokodowania (Open-Meteo) dla q={q}: {e}")
         return jsonify([]), 500
+@main.route('/login')
+def login():
+    return render_template("login.html")
