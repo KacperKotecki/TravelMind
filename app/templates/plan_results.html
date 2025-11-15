@@ -64,21 +64,78 @@
                 <p class="info-note">Dla tego miasta nie mamy jeszcze danych o szacunkowych kosztach.</p>
             {% endif %}
         </div>
+        
+        <!-- 'Ważne obiekty' section removed as requested -->
+        <div class="card nearby-card">
+            <h2><span class="icon">📍</span> Miejsca w pobliżu (30 km)</h2>
+            {% if plan.nearby_places and plan.nearby_places|length > 0 %}
+            <ul class="nearby-list">
+                {% for place in plan.nearby_places %}
+                <li class="nearby-item">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                        <strong class="nearby-name">{{ place.name }}</strong>
+                        {% if place.dist_km %}<span class="muted">{{ place.dist_km }} km</span>{% endif %}
+                    </div>
+                    {% if place.category %}
+                    <div class="nearby-cat muted">{{ place.category }}</div>
+                    {% endif %}
+                    {% if place.address %}<div class="nearby-address">{{ place.address }}</div>{% endif %}
+                    {% if place.lat is defined and place.lon is defined and place.lat and place.lon %}
+                    <div style="margin-top:6px;">
+                        <a class="map-link" href="https://www.openstreetmap.org/?mlat={{ place.lat }}&mlon={{ place.lon }}#map=14/{{ place.lat }}/{{ place.lon }}" target="_blank" rel="noopener">Pokaż na mapie</a>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="info-note">Brak danych o miejscach w pobliżu lub brak klucza Geoapify.</p>
+            {% endif %}
+        </div>
     </div>
     
     <div class="attractions-section">
         <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
         
-        <!-- Kontener na karty atrakcji, który będzie wypełniany przez JS -->
+        <!-- Karty atrakcji renderowane po stronie serwera -->
         <div class="attraction-cards" id="attractions-container">
-            
-            <!-- Symbol ładowania, który zostanie zastąpiony przez dane -->
-            <div class="loader-container">
-                <p>Ładowanie atrakcji...</p>
-            </div>
-
-            <!-- Karty atrakcji zostaną wstawione tutaj dynamicznie -->
+            {% if plan.attractions and plan.attractions|length > 0 %}
+                {% for attraction in plan.attractions %}
+                <div class="attraction-card card">
+                    <div class="card-header">
+                        {% if attraction.icon %}
+                        <img src="{{ attraction.icon }}" alt="Ikona dla {{ attraction.name }}" class="attraction-icon">
+                        {% endif %}
+                        <h3 class="attraction-name">{{ attraction.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if attraction.address %}
+                        <p class="attraction-address">{{ attraction.address }}</p>
+                        {% endif %}
+                        <div class="attraction-meta">
+                            {% if attraction.rating %}<span class="badge rating-badge">⭐ {{ attraction.rating }}</span>{% endif %}
+                            {% if attraction.price_level %}<span class="badge price-badge">{{ '$' * attraction.price_level }}</span>{% endif %}
+                        </div>
+                        {% if attraction.types and attraction.types|length > 0 %}
+                        <div class="attraction-types">
+                            {% for t in attraction.types[:4] %}
+                            <span class="badge type-badge">{{ t.replace('_',' ')|title }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if attraction.lat is defined and attraction.lon is defined and attraction.lat and attraction.lon %}
+                        <div style="margin-top:6px;">
+                            <a class="map-link" href="https://www.openstreetmap.org/?mlat={{ attraction.lat }}&mlon={{ attraction.lon }}#map=14/{{ attraction.lat }}/{{ attraction.lon }}" target="_blank" rel="noopener">Pokaż na mapie</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Brak danych o atrakcjach dla tego miasta.</p>
+            {% endif %}
         </div>
+        <!-- Map view removed: attractions shown server-side -->
     </div>
 
     <div class="action-buttons">
@@ -87,103 +144,4 @@
 </div>
 {% endblock %}
 
-{% block scripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const city = "{{ plan.query.city }}";
-    const attractionsContainer = document.getElementById('attractions-container');
-
-    // Funkcja do tworzenia pojedynczej karty atrakcji
-    function createAttractionCard(attraction) {
-        // Pusty szablon karty
-        const card = document.createElement('div');
-        card.className = 'attraction-card';
-
-        // Nagłówek z ikoną i nazwą
-        const header = document.createElement('div');
-        header.className = 'card-header';
-        if (attraction.icon) {
-            const icon = document.createElement('img');
-            icon.src = attraction.icon;
-            icon.alt = `Ikona dla ${attraction.name}`;
-            icon.className = 'attraction-icon';
-            header.appendChild(icon);
-        }
-        const name = document.createElement('h3');
-        name.className = 'attraction-name';
-        name.textContent = attraction.name;
-        header.appendChild(name);
-
-        // Ciało karty z adresem, oceną, ceną i typami
-        const body = document.createElement('div');
-        body.className = 'card-body';
-        if (attraction.address) {
-            const address = document.createElement('p');
-            address.className = 'attraction-address';
-            address.textContent = attraction.address;
-            body.appendChild(address);
-        }
-
-        const meta = document.createElement('div');
-        meta.className = 'attraction-meta';
-        if (attraction.rating) {
-            const rating = document.createElement('span');
-            rating.className = 'badge rating-badge';
-            rating.textContent = `⭐ ${attraction.rating}`;
-            meta.appendChild(rating);
-        }
-        if (attraction.price_level) {
-            const price = document.createElement('span');
-            price.className = 'badge price-badge';
-            price.textContent = '$'.repeat(attraction.price_level);
-            meta.appendChild(price);
-        }
-        body.appendChild(meta);
-
-        if (attraction.types && attraction.types.length > 0) {
-            const typesContainer = document.createElement('div');
-            typesContainer.className = 'attraction-types';
-            attraction.types.slice(0, 4).forEach(type => {
-                const typeBadge = document.createElement('span');
-                typeBadge.className = 'badge type-badge';
-                typeBadge.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                typesContainer.appendChild(typeBadge);
-            });
-            body.appendChild(typesContainer);
-        }
-
-        card.appendChild(header);
-        card.appendChild(body);
-        return card;
-    }
-
-    // Wywołanie API
-    fetch(`/plan/api/attractions/${city}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Problem z siecią lub serwerem.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Wyczyść kontener z komunikatu "ładowanie"
-            attractionsContainer.innerHTML = '';
-
-            if (data.attractions && data.attractions.length > 0) {
-                // Dodaj każdą atrakcję do kontenera
-                data.attractions.forEach(attraction => {
-                    const card = createAttractionCard(attraction);
-                    attractionsContainer.appendChild(card);
-                });
-            } else {
-                // Pokaż komunikat, jeśli nie ma atrakcji
-                attractionsContainer.innerHTML = '<p>Nie znaleziono atrakcji dla tego miasta.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Błąd podczas pobierania atrakcji:', error);
-            attractionsContainer.innerHTML = '<p class="alert alert-error">Wystąpił błąd podczas ładowania atrakcji. Spróbuj odświeżyć stronę.</p>';
-        });
-});
-</script>
-{% endblock %}
+{% block scripts %}{% endblock %}

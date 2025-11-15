@@ -441,6 +441,15 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
 
         attractions = []
         for place in results[:limit]:
+            # Spróbuj wydobyć współrzędne jeśli są dostępne (geometry.location)
+            lat = None
+            lon = None
+            geom = place.get("geometry") or {}
+            loc = geom.get("location") if geom else None
+            if loc:
+                lat = loc.get("lat")
+                lon = loc.get("lng")
+
             attractions.append(
                 {
                     "name": place.get("name"),
@@ -449,6 +458,8 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
                     "price_level": place.get("price_level"),
                     "types": place.get("types", []),
                     "icon": place.get("icon"),
+                    "lat": lat,
+                    "lon": lon,
                 }
             )
 
@@ -459,6 +470,182 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
 
     except requests.exceptions.RequestException as e:
         current_app.logger.error(f"Błąd podczas zapytania do Google Places API: {e}")
+        return None
+
+
+def get_nearby_places(lat: float, lon: float, radius_km: int = 30, limit: int = 10) -> list | None:
+    """
+    Pobiera listę punktów zainteresowania (POI) w promieniu `radius_km` od podanych współrzędnych.
+    Korzysta najpierw z Geoapify Places API jeśli dostępny klucz, w przeciwnym razie zwraca None.
+
+    Zwraca listę słowników: {name, dist_km, category, address, lat, lon, lonlat}
+    """
+    api_key = current_app.config.get("GEOAPIFY_API_KEY")
+    radius_m = int(radius_km * 1000)
+
+    # Jeśli mamy klucz Geoapify, użyjemy ich API (bardziej kompletne wyniki)
+    if api_key:
+        base = "https://api.geoapify.com/v2/places"
+        try:
+            # Geoapify expects filter circle in format "circle:lon,lat,radius"
+            filter_str = f"circle:{lon},{lat},{radius_m}"
+            # Szukamy parków, terenów naturalnych, zbiorników wodnych i atrakcji turystycznych
+            # Rozszerzone kategorie: parki, natura, turystyka, muzea, zabytki itp.
+            categories = (
+                "leisure.park,natural,tourism,leisure,water,landuse,"
+                "tourism.museum,tourism.attraction,tourism.viewpoint,historic"
+            )
+            params = {
+                "filter": filter_str,
+                "limit": limit,
+                "categories": categories,
+                "apiKey": api_key,
+                "lang": "pl",
+            }
+
+            resp = requests.get(base, params=params, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+            features = data.get("features") or []
+            results = []
+            for f in features:
+                props = f.get("properties", {})
+                # distance may be provided in meters as 'distance', else compute later
+                dist_m = props.get("distance")
+                if dist_m is None:
+                    dist_km = None
+                else:
+                    try:
+                        dist_km = round(float(dist_m) / 1000.0, 1)
+                    except Exception:
+                        dist_km = None
+
+                # wymagamy sensownej nazwy (props.name lub props['name:pl'] itp.) — bez nazwy pomijamy wynik
+                name = props.get("name") or props.get("name:pl") or props.get("name:en")
+                if not name or not str(name).strip():
+                    # pomijamy nieoznaczone obiekty (np. viewpoint bez nazwy)
+                    continue
+
+                results.append({
+                    "name": name,
+                    "dist_km": dist_km,
+                    "category": props.get("categories"),
+                    "address": props.get("formatted") or props.get("address_line2") or props.get("address_line1"),
+                    "lat": props.get("lat"),
+                    "lon": props.get("lon"),
+                })
+
+            # jeśli mamy dystanse, posortuj rosnąco
+            try:
+                results = sorted(results, key=lambda r: (r.get("dist_km") is None, r.get("dist_km") or 0))
+            except Exception:
+                pass
+
+            return results
+
+        except requests.exceptions.RequestException as e:
+            current_app.logger.error(f"Błąd podczas zapytania Geoapify Places API: {e}")
+            # Nie zwracamy None od razu — spróbuj fallback do Overpass poniżej
+
+    # Fallback: jeśli brak klucza Geoapify albo wystąpił błąd, użyj Overpass API (OpenStreetMap) — nie wymaga klucza
+    try:
+        current_app.logger.info("Używam Overpass (OpenStreetMap) jako fallback dla pobliskich miejsc.")
+        overpass_url = "https://overpass-api.de/api/interpreter"
+        # Zestaw tagów przydatnych dla parków/natura/woda/turystyka
+        # Zapytanie pobiera node/way/relation w promieniu radius_m
+        q_parts = [
+            f"node(around:{radius_m},{lat},{lon})[leisure=park];",
+            f"way(around:{radius_m},{lat},{lon})[leisure=park];",
+            f"relation(around:{radius_m},{lat},{lon})[leisure=park];",
+            f"node(around:{radius_m},{lat},{lon})[natural~\"water|wood|coastline|wetland\"];",
+            f"way(around:{radius_m},{lat},{lon})[natural~\"water|wood|coastline|wetland\"];",
+            f"relation(around:{radius_m},{lat},{lon})[natural~\"water|wood|coastline|wetland\"];",
+            f"node(around:{radius_m},{lat},{lon})[tourism~\"viewpoint|attraction|museum|zoo\"];",
+            f"way(around:{radius_m},{lat},{lon})[tourism~\"viewpoint|attraction|museum|zoo\"];",
+            f"relation(around:{radius_m},{lat},{lon})[tourism~\"viewpoint|attraction|museum|zoo\"];",
+            f"node(around:{radius_m},{lat},{lon})[waterway];",
+            f"way(around:{radius_m},{lat},{lon})[waterway];",
+        ]
+        query = "[out:json][timeout:25];(" + "".join(q_parts) + ");out center %s;" % ("%d" % limit)
+
+        resp = requests.post(overpass_url, data={'data': query}, timeout=30)
+        resp.raise_for_status()
+        data = resp.json()
+        elements = data.get('elements', [])
+        results = []
+        seen = set()
+        for el in elements:
+            tags = el.get('tags') or {}
+            # Wymagamy pola 'name' (lub name:pl / official_name). Jeśli brak nazwy, pomiń obiekt.
+            name = tags.get('name') or tags.get('name:pl') or tags.get('official_name')
+            if not name or not str(name).strip():
+                # pomijamy obiekty bez nazwy (np. viewpoint bez nazwy)
+                continue
+
+            # compute coordinates (use center for ways/relations)
+            if el.get('type') == 'node':
+                el_lat = el.get('lat')
+                el_lon = el.get('lon')
+            else:
+                center = el.get('center') or {}
+                el_lat = center.get('lat')
+                el_lon = center.get('lon')
+
+            if el_lat is None or el_lon is None:
+                continue
+
+            # distance in km
+            try:
+                from math import radians, sin, cos, sqrt, atan2
+
+                R = 6371.0
+                dlat = radians(el_lat - lat)
+                dlon = radians(el_lon - lon)
+                a = sin(dlat / 2) ** 2 + cos(radians(lat)) * cos(radians(el_lat)) * sin(dlon / 2) ** 2
+                c = 2 * atan2(sqrt(a), sqrt(1 - a))
+                dist_km = round(R * c, 1)
+            except Exception:
+                dist_km = None
+
+            key = (name, round(el_lat, 5), round(el_lon, 5))
+            if key in seen:
+                continue
+            seen.add(key)
+
+            category = None
+            if tags.get('leisure'):
+                category = tags.get('leisure')
+            elif tags.get('natural'):
+                category = tags.get('natural')
+            elif tags.get('tourism'):
+                category = tags.get('tourism')
+            elif tags.get('waterway'):
+                category = tags.get('waterway')
+
+            address = None
+            if tags.get('addr:street'):
+                address = tags.get('addr:street')
+                if tags.get('addr:housenumber'):
+                    address += ' ' + tags.get('addr:housenumber')
+            results.append({
+                'name': name,
+                'dist_km': dist_km,
+                'category': category,
+                'address': address,
+                'lat': el_lat,
+                'lon': el_lon,
+            })
+
+        # sort and limit
+        try:
+            results = sorted(results, key=lambda r: (r.get('dist_km') is None, r.get('dist_km') or 0))[:limit]
+        except Exception:
+            results = results[:limit]
+
+        return results
+
+    except requests.exceptions.RequestException as e:
+        current_app.logger.error(f"Błąd podczas zapytania Overpass API: {e}")
         return None
 
 

@@ -21,13 +21,17 @@
                     <input type="hidden" name="city_lon" id="city-lon">
                 </div>
                 <div class="form-group">
-                    {{ form.start_date.label }}
-                    {{ form.start_date(class="form-control", type="date", id="start_date") }}
+                    {{ form.date_range.label(for="date_range_picker") }}
+                    {{ form.date_range(class="form-control", id="date_range_picker", placeholder="Wybierz datę początkową i końcową") }}
+                    {% if form.date_range.errors %}
+                        <div class="text-danger" style="font-size: 0.875em; margin-top: 0.25rem;">
+                            {% for error in form.date_range.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="form-group">
-                    {{ form.end_date.label }}
-                    {{ form.end_date(class="form-control", type="date", id="end_date") }}
-                </div>
+
                 <div class="form-group">
                     <small id="days-info" class="form-text text-muted"></small>
                     <div id="date-error" class="text-danger" role="alert" aria-live="polite"></div>
@@ -42,7 +46,64 @@
         </div>
     </div>
     <script>
-        (function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateRangeInput = document.getElementById('date_range_picker');
+            const infoEl = document.getElementById('days-info');
+            const errorEl = document.getElementById('date-error');
+            const submitBtn = document.getElementById('submit-btn');
+
+            function updateDateInfo(startDate, endDate) {
+                if (!startDate || !endDate) {
+                    infoEl.textContent = '';
+                    errorEl.textContent = '';
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                const diffMs = endDate - startDate;
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                const days = diffDays >= 0 ? diffDays + 1 : 0;
+
+                if (days <= 0) {
+                    infoEl.textContent = '';
+                    errorEl.textContent = 'Data powrotu musi być po dacie wyjazdu.';
+                    submitBtn.disabled = true;
+                } else if (days > 14) {
+                    infoEl.textContent = `Wybrano ${days} dni`;
+                    errorEl.textContent = 'Maksymalny dozwolony przedział to 14 dni.';
+                    submitBtn.disabled = true;
+                } else {
+                    infoEl.textContent = `Wybrano ${days} dni`;
+                    errorEl.textContent = '';
+                    submitBtn.disabled = false;
+                }
+            }
+
+            const maxDate = new Date();
+            maxDate.setDate(maxDate.getDate() + 45);
+
+            const picker = new Litepicker({ 
+                element: dateRangeInput,
+                singleMode: false,
+                allowRepick: true,
+                lang: 'pl-PL',
+                format: 'YYYY-MM-DD',
+                delimiter: ' - ',
+                minDate: Date.now(),
+                maxDate: maxDate,
+                maxDays: 14,
+                setup: (picker) => {
+                    picker.on('selected', (date1, date2) => {
+                        if (date1 && date2) {
+                            updateDateInfo(date1.dateInstance, date2.dateInstance);
+                        }
+                    });
+                    picker.on('clear:selection', () => {
+                        updateDateInfo(null, null);
+                    });
+                }
+            });
+
             // Autocomplete dla pola miasta (wywołuje /api/geocode)
             const cityInput = document.getElementById('city-input');
             const suggestionsEl = document.getElementById('city-suggestions');
@@ -87,51 +148,6 @@
                 }, 250);
             });
             document.addEventListener('click', (ev)=>{ if(!ev.target.closest('#city-suggestions') && ev.target !== cityInput) clearSuggestions(); });
-
-            const start = document.getElementById('start_date');
-            const end = document.getElementById('end_date');
-            const info = document.getElementById('days-info');
-            const error = document.getElementById('date-error');
-            const submit = document.getElementById('submit-btn');
-
-            function updateInfo() {
-                if (!start || !end || !info || !error || !submit) return;
-                const sVal = start.value;
-                const eVal = end.value;
-                if (sVal && eVal) {
-                    const s = new Date(sVal);
-                    const e = new Date(eVal);
-                    const diffMs = e - s;
-                    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-                    const days = diffDays >= 0 ? diffDays + 1 : 0;
-                    if (days <= 0) {
-                        info.textContent = '';
-                        error.textContent = 'Data powrotu musi być po dacie wyjazdu.';
-                        submit.disabled = true;
-                    } else if (days > 16) {
-                        info.textContent = `Wybrano ${days} dni`;
-                        error.textContent = 'Maksymalny dozwolony przedział to 16 dni.';
-                        submit.disabled = true;
-                    } else {
-                        info.textContent = `Wybrano ${days} dni`;
-                        error.textContent = '';
-                        submit.disabled = false;
-                    }
-                    // set minimum for end date to help user
-                    end.min = sVal;
-                } else {
-                    info.textContent = '';
-                    error.textContent = '';
-                    submit.disabled = false;
-                    // reset min
-                    end.min = '';
-                }
-            }
-
-            start && start.addEventListener('change', updateInfo);
-            end && end.addEventListener('change', updateInfo);
-            // init on load
-            document.addEventListener('DOMContentLoaded', updateInfo);
-        })();
+        });
     </script>
 {% endblock %}
