@@ -1,3 +1,26 @@
 {% extends "base.html" %}
 
 {% block title %}Travel Mind - Twój Inteligentny Asystent Podróży{% endblock %}
+
+
+{% block content %}
+    <div class="login-container">
+        <h2>Zaloguj się do TravelMind</h2>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.email.label }}
+                {{ form.email(class="form-control", placeholder="Wprowadź swój email") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(class="form-control", placeholder="Wprowadź swoje hasło") }}
+            </div>
+            <div class="unknown-password">
+                <a href="{{ url_for('auth.reset_password_request') }}">Nie pamiętasz hasła?</a>
+            </div>
+            <div class="register">
+               <button> <a href="{{ url_for('auth.register') }}">Zarejestruj się</a></button>
+            </div>
+            {{ form.submit(class="btn btn-primary") }}
+                
