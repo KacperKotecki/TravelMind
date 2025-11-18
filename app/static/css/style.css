@@ -37,6 +37,7 @@ body {
 
 /* Globalny kontener */
 .container {
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
@@ -111,8 +112,9 @@ main {
     flex-grow: 1;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 /* --- SEKCJA GŁÓWNA (HERO) DLA index.html --- */
