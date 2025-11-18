@@ -187,27 +187,39 @@ def get_weather(
                 body = ""
             current_app.logger.error(f"Open-Meteo HTTPError: {http_err} - body: {body}")
             # Jeśli odpowiedź wskazuje na "out of allowed range" spróbuj przyciąć zakres (prosty fallback)
-            if body and "out of allowed range" in body and s and e:
-                m = re.search(r"from\s+(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})", body)
-                if m:
-                    allowed_start = m.group(1)
-                    allowed_end = m.group(2)
-                    try:
-                        from datetime import datetime
+            # lub pobrać bieżącą pogodę jeśli zakres jest całkowicie poza oknem prognozy.
+            if body and "out of allowed range" in body:
+                fixed = False
+                if s and e:
+                    m = re.search(r"from\s+(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})", body)
+                    if m:
+                        allowed_start = m.group(1)
+                        allowed_end = m.group(2)
+                        try:
+                            from datetime import datetime
 
-                        req_s = datetime.fromisoformat(s).date()
-                        a_s = datetime.fromisoformat(allowed_start).date()
-                        a_e = datetime.fromisoformat(allowed_end).date()
-                        new_s = max(req_s, a_s)
-                        new_e = min(datetime.fromisoformat(e).date(), a_e)
-                        if new_s <= new_e:
-                            params["start_date"] = new_s.isoformat()
-                            params["end_date"] = new_e.isoformat()
-                            # ponów zapytanie raz
-                            response = requests.get(base_url, params=params, timeout=10)
-                            response.raise_for_status()
-                    except Exception:
-                        pass
+                            req_s = datetime.fromisoformat(s).date()
+                            a_s = datetime.fromisoformat(allowed_start).date()
+                            a_e = datetime.fromisoformat(allowed_end).date()
+                            new_s = max(req_s, a_s)
+                            new_e = min(datetime.fromisoformat(e).date(), a_e)
+                            if new_s <= new_e:
+                                params["start_date"] = new_s.isoformat()
+                                params["end_date"] = new_e.isoformat()
+                                # ponów zapytanie raz
+                                response = requests.get(base_url, params=params, timeout=10)
+                                response.raise_for_status()
+                                fixed = True
+                        except Exception:
+                            pass
+                
+                if not fixed:
+                    # Fallback: pobierz bieżącą pogodę bez daily (gdyż zakres jest nieprawidłowy)
+                    params.pop("start_date", None)
+                    params.pop("end_date", None)
+                    params.pop("daily", None)
+                    response = requests.get(base_url, params=params, timeout=10)
+                    response.raise_for_status()
             else:
                 return None
     except requests.exceptions.RequestException as e:
