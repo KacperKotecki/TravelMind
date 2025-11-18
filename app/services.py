@@ -171,7 +171,10 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
                 first = daily[0]
                 if 'icon_key' in first:
                     weather_info['icon_key'] = first.get('icon_key')
-    attractions_list = get_attractions(city)
+    
+    # KROK 1.5: Nie pobieramy atrakcji synchronicznie, aby nie blokować ładowania strony.
+    # Dane o atrakcjach zostaną pobrane asynchronicznie przez JavaScript z endpointu /api/attractions/<city>
+    attractions_list = [] 
 
     # Jeśli mamy współrzędne (lub możemy je pobrać), spróbuj znaleźć miejsca w promieniu 30 km
     nearby = None

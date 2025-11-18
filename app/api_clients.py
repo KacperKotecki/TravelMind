@@ -462,6 +462,15 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
                 lat = loc.get("lat")
                 lon = loc.get("lng")
 
+            # Obsługa zdjęć - pobieramy pierwsze zdjęcie jako główne
+            photo_url = None
+            photos = place.get("photos")
+            if photos and len(photos) > 0:
+                photo_ref = photos[0].get("photo_reference")
+                if photo_ref:
+                    # Budujemy URL do zdjęcia (max width 400px dla optymalizacji transferu)
+                    photo_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={photo_ref}&key={api_key}"
+
             attractions.append(
                 {
                     "name": place.get("name"),
@@ -470,6 +479,7 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
                     "price_level": place.get("price_level"),
                     "types": place.get("types", []),
                     "icon": place.get("icon"),
+                    "photo_url": photo_url,
                     "lat": lat,
                     "lon": lon,
                 }

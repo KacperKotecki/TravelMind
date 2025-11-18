@@ -617,3 +617,34 @@ footer a:hover {
         /* Na mniejszych ekranach zawsze jedna kolumna */
     }
 }
+
+/* --- ZDJĘCIA ATRAKCJI --- */
+.attraction-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+}
+
+.attraction-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.attraction-card:hover .attraction-photo {
+    transform: scale(1.05);
+}
+
+.attraction-icon-container {
+    padding: 1rem;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.attraction-icon {
+    width: 48px;
+    height: 48px;
+}
