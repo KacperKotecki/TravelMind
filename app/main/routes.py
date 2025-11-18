@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for, jsonify, current_app
+from flask import render_template, request, redirect, url_for, jsonify, current_app, flash
 from . import main
 from .forms import PlanGeneratorForm
 from ..api_clients import build_geocode_variants
-
+from app.forms import LoginForm 
 
 @main.route("/", methods=["GET", "POST"])
 def index():
@@ -89,3 +89,18 @@ def api_geocode():
     except Exception as e:
         current_app.logger.error(f"Błąd geokodowania (Open-Meteo) dla q={q}: {e}")
         return jsonify([]), 500
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    # 1. Tworzymy formularz
+    form = LoginForm()
+    
+    # 2. Sprawdzamy czy wysłano formularz
+    if form.validate_on_submit():
+        # Tu na razie tylko atrapa logowania
+        flash('Próba logowania...', 'info')
+        return redirect(url_for('main.index'))
+    return render_template("login.html", form=form)
+
+
+
