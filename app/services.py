@@ -44,7 +44,7 @@ CITY_COSTS = {
 }
 
 
-def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None, lat: float = None, lon: float = None) -> dict:
+def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None, lat: float = None, lon: float = None, cost_mult: float = 1.2) -> dict:
     """
     Główna funkcja serwisu, obsługująca dynamiczne miasta.
     """
@@ -192,35 +192,27 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
     except Exception:
         nearby = None
 
-    # KROK 2: Sprawdź, czy mamy dane o kosztach dla tego miasta
-    if city in CITY_COSTS:
-        city_data = CITY_COSTS[city]
-        style_data = city_data.get(style)
-
-        if not style_data:
-            # To zabezpieczenie na wypadek błędnego stylu, nawet dla znanego miasta
-            return {"error": f"Nieprawidłowy styl podróży: '{style}'."}
-
-        daily_cost = sum(style_data.values())
-        total_cost_local = daily_cost * days
-
-        exchange_rate_pln = get_exchange_rate(city_data["waluta"], "PLN")
-
-        if not exchange_rate_pln:
-            total_cost_pln = None
-        else:
-            total_cost_pln = total_cost_local * exchange_rate_pln
-
-        cost_info = {
-            "total_pln": (
-                round(total_cost_pln, 2) if total_cost_pln is not None else None
-            ),
-            "total_local": round(total_cost_local, 2),
-            "currency": city_data["waluta"],
-        }
-    else:
-        # Jeśli nie mamy danych o kosztach, przygotuj pustą strukturę
-        cost_info = {"total_pln": None, "total_local": None, "currency": None}
+    # KROK 2: Obliczanie kosztów (Nowa Logika)
+    # Bazowe koszty dzienne w PLN dla różnych stylów podróży (mnożnik 1.0)
+    # Te wartości powinny być zsynchronizowane z tymi w routes.py lub przeniesione do configu
+    BASE_COSTS = {
+        "Ekonomiczny": 250,
+        "Standardowy": 500,
+        "Komfortowy": 1000
+    }
+    
+    base_rate = BASE_COSTS.get(style, 500) # Domyślnie Standardowy
+    
+    # Obliczenie: Koszt = Stawka Bazowa * Mnożnik Miasta * Liczba Dni
+    total_cost_pln = int(base_rate * cost_mult * days)
+    
+    # Dla uproszczenia zakładamy, że waluta lokalna to też PLN lub przeliczamy (tutaj zostawiamy PLN jako główną)
+    # W przyszłości można dodać API kursów walut
+    cost_info = {
+        "total_pln": total_cost_pln,
+        "total_local": total_cost_pln, # Tymczasowo to samo
+        "currency": "PLN",
+    }
 
     # KROK 3: Zwrócenie ustrukturyzowanej odpowiedzi (bez atrakcji)
     result = {

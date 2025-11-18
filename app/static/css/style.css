@@ -746,3 +746,78 @@ footer a:hover {
 .btn-logout:hover {
     background-color: #c0392b;
 }
+
+/* ========================================= */
+/* KAFELKI WYBORU KLIMATU (VIBES)      */
+/* ========================================= */
+
+.vibes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.vibe-item {
+    position: relative;
+}
+
+/* Ukrywamy domyślny checkbox */
+.vibe-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Stylizacja etykiety jako karty */
+.vibe-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+    text-align: center;
+}
+
+.vibe-icon {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.vibe-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* Efekt hover */
+.vibe-card:hover {
+    border-color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Stan zaznaczony (checked) */
+/* Używamy selektora rodzeństwa: gdy checkbox jest zaznaczony, stylujemy etykietę obok */
+.vibe-checkbox:checked + .vibe-card {
+    background-color: #e0f2fe; /* Bardzo jasny błękit */
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
+}
+
+.vibe-checkbox:checked + .vibe-card .vibe-label {
+    color: var(--color-primary);
+}
+
+.error-message {
+    color: #d9534f; /* Czerwony kolor dla błędów */
+    font-weight: bold;
+}

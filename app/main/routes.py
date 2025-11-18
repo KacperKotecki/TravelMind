@@ -3,24 +3,80 @@ from flask_login import login_user, logout_user, current_user, login_required
 from . import main
 from .forms import PlanGeneratorForm
 from ..api_clients import build_geocode_variants
-from app.forms import LoginForm, RegistrationForm
-from app.models import User, GeneratedPlan
-from app import db
-from flask_mail import Message
-from app import mail
-from app.forms import RequestResetForm, ResetPasswordForm
+from app.forms import LoginForm 
+import json
+import os
+from app.utils import normalize_city_name
+from app.recommendations import recommend_city
+
+# Krok 5: Przygotowanie stałych finansowych
+# Bazowe koszty dzienne w PLN dla różnych stylów podróży (mnożnik 1.0)
+BASE_COSTS = {
+    "Ekonomiczny": 250,   # np. hostel, tanie jedzenie, darmowe atrakcje
+    "Standardowy": 500,   # np. hotel 3*, restauracje, płatne bilety
+    "Komfortowy": 1000    # np. hotel 4-5*, taxi, drogie atrakcje
+}
+
+def load_destinations():
+    """Ładuje listę miast z pliku JSON."""
+    try:
+        json_path = os.path.join(current_app.root_path, 'plans', 'destinations.json')
+        with open(json_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        current_app.logger.error(f"Błąd ładowania destinations.json: {e}")
+        return []
 
 @main.route("/", methods=["GET", "POST"])
 def index():
     form = PlanGeneratorForm()
     if form.validate_on_submit():
-        # Przekierowujemy dane do widoku, który wygeneruje plan
-        city = form.city.data
-        if isinstance(city, str):
-            city = city.strip()
+        # Pobierz dane z formularza
+        city_input = form.city.data
+        vibes_input = form.vibes.data
+        style = form.travel_style.data
+        
+        # Ładujemy bazę miast
+        destinations = load_destinations()
+        
+        selected_city_name = None
+        cost_multiplier = 1.2 # Domyślny mnożnik
+        
+        # Krok 6: Logika decyzyjna (Routing)
+        
+        # Ścieżka A: Użytkownik wpisał miasto
+        if city_input and city_input.strip():
+            normalized_city = normalize_city_name(city_input, destinations)
+            
+            if normalized_city:
+                # Znaleziono miasto w bazie JSON
+                selected_city_name = normalized_city['name']
+                cost_multiplier = normalized_city.get('cost_multiplier', 1.2)
+            else:
+                # Nie znaleziono w bazie -> używamy tego co wpisał użytkownik
+                selected_city_name = city_input.strip()
+                # Domyślny mnożnik już ustawiony na 1.2
+        
+        # Ścieżka B: Użytkownik wybrał kafelki (i NIE wpisał miasta)
+        elif vibes_input:
+            recommended = recommend_city(vibes_input, destinations, budget_style=style)
+            
+            if recommended:
+                selected_city_name = recommended['name']
+                cost_multiplier = recommended.get('cost_multiplier', 1.2)
+                flash(f"Na podstawie Twoich preferencji ({', '.join(vibes_input)}) polecamy: {selected_city_name}!", "success")
+            else:
+                flash("Niestety nie znaleźliśmy idealnego miasta dla wybranych kryteriów. Spróbuj zmienić filtry.", "warning")
+                return render_template("index.html", form=form)
+        
+        # Walidacja: Ani miasto, ani kafelki nie wybrane
+        else:
+            flash("Musisz wpisać miasto LUB wybrać klimat podróży!", "error")
+            return render_template("index.html", form=form)
+
+        # --- Reszta logiki (daty, przekierowanie) ---
         start = form.start_date
         end = form.end_date
-        style = form.travel_style.data
 
         # Oblicz liczbę dni na podstawie wybranych dat (włącznie)
         if start and end:
@@ -61,11 +117,16 @@ def index():
                 params["lat"] = lat
             if lon:
                 params["lon"] = lon
+            
+            # Przekazujemy mnożnik kosztów jako parametr URL
+            params["cost_mult"] = cost_multiplier
+            
         except Exception:
             # jeśli start/end nie są obiektami daty, pomiń
             pass
+            
         return redirect(
-            url_for("plans.show_plan", city=city, days=days, style=style, **params)
+            url_for("plans.show_plan", city=selected_city_name, days=days, style=style, **params)
         )
     return render_template("index.html", form=form)
 
