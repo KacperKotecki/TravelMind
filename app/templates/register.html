@@ -11,8 +11,20 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <div class="form-group">
+                {{ form.first_name.label }}
+                {{ form.first_name(class="form-control", placeholder="Imię") }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label }}
+                {{ form.last_name(class="form-control", placeholder="Nazwisko") }}
+            </div>
+             <div class="form-group">
+                {{ form.phone.label }}
+                {{ form.phone(class="form-control", placeholder="Wprowadź numer telefonu") }}
+            </div>
+            <div class="form-group">
                 {{ form.email.label }}
-                {{ form.email(class="form-control", placeholder="Wprowadź email") }}
+                {{ form.email(class="form-control", placeholder="Wprowadź adres email") }}
             </div>
             <div class="form-group">
                 {{ form.password.label }}

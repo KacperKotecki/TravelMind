@@ -679,7 +679,7 @@ footer a:hover {
 .save{
     margin-top: 10px;
 }
-
+/* formularz logowania */
 .login-container {
     max-width: 500px;
     margin: 2rem auto;
@@ -712,4 +712,4 @@ footer a:hover {
 
 }
 
-
+/* formularz rejestracji */
