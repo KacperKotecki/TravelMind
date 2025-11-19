@@ -687,6 +687,16 @@ footer a:hover {
     background: var(--color-card-bg);
     border-radius: 12px;
     box-shadow: 0 4px 10px var(--color-shadow);
+    
+}
+.login-container:hower{
+    color: #00b4d8;
+}
+.login-container:visited{
+    color: #000000;
+}
+.login-container:visited{
+    color: #000000;
 }
 .title-login {
     text-align: center;
@@ -696,4 +706,20 @@ footer a:hover {
     color: #0077b6;
 
 
+}
+.register-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+.unknown-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
 }
