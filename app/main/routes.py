@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, jsonify, current_
 from . import main
 from .forms import PlanGeneratorForm
 from ..api_clients import build_geocode_variants
-from app.forms import LoginForm 
+from app.forms import LoginForm, RegistrationForm 
 
 @main.route("/", methods=["GET", "POST"])
 def index():
@@ -103,4 +103,15 @@ def login():
     return render_template("login.html", form=form)
 
 
-
+@main.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    
+    if form.validate_on_submit():
+        # Tu trzeba dodać zapisywanie użytkownika do bazy danych
+        flash(f'Konto utworzone dla {form.username.data}!', 'success')
+        # Po udanej rejestracji przekierowujemy na stronę logowania
+        return redirect(url_for('main.login'))
+        
+    
+    return render_template("register.html", form=form)
