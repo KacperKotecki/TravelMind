@@ -1,0 +1,943 @@
+[
+  {
+    "name": "Andora (Andorra la Vella)",
+    "country": "Andora",
+    "tags": [
+      "city_break",
+      "mountains_trekking",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Andora (Andorra la Vella) Andora"
+  },
+  {
+    "name": "Escaldes-Engordany",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "lakes_nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Escaldes-Engordany Andora"
+  },
+  {
+    "name": "Encamp",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Encamp Andora"
+  },
+  {
+    "name": "Sant Julia de Loria",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Sant Julia de Loria Andora"
+  },
+  {
+    "name": "La Massana",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "budget_friendly",
+      "lakes_nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "La Massana Andora"
+  },
+  {
+    "name": "Ordino",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Ordino Andora"
+  },
+  {
+    "name": "Canillo",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "lakes_nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Canillo Andora"
+  },
+  {
+    "name": "Santa Coloma",
+    "country": "Andora",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Santa Coloma Andora"
+  },
+  {
+    "name": "El Serrat",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "El Serrat Andora"
+  },
+  {
+    "name": "Erts",
+    "country": "Andora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Erts Andora"
+  },
+  {
+    "name": "Bruksela",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Bruksela Belgia"
+  },
+  {
+    "name": "Antwerpia",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Antwerpia Belgia"
+  },
+  {
+    "name": "Gandawa",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Gandawa Belgia"
+  },
+  {
+    "name": "Charleroi",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Charleroi Belgia"
+  },
+  {
+    "name": "Liege",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Liege Belgia"
+  },
+  {
+    "name": "Brugia",
+    "country": "Belgia",
+    "tags": [
+      "beach_sun",
+      "history_culture",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Brugia Belgia"
+  },
+  {
+    "name": "Schaarbeek",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Schaarbeek Belgia"
+  },
+  {
+    "name": "Anderlecht",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Anderlecht Belgia"
+  },
+  {
+    "name": "Namur",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Namur Belgia"
+  },
+  {
+    "name": "Leuven",
+    "country": "Belgia",
+    "tags": [
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Leuven Belgia"
+  },
+  {
+    "name": "Minsk",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.5,
+    "image_keyword": "Minsk Bia\u0142orus"
+  },
+  {
+    "name": "Homel",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.45,
+    "image_keyword": "Homel Bia\u0142orus"
+  },
+  {
+    "name": "Witebsk",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.45,
+    "image_keyword": "Witebsk Bia\u0142orus"
+  },
+  {
+    "name": "Mohylew",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.45,
+    "image_keyword": "Mohylew Bia\u0142orus"
+  },
+  {
+    "name": "Grodno",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.45,
+    "image_keyword": "Grodno Bia\u0142orus"
+  },
+  {
+    "name": "Brzesc",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.4,
+    "image_keyword": "Brzesc Bia\u0142orus"
+  },
+  {
+    "name": "Bobrujsk",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.4,
+    "image_keyword": "Bobrujsk Bia\u0142orus"
+  },
+  {
+    "name": "Baranowicze",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.4,
+    "image_keyword": "Baranowicze Bia\u0142orus"
+  },
+  {
+    "name": "Borysow",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.4,
+    "image_keyword": "Borysow Bia\u0142orus"
+  },
+  {
+    "name": "Pinsk",
+    "country": "Bia\u0142orus",
+    "tags": [
+      "city_break",
+      "lakes_nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.4,
+    "image_keyword": "Pinsk Bia\u0142orus"
+  },
+  {
+    "name": "Sarajewo",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Sarajewo Bosnia i Hercegowina"
+  },
+  {
+    "name": "Banja Luka",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Banja Luka Bosnia i Hercegowina"
+  },
+  {
+    "name": "Tuzla",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Tuzla Bosnia i Hercegowina"
+  },
+  {
+    "name": "Zenica",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Zenica Bosnia i Hercegowina"
+  },
+  {
+    "name": "Mostar",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "history_culture",
+      "mountains_trekking",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Mostar Bosnia i Hercegowina"
+  },
+  {
+    "name": "Bijeljina",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "Bijeljina Bosnia i Hercegowina"
+  },
+  {
+    "name": "Prijedor",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "Prijedor Bosnia i Hercegowina"
+  },
+  {
+    "name": "Brcko",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "Brcko Bosnia i Hercegowina"
+  },
+  {
+    "name": "Bihac",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "Bihac Bosnia i Hercegowina"
+  },
+  {
+    "name": "Doboj",
+    "country": "Bosnia i Hercegowina",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "Doboj Bosnia i Hercegowina"
+  },
+  {
+    "name": "Sofia",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Sofia Bu\u0142garia"
+  },
+  {
+    "name": "P\u0142owdiw",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "P\u0142owdiw Bu\u0142garia"
+  },
+  {
+    "name": "Warna",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "beach_sun",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Warna Bu\u0142garia"
+  },
+  {
+    "name": "Burgas",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "beach_sun",
+      "budget_friendly",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Burgas Bu\u0142garia"
+  },
+  {
+    "name": "Ruse",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Ruse Bu\u0142garia"
+  },
+  {
+    "name": "Stara Zagora",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Stara Zagora Bu\u0142garia"
+  },
+  {
+    "name": "Plewen",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Plewen Bu\u0142garia"
+  },
+  {
+    "name": "Sliwen",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Sliwen Bu\u0142garia"
+  },
+  {
+    "name": "Pernik",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Pernik Bu\u0142garia"
+  },
+  {
+    "name": "Dobricz",
+    "country": "Bu\u0142garia",
+    "tags": [
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Dobricz Bu\u0142garia"
+  },
+  {
+    "name": "Zagrzeb",
+    "country": "Chorwacja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Zagrzeb Chorwacja"
+  },
+  {
+    "name": "Split",
+    "country": "Chorwacja",
+    "tags": [
+      "beach_sun",
+      "history_culture",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Split Chorwacja"
+  },
+  {
+    "name": "Rijeka",
+    "country": "Chorwacja",
+    "tags": [
+      "beach_sun",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Rijeka Chorwacja"
+  },
+  {
+    "name": "Osijek",
+    "country": "Chorwacja",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Osijek Chorwacja"
+  },
+  {
+    "name": "Zadar",
+    "country": "Chorwacja",
+    "tags": [
+      "beach_sun",
+      "mountains_trekking",
+      "budget_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Zadar Chorwacja"
+  },
+  {
+    "name": "Slavonski Brod",
+    "country": "Chorwacja",
+    "tags": [
+      "city_break",
+      "budget_friendly",
+      "nature"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Slavonski Brod Chorwacja"
+  },
+  {
+    "name": "Pula",
+    "country": "Chorwacja",
+    "tags": [
+      "beach_sun",
+      "history_culture",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Pula Chorwacja"
+  },
+  {
+    "name": "Karlovac",
+    "country": "Chorwacja",
+    "tags": [
+      "lakes_nature",
+      "budget_friendly",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Karlovac Chorwacja"
+  },
+  {
+    "name": "Varazdin",
+    "country": "Chorwacja",
+    "tags": [
+      "history_culture",
+      "budget_friendly",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Varazdin Chorwacja"
+  },
+  {
+    "name": "Sibenik",
+    "country": "Chorwacja",
+    "tags": [
+      "beach_sun",
+      "mountains_trekking",
+      "budget_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Sibenik Chorwacja"
+  },
+  {
+    "name": "Podgorica",
+    "country": "Czarnogora",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Podgorica Czarnogora"
+  },
+  {
+    "name": "Niksic",
+    "country": "Czarnogora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Niksic Czarnogora"
+  },
+  {
+    "name": "Herceg Novi",
+    "country": "Czarnogora",
+    "tags": [
+      "beach_sun",
+      "mountains_trekking",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Herceg Novi Czarnogora"
+  },
+  {
+    "name": "Pljevlja",
+    "country": "Czarnogora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Pljevlja Czarnogora"
+  },
+  {
+    "name": "Bijelo Polje",
+    "country": "Czarnogora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Bijelo Polje Czarnogora"
+  },
+  {
+    "name": "Cetinje",
+    "country": "Czarnogora",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Cetinje Czarnogora"
+  },
+  {
+    "name": "Berane",
+    "country": "Czarnogora",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Berane Czarnogora"
+  },
+  {
+    "name": "Bar",
+    "country": "Czarnogora",
+    "tags": [
+      "beach_sun",
+      "budget_friendly",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Bar Czarnogora"
+  },
+  {
+    "name": "Budva",
+    "country": "Czarnogora",
+    "tags": [
+      "beach_sun",
+      "mountains_trekking",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Budva Czarnogora"
+  },
+  {
+    "name": "Ulcinj",
+    "country": "Czarnogora",
+    "tags": [
+      "beach_sun",
+      "nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Ulcinj Czarnogora"
+  },
+  {
+    "name": "Praga",
+    "country": "Czechy",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Praga Czechy"
+  },
+  {
+    "name": "Brno",
+    "country": "Czechy",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Brno Czechy"
+  },
+  {
+    "name": "Ostrawa",
+    "country": "Czechy",
+    "tags": [
+      "city_break",
+      "nightlife_parties",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Ostrawa Czechy"
+  },
+  {
+    "name": "Pilzno",
+    "country": "Czechy",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Pilzno Czechy"
+  },
+  {
+    "name": "Liberec",
+    "country": "Czechy",
+    "tags": [
+      "mountains_trekking",
+      "lakes_nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Liberec Czechy"
+  },
+  {
+    "name": "O\u0142omuniec",
+    "country": "Czechy",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "O\u0142omuniec Czechy"
+  },
+  {
+    "name": "Uscie nad \u0141aba",
+    "country": "Czechy",
+    "tags": [
+      "city_break",
+      "lakes_nature",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Uscie nad \u0141aba Czechy"
+  },
+  {
+    "name": "Hradec Kralove",
+    "country": "Czechy",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Hradec Kralove Czechy"
+  },
+  {
+    "name": "Pardubice",
+    "country": "Czechy",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Pardubice Czechy"
+  },
+  {
+    "name": "Zlin",
+    "country": "Czechy",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Zlin Czechy"
+  }
+]
