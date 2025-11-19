@@ -681,7 +681,7 @@ footer a:hover {
 }
 
 .login-container {
-    max-width: 400px;
+    max-width: 500px;
     margin: 2rem auto;
     padding: 2rem;
     background: var(--color-card-bg);
@@ -689,37 +689,27 @@ footer a:hover {
     box-shadow: 0 4px 10px var(--color-shadow);
     
 }
-.login-container:hower{
-    color: #00b4d8;
+.login-container a {
+    color: #000000;              
+    text-decoration: none;    
+    transition: all 0.3s ease; 
+    font-weight: 500;         
 }
-.login-container:visited{
-    color: #000000;
+
+.login-container a:hover {
+    color: var(--color-secondary);          
+    text-decoration: underline; 
+    cursor: pointer;          
 }
-.login-container:visited{
-    color: #000000;
-}
+
+
 .title-login {
     text-align: center;
     margin-bottom: 1.5rem;
-    font-size: 1.1 rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 600;
     color: #0077b6;
 
+}
 
-}
-.register-link {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 500;
-}
-.unknown-link {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-    color: var(--color-accent);
-    text-decoration: none;
-    font-weight: 500;
-}
+
