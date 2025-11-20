@@ -1,8 +1,11 @@
 from flask import render_template, request, redirect, url_for, jsonify, current_app, flash
+from flask_login import login_user, logout_user, current_user
 from . import main
 from .forms import PlanGeneratorForm
 from ..api_clients import build_geocode_variants
-from app.forms import LoginForm, RegistrationForm 
+from app.forms import LoginForm, RegistrationForm
+from app.models import User
+from app import db
 
 @main.route("/", methods=["GET", "POST"])
 def index():
@@ -92,26 +95,54 @@ def api_geocode():
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
-    # 1. Tworzymy formularz
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    
     form = LoginForm()
     
-    # 2. Sprawdzamy czy wysłano formularz
     if form.validate_on_submit():
-        # Tu na razie tylko atrapa logowania
-        flash('Próba logowania...', 'info')
-        return redirect(url_for('main.index'))
+        user = User.query.filter_by(email=form.email.data.lower()).first()
+        
+        if user is None or not user.check_password(form.password.data):
+            flash('Nieprawidłowy email lub hasło.', 'danger')
+            return redirect(url_for('main.login'))
+        
+        login_user(user)
+        flash(f'Witaj, {user.first_name}!', 'success')
+        
+        next_page = request.args.get('next')
+        return redirect(next_page) if next_page else redirect(url_for('main.index'))
+    
     return render_template("login.html", form=form)
 
 
 @main.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    
     form = RegistrationForm()
     
     if form.validate_on_submit():
-        # Tu trzeba dodać zapisywanie użytkownika do bazy danych
-        flash(f'Konto utworzone dla {form.username.data}!', 'success')
-        # Po udanej rejestracji przekierowujemy na stronę logowania
-        return redirect(url_for('main.login'))
+        user = User(
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            email=form.email.data.lower()
+        )
+        user.set_password(form.password.data)
         
+        try:
+            db.session.add(user)
+            db.session.commit()
+            flash('Konto zostało utworzone! Możesz się teraz zalogować.', 'success')
+            return redirect(url_for('main.login'))
+        except Exception as e:
+            db.session.rollback()
+            flash('Wystąpił błąd podczas rejestracji. Spróbuj ponownie.', 'danger')
     
     return render_template("register.html", form=form)
+@main.route('/logout')
+def logout():
+    logout_user()
+    flash('Zostałeś wylogowany.', 'info')
+    return redirect(url_for('main.login'))
