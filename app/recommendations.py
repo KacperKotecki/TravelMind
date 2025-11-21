@@ -1,4 +1,5 @@
 import random
+from collections import defaultdict
 
 def recommend_city(selected_tags: list, cities_list: list, budget_style: str = None) -> dict | None:
     """
@@ -37,3 +38,45 @@ def recommend_city(selected_tags: list, cities_list: list, budget_style: str = N
 
     # Krok 3: Losowanie miasta
     return random.choice(filtered_cities)
+
+def get_grouped_recommendations(selected_tags: list, cities_list: list, budget_style: str = None) -> dict:
+    """
+    Zwraca słownik pogrupowany krajami z listą miast spełniających kryteria.
+    Struktura: { "Kraj": [miasto1, miasto2, ...], ... }
+    Maksymalnie 4 kraje, w każdym maksymalnie 4 miasta.
+    """
+    if not cities_list or not selected_tags:
+        return {}
+
+    # 1. Filtrowanie
+    filtered_cities = [
+        city for city in cities_list
+        if any(tag in city.get('tags', []) for tag in selected_tags)
+    ]
+
+    if budget_style == "Ekonomiczny":
+        filtered_cities = [c for c in filtered_cities if c.get('cost_tier') != 'high']
+
+    if not filtered_cities:
+        return {}
+
+    # 2. Grupowanie po kraju
+    grouped = defaultdict(list)
+    for city in filtered_cities:
+        country = city.get('country', 'Inne')
+        grouped[country].append(city)
+
+    # 3. Wybór krajów (max 4)
+    all_countries = list(grouped.keys())
+    random.shuffle(all_countries)
+    selected_countries = all_countries[:4]
+
+    # 4. Wybór miast w krajach (max 4)
+    result = {}
+    for country in selected_countries:
+        cities_in_country = grouped[country]
+        # Preferujmy różnorodność, więc shuffle
+        random.shuffle(cities_in_country)
+        result[country] = cities_in_country[:4]
+
+    return result

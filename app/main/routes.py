@@ -7,7 +7,7 @@ from app.forms import LoginForm
 import json
 import os
 from app.utils import normalize_city_name
-from app.recommendations import recommend_city
+from app.recommendations import recommend_city, get_grouped_recommendations
 
 # Krok 5: Przygotowanie stałych finansowych
 # Bazowe koszty dzienne w PLN dla różnych stylów podróży (mnożnik 1.0)
@@ -39,9 +39,23 @@ def index():
         # Ładujemy bazę miast
         destinations = load_destinations()
         
-        selected_city_name = None
-        cost_multiplier = 1.2 # Domyślny mnożnik
+        # --- Przygotowanie dat i dni (wspólne dla obu ścieżek) ---
+        # start_date i end_date są ustawiane w metodzie validate_date_range formularza jako atrybuty instancji,
+        # a nie jako pola WTForms, więc nie mają atrybutu .data
+        start = form.start_date
+        end = form.end_date
         
+        # Oblicz liczbę dni
+        if start and end:
+            delta = (end - start).days
+            days = delta + 1 if delta >= 0 else 1
+        else:
+            days = 3
+            
+        # Formatowanie dat do stringów (dla URL i szablonu)
+        start_iso = start.isoformat() if start else None
+        end_iso = end.isoformat() if end else None
+
         # Krok 6: Logika decyzyjna (Routing)
         
         # Ścieżka A: Użytkownik wpisał miasto
@@ -49,24 +63,45 @@ def index():
             normalized_city = normalize_city_name(city_input, destinations)
             
             if normalized_city:
-                # Znaleziono miasto w bazie JSON
                 selected_city_name = normalized_city['name']
                 cost_multiplier = normalized_city.get('cost_multiplier', 1.2)
             else:
-                # Nie znaleziono w bazie -> używamy tego co wpisał użytkownik
                 selected_city_name = city_input.strip()
-                # Domyślny mnożnik już ustawiony na 1.2
-        
-        # Ścieżka B: Użytkownik wybrał kafelki (i NIE wpisał miasta)
-        elif vibes_input:
-            recommended = recommend_city(vibes_input, destinations, budget_style=style)
+                cost_multiplier = 1.2
             
-            if recommended:
-                selected_city_name = recommended['name']
-                cost_multiplier = recommended.get('cost_multiplier', 1.2)
-                flash(f"Na podstawie Twoich preferencji ({', '.join(vibes_input)}) polecamy: {selected_city_name}!", "success")
+            # Parametry URL
+            params = {"cost_mult": cost_multiplier}
+            if start_iso: params["start"] = start_iso
+            if end_iso: params["end"] = end_iso
+            
+            # Współrzędne z autocomplete
+            lat = request.form.get("city_lat")
+            lon = request.form.get("city_lon")
+            if lat: params["lat"] = lat
+            if lon: params["lon"] = lon
+
+            return redirect(
+                url_for("plans.show_plan", city=selected_city_name, days=days, style=style, **params)
+            )
+        
+        # Ścieżka B: Użytkownik wybrał kafelki (i NIE wpisał miasta) -> SUGESTIE
+        elif vibes_input:
+            # Pobieramy pogrupowane rekomendacje
+            grouped_suggestions = get_grouped_recommendations(vibes_input, destinations, budget_style=style)
+            
+            if grouped_suggestions:
+                # Renderujemy nowy widok sugestii
+                return render_template(
+                    "suggestions.html",
+                    grouped_suggestions=grouped_suggestions,
+                    vibes=vibes_input,
+                    days=days,
+                    style=style,
+                    start_date=start_iso,
+                    end_date=end_iso
+                )
             else:
-                flash("Niestety nie znaleźliśmy idealnego miasta dla wybranych kryteriów. Spróbuj zmienić filtry.", "warning")
+                flash("Niestety nie znaleźliśmy idealnych miast dla wybranych kryteriów. Spróbuj zmienić filtry.", "warning")
                 return render_template("index.html", form=form)
         
         # Walidacja: Ani miasto, ani kafelki nie wybrane
