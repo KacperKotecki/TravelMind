@@ -15,29 +15,56 @@
 
     <!-- Pogoda - górna sekcja -->
     <div class="card weather-card weather-top">
+
         <h2><span class="icon">☀️</span> Pogoda</h2>
+
         <div class="weather-details">
                 {% if plan.weather.daily is defined %}
+
                 <div class="daily-weather-list">
                     {% for day in plan.weather.daily %}
-                    <div class="daily-item card">
-                        <h3>{{ day.date_label or day.date }}</h3>
-                        <p><strong>
+                    <div class="daily-item weather-card">
+
+                        <div class="day-header">
+                            <h3 class="date-display">{{ day.date_label or day.date }}</h3>
+                        </div>
+                        
+                        <div class="day-icon-container">
                             <!-- Zastępujemy ładowanie SVG prostą emoji/ikonką wklejoną inline -->
-                            <span class="weather-emoji">{{ day.icon_emoji or day.icon or '🌤️' }}</span>
-                            <span class="weather-icon-key {% if day.icon_key %}weather-{{ day.icon_key }}{% endif %}" data-weather="{{ day.weathercode or '' }}">{{ day.opis or 'Brak danych' }}</span>
-                        </strong></p>
-                        <p>Min / Max: <strong>{% if day.temperatura_min is defined %}{{ day.temperatura_min }}°C{% else %}-{% endif %}</strong> / <strong>{% if day.temperatura_max is defined %}{{ day.temperatura_max }}°C{% else %}-{% endif %}</strong></p>
-                        {% if day.opad_mm is defined %}
-                        <p>Opad: <strong>{{ day.opad_mm }} mm</strong></p>
-                        {% endif %}
-                        {% if day.wiatr_kmh is defined %}
-                        <p>Wiatr: <strong>{{ day.wiatr_kmh }} km/h</strong></p>
-                        {% endif %}
+                            <div class="weather-emoji">{{ day.icon_emoji or day.icon or '🌤️' }}</div>
+                            <div class="weather-icon-key {% if day.icon_key %}weather-{{ day.icon_key }}{% endif %}" data-weather="{{ day.weathercode or '' }}">{{ day.opis or 'Brak danych' }}</div>
+                        </div>
+
+                        <div class="day-temp">
+                            <h3>Dzień/Noc</h3>
+                            <div>
+                                <span class="temp-max">
+                                {% if day.temperatura_max is defined %}{{ day.temperatura_max }}°C{% else %}-{% endif %}
+                                </span>
+                                <span class="temp-min">
+                                    {% if day.temperatura_min is defined %}{{ day.temperatura_min }}°C{% else %}-{% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="day-details">
+                            {% if day.opad_mm is defined %}
+                            <div class="detail-item">
+                                <span class="detail-icon">💧 Opad:</span><strong>{{ day.opad_mm }} mm</strong>
+                            </div>
+                            {% endif %}
+                    
+                            {% if day.wiatr_kmh is defined %}
+                            <div class="detail-item">
+                                <span class="detail-icon">🌬️ Wiatr:</span><strong>{{ day.wiatr_kmh }} km/h</strong>
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
-                {% else %}
+
+                <!-- {% else %}
                 <p>Średnia temperatura: <strong>{{ plan.weather.temperatura }}°C</strong></p>
                 {% if plan.weather.temperatura_min is defined and plan.weather.temperatura_max is defined %}
                 <p>Min / Max: <strong>{{ plan.weather.temperatura_min }}°C</strong> / <strong>{{ plan.weather.temperatura_max }}°C</strong></p>
@@ -49,7 +76,7 @@
                 {% if plan.weather.wiatr_kmh is defined %}
                 <p>Prędkość wiatru: {{ plan.weather.wiatr_kmh }} km/h</p>
                 {% endif %}
-                {% endif %}
+                {% endif %} -->
         </div>
     </div>
 
