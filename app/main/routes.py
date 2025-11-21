@@ -6,6 +6,9 @@ from ..api_clients import build_geocode_variants
 from app.forms import LoginForm, RegistrationForm
 from app.models import User, GeneratedPlan
 from app import db
+from flask_mail import Message
+from app import mail
+from app.forms import RequestResetForm, ResetPasswordForm
 
 @main.route("/", methods=["GET", "POST"])
 def index():
@@ -173,3 +176,48 @@ def account():
 def my_plans():
     user_plans = GeneratedPlan.query.filter_by(user_id=current_user.id).order_by(GeneratedPlan.created_at.desc()).all()
     return render_template('my_plans.html', plans=user_plans)
+
+@main.route('/reset-password', methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data.lower()).first()
+        if user:
+            token = user.get_reset_token()
+            msg = Message('Reset hasła - TravelMind',
+                          recipients=[user.email])
+            msg.body = f'''Aby zresetować hasło, kliknij w poniższy link:
+{url_for('main.reset_token', token=token, _external=True)}
+
+Jeśli nie prosiłeś o reset hasła, zignoruj tę wiadomość.
+
+Link jest ważny przez 30 minut.
+'''
+            mail.send(msg)
+        
+        flash('Jeśli konto z tym emailem istnieje, link resetujący został wysłany.', 'info')
+        return redirect(url_for('main.login'))
+    
+    return render_template('reset_request.html', form=form)
+
+@main.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('Link jest nieprawidłowy lub wygasł.', 'danger')
+        return redirect(url_for('main.reset_request'))
+    
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Twoje hasło zostało zmienione! Możesz się teraz zalogować.', 'success')
+        return redirect(url_for('main.login'))
+    
+    return render_template('reset_token.html', form=form)

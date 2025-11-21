@@ -1,6 +1,8 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from itsdangerous import URLSafeTimedSerializer
+from flask import current_app
 from . import db # Zostanie zaimportowane w kolejnym kroku
 
 
@@ -22,7 +24,7 @@ class User(UserMixin, db.Model):
     def get_reset_token(self, expires_sec=1800):
         s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
         return s.dumps({'user_id': self.id}, salt='password-reset')
-     @staticmethod
+    @staticmethod
     def verify_reset_token(token, expires_sec=1800):
         s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
         try:
