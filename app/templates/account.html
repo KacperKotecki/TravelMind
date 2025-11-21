@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Ustawienia konta - TravelMind{% endblock %}
+
+{% block content %}
+<div class="account-container">
+    <h1>Ustawienia konta</h1>
+    
+    <div class="account-info">
+        <h2>Twoje dane</h2>
+        <p><strong>Imię:</strong> {{ current_user.first_name }}</p>
+        <p><strong>Nazwisko:</strong> {{ current_user.last_name }}</p>
+        <p><strong>Email:</strong> {{ current_user.email }}</p>
+    </div>
+</div>
+{% endblock %}

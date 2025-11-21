@@ -1,10 +1,10 @@
 from flask import render_template, request, redirect, url_for, jsonify, current_app, flash
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from . import main
 from .forms import PlanGeneratorForm
 from ..api_clients import build_geocode_variants
 from app.forms import LoginForm, RegistrationForm
-from app.models import User
+from app.models import User, GeneratedPlan
 from app import db
 
 @main.route("/", methods=["GET", "POST"])
@@ -26,6 +26,23 @@ def index():
         else:
             # fallback na wypadek braku dat — zachowaj krótki domyśl
             days = 3
+
+        # Zapisz plan do bazy, jeśli użytkownik jest zalogowany
+        if current_user.is_authenticated:
+            plan = GeneratedPlan(
+                city=city,
+                days=days,
+                travel_style=style,
+                data_start=start,
+                data_end=end,
+                user_id=current_user.id
+            )
+            try:
+                db.session.add(plan)
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                current_app.logger.error(f"Błąd zapisywania planu: {e}")
 
         # Dołącz daty jako parametry zapytania, aby widok planów mógł pobrać pogodę dla zakresu
         params = {}
@@ -108,7 +125,6 @@ def login():
             return redirect(url_for('main.login'))
         
         login_user(user)
-        flash(f'Witaj, {user.first_name}!', 'success')
         
         next_page = request.args.get('next')
         return redirect(next_page) if next_page else redirect(url_for('main.index'))
@@ -146,3 +162,14 @@ def logout():
     logout_user()
     flash('Zostałeś wylogowany.', 'info')
     return redirect(url_for('main.login'))
+
+@main.route('/account')
+@login_required
+def account():
+    return render_template('account.html')
+
+@main.route('/my-plans')
+@login_required
+def my_plans():
+    user_plans = GeneratedPlan.query.filter_by(user_id=current_user.id).order_by(GeneratedPlan.created_at.desc()).all()
+    return render_template('my_plans.html', plans=user_plans)

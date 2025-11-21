@@ -729,3 +729,20 @@ footer a:hover {
     color: #0077b6;
 
 }
+.user-greeting {
+    color: #333;
+    font-weight: 500;
+    cursor: default;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+}

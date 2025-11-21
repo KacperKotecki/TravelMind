@@ -18,7 +18,14 @@
             <ul class="nav-links">
                 <li><a href="{{ url_for('main.index') }}">Stwórz Plan</a></li>
                 <li><a href="#">O nas</a></li>
-                <li><a href="{{ url_for('main.login') }}">Zaloguj się</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><span class="user-greeting">Witaj, {{ current_user.first_name }}!</span></li>
+                    <li><a href="{{ url_for('main.account') }}">Ustawienia konta</a></li>
+                    <li><a href="{{ url_for('main.my_plans') }}">Moje plany</a></li>
+                    <li><a href="{{ url_for('main.logout') }}" class="btn-logout">Wyloguj się</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('main.login') }}">Zaloguj się</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
