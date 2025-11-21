@@ -19,9 +19,21 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    def get_reset_token(self, expires_sec=1800):
+        s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        return s.dumps({'user_id': self.id}, salt='password-reset')
+     @staticmethod
+    def verify_reset_token(token, expires_sec=1800):
+        s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token, salt='password-reset', max_age=expires_sec)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
     
     def __repr__(self):
         return f'<User {self.email}>'
+
 class GeneratedPlan(db.Model):
     __tablename__ = 'generated_plans'
     id = db.Column(db.Integer, primary_key=True)
