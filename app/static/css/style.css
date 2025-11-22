@@ -838,8 +838,17 @@ footer a:hover {
     grid-template-columns: 1fr 1fr; /* Dwie równe kolumny */
     gap: 40px; /* Odstęp między kolumnami */
     margin-bottom: 30px;
-}
 
+    
+}
+.form-group {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
 
 
 
