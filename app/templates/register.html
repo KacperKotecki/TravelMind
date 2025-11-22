@@ -10,27 +10,27 @@
         </div>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-            <div class="form-group">
+            <div class="form-group" id="first_name">
                 {{ form.first_name.label }}
                 {{ form.first_name(class="form-control", placeholder="Imię") }}
             </div>
-            <div class="form-group">
+            <div class="form-group id" id="last_name">
                 {{ form.last_name.label }}
                 {{ form.last_name(class="form-control", placeholder="Nazwisko") }}
             </div>
-             <div class="form-group">
+             <div class="form-group" id="phone">
                 {{ form.phone.label }}
                 {{ form.phone(class="form-control", placeholder="Wprowadź numer telefonu") }}
             </div>
-            <div class="form-group">
+            <div class="form-group" id="email">
                 {{ form.email.label }}
                 {{ form.email(class="form-control", placeholder="Wprowadź adres email") }}
             </div>
-            <div class="form-group">
+            <div class="form-group" id="password">
                 {{ form.password.label }}
                 {{ form.password(class="form-control", placeholder="Wprowadź hasło") }}
             </div>
-            <div class="form-group">
+            <div class="form-group" id="password2">
                 {{ form.password2.label }}
                 {{ form.password2(class="form-control", placeholder="Wprowadź hasło ponownie") }}
             </div>

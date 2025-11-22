@@ -729,6 +729,10 @@ footer a:hover {
     color: #0077b6;
 
 }
+
+
+
+/* Styl dla powitania użytkownika w nagłówku */
 .user-greeting {
     color: #333;
     font-weight: 500;
@@ -746,3 +750,4 @@ footer a:hover {
 .btn-logout:hover {
     background-color: #c0392b;
 }
+
