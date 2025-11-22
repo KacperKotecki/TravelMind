@@ -11,8 +11,32 @@
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
                 
+                <!-- Sekcja wyboru klimatu (Kafelki) -->
+                <div class="form-group">
+                    <label class="form-label">Wybierz klimat podróży (opcjonalnie):</label>
+                    <div class="vibes-container">
+                        {% for subfield in form.vibes %}
+                        <div class="vibe-item">
+                            {{ subfield(class="vibe-checkbox") }}
+                            <label for="{{ subfield.id }}" class="vibe-card">
+                                <span class="vibe-icon">
+                                    {% if subfield.data == 'beach_sun' %}🏖️
+                                    {% elif subfield.data == 'mountains_trekking' %}🏔️
+                                    {% elif subfield.data == 'city_break' %}🏙️
+                                    {% elif subfield.data == 'history_culture' %}🏛️
+                                    {% elif subfield.data == 'nature' %}🌲
+                                    {% elif subfield.data == 'nightlife_parties' %}🎉
+                                    {% else %}✨{% endif %}
+                                </span>
+                                <span class="vibe-label">{{ subfield.label.text }}</span>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
                 <div class="form-group" style="position:relative;">
-                    {{ form.city.label }}
+                    <label for="city-input">Lub wpisz konkretne miasto:</label>
                     {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry", id="city-input") }}
                     <!-- kontener sugestii -->
                     <div id="city-suggestions" class="suggestions" style="position:absolute;left:0;right:0;z-index:30;background:#fff;border:1px solid #ddd;border-radius:6px;display:none;max-height:220px;overflow:auto;"></div>

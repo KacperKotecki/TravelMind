@@ -15,8 +15,14 @@ def show_plan(city, days, style):
     # Pobierz współrzędne jeśli przekazano z formularza/autocomplete
     lat = request.args.get("lat")
     lon = request.args.get("lon")
+    # Pobierz mnożnik kosztów (domyślnie 1.2 jeśli brak)
+    try:
+        cost_mult = float(request.args.get("cost_mult", 1.2))
+    except (ValueError, TypeError):
+        cost_mult = 1.2
+
     plan_data = get_plan_details(
-        city, days, style, start_date=start, end_date=end, lat=lat, lon=lon
+        city, days, style, start_date=start, end_date=end, lat=lat, lon=lon, cost_mult=cost_mult
     )
     if plan_data.get("error"):
         # Prosta obsługa błędów z serwisu

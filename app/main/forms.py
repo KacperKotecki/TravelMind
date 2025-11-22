@@ -1,11 +1,32 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SubmitField, ValidationError
-from wtforms.validators import DataRequired
+from wtforms import StringField, SelectField, SubmitField, ValidationError, SelectMultipleField, widgets
+from wtforms.validators import DataRequired, Optional
 from datetime import datetime
 
 
+# Niestandardowy widget dla checkboxów, aby można było je stylować jako kafelki
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
 class PlanGeneratorForm(FlaskForm):
-    city = StringField("Miasto docelowe", validators=[DataRequired()])
+    # Zmieniamy walidator na Optional, ponieważ użytkownik może wybrać kafelki zamiast wpisywać miasto
+    city = StringField("Miasto docelowe", validators=[Optional()])
+
+    # Nowe pole dla tagów (klimatów)
+    vibes = MultiCheckboxField(
+        "Wybierz klimat podróży",
+        choices=[
+            ('beach_sun', 'Plaża i Słońce'),
+            ('mountains_trekking', 'Góry i Trekking'),
+            ('city_break', 'City Break'),
+            ('history_culture', 'Historia i Kultura'),
+            ('nature', 'Natura i Relaks'),
+            ('nightlife_parties', 'Imprezy i Nocne Życie')
+        ],
+        validators=[Optional()]
+    )
     date_range = StringField(
         "Zakres dat", validators=[DataRequired(message="Proszę wybrać zakres dat.")]
     )
