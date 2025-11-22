@@ -10,29 +10,34 @@
         </div>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-            <div class="form-group" id="first_name">
-                {{ form.first_name.label }}
-                {{ form.first_name(class="form-control", placeholder="Imię") }}
-            </div>
-            <div class="form-group id" id="last_name">
-                {{ form.last_name.label }}
-                {{ form.last_name(class="form-control", placeholder="Nazwisko") }}
-            </div>
-             <div class="form-group" id="phone">
-                {{ form.phone.label }}
-                {{ form.phone(class="form-control", placeholder="Wprowadź numer telefonu") }}
-            </div>
-            <div class="form-group" id="email">
-                {{ form.email.label }}
-                {{ form.email(class="form-control", placeholder="Wprowadź adres email") }}
-            </div>
-            <div class="form-group" id="password">
-                {{ form.password.label }}
-                {{ form.password(class="form-control", placeholder="Wprowadź hasło") }}
-            </div>
-            <div class="form-group" id="password2">
-                {{ form.password2.label }}
-                {{ form.password2(class="form-control", placeholder="Wprowadź hasło ponownie") }}
+           <div class="form-grid">
+                <div class="grid-column">
+                    <div class="form-group">
+                        {{ form.first_name.label(class="custom-label") }}
+                        {{ form.first_name(class="custom-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label(class="custom-label") }}
+                        {{ form.email(class="custom-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label(class="custom-label") }}
+                        {{ form.password(class="custom-input") }}
+                    </div>
+                </div>
+
+                <div class="grid-column">
+                    <div class="form-group">
+                        {{ form.last_name.label(class="custom-label") }}
+                        {{ form.last_name(class="custom-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.phone.label(class="custom-label") }}
+                        {{ form.phone(class="custom-input") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password2.label }}
+                        {{ form.password2(class="form-control", placeholder="Wprowadź hasło ponownie") }}
             </div>
             {{ form.submit(class="btn btn-primary") }}
             </form>

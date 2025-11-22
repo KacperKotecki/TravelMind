@@ -719,6 +719,13 @@ footer a:hover {
         grid-template-columns: 1fr;
         /* Na mniejszych ekranach zawsze jedna kolumna */
     }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .custom-container {
+        padding: 20px;
+        border-radius: 20px;
+    }
 }
 
 /* --- ZDJĘCIA ATRAKCJI --- */
@@ -826,6 +833,19 @@ footer a:hover {
 .btn-logout:hover {
     background-color: #c0392b;
 }
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dwie równe kolumny */
+    gap: 40px; /* Odstęp między kolumnami */
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* ========================================= */
 /* KAFELKI WYBORU KLIMATU (VIBES)      */
