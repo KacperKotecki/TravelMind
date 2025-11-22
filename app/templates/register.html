@@ -14,26 +14,26 @@
                 <div class="grid-column">
                     <div class="form-group">
                         {{ form.first_name.label(class="custom-label") }}
-                        {{ form.first_name(class="custom-input") }}
+                        {{ form.first_name(class="custom-input" placeholder="Podaj imię") }}
                     </div>
                     <div class="form-group">
                         {{ form.email.label(class="custom-label") }}
-                        {{ form.email(class="custom-input") }}
+                        {{ form.email(class="custom-input" placeholder="Wprowadź email") }}
                     </div>
                     <div class="form-group">
                         {{ form.password.label(class="custom-label") }}
-                        {{ form.password(class="custom-input") }}
+                        {{ form.password(class="custom-input" placeholder="Wprowadź hasło") }}
                     </div>
                 </div>
 
                 <div class="grid-column">
                     <div class="form-group">
                         {{ form.last_name.label(class="custom-label") }}
-                        {{ form.last_name(class="custom-input") }}
+                        {{ form.last_name(class="custom-input", placeholder="Podaj swoje nazwisko") }}
                     </div>
                     <div class="form-group">
                         {{ form.phone.label(class="custom-label") }}
-                        {{ form.phone(class="custom-input") }}
+                        {{ form.phone(class="custom-input" placeholder="podaj swój numer") }}
                     </div>
                     <div class="form-group">
                         {{ form.password2.label }}
