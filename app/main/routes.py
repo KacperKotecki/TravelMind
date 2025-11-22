@@ -9,6 +9,12 @@ import os
 from app.utils import normalize_city_name
 from app.recommendations import recommend_city, get_grouped_recommendations
 
+
+from app.models import User, GeneratedPlan
+from app import db, mail
+from flask_mail import Message
+from app.forms import  RegistrationForm, RequestResetForm, ResetPasswordForm
+
 # Krok 5: Przygotowanie stałych finansowych
 # Bazowe koszty dzienne w PLN dla różnych stylów podróży (mnożnik 1.0)
 BASE_COSTS = {

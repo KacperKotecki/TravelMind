@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SubmitField, ValidationError, SelectMultipleField, widgets
+from wtforms import StringField, SelectField, SubmitField, ValidationError, SelectMultipleField, widgets, BooleanField, PasswordField
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 from wtforms.validators import DataRequired, Optional
 from datetime import datetime
-
+ 
 
 # Niestandardowy widget dla checkboxów, aby można było je stylować jako kafelki
 class MultiCheckboxField(SelectMultipleField):
@@ -78,3 +79,13 @@ class PlanGeneratorForm(FlaskForm):
         validators=[DataRequired()],
     )
     submit = SubmitField("Generuj Plan")
+
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Poproś o reset hasła')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Hasło', validators=[DataRequired()])
+    confirm_password = PasswordField('Potwierdź hasło', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Zresetuj hasło')
