@@ -691,6 +691,7 @@ footer a:hover {
 @media (max-width: 900px) {
     .container {
         margin: 0 1rem;
+        margin-top: 0 1rem;
     }
 }
 
@@ -839,27 +840,7 @@ footer a:hover {
     gap: 40px; /* Odstęp między kolumnami */
     margin-bottom: 30px;
     }
-.form-grid label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: var(--color-text);
 
-    
-}
-.form-grid {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-.form-grid:focus {
-    border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.25);
-    outline: none;
-}
 
 
 
