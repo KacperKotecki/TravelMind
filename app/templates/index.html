@@ -3,6 +3,14 @@
 {% block title %}Travel Mind - Twój Inteligentny Asystent Podróży{% endblock %}
 
 {% block content %}
+    <!-- Mapa w tle -->
+    <div id="map-background"></div>
+    <div id="map-sidebar" class="hidden-panel">
+        <button type="button" id="close-map-btn">X</button>
+        <div id="active-map"></div>
+        <button type="button" id="save-location-btn" class="btn btn-secondary">Zapisz i wróć do planu</button>
+    </div>
+
     <div class="hero-section">
         <div class="container">
             <h1><span class="icon">✈️</span> Travel Mind</h1>
@@ -36,11 +44,16 @@
                 </div>
 
                 <div class="form-group" style="position:relative;">
-                    <label for="city-input">Lub wpisz konkretne miasto:</label>
-                    {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry", id="city-input") }}
-                    <!-- kontener sugestii -->
+                    <label for="city-input-combined">Wpisz **lub** wybierz konkretne miasto z mapy:</label>
+                    
+                    {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry", id="city-input-combined") }}
+                    
+                    <button type="button" id="show-map-btn" class="btn btn-secondary" style="width:100%; margin-top: 5px;">
+                        Wybierz Lokalizację na Mapie 🗺️
+                    </button>
+                    
                     <div id="city-suggestions" class="suggestions" style="position:absolute;left:0;right:0;z-index:30;background:#fff;border:1px solid #ddd;border-radius:6px;display:none;max-height:220px;overflow:auto;"></div>
-                    <!-- ukryte pola z koordynatami (wypełniane przez autocomplete) -->
+                    
                     <input type="hidden" name="city_lat" id="city-lat">
                     <input type="hidden" name="city_lon" id="city-lon">
                 </div>
@@ -172,6 +185,112 @@
                 }, 250);
             });
             document.addEventListener('click', (ev)=>{ if(!ev.target.closest('#city-suggestions') && ev.target !== cityInput) clearSuggestions(); });
+
+            // --- LOGIKA MAPY LEAFLET ---           
+            let selectedMarker = null;
+            let selectedCoords = null;
+            let mapInitialized = false; 
+
+            const mapSidebar = document.getElementById('map-sidebar');
+            const showMapBtn = document.getElementById('show-map-btn');
+            const saveBtn = document.getElementById('save-location-btn');
+            const closeMapBtn = document.getElementById('close-map-btn');
+            
+            const NOMINATIM_API = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=';
+
+            // Mapa w Tle (Statyczna)
+            const mapBackground = L.map('map-background', {
+                zoomControl: false, 
+                scrollWheelZoom: false,
+                dragging: false,
+                touchZoom: false,
+                doubleClickZoom: false
+            }).setView([30, 0], 2); 
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                opacity: 0.7 
+            }).addTo(mapBackground);
+
+            // Aktywna Mapa 
+            let activeMap;
+            function initActiveMap() {
+                if (mapInitialized) return;
+                
+                activeMap = L.map('active-map').setView([51.505, -0.09], 3); 
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(activeMap);
+                
+                activeMap.on('click', function(e) {
+                    if (selectedMarker) {
+                        activeMap.removeLayer(selectedMarker);
+                    }
+                    selectedCoords = e.latlng;
+                    selectedMarker = L.marker(selectedCoords).addTo(activeMap);
+                });
+
+                mapInitialized = true;
+            }
+
+            // Geokodowanie Odwrotne (pobieranie nazwy miasta ze współrzędnych)
+            async function reverseGeocode(lat, lon) {
+                try {
+                    const NOMINATIM_API = 'https://nominatim.openstreetmap.org/reverse?format=json&addressdetails=1&extratags=1&lat=';
+                    const response = await fetch(`${NOMINATIM_API}${lat}&lon=${lon}&zoom=14`);
+
+                    const data = await response.json();
+                    
+                    let cityName = 'Wybrana Lokalizacja';
+                    
+                    if (data.address) {
+
+                        cityName = data.address.city || data.address.town || data.address.village;
+                        
+                        if (!cityName) {
+                            cityName = data.address.country || data.address.state;
+                        }
+
+                        if (cityName) {
+                            return cityName;
+                        }
+                    }
+                    // Jeśli wszystko zawiedzie, użyj ogólnej nazwy z przybliżonymi współrzędnymi
+                    return `Wybrana lokalizacja (${lat.toFixed(2)}, ${lon.toFixed(2)})`;
+                } catch (error) {
+                    console.error('Błąd geokodowania odwrotnego:', error);
+                    return `Współrzędne: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+                }
+            }
+            // Otwieranie bocznego panelu po kliknięciu przycisku
+            showMapBtn && showMapBtn.addEventListener('click', function() {
+                initActiveMap(); 
+                mapSidebar.classList.add('active');
+                setTimeout(() => {
+                    activeMap.invalidateSize(); 
+                }, 300); 
+                clearSuggestions(); 
+            });
+
+           // Zapisanie wybranej lokalizacji i zamknięcie panelu
+            saveBtn && saveBtn.addEventListener('click', async function() {
+                if (selectedCoords) {
+                    const lat = selectedCoords.lat;
+                    const lon = selectedCoords.lng;
+                    
+                    const cityName = await reverseGeocode(lat, lon);
+                    
+                    cityInput.value = cityName;
+                    cityLatEl.value = lat;
+                    cityLonEl.value = lon;
+                }
+
+                mapSidebar.classList.remove('active');
+            });
+
+            closeMapBtn && closeMapBtn.addEventListener('click', function() {
+                mapSidebar.classList.remove('active');
+            });
         });
     </script>
 {% endblock %}
