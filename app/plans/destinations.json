@@ -120,6 +120,271 @@
     "image_keyword": "Erts Andora"
   },
   {
+    "name": "Saranda",
+    "country": "Albania",
+    "tags": [
+        "beach_leisure",
+        "nightlife_parties",
+        "budget_friendly",
+        "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Saranda Albania"
+  },
+  {
+    "name": "Ksamil",
+    "country": "Albania",
+    "tags": [
+        "beach_leisure",
+        "nature",
+        "budget_friendly",
+        "romantic_getaway"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Ksamil Albania"
+  },
+  {
+    "name": "Tirana",
+    "country": "Albania",
+    "tags": [
+        "city_break",
+        "nightlife_parties",
+        "history_culture",
+        "budget_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Tirana Albania"
+  },
+  {
+    "name": "Berat",
+    "country": "Albania",
+    "tags": [
+        "history_culture",
+        "unesco_site",
+        "architecture_design",
+        "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Berat Albania"
+  },
+  {
+    "name": "Gjirokastra",
+    "country": "Albania",
+    "tags": [
+        "history_culture",
+        "unesco_site",
+        "architecture_design",
+        "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Gjirokastra Albania UNESCO"
+  },
+  {
+    "name": "Vlora",
+    "country": "Albania",
+    "tags": [
+        "beach_leisure",
+        "nature",
+        "history_culture",
+        "scenic_drives"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Vlora Albania"
+  },
+  {
+    "name": "Durres",
+    "country": "Albania",
+    "tags": [
+        "beach_leisure",
+        "history_culture",
+        "city_break",
+        "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Durres Albania"
+  },
+  {
+    "name": "Kruja",
+    "country": "Albania",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "budget_friendly",
+        "markets_shopping"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Kruja Albania"
+  },
+  {
+    "name": "Szkodra",
+    "country": "Albania",
+    "tags": [
+        "history_culture",
+        "nature",
+        "mountains_trekking",
+        "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Szkodra Albania"
+  },
+  {
+    "name": "Himara",
+    "country": "Albania",
+    "tags": [
+        "beach_leisure",
+        "nature",
+        "romantic_getaway",
+        "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Himara Albania"
+  },
+  {
+    "name": "Wiedeń",
+    "country": "Austria",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "architecture_design",
+        "food_gastronomy",
+        "art_music"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Wiedeń Austria"
+  },
+  {
+    "name": "Salzburg",
+    "country": "Austria",
+    "tags": [
+        "history_culture",
+        "art_music",
+        "architecture_design",
+        "unesco_site",
+        "mountains_trekking"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Salzburg Austria"
+  },
+  {
+    "name": "Innsbruck",
+    "country": "Austria",
+    "tags": [
+        "mountains_trekking",
+        "winter_sports",
+        "architecture_design",
+        "history_culture",
+        "nature"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Innsbruck Austria"
+  },
+  {
+    "name": "Graz",
+    "country": "Austria",
+    "tags": [
+        "city_break",
+        "architecture_design",
+        "food_gastronomy",
+        "history_culture",
+        "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Graz Austria"
+  },
+  {
+    "name": "Hallstatt",
+    "country": "Austria",
+    "tags": [
+        "nature",
+        "romantic_getaway",
+        "photography_spots",
+        "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Hallstatt Austria"
+  },
+  {
+    "name": "Linz",
+    "country": "Austria",
+    "tags": [
+        "city_break",
+        "art_music",
+        "technology_science",
+        "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Linz Austria"
+  },
+  {
+    "name": "Klagenfurt",
+    "country": "Austria",
+    "tags": [
+        "beach_leisure",
+        "nature",
+        "family_friendly",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Klagenfurt Austria"
+  },
+  {
+    "name": "Bregencja",
+    "country": "Austria",
+    "tags": [
+        "art_music",
+        "nature",
+        "relaxed_pace",
+        "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Bregencja Austria"
+  },
+  {
+    "name": "Zell am See",
+    "country": "Austria",
+    "tags": [
+        "winter_sports",
+        "nature",
+        "mountains_trekking",
+        "relaxed_pace",
+        "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Zell am See Austria"
+  },
+  {
+    "name": "Bad Ischl",
+    "country": "Austria",
+    "tags": [
+        "history_culture",
+        "relaxed_pace",
+        "wellness_spa",
+        "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Bad Ischl Austria"
+  },
+  {
     "name": "Bruksela",
     "country": "Belgia",
     "tags": [
@@ -939,5 +1204,5273 @@
     "cost_tier": "low",
     "cost_multiplier": 0.65,
     "image_keyword": "Zlin Czechy"
+  },
+  {
+    "name": "Kopenhaga",
+    "country": "Dania",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "architecture_design",
+        "food_gastronomy",
+        "family_friendly"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Kopenhaga Dania"
+  },
+  {
+    "name": "Aarhus",
+    "country": "Dania",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "architecture_design",
+        "art_music",
+        "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Aarhus Dania"
+  },
+  {
+    "name": "Odense",
+    "country": "Dania",
+    "tags": [
+        "history_culture",
+        "family_friendly",
+        "architecture_design",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Odense Dania"
+  },
+  {
+    "name": "Roskilde",
+    "country": "Dania",
+    "tags": [
+        "history_culture",
+        "unesco_site",
+        "museums",
+        "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Roskilde Dania"
+  },
+  {
+    "name": "Helsingor",
+    "country": "Dania",
+    "tags": [
+        "history_culture",
+        "unesco_site",
+        "architecture_design",
+        "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Helsingor Dania"
+  },
+  {
+    "name": "Aalborg",
+    "country": "Dania",
+    "tags": [
+        "city_break",
+        "art_music",
+        "history_culture",
+        "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Aalborg Dania"
+  },
+  {
+    "name": "Ribe",
+    "country": "Dania",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "museums",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Ribe Dania"
+  },
+  {
+    "name": "Skagen",
+    "country": "Dania",
+    "tags": [
+        "nature",
+        "art_music",
+        "romantic_getaway",
+        "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Skagen Grenen"
+  },
+  {
+    "name": "Billund",
+    "country": "Dania",
+    "tags": [
+        "family_friendly",
+        "amusement_parks",
+        "short_trips",
+        "technology_science"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Billund Dania"
+  },
+  {
+    "name": "Esbjerg",
+    "country": "Dania",
+    "tags": [
+        "nature",
+        "scenic_views",
+        "beach_leisure",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Esbjerg Dania"
+  },
+  {
+    "name": "Tallin",
+    "country": "Estonia",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "unesco_site",
+        "architecture_design",
+        "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Tallin Estonia"
+  },
+  {
+    "name": "Tartu",
+    "country": "Estonia",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "art_music",
+        "education_university"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Tartu Estonia"
+  },
+  {
+    "name": "Parnawa",
+    "country": "Estonia",
+    "tags": [
+        "beach_leisure",
+        "wellness_spa",
+        "relaxed_pace",
+        "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Parnawa Estonia"
+  },
+  {
+    "name": "Narwa",
+    "country": "Estonia",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "museums",
+        "border_town"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Narwa Estonia"
+  },
+  {
+    "name": "Kuressaare",
+    "country": "Estonia",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "wellness_spa",
+        "island_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Kuressaare Estonia"
+  },
+  {
+    "name": "Haapsalu",
+    "country": "Estonia",
+    "tags": [
+        "relaxed_pace",
+        "history_culture",
+        "architecture_design",
+        "wellness_spa"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Haapsalu Estonia"
+  },
+  {
+    "name": "Haapsalu",
+    "country": "Estonia",
+    "tags": [
+        "relaxed_pace",
+        "history_culture",
+        "architecture_design",
+        "wellness_spa"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Haapsalu Estonia"
+  },
+  {
+    "name": "Viljandi",
+    "country": "Estonia",
+    "tags": [
+        "art_music",
+        "history_culture",
+        "nature",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Viljandi Estonia"
+  },
+  {
+    "name": "Rakvere",
+    "country": "Estonia",
+    "tags": [
+        "history_culture",
+        "family_friendly",
+        "architecture_design",
+        "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Rakvere Estonia"
+  },
+  {
+    "name": "Otepaa",
+    "country": "Estonia",
+    "tags": [
+        "winter_sports",
+        "nature",
+        "mountains_trekking",
+        "adventure_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Otepaa Estonia"
+  },
+  {
+    "name": "Kasmu",
+    "country": "Estonia",
+    "tags": [
+        "nature",
+        "relaxed_pace",
+        "scenic_views",
+        "beach_leisure"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Kasmu Estonia"
+  },
+  {
+    "name": "Helsinki",
+    "country": "Finlandia",
+    "tags": [
+        "city_break",
+        "architecture_design",
+        "history_culture",
+        "art_music",
+        "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Helsinki Finlandia"
+  },
+  {
+    "name": "Rovaniemi",
+    "country": "Finlandia",
+    "tags": [
+        "family_friendly",
+        "winter_sports",
+        "nature",
+        "christmas_themed",
+        "northern_lights"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.6,
+    "image_keyword": "Rovaniemi Finlandia"
+  },
+  {
+    "name": "Tampere",
+    "country": "Finlandia",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "architecture_design",
+        "nature",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Tampere Finlandia"
+  },
+  {
+    "name": "Turku",
+    "country": "Finlandia",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "food_gastronomy",
+        "art_music"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Turku Finlandia"
+  },
+  {
+    "name": "Oulu",
+    "country": "Finlandia",
+    "tags": [
+        "city_break",
+        "technology_science",
+        "winter_sports",
+        "nature"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Oulu Finlandia"
+  },
+  {
+    "name": "Porvoo",
+    "country": "Finlandia",
+    "tags": [
+        "romantic_getaway",
+        "architecture_design",
+        "short_trips",
+        "history_culture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Porvoo Finlandia"
+  },
+  {
+    "name": "Kuopio",
+    "country": "Finlandia",
+    "tags": [
+        "nature",
+        "scenic_views",
+        "winter_sports",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Kuopio Finlandia"
+  },
+  {
+    "name": "Savonlinna",
+    "country": "Finlandia",
+    "tags": [
+        "history_culture",
+        "art_music",
+        "nature",
+        "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Savonlinna Finlandia"
+  },
+  {
+    "name": "Lappeenranta",
+    "country": "Finlandia",
+    "tags": [
+        "nature",
+        "relaxed_pace",
+        "scenic_views",
+        "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Lappeenranta Finlandia"
+  },
+  {
+    "name": "Levi",
+    "country": "Finlandia",
+    "tags": [
+        "winter_sports",
+        "nature",
+        "adventure_sports",
+        "northern_lights"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Levi Finlandia"
+  },
+  {
+    "name": "Paryż",
+    "country": "Francja",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "art_music",
+        "architecture_design",
+        "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Paryż Francja"
+  },
+  {
+    "name": "Nicea",
+    "country": "Francja",
+    "tags": [
+        "beach_leisure",
+        "relaxed_pace",
+        "architecture_design",
+        "food_gastronomy",
+        "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Nicea Francja"
+  },
+  {
+    "name": "Marsylia",
+    "country": "Francja",
+    "tags": [
+        "beach_leisure",
+        "history_culture",
+        "city_break",
+        "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Marsylia Francja"
+  },
+  {
+    "name": "Bordeaux",
+    "country": "Francja",
+    "tags": [
+        "food_gastronomy",
+        "history_culture",
+        "architecture_design",
+        "city_break",
+        "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Bordeaux Francja"
+  },
+  {
+    "name": "Strasburg",
+    "country": "Francja",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "christmas_market",
+        "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Strasburg Francja"
+  },
+  {
+    "name": "Avignon",
+    "country": "Francja",
+    "tags": [
+        "history_culture",
+        "architecture_design",
+        "unesco_site",
+        "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Avignon Francja"
+  },
+  {
+    "name": "Lille",
+    "country": "Francja",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "architecture_design",
+        "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Lille Francja"
+  },
+  {
+    "name": "Lille",
+    "country": "Francja",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "architecture_design",
+        "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Lille Francja"
+  },
+  {
+    "name": "Tuluza",
+    "country": "Francja",
+    "tags": [
+        "city_break",
+        "architecture_design",
+        "technology_science",
+        "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Tuluza Francja"
+  },
+  {
+    "name": "Cannes",
+    "country": "Francja",
+    "tags": [
+        "luxury_exclusive",
+        "beach_leisure",
+        "art_music",
+        "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Cannes Francja"
+  },
+  {
+    "name": "Ateny",
+    "country": "Grecja",
+    "tags": [
+        "history_culture",
+        "city_break",
+        "architecture_design",
+        "unesco_site",
+        "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Ateny Grecja"
+  },
+  {
+    "name": "Santorini",
+    "country": "Grecja",
+    "tags": [
+        "romantic_getaway",
+        "luxury_exclusive",
+        "scenic_views",
+        "nature",
+        "photography_spots"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Santorini Grecja"
+  },
+  {
+    "name": "Saloniki",
+    "country": "Grecja",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "food_gastronomy",
+        "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Saloniki Grecja"
+  },
+  {
+    "name": "Kreta",
+    "country": "Grecja",
+    "tags": [
+        "beach_leisure",
+        "history_culture",
+        "nature",
+        "family_friendly",
+        "mountains_trekking"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Kreta Grecja"
+  },
+  {
+    "name": "Rodos",
+    "country": "Grecja",
+    "tags": [
+        "beach_leisure",
+        "history_culture",
+        "unesco_site",
+        "family_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Rodos Grecja"
+  },
+  {
+    "name": "Korfu",
+    "country": "Grecja",
+    "tags": [
+        "beach_leisure",
+        "history_culture",
+        "unesco_site",
+        "nature"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Korfu Grecja"
+  },
+  {
+    "name": "Mykonos",
+    "country": "Grecja",
+    "tags": [
+        "luxury_exclusive",
+        "nightlife_parties",
+        "beach_leisure",
+        "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Mykonos Grecja"
+  },
+  {
+    "name": "Nafplio",
+    "country": "Grecja",
+    "tags": [
+        "history_culture",
+        "romantic_getaway",
+        "architecture_design",
+        "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Nafplio Grecja"
+  },
+  {
+    "name": "Meteory",
+    "country": "Grecja",
+    "tags": [
+        "history_culture",
+        "unesco_site",
+        "nature",
+        "scenic_views",
+        "mountains_trekking"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Meteory Grecja"
+  },
+  {
+    "name": "Patras",
+    "country": "Grecja",
+    "tags": [
+        "city_break",
+        "history_culture",
+        "nightlife_parties",
+        "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Patras Grecja"
+  },
+  {
+    "name": "Madryt",
+    "country": "Hiszpania",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "art_museums",
+      "nightlife_parties",
+      "food_gastronomy"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Madryt Hiszpania"
+  },
+  {
+    "name": "Barcelona",
+    "country": "Hiszpania",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "beach_leisure",
+      "art_museums",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Barcelona Hiszpania"
+  },
+  {
+    "name": "Sewilla",
+    "country": "Hiszpania",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "food_gastronomy",
+      "romantic_getaway",
+      "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Sewilla Hiszpania"
+  },
+  {
+    "name": "Walencja",
+    "country": "Hiszpania",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "beach_leisure",
+      "food_gastronomy",
+      "family_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Walencja Hiszpania"
+  },
+  {
+    "name": "Granada",
+    "country": "Hiszpania",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unesco_site",
+      "mountains_trekking",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Granada Hiszpania"
+  },
+  {
+    "name": "Bilbao",
+    "country": "Hiszpania",
+    "tags": [
+      "city_break",
+      "art_museums",
+      "architecture_design",
+      "food_gastronomy",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Bilbao Hiszpania"
+  },
+  {
+    "name": "Palma de Mallorca",
+    "country": "Hiszpania",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "architecture_design",
+      "island_getaway",
+      "luxury_exclusive"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Palma de Mallorca Hiszpania"
+  },
+  {
+    "name": "Malaga",
+    "country": "Hiszpania",
+    "tags": [
+      "beach_leisure",
+      "history_culture",
+      "food_gastronomy",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Malaga Hiszpania"
+  },
+  {
+    "name": "Kadyks",
+    "country": "Hiszpania",
+    "tags": [
+      "history_culture",
+      "beach_leisure",
+      "relaxed_pace",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Kadyks Hiszpania"
+  },
+  {
+    "name": "San Sebastián",
+    "country": "Hiszpania",
+    "tags": [
+      "food_gastronomy",
+      "luxury_exclusive",
+      "beach_leisure",
+      "romantic_getaway",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "San Sebastian Hiszpania"
+  },
+  {
+    "name": "Amsterdam",
+    "country": "Holandia",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "art_museums",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Amsterdam Holandia"
+  },
+  {
+    "name": "Rotterdam",
+    "country": "Holandia",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "technology_science",
+      "modern_art"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Rotterdam Holandia"
+  },
+  {
+    "name": "Haga",
+    "country": "Holandia",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "art_museums",
+      "government_politics",
+      "beach_leisure"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Haga Holandia"
+  },
+  {
+    "name": "Utrecht",
+    "country": "Holandia",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "history_culture",
+      "education_university",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Utrecht Holandia"
+  },
+  {
+    "name": "Maastricht",
+    "country": "Holandia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "food_gastronomy",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Maastricht Holandia"
+  },
+  {
+    "name": "Haarlem",
+    "country": "Holandia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "art_museums",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Haarlem Holandia"
+  },
+  {
+    "name": "Lejda",
+    "country": "Holandia",
+    "tags": [
+      "history_culture",
+      "education_university",
+      "art_museums",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Lejda Holandia"
+  },
+  {
+    "name": "Delft",
+    "country": "Holandia",
+    "tags": [
+      "architecture_design",
+      "history_culture",
+      "short_trips",
+      "photography_spots"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Delft Holandia"
+  },
+  {
+    "name": "Gouda",
+    "country": "Holandia",
+    "tags": [
+      "food_gastronomy",
+      "history_culture",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Gouda Holandia"
+  },
+  {
+    "name": "Zaanse Schans",
+    "country": "Holandia",
+    "tags": [
+      "nature",
+      "history_culture",
+      "family_friendly",
+      "photography_spots"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Zaanse Schans Holandia"
+  },
+  {
+    "name": "Dublin",
+    "country": "Irlandia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties",
+      "food_gastronomy",
+      "art_museums"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Dublin Irlandia"
+  },
+  {
+    "name": "Galway",
+    "country": "Irlandia",
+    "tags": [
+      "city_break",
+      "art_music",
+      "history_culture",
+      "relaxed_pace",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Galway Irlandia"
+  },
+  {
+    "name": "Cork",
+    "country": "Irlandia",
+    "tags": [
+      "city_break",
+      "food_gastronomy",
+      "history_culture",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Cork Irlandia"
+  },
+  {
+    "name": "Limerick",
+    "country": "Irlandia",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "architecture_design",
+      "museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Limerick Irlandia"
+  },
+  {
+    "name": "Kilkenny",
+    "country": "Irlandia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Kilkenny Irlandia"
+  },
+  {
+    "name": "Belfast",
+    "country": "Irlandia Północna (UK)",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "art_museums"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Belfast Irlandia"
+  },
+  {
+    "name": "Waterford",
+    "country": "Irlandia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Waterford Irlandia"
+  },
+  {
+    "name": "Killarney",
+    "country": "Irlandia",
+    "tags": [
+      "nature",
+      "mountains_trekking",
+      "scenic_views",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Killarney Irlandia"
+  },
+  {
+    "name": "Derry",
+    "country": "Irlandia Północna (UK)",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "scenic_views",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Derry Irlandia"
+  },
+  {
+    "name": "Westport",
+    "country": "Irlandia",
+    "tags": [
+      "relaxed_pace",
+      "nature",
+      "architecture_design",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Westport Irlandia"
+  },
+  {
+    "name": "Reykjavík",
+    "country": "Islandia",
+    "tags": [
+      "city_break",
+      "art_culture",
+      "nightlife_parties",
+      "northern_lights",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.0,
+    "image_keyword": "Reykjavik Islandia"
+  },
+  {
+    "name": "Akureyri",
+    "country": "Islandia",
+    "tags": [
+      "nature",
+      "winter_sports",
+      "scenic_views",
+      "whale_watching",
+      "northern_lights"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Akureyri Islandia"
+  },
+  {
+    "name": "Vik i Myrdal",
+    "country": "Islandia",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "photography_spots",
+      "beach_leisure"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Vik i Myrdal Islandia"
+  },
+  {
+    "name": "Husavik",
+    "country": "Islandia",
+    "tags": [
+      "whale_watching",
+      "nature",
+      "short_trips",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.75,
+    "image_keyword": "Husavik Islandia"
+  },
+  {
+    "name": "Hofn",
+    "country": "Islandia",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "food_gastronomy",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Hofn Islandia"
+  },
+  {
+    "name": "Borgarnes",
+    "country": "Islandia",
+    "tags": [
+      "nature",
+      "history_culture",
+      "scenic_views",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Borgarnes Islandia"
+  },
+  {
+    "name": "Keflavik",
+    "country": "Islandia",
+    "tags": [
+      "wellness_spa",
+      "geothermal",
+      "nature",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.9,
+    "image_keyword": "Keflavik Islandia"
+  },
+  {
+    "name": "Prizren",
+    "country": "Kosowo",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "budget_friendly"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Prizren Kosowo"
+  },
+  {
+    "name": "Prisztina",
+    "country": "Kosowo",
+    "tags": [
+      "city_break",
+      "nightlife_parties",
+      "history_culture",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Prisztina Kosowo"
+  },
+  {
+    "name": "Pec",
+    "country": "Kosowo",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "history_culture",
+      "unesco_site"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Pec Kosowo"
+  },
+  {
+    "name": "Gjakowa",
+    "country": "Kosowo",
+    "tags": [
+      "history_culture",
+      "markets_shopping",
+      "architecture_design",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Gjakova Kosowo"
+  },
+  {
+    "name": "Ferizaj",
+    "country": "Kosowo",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Ferizaj Kosowo"
+  },
+  {
+    "name": "Mitrowica",
+    "country": "Kosowo",
+    "tags": [
+      "history_culture",
+      "politics_history",
+      "city_break",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Mitrowica Kosowo"
+  },
+  {
+    "name": "Dragasz",
+    "country": "Kosowo",
+    "tags": [
+      "nature",
+      "history_culture",
+      "relaxed_pace",
+      "unique_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Dragasz Kosowo"
+  },
+  {
+    "name": "Novo Brdo",
+    "country": "Kosowo",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "Novo Brdo Kosowo"
+  },
+  {
+    "name": "A\u0142maty",
+    "country": "Kazachstan",
+    "tags": [
+      "city_break",
+      "mountains_trekking",
+      "winter_sports",
+      "food_gastronomy",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "A\u0142maty Kazachstan"
+  },
+  {
+    "name": "Astana",
+    "country": "Kazachstan",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "technology_science",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Astana Kazachstan"
+  },
+  {
+    "name": "Szymkent",
+    "country": "Kazachstan",
+    "tags": [
+      "history_culture",
+      "markets_shopping",
+      "budget_friendly",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Szymkent Kazachstan"
+  },
+  {
+    "name": "Turkiestan",
+    "country": "Kazachstan",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "spiritual_travel"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Turkiestan Kazachstan"
+  },
+  {
+    "name": "Bajkonur",
+    "country": "Kazachstan",
+    "tags": [
+      "technology_science",
+      "history_culture",
+      "unique_experience",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Bajkonur Kazachstan"
+  },
+  {
+    "name": "Kanion Szaryński",
+    "country": "Kazachstan",
+    "tags": [
+      "nature",
+      "photography_spots",
+      "mountains_trekking",
+      "adventure_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Kanion Kazachstan"
+  },
+  {
+    "name": "Aktau",
+    "country": "Kazachstan",
+    "tags": [
+      "beach_leisure",
+      "nature",
+      "desert_adventure",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Aktau Kazachstan"
+  },
+  {
+    "name": "Jeziora Kolsai i Kaindy",
+    "country": "Kazachstan",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "mountains_trekking",
+      "photography_spots"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Jezioro Kazachstan"
+  },
+  {
+    "name": "Semej",
+    "country": "Kazachstan",
+    "tags": [
+      "history_culture",
+      "art_museums",
+      "politics_history",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Semej Kazachstan"
+  },
+  {
+    "name": "Karaganda",
+    "country": "Kazachstan",
+    "tags": [
+      "history_culture",
+      "politics_history",
+      "city_break",
+      "industrial_heritage"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Karaganda Kazachstan"
+  },
+  {
+    "name": "Vaduz",
+    "country": "Liechtenstein",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "art_museums",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Vaduz Liechtenstein"
+  },
+  {
+    "name": "Malbun",
+    "country": "Liechtenstein",
+    "tags": [
+      "mountains_trekking",
+      "winter_sports",
+      "scenic_views",
+      "nature"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Malbun Liechtenstein"
+  },
+  {
+    "name": "Triesenberg",
+    "country": "Liechtenstein",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "relaxed_pace",
+      "nature"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Triesenberg Liechtenstein"
+  },
+  {
+    "name": "Balzers",
+    "country": "Liechtenstein",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Balzers Liechtenstein"
+  },
+  {
+    "name": "Schellenberg",
+    "country": "Liechtenstein",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "short_trips",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Schellenberg Liechtenstein"
+  },
+  {
+    "name": "Eschen",
+    "country": "Liechtenstein",
+    "tags": [
+      "art_museums",
+      "nature",
+      "short_trips",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Eschen Liechtenstein"
+  },
+  {
+    "name": "Schaan",
+    "country": "Liechtenstein",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "culture_arts",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Schaan Liechtenstein"
+  },
+  {
+    "name": "Triesen",
+    "country": "Liechtenstein",
+    "tags": [
+      "history_culture",
+      "relaxed_pace",
+      "architecture_design",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.15,
+    "image_keyword": "Triesen Liechtenstein"
+  },
+  {
+    "name": "Ruggell",
+    "country": "Liechtenstein",
+    "tags": [
+      "nature",
+      "relaxed_pace",
+      "wildlife_watching",
+      "cycling_sport"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Ruggell Liechtenstein"
+  },
+  {
+    "name": "Wilno",
+    "country": "Litwa",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Wilno Litwa"
+  },
+  {
+    "name": "Kowno",
+    "country": "Litwa",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "city_break",
+      "art_museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Kowno Litwa"
+  },
+  {
+    "name": "K\u0142ajpeda",
+    "country": "Litwa",
+    "tags": [
+      "beach_leisure",
+      "sea_port",
+      "architecture_design",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Kłajpeda Litwa"
+  },
+  {
+    "name": "Troki",
+    "country": "Litwa",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Troki Litwa"
+  },
+  {
+    "name": "Po\u0142\u0105ga",
+    "country": "Litwa",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "museums_specialty",
+      "nature"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Połąga Litwa"
+  },
+  {
+    "name": "Neringa (Mierzeja Kuro\u0144ska)",
+    "country": "Litwa",
+    "tags": [
+      "nature",
+      "unesco_site",
+      "scenic_views",
+      "beach_leisure"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Neringa Litwa"
+  },
+  {
+    "name": "Szawle",
+    "country": "Litwa",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "short_trips",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Szawle Litwa"
+  },
+  {
+    "name": "Druskienniki",
+    "country": "Litwa",
+    "tags": [
+      "wellness_spa",
+      "nature",
+      "history_culture",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Druskienniki Litwa"
+  },
+  {
+    "name": "Kiejdany",
+    "country": "Litwa",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Kiejdany Litwa"
+  },
+  {
+    "name": "Poniewie\u017c",
+    "country": "Litwa",
+    "tags": [
+      "city_break",
+      "culture_arts",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Poniewie\u017c Litwa"
+  },
+  {
+    "name": "Luksemburg",
+    "country": "Luksemburg",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "finance_hub"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Luksemburg Luksemburg"
+  },
+  {
+    "name": "Vianden",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Vianden Luksemburg"
+  },
+  {
+    "name": "Echternach",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "nature",
+      "mountains_trekking",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Echternach Luksemburg"
+  },
+  {
+    "name": "Clervaux",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "art_museums",
+      "architecture_design",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Clervaux Luksemburg"
+  },
+  {
+    "name": "Esch-sur-Alzette",
+    "country": "Luksemburg",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "technology_science",
+      "culture_arts"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Esch-sur-Alzette Luksemburg"
+  },
+  {
+    "name": "Diekirch",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "food_gastronomy",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Diekirch Luksemburg"
+  },
+  {
+    "name": "Schengen",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "wine_tourism",
+      "relaxed_pace",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Schengen Luksemburg"
+  },
+  {
+    "name": "Bourscheid",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Bourscheid Luksemburg"
+  },
+  {
+    "name": "Remich",
+    "country": "Luksemburg",
+    "tags": [
+      "wine_tourism",
+      "relaxed_pace",
+      "nature",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Remich Luksemburg"
+  },
+  {
+    "name": "Larochette",
+    "country": "Luksemburg",
+    "tags": [
+      "history_culture",
+      "mountains_trekking",
+      "scenic_views",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Larochette Luksemburg"
+  },
+  {
+    "name": "Ryga",
+    "country": "\u0141otwa",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Ryga \u0141otwa"
+  },
+  {
+    "name": "Jurma\u0142a",
+    "country": "\u0141otwa",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Jurma\u0142a \u0141otwa"
+  },
+  {
+    "name": "Kuld\u012bga",
+    "country": "\u0141otwa",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "nature",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Kuld\u012bga \u0141otwa"
+  },
+  {
+    "name": "Lipawa",
+    "country": "\u0141otwa",
+    "tags": [
+      "beach_leisure",
+      "history_culture",
+      "unique_experience",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Lipawa \u0141otwa"
+  },
+  {
+    "name": "Sigulda",
+    "country": "\u0141otwa",
+    "tags": [
+      "nature",
+      "mountains_trekking",
+      "adventure_sports",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Sigulda \u0141otwa"
+  },
+  {
+    "name": "C\u0113sis",
+    "country": "\u0141otwa",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "C\u0113sis \u0141otwa"
+  },
+  {
+    "name": "Je\u0142gawa",
+    "country": "\u0141otwa",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "education_university",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Je\u0142gawa \u0141otwa"
+  },
+  {
+    "name": "Dyneburg",
+    "country": "\u0141otwa",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "city_break",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Dyneburg \u0141otwa"
+  },
+  {
+    "name": "Ventspils",
+    "country": "\u0141otwa",
+    "tags": [
+      "beach_leisure",
+      "family_friendly",
+      "city_break",
+      "clean_environment"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Ventspils \u0141otwa"
+  },
+  {
+    "name": "J\u0113kabpils",
+    "country": "\u0141otwa",
+    "tags": [
+      "history_culture",
+      "relaxed_pace",
+      "short_trips",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "J\u0113kabpils \u0141otwa"
+  },
+  {
+    "name": "Ochryda",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "scenic_views",
+      "relaxed_pace",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Ochryda Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Skopje",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "markets_shopping"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Skopje Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Bitola",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Bitola Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Mawrowo",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "winter_sports",
+      "nature",
+      "mountains_trekking",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Mawrowo Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "\u0160tip",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Sztip Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Prilep",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "history_culture",
+      "mountains_trekking",
+      "scenic_views",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Prilep Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Sztruga",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "relaxed_pace",
+      "nature",
+      "culture_arts",
+      "scenic_views"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Sztruga Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Veles",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "city_break",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Veles Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Kratowo",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "history_culture",
+      "unique_experience",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Kratowo Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Jezioro Prespa",
+    "country": "Macedonia P\u00f3\u0142nocna",
+    "tags": [
+      "nature",
+      "relaxed_pace",
+      "wildlife_watching",
+      "scenic_views"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Jezioro Prespa Macedonia P\u00f3\u0142nocna"
+  },
+  {
+    "name": "Valletta",
+    "country": "Malta",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "unesco_site",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Valletta Malta"
+  },
+  {
+    "name": "Sliema",
+    "country": "Malta",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "nightlife_parties",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Sliema Malta"
+  },
+  {
+    "name": "Mdina",
+    "country": "Malta",
+    "tags": [
+      "history_culture",
+      "romantic_getaway",
+      "architecture_design",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Mdina Malta"
+  },
+  {
+    "name": "Gozo (Victoria)",
+    "country": "Malta",
+    "tags": [
+      "history_culture",
+      "nature",
+      "relaxed_pace",
+      "island_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Gozo Malta"
+  },
+  {
+    "name": "Trzy Miasta (Birgu)",
+    "country": "Malta",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Trzy Miasta Malta"
+  },
+  {
+    "name": "St. Julian's",
+    "country": "Malta",
+    "tags": [
+      "nightlife_parties",
+      "city_break",
+      "beach_leisure",
+      "food_gastronomy"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "St. Julian's Malta"
+  },
+  {
+    "name": "Marsaxlokk",
+    "country": "Malta",
+    "tags": [
+      "food_gastronomy",
+      "scenic_views",
+      "photography_spots",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Marsaxlokk Malta"
+  },
+  {
+    "name": "Mellie\u0127a",
+    "country": "Malta",
+    "tags": [
+      "beach_leisure",
+      "family_friendly",
+      "relaxed_pace",
+      "nature"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Mellie\u0127a Malta"
+  },
+  {
+    "name": "Rabat",
+    "country": "Malta",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Rabat Malta"
+  },
+  {
+    "name": "Comino (Blue Lagoon)",
+    "country": "Malta",
+    "tags": [
+      "beach_leisure",
+      "nature",
+      "scenic_views",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Comino Malta"
+  },
+  {
+    "name": "Kiszyni\u00f3w",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Kiszyni\u00f3w Mo\u0142dawia"
+  },
+  {
+    "name": "Orheiul Vechi",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "scenic_views",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Orheiul Vechi Mo\u0142dawia"
+  },
+  {
+    "name": "Tiraspol",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "history_culture",
+      "unique_experience",
+      "politics_history",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Tiraspol Mo\u0142dawia"
+  },
+  {
+    "name": "Cricova",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "wine_tourism",
+      "food_gastronomy",
+      "unique_experience",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Cricova Mo\u0142dawia"
+  },
+  {
+    "name": "Bender",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "politics_history",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Bender Mo\u0142dawia"
+  },
+  {
+    "name": "Bie\u0142ce",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Bie\u0142ce Mo\u0142dawia"
+  },
+  {
+    "name": "S\u0103lcu\u0163a",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "wine_tourism",
+      "food_gastronomy",
+      "relaxed_pace",
+      "rural_tourism"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "S\u0103lcu\u0163a Mo\u0142dawia"
+  },
+  {
+    "name": "Soroca",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unique_culture",
+      "scenic_views"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Soroca Mo\u0142dawia"
+  },
+  {
+    "name": "Monastyr C\u0103priana",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "architecture_design",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Monastyr C\u0103priana Mo\u0142dawia"
+  },
+  {
+    "name": "C\u0103u\u015Feni (Kauszany)",
+    "country": "Mo\u0142dawia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "museums"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.6,
+    "image_keyword": "C\u0103u\u015Feni Mo\u0142dawia"
+  },
+  {
+    "name": "Monte Carlo",
+    "country": "Monako",
+    "tags": [
+      "luxury_exclusive",
+      "city_break",
+      "architecture_design",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.5,
+    "image_keyword": "Monte Carlo Monako"
+  },
+  {
+    "name": "Monaco-Ville",
+    "country": "Monako",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.3,
+    "image_keyword": "Monaco-Ville Monako"
+  },
+  {
+    "name": "La Condamine",
+    "country": "Monako",
+    "tags": [
+      "sea_port",
+      "city_break",
+      "markets_shopping",
+      "yachting"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.4,
+    "image_keyword": "La Condamine Monako"
+  },
+  {
+    "name": "Fontvieille",
+    "country": "Monako",
+    "tags": [
+      "architecture_design",
+      "unique_experience",
+      "nature",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.2,
+    "image_keyword": "Fontvieille Monako"
+  },
+  {
+    "name": "Larvotto",
+    "country": "Monako",
+    "tags": [
+      "beach_leisure",
+      "luxury_exclusive",
+      "nightlife_parties",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.1,
+    "image_keyword": "Larvotto Monako"
+  },
+  {
+    "name": "Jardin Exotique",
+    "country": "Monako",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "romantic_getaway",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.0,
+    "image_keyword": "Jardin Exotique Monako"
+  },
+  {
+    "name": "Moneghetti",
+    "country": "Monako",
+    "tags": [
+      "scenic_views",
+      "relaxed_pace",
+      "city_break",
+      "residential_area"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.9,
+    "image_keyword": "Moneghetti Monako"
+  },
+  {
+    "name": "Les R\u00e9voires",
+    "country": "Monako",
+    "tags": [
+      "scenic_views",
+      "nature",
+      "relaxed_pace",
+      "highest_point"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Les R\u00e9voires Monako"
+  },
+  {
+    "name": "Saint Roman",
+    "country": "Monako",
+    "tags": [
+      "luxury_exclusive",
+      "relaxed_pace",
+      "city_break",
+      "residential_area"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.05,
+    "image_keyword": "Saint Roman Monako"
+  },
+  {
+    "name": "Quartier du Port",
+    "country": "Monako",
+    "tags": [
+      "sea_port",
+      "nightlife_parties",
+      "yachting",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.25,
+    "image_keyword": "Quartier du Port Monako"
+  },
+  {
+    "name": "Berlin",
+    "country": "Niemcy",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "art_museums",
+      "nightlife_parties",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Berlin Niemcy"
+  },
+  {
+    "name": "Monachium",
+    "country": "Niemcy",
+    "tags": [
+      "city_break",
+      "food_gastronomy",
+      "architecture_design",
+      "culture_arts",
+      "technology_science"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Monachium Niemcy"
+  },
+  {
+    "name": "Hamburg",
+    "country": "Niemcy",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "architecture_design",
+      "nightlife_parties",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Hamburg Niemcy"
+  },
+  {
+    "name": "Frankfurt nad Menem",
+    "country": "Niemcy",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Frankfurt nad Menem Niemcy"
+  },
+  {
+    "name": "Kolonia",
+    "country": "Niemcy",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unesco_site",
+      "city_break",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Kolonia Niemcy"
+  },
+  {
+    "name": "Drezno",
+    "country": "Niemcy",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "art_museums",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Drezno Niemcy"
+  },
+  {
+    "name": "Norymberga",
+    "country": "Niemcy",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "christmas_market",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Norymberga Niemcy"
+  },
+  {
+    "name": "Stuttgart",
+    "country": "Niemcy",
+    "tags": [
+      "city_break",
+      "technology_science",
+      "architecture_design",
+      "food_gastronomy"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Stuttgart Niemcy"
+  },
+  {
+    "name": "Heidelberg",
+    "country": "Niemcy",
+    "tags": [
+      "history_culture",
+      "romantic_getaway",
+      "architecture_design",
+      "education_university"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Heidelberg Niemcy"
+  },
+  {
+    "name": "D\u00fcsseldorf",
+    "country": "Niemcy",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "architecture_design",
+      "art_museums"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.95,
+    "image_keyword": "D\u00fcsseldorf Niemcy"
+  },
+  {
+    "name": "Oslo",
+    "country": "Norwegia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "art_museums",
+      "scenic_views",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Oslo Norwegia"
+  },
+  {
+    "name": "Bergen",
+    "country": "Norwegia",
+    "tags": [
+      "city_break",
+      "scenic_views",
+      "sea_port",
+      "unesco_site",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.6,
+    "image_keyword": "Bergen Norwegia"
+  },
+  {
+    "name": "Troms\u00f8",
+    "country": "Norwegia",
+    "tags": [
+      "nature",
+      "unique_experience",
+      "aurora_borealis",
+      "adventure_sports",
+      "winter_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Troms\u00f8 Norwegia"
+  },
+  {
+    "name": "Trondheim",
+    "country": "Norwegia",
+    "tags": [
+      "history_culture",
+      "education_university",
+      "architecture_design",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Trondheim Norwegia"
+  },
+  {
+    "name": "Stavanger",
+    "country": "Norwegia",
+    "tags": [
+      "sea_port",
+      "nature",
+      "hiking_trekking",
+      "food_gastronomy",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Stavanger Norwegia"
+  },
+  {
+    "name": "Fl\u00e5m (Fiordy)",
+    "country": "Norwegia",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "hiking_trekking",
+      "train_journey",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Fl\u00e5m Fiordy Norwegia"
+  },
+  {
+    "name": "Lofoty",
+    "country": "Norwegia",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "island_getaway",
+      "photography_spots",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.0,
+    "image_keyword": "Lofoty Norwegia"
+  },
+  {
+    "name": "\u00c5lesund",
+    "country": "Norwegia",
+    "tags": [
+      "architecture_design",
+      "scenic_views",
+      "sea_port",
+      "art_nouveau",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "\u00c5lesund Norwegia"
+  },
+  {
+    "name": "Geiranger",
+    "country": "Norwegia",
+    "tags": [
+      "nature",
+      "unesco_site",
+      "scenic_views",
+      "cruise_destination",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Geiranger Fiord Norwegia"
+  },
+  {
+    "name": "Kristiansand",
+    "country": "Norwegia",
+    "tags": [
+      "beach_leisure",
+      "family_friendly",
+      "relaxed_pace",
+      "short_trips",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Kristiansand Norwegia"
+  },
+  {
+    "name": "Krak\u00f3w",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "city_break",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Krak\u00f3w Polska"
+  },
+  {
+    "name": "Warszawa",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "business_center",
+      "nightlife_parties",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Warszawa Polska"
+  },
+  {
+    "name": "Gda\u0144sk",
+    "country": "Polska",
+    "tags": [
+      "sea_port",
+      "history_culture",
+      "city_break",
+      "beach_leisure",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Gda\u0144sk Polska"
+  },
+  {
+    "name": "Wroc\u0142aw",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "education_university",
+      "romantic_getaway",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Wroc\u0142aw Polska"
+  },
+  {
+    "name": "Pozna\u0144",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "markets_shopping",
+      "food_gastronomy",
+      "business_center"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Pozna\u0144 Polska"
+  },
+  {
+    "name": "\u0141\u00f3d\u017a",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "art_museums",
+      "nightlife_parties",
+      "industrial_heritage"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "\u0141\u00f3d\u017a Polska"
+  },
+  {
+    "name": "Szczecin",
+    "country": "Polska",
+    "tags": [
+      "sea_port",
+      "city_break",
+      "architecture_design",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Szczecin Polska"
+  },
+  {
+    "name": "Lublin",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "education_university",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Lublin Polska"
+  },
+  {
+    "name": "Toru\u0144",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "romantic_getaway",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Toru\u0144 Polska"
+  },
+  {
+    "name": "Katowice",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "culture_arts",
+      "industrial_heritage",
+      "business_center"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Katowice Polska"
+  },
+  {
+    "name": "Sopot",
+    "country": "Polska",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "relaxed_pace",
+      "short_trips",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Sopot Polska"
+  },
+  {
+    "name": "Gdynia",
+    "country": "Polska",
+    "tags": [
+      "sea_port",
+      "architecture_design",
+      "city_break",
+      "modernism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Gdynia Polska"
+  },
+  {
+    "name": "Bia\u0142ystok",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Bia\u0142ystok Polska"
+  },
+  {
+    "name": "Rzesz\u00f3w",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "education_university",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Rzesz\u00f3w Polska"
+  },
+  {
+    "name": "Zakopane",
+    "country": "Polska",
+    "tags": [
+      "mountains_trekking",
+      "winter_sports",
+      "nature",
+      "scenic_views",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Zakopane Polska"
+  },
+  {
+    "name": "Cieszyn",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "border_city",
+      "short_trips",
+      "romantic_getaway"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Cieszyn Polska"
+  },
+  {
+    "name": "Malbork",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Malbork Polska"
+  },
+  {
+    "name": "Zamo\u015b\u0107",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "renaissance"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Zamo\u015b\u0107 Polska"
+  },
+  {
+    "name": "Karpacz",
+    "country": "Polska",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "winter_sports",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Karpacz Polska"
+  },
+  {
+    "name": "Olsztyn",
+    "country": "Polska",
+    "tags": [
+      "nature",
+      "lake_district",
+      "history_culture",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Olsztyn Polska"
+  },
+  {
+    "name": "Kielce",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Kielce Polska"
+  },
+  {
+    "name": "Bydgoszcz",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "river_side",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Bydgoszcz Polska"
+  },
+  {
+    "name": "Bielsko-Bia\u0142a",
+    "country": "Polska",
+    "tags": [
+      "mountains_trekking",
+      "city_break",
+      "architecture_design",
+      "industrial_heritage"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Bielsko-Bia\u0142a Polska"
+  },
+  {
+    "name": "Sandomierz",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Sandomierz Polska"
+  },
+  {
+    "name": "P\u0142ock",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "river_side",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "P\u0142ock Polska"
+  },
+  {
+    "name": "Gniezno",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "religious_site",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Gniezno Polska"
+  },
+  {
+    "name": "Kazimierz Dolny",
+    "country": "Polska",
+    "tags": [
+      "romantic_getaway",
+      "architecture_design",
+      "culture_arts",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Kazimierz Dolny Polska"
+  },
+  {
+    "name": "Ko\u0142obrzeg",
+    "country": "Polska",
+    "tags": [
+      "beach_leisure",
+      "spa_wellness",
+      "relaxed_pace",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Ko\u0142obrzeg Polska"
+  },
+  {
+    "name": "\u015awinouj\u015bcie",
+    "country": "Polska",
+    "tags": [
+      "beach_leisure",
+      "border_city",
+      "relaxed_pace",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "\u015awinouj\u015bcie Polska"
+  },
+  {
+    "name": "Bieszczady (Ustrzyki)",
+    "country": "Polska",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "scenic_views",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Bieszczady Polska"
+  },
+  {
+    "name": "Opole",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "music_festival",
+      "river_side"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Opole Polska"
+  },
+  {
+    "name": "Zielona G\u00f3ra",
+    "country": "Polska",
+    "tags": [
+      "wine_tourism",
+      "city_break",
+      "relaxed_pace",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Zielona G\u00f3ra Polska"
+  },
+  {
+    "name": "Gorz\u00f3w Wielkopolski",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "river_side",
+      "history_culture",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Gorz\u00f3w Wielkopolski Polska"
+  },
+  {
+    "name": "Bia\u0142owie\u017ca",
+    "country": "Polska",
+    "tags": [
+      "nature",
+      "wildlife_watching",
+      "unesco_site",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Bia\u0142owie\u017ca Polska"
+  },
+  {
+    "name": "Frombork",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "short_trips",
+      "architecture_design",
+      "spiritual_travel"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Frombork Polska"
+  },
+  {
+    "name": "Che\u0142mno",
+    "country": "Polska",
+    "tags": [
+      "romantic_getaway",
+      "architecture_design",
+      "short_trips",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Che\u0142mno Polska"
+  },
+  {
+    "name": "Paczk\u00f3w",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unique_experience",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.65,
+    "image_keyword": "Paczk\u00f3w Polska"
+  },
+  {
+    "name": "Gda\u0144sk Oliwa",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "nature",
+      "art_museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Gda\u0144sk Oliwa Polska"
+  },
+  {
+    "name": "Pu\u0142tusk",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "river_side",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Pu\u0142tusk Polska"
+  },
+  {
+    "name": "\u0141eba",
+    "country": "Polska",
+    "tags": [
+      "beach_leisure",
+      "nature",
+      "dunes_sandy",
+      "family_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "\u0141eba Polska"
+  },
+  {
+    "name": "Gi\u017cycko",
+    "country": "Polska",
+    "tags": [
+      "lake_district",
+      "nature",
+      "water_sports",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Gi\u017cycko Polska"
+  },
+  {
+    "name": "Krynica-Zdr\u00f3j",
+    "country": "Polska",
+    "tags": [
+      "wellness_spa",
+      "mountains_trekking",
+      "winter_sports",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Krynica-Zdr\u00f3j Polska"
+  },
+  {
+    "name": "Przemy\u015bl",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "border_city"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Przemy\u015bl Polska"
+  },
+  {
+    "name": "P\u0142ock",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "river_side",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "P\u0142ock Polska"
+  },
+  {
+    "name": "Reszel",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "romantic_getaway"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Reszel Polska"
+  },
+  {
+    "name": "Tarn\u00f3w",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "city_break",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Tarn\u00f3w Polska"
+  },
+  {
+    "name": "Kalisz",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "architecture_design",
+      "oldest_city"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Kalisz Polska"
+  },
+  {
+    "name": "Czelad\u017a",
+    "country": "Polska",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "industrial_heritage",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Czelad\u017a Polska"
+  },
+  {
+    "name": "S\u0142upsk",
+    "country": "Polska",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "S\u0142upsk Polska"
+  },
+  {
+    "name": "Krosno",
+    "country": "Polska",
+    "tags": [
+      "glass_making",
+      "history_culture",
+      "short_trips",
+      "art_museums"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Krosno Polska"
+  },
+  {
+    "name": "Lizbona",
+    "country": "Portugalia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Lizbona Portugalia"
+  },
+  {
+    "name": "Porto",
+    "country": "Portugalia",
+    "tags": [
+      "city_break",
+      "wine_tourism",
+      "architecture_design",
+      "romantic_getaway",
+      "river_side"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Porto Portugalia"
+  },
+  {
+    "name": "Sintra",
+    "country": "Portugalia",
+    "tags": [
+      "history_culture",
+      "romantic_getaway",
+      "unesco_site",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Sintra Portugalia"
+  },
+  {
+    "name": "Faro",
+    "country": "Portugalia",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "history_culture",
+      "sea_port",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Faro Portugalia"
+  },
+  {
+    "name": "Lagos",
+    "country": "Portugalia",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "adventure_sports",
+      "scenic_views",
+      "coastline"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Lagos Portugalia"
+  },
+  {
+    "name": "Coimbra",
+    "country": "Portugalia",
+    "tags": [
+      "history_culture",
+      "education_university",
+      "architecture_design",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Coimbra Portugalia"
+  },
+  {
+    "name": "\u00c9vora",
+    "country": "Portugalia",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "food_gastronomy",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "\u00c9vora Portugalia"
+  },
+  {
+    "name": "Madera (Funchal)",
+    "country": "Portugalia",
+    "tags": [
+      "nature",
+      "island_getaway",
+      "hiking_trekking",
+      "scenic_views",
+      "wine_tourism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Madera Portugalia"
+  },
+  {
+    "name": "Set\u00fabal",
+    "country": "Portugalia",
+    "tags": [
+      "sea_port",
+      "food_gastronomy",
+      "relaxed_pace",
+      "short_trips",
+      "nature"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Set\u00fabal Portugalia"
+  },
+  {
+    "name": "Braga",
+    "country": "Portugalia",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "architecture_design",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Braga Portugalia"
+  },
+  {
+    "name": "Moskwa",
+    "country": "Rosja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties",
+      "art_museums"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Moskwa Rosja"
+  },
+  {
+    "name": "Petersburg",
+    "country": "Rosja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "art_museums",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Petersburg Rosja"
+  },
+  {
+    "name": "Kaza\u0144",
+    "country": "Rosja",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unesco_site",
+      "city_break",
+      "unique_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Kaza\u0144 Rosja"
+  },
+  {
+    "name": "Soczi",
+    "country": "Rosja",
+    "tags": [
+      "beach_leisure",
+      "winter_sports",
+      "nature",
+      "city_break",
+      "adventure_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Soczi Rosja"
+  },
+  {
+    "name": "Nowosybirsk",
+    "country": "Rosja",
+    "tags": [
+      "city_break",
+      "technology_science",
+      "culture_arts",
+      "long_distance_travel"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Nowosybirsk Rosja"
+  },
+  {
+    "name": "Jekaterynburg",
+    "country": "Rosja",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "politics_history",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Jekaterynburg Rosja"
+  },
+  {
+    "name": "W\u0142adywostok",
+    "country": "Rosja",
+    "tags": [
+      "sea_port",
+      "city_break",
+      "scenic_views",
+      "long_distance_travel"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "W\u0142adywostok Rosja"
+  },
+  {
+    "name": "Ni\u017cny Nowogr\u00f3d",
+    "country": "Rosja",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "river_side",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Ni\u017cny Nowogr\u00f3d Rosja"
+  },
+  {
+    "name": "W\u0142odzimierz",
+    "country": "Rosja",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "W\u0142odzimierz Rosja"
+  },
+  {
+    "name": "Królewiec (Kaliningrad)",
+    "country": "Rosja",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "museums",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Królewiec Rosja"
+  },
+  {
+    "name": "Bukareszt",
+    "country": "Rumunia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "politics_history",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Bukareszt Rumunia"
+  },
+  {
+    "name": "Brasz\u00f3w",
+    "country": "Rumunia",
+    "tags": [
+      "mountains_trekking",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "winter_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Brasz\u00f3w Rumunia"
+  },
+  {
+    "name": "Sybin",
+    "country": "Rumunia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "relaxed_pace",
+      "romantic_getaway",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Sybin Rumunia"
+  },
+  {
+    "name": "Klu\u017c-Napoka",
+    "country": "Rumunia",
+    "tags": [
+      "city_break",
+      "education_university",
+      "culture_arts",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Klu\u017c-Napoka Rumunia"
+  },
+  {
+    "name": "Sighisoara",
+    "country": "Rumunia",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "romantic_getaway",
+      "unique_experience"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Sighisoara Rumunia"
+  },
+  {
+    "name": "Timi\u0219oara",
+    "country": "Rumunia",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "history_culture",
+      "culture_arts"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Timi\u0219oara Rumunia"
+  },
+  {
+    "name": "Konstanca",
+    "country": "Rumunia",
+    "tags": [
+      "beach_leisure",
+      "sea_port",
+      "history_culture",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Konstanca Rumunia"
+  },
+  {
+    "name": "Oradea",
+    "country": "Rumunia",
+    "tags": [
+      "architecture_design",
+      "city_break",
+      "history_culture",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Oradea Rumunia"
+  },
+  {
+    "name": "Alba Iulia",
+    "country": "Rumunia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Alba Iulia Rumunia"
+  },
+  {
+    "name": "Jassy",
+    "country": "Rumunia",
+    "tags": [
+      "history_culture",
+      "education_university",
+      "architecture_design",
+      "spiritual_travel"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Jassy Rumunia"
+  },
+  {
+    "name": "San Marino (Citt\u00e0)",
+    "country": "San Marino",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "scenic_views",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "San Marino San Marino"
+  },
+  {
+    "name": "Borgo Maggiore",
+    "country": "San Marino",
+    "tags": [
+      "markets_shopping",
+      "city_break",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Borgo Maggiore San Marino"
+  },
+  {
+    "name": "Serravalle",
+    "country": "San Marino",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "sports_events",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Serravalle San Marino"
+  },
+  {
+    "name": "Acquaviva",
+    "country": "San Marino",
+    "tags": [
+      "nature",
+      "mountains_trekking",
+      "relaxed_pace",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Acquaviva San Marino"
+  },
+  {
+    "name": "Faetano",
+    "country": "San Marino",
+    "tags": [
+      "history_culture",
+      "relaxed_pace",
+      "rural_tourism",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Faetano San Marino"
+  },
+  {
+    "name": "Fiorentino",
+    "country": "San Marino",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Fiorentino San Marino"
+  },
+  {
+    "name": "Domagnano",
+    "country": "San Marino",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Domagnano San Marino"
+  },
+  {
+    "name": "Chiesanuova",
+    "country": "San Marino",
+    "tags": [
+      "nature",
+      "relaxed_pace",
+      "rural_tourism",
+      "scenic_views"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Chiesanuova San Marino"
+  },
+  {
+    "name": "Monte Titano (Szczyt)",
+    "country": "San Marino",
+    "tags": [
+      "unesco_site",
+      "scenic_views",
+      "mountains_trekking",
+      "history_culture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Monte Titano San Marino"
+  },
+  {
+    "name": "Murata",
+    "country": "San Marino",
+    "tags": [
+      "history_culture",
+      "food_gastronomy",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Murata San Marino"
+  },
+  {
+    "name": "Belgrad",
+    "country": "Serbia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "nightlife_parties",
+      "architecture_design",
+      "river_side"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Belgrad Serbia"
+  },
+  {
+    "name": "Nowy Sad",
+    "country": "Serbia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "music_festival",
+      "architecture_design",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Nowy Sad Serbia"
+  },
+  {
+    "name": "Nisz",
+    "country": "Serbia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "politics_history"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Nisz Serbia"
+  },
+  {
+    "name": "Subotica",
+    "country": "Serbia",
+    "tags": [
+      "architecture_design",
+      "history_culture",
+      "romantic_getaway",
+      "art_nouveau"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Subotica Serbia"
+  },
+  {
+    "name": "Zlatibor",
+    "country": "Serbia",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "winter_sports",
+      "relaxed_pace",
+      "family_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Zlatibor Serbia"
+  },
+  {
+    "name": "Kragujevac",
+    "country": "Serbia",
+    "tags": [
+      "history_culture",
+      "politics_history",
+      "city_break",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Kragujevac Serbia"
+  },
+  {
+    "name": "Smederewo",
+    "country": "Serbia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "river_side",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Smederewo Serbia"
+  },
+  {
+    "name": "U\u017cice",
+    "country": "Serbia",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "history_culture",
+      "scenic_views"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "U\u017cice Serbia"
+  },
+  {
+    "name": "Kopaonik",
+    "country": "Serbia",
+    "tags": [
+      "winter_sports",
+      "mountains_trekking",
+      "nature",
+      "adventure_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Kopaonik Serbia"
+  },
+  {
+    "name": "Resavska Pe\u0107ina",
+    "country": "Serbia",
+    "tags": [
+      "nature",
+      "unique_experience",
+      "short_trips",
+      "scenic_views"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Resavska Pe\u0107ina Serbia"
+  },
+  {
+    "name": "Bratys\u0142awa",
+    "country": "S\u0142owacja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Bratys\u0142awa S\u0142owacja"
+  },
+  {
+    "name": "Koszyce",
+    "country": "S\u0142owacja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "culture_arts"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Koszyce S\u0142owacja"
+  },
+  {
+    "name": "Wysokie Tatry",
+    "country": "S\u0142owacja",
+    "tags": [
+      "mountains_trekking",
+      "winter_sports",
+      "nature",
+      "scenic_views",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Wysokie Tatry S\u0142owacja"
+  },
+  {
+    "name": "Ba\u0144ska Bystrzyca",
+    "country": "S\u0142owacja",
+    "tags": [
+      "history_culture",
+      "mountains_trekking",
+      "city_break",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Ba\u0144ska Bystrzyca S\u0142owacja"
+  },
+  {
+    "name": "Poprad",
+    "country": "S\u0142owacja",
+    "tags": [
+      "city_break",
+      "gateway_to_tatras",
+      "wellness_spa",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Poprad S\u0142owacja"
+  },
+  {
+    "name": "Trenczyn",
+    "country": "S\u0142owacja",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Trenczyn S\u0142owacja"
+  },
+  {
+    "name": "Lewocza",
+    "country": "S\u0142owacja",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "spiritual_travel",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Lewocza S\u0142owacja"
+  },
+  {
+    "name": "Ba\u0144ska Szczawnica",
+    "country": "S\u0142owacja",
+    "tags": [
+      "unesco_site",
+      "romantic_getaway",
+      "history_culture",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Ba\u0144ska Szczawnica S\u0142owacja"
+  },
+  {
+    "name": "Trnawa",
+    "country": "S\u0142owacja",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "spiritual_travel",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Trnawa S\u0142owacja"
+  },
+  {
+    "name": "Bojnice",
+    "country": "S\u0142owacja",
+    "tags": [
+      "romantic_getaway",
+      "architecture_design",
+      "history_culture",
+      "family_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Bojnice S\u0142owacja"
+  },
+  {
+    "name": "Lublana",
+    "country": "S\u0142owenia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Lublana S\u0142owenia"
+  },
+  {
+    "name": "Bled",
+    "country": "S\u0142owenia",
+    "tags": [
+      "nature",
+      "romantic_getaway",
+      "scenic_views",
+      "mountains_trekking",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Bled S\u0142owenia"
+  },
+  {
+    "name": "Piran",
+    "country": "S\u0142owenia",
+    "tags": [
+      "beach_leisure",
+      "romantic_getaway",
+      "architecture_design",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Piran S\u0142owenia"
+  },
+  {
+    "name": "Maribor",
+    "country": "S\u0142owenia",
+    "tags": [
+      "city_break",
+      "wine_tourism",
+      "relaxed_pace",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Maribor S\u0142owenia"
+  },
+  {
+    "name": "Koper",
+    "country": "S\u0142owenia",
+    "tags": [
+      "sea_port",
+      "beach_leisure",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Koper S\u0142owenia"
+  },
+  {
+    "name": "Ptuj",
+    "country": "S\u0142owenia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "wine_tourism",
+      "oldest_city"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Ptuj S\u0142owenia"
+  },
+  {
+    "name": "Postojna (Jaskinie)",
+    "country": "S\u0142owenia",
+    "tags": [
+      "unique_experience",
+      "nature",
+      "adventure_sports",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Postojna S\u0142owenia"
+  },
+  {
+    "name": "Bohinj",
+    "country": "S\u0142owenia",
+    "tags": [
+      "nature",
+      "mountains_trekking",
+      "scenic_views",
+      "relaxed_pace",
+      "adventure_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Bohinj S\u0142owenia"
+  },
+  {
+    "name": "Nova Gorica",
+    "country": "S\u0142owenia",
+    "tags": [
+      "city_break",
+      "border_city",
+      "wine_tourism",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Nova Gorica S\u0142owenia"
+  },
+  {
+    "name": "\u0160kofja Loka",
+    "country": "S\u0142owenia",
+    "tags": [
+      "history_culture",
+      "romantic_getaway",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "\u0160kofja Loka S\u0142owenia"
+  },
+  {
+    "name": "Zurych",
+    "country": "Szwajcaria",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "art_museums",
+      "nightlife_parties",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.2,
+    "image_keyword": "Zurych Szwajcaria"
+  },
+  {
+    "name": "Genewa",
+    "country": "Szwajcaria",
+    "tags": [
+      "city_break",
+      "diplomacy",
+      "scenic_views",
+      "relaxed_pace",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.1,
+    "image_keyword": "Genewa Szwajcaria"
+  },
+  {
+    "name": "Lucerna",
+    "country": "Szwajcaria",
+    "tags": [
+      "romantic_getaway",
+      "scenic_views",
+      "mountains_trekking",
+      "history_culture",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.0,
+    "image_keyword": "Lucerna Szwajcaria"
+  },
+  {
+    "name": "Berno",
+    "country": "Szwajcaria",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "relaxed_pace",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Berno Szwajcaria"
+  },
+  {
+    "name": "Bazylea",
+    "country": "Szwajcaria",
+    "tags": [
+      "city_break",
+      "art_museums",
+      "border_city",
+      "architecture_design",
+      "culture_arts"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Bazylea Szwajcaria"
+  },
+  {
+    "name": "Zermatt",
+    "country": "Szwajcaria",
+    "tags": [
+      "mountains_trekking",
+      "winter_sports",
+      "scenic_views",
+      "photography_spots",
+      "luxury_exclusive"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.3,
+    "image_keyword": "Zermatt Szwajcaria"
+  },
+  {
+    "name": "Interlaken",
+    "country": "Szwajcaria",
+    "tags": [
+      "adventure_sports",
+      "mountains_trekking",
+      "nature",
+      "scenic_views",
+      "adrenaline"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.9,
+    "image_keyword": "Interlaken Szwajcaria"
+  },
+  {
+    "name": "Lugano",
+    "country": "Szwajcaria",
+    "tags": [
+      "italian_influence",
+      "scenic_views",
+      "relaxed_pace",
+      "romantic_getaway",
+      "nature"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.95,
+    "image_keyword": "Lugano Szwajcaria"
+  },
+  {
+    "name": "Lozanna",
+    "country": "Szwajcaria",
+    "tags": [
+      "education_university",
+      "sports_events",
+      "scenic_views",
+      "history_culture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.75,
+    "image_keyword": "Lozanna Szwajcaria"
+  },
+  {
+    "name": "St. Moritz",
+    "country": "Szwajcaria",
+    "tags": [
+      "luxury_exclusive",
+      "winter_sports",
+      "mountains_trekking",
+      "wellness_spa"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 3.5,
+    "image_keyword": "St. Moritz Szwajcaria"
+  },
+  {
+    "name": "Sztokholm",
+    "country": "Szwecja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "art_museums",
+      "scenic_views",
+      "archipelago"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Sztokholm Szwecja"
+  },
+  {
+    "name": "G\u00f6teborg",
+    "country": "Szwecja",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "food_gastronomy",
+      "culture_arts",
+      "family_friendly"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "G\u00f6teborg Szwecja"
+  },
+  {
+    "name": "Malm\u00f6",
+    "country": "Szwecja",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "coastal",
+      "short_trips",
+      "border_city"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Malm\u00f6 Szwecja"
+  },
+  {
+    "name": "Uppsala",
+    "country": "Szwecja",
+    "tags": [
+      "education_university",
+      "history_culture",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Uppsala Szwecja"
+  },
+  {
+    "name": "Visby (Gotland)",
+    "country": "Szwecja",
+    "tags": [
+      "unesco_site",
+      "history_culture",
+      "romantic_getaway",
+      "beach_leisure",
+      "island_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Visby Szwecja"
+  },
+  {
+    "name": "Lund",
+    "country": "Szwecja",
+    "tags": [
+      "education_university",
+      "history_culture",
+      "relaxed_pace",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Lund Szwecja"
+  },
+  {
+    "name": "Kiruna",
+    "country": "Szwecja",
+    "tags": [
+      "arctic_winter",
+      "aurora_borealis",
+      "unique_experience",
+      "nature",
+      "winter_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Kiruna Szwecja"
+  },
+  {
+    "name": "Helsingborg",
+    "country": "Szwecja",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "short_trips",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Helsingborg Szwecja"
+  },
+  {
+    "name": "Kalmar",
+    "country": "Szwecja",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "coastal",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Kalmar Szwecja"
+  },
+  {
+    "name": "Link\u00f6ping",
+    "country": "Szwecja",
+    "tags": [
+      "history_culture",
+      "technology_science",
+      "city_break",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Link\u00f6ping Szwecja"
+  },
+  {
+    "name": "Stambu\u0142",
+    "country": "Turcja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "markets_shopping",
+      "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Stambu\u0142 Turcja"
+  },
+  {
+    "name": "Antalya",
+    "country": "Turcja",
+    "tags": [
+      "beach_leisure",
+      "luxury_exclusive",
+      "history_culture",
+      "family_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Antalya Turcja"
+  },
+  {
+    "name": "Kapadocja (G\u00f6reme)",
+    "country": "Turcja",
+    "tags": [
+      "unique_experience",
+      "scenic_views",
+      "nature",
+      "history_culture",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Kapadocja Turcja"
+  },
+  {
+    "name": "Ankara",
+    "country": "Turcja",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "history_culture",
+      "museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Ankara Turcja"
+  },
+  {
+    "name": "Izmir",
+    "country": "Turcja",
+    "tags": [
+      "coastal",
+      "city_break",
+      "history_culture",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Izmir Turcja"
+  },
+  {
+    "name": "Bodrum",
+    "country": "Turcja",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "luxury_exclusive",
+      "coastal"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Bodrum Turcja"
+  },
+  {
+    "name": "Konya",
+    "country": "Turcja",
+    "tags": [
+      "spiritual_travel",
+      "history_culture",
+      "sufi_tradition",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Konya Turcja"
+  },
+  {
+    "name": "Bursa",
+    "country": "Turcja",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "mountains_trekking",
+      "winter_sports"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Bursa Turcja"
+  },
+  {
+    "name": "Pamukkale (Denizli)",
+    "country": "Turcja",
+    "tags": [
+      "unique_experience",
+      "nature",
+      "history_culture",
+      "thermal_baths",
+      "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Pamukkale Turcja"
+  },
+  {
+    "name": "Trabzon",
+    "country": "Turcja",
+    "tags": [
+      "history_culture",
+      "scenic_views",
+      "black_sea",
+      "nature"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Trabzon Turcja"
+  },
+  {
+    "name": "Kij\u00f3w",
+    "country": "Ukraina",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "spiritual_travel",
+      "unesco_site",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Kij\u00f3w Ukraina"
+  },
+  {
+    "name": "Lw\u00f3w",
+    "country": "Ukraina",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "romantic_getaway",
+      "unesco_site",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Lw\u00f3w Ukraina"
+  },
+  {
+    "name": "Odessa",
+    "country": "Ukraina",
+    "tags": [
+      "beach_leisure",
+      "history_culture",
+      "coastal",
+      "architecture_design",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Odessa Ukraina"
+  },
+  {
+    "name": "Chark\u00f3w",
+    "country": "Ukraina",
+    "tags": [
+      "city_break",
+      "education_university",
+      "architecture_design",
+      "technology_science"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Chark\u00f3w Ukraina"
+  },
+  {
+    "name": "Czerniowce",
+    "country": "Ukraina",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Czerniowce Ukraina"
+  },
+  {
+    "name": "Kamieniec Podolski",
+    "country": "Ukraina",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "scenic_views",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Kamieniec Podolski Ukraina"
+  },
+  {
+    "name": "Karpaty",
+    "country": "Ukraina",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "winter_sports",
+      "relaxed_pace",
+      "rural_tourism"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Karpaty Ukraina"
+  },
+  {
+    "name": "U\u017chorod",
+    "country": "Ukraina",
+    "tags": [
+      "history_culture",
+      "border_city",
+      "architecture_design",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "U\u017chorod Ukraina"
+  },
+  {
+    "name": "Zaporo\u017ce",
+    "country": "Ukraina",
+    "tags": [
+      "history_culture",
+      "river_side",
+      "unique_experience",
+      "military_history"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Zaporo\u017ce Ukraina"
+  },
+  {
+    "name": "Cherso\u0144",
+    "country": "Ukraina",
+    "tags": [
+      "sea_port",
+      "history_culture",
+      "coastal",
+      "river_side"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Cherso\u0144 Ukraina"
+  },
+  {
+    "name": "Watykan",
+    "country": "Watykan",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "unesco_site",
+      "architecture_design",
+      "art_museums",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Watykan Watykan"
+  },
+  {
+    "name": "Budapeszt",
+    "country": "W\u0119gry",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Budapeszt W\u0119gry"
+  },
+  {
+    "name": "Eger",
+    "country": "W\u0119gry",
+    "tags": [
+      "history_culture",
+      "wine_tourism",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Eger W\u0119gry"
+  },
+  {
+    "name": "Balaton (Si\u00f3fok)",
+    "country": "W\u0119gry",
+    "tags": [
+      "beach_leisure",
+      "family_friendly",
+      "relaxed_pace",
+      "water_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Balaton W\u0119gry"
+  },
+  {
+    "name": "Segedyn",
+    "country": "W\u0119gry",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "food_gastronomy",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Segedyn W\u0119gry"
+  },
+  {
+    "name": "Debreczyn",
+    "country": "W\u0119gry",
+    "tags": [
+      "city_break",
+      "education_university",
+      "culture_arts",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Debreczyn W\u0119gry"
+  },
+  {
+    "name": "Pecz",
+    "country": "W\u0119gry",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "relaxed_pace",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Pecz W\u0119gry"
+  },
+  {
+    "name": "Gy\u0151r",
+    "country": "W\u0119gry",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Gy\u0151r W\u0119gry"
+  },
+  {
+    "name": "Sopron",
+    "country": "W\u0119gry",
+    "tags": [
+      "history_culture",
+      "border_city",
+      "wine_tourism",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Sopron W\u0119gry"
+  },
+  {
+    "name": "Tokaj (Region)",
+    "country": "W\u0119gry",
+    "tags": [
+      "wine_tourism",
+      "scenic_views",
+      "food_gastronomy",
+      "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Tokaj W\u0119gry"
+  },
+  {
+    "name": "Holl\u00f3k\u0151",
+    "country": "W\u0119gry",
+    "tags": [
+      "unesco_site",
+      "history_culture",
+      "rural_tourism",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Holl\u00f3k\u0151 W\u0119gry"
+  },
+  {
+    "name": "Londyn",
+    "country": "Wielka Brytania",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "art_museums",
+      "nightlife_parties",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Londyn Wielka Brytania"
+  },
+  {
+    "name": "Edynburg",
+    "country": "Wielka Brytania",
+    "tags": [
+      "history_culture",
+      "romantic_getaway",
+      "architecture_design",
+      "scenic_views",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Edynburg Wielka Brytania"
+  },
+  {
+    "name": "Manchester",
+    "country": "Wielka Brytania",
+    "tags": [
+      "city_break",
+      "nightlife_parties",
+      "culture_arts",
+      "sports_events",
+      "education_university"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Manchester Wielka Brytania"
+  },
+  {
+    "name": "Liverpool",
+    "country": "Wielka Brytania",
+    "tags": [
+      "history_culture",
+      "music_heritage",
+      "sea_port",
+      "nightlife_parties",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Liverpool Wielka Brytania"
+  },
+  {
+    "name": "Glasgow",
+    "country": "Wielka Brytania",
+    "tags": [
+      "city_break",
+      "culture_arts",
+      "architecture_design",
+      "education_university"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Glasgow Wielka Brytania"
+  },
+  {
+    "name": "Cardiff",
+    "country": "Wielka Brytania",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "sports_events",
+      "coastal",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Cardiff Wielka Brytania"
+  },
+  {
+    "name": "Bath",
+    "country": "Wielka Brytania",
+    "tags": [
+      "history_culture",
+      "wellness_spa",
+      "architecture_design",
+      "romantic_getaway",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Bath Wielka Brytania"
+  },
+  {
+    "name": "Bristol",
+    "country": "Wielka Brytania",
+    "tags": [
+      "city_break",
+      "art_street",
+      "relaxed_pace",
+      "river_side",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Bristol Wielka Brytania"
+  },
+  {
+    "name": "Oksford",
+    "country": "Wielka Brytania",
+    "tags": [
+      "education_university",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.25,
+    "image_keyword": "Oksford Wielka Brytania"
+  },
+  {
+    "name": "Cambridge",
+    "country": "Wielka Brytania",
+    "tags": [
+      "education_university",
+      "history_culture",
+      "romantic_getaway",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Cambridge Wielka Brytania"
+  },
+  {
+    "name": "Rzym",
+    "country": "W\u0142ochy",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "spiritual_travel",
+      "art_museums",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Rzym W\u0142ochy"
+  },
+  {
+    "name": "Wenecja",
+    "country": "W\u0142ochy",
+    "tags": [
+      "romantic_getaway",
+      "unesco_site",
+      "architecture_design",
+      "photography_spots",
+      "unique_experience"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Wenecja W\u0142ochy"
+  },
+  {
+    "name": "Florencja",
+    "country": "W\u0142ochy",
+    "tags": [
+      "art_museums",
+      "history_culture",
+      "romantic_getaway",
+      "renaissance",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Florencja W\u0142ochy"
+  },
+  {
+    "name": "Mediolan",
+    "country": "W\u0142ochy",
+    "tags": [
+      "fashion_shopping",
+      "city_break",
+      "architecture_design",
+      "business_center",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Mediolan W\u0142ochy"
+  },
+  {
+    "name": "Neapol",
+    "country": "W\u0142ochy",
+    "tags": [
+      "history_culture",
+      "food_gastronomy",
+      "unique_experience",
+      "coastal",
+      "archeology"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Neapol W\u0142ochy"
+  },
+  {
+    "name": "Bolonia",
+    "country": "W\u0142ochy",
+    "tags": [
+      "food_gastronomy",
+      "education_university",
+      "city_break",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Bolonia W\u0142ochy"
+  },
+  {
+    "name": "Werona",
+    "country": "W\u0142ochy",
+    "tags": [
+      "romantic_getaway",
+      "history_culture",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Werona W\u0142ochy"
+  },
+  {
+    "name": "Palermo",
+    "country": "W\u0142ochy",
+    "tags": [
+      "history_culture",
+      "food_gastronomy",
+      "architecture_design",
+      "coastal",
+      "markets_shopping"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Palermo W\u0142ochy"
+  },
+  {
+    "name": "Cinque Terre",
+    "country": "W\u0142ochy",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "coastal",
+      "romantic_getaway",
+      "hiking_trekking"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Cinque Terre W\u0142ochy"
+  },
+  {
+    "name": "Wybrze\u017ce Amalfi",
+    "country": "W\u0142ochy",
+    "tags": [
+      "luxury_exclusive",
+      "scenic_views",
+      "coastal",
+      "romantic_getaway",
+      "food_gastronomy"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Wybrze\u017ce Amalfi W\u0142ochy"
   }
 ]
