@@ -599,7 +599,7 @@ main {
 
 .attraction-address {
     font-style: italic;
-    color: #6c757d;
+    color: var(--color-text);
     margin-bottom: 1rem;
 }
 
@@ -861,7 +861,7 @@ footer a:hover {
 }
 
 /* Ukrywamy domyślny checkbox */
-.vibe-checkbox {
+.vibe-checkbox, .card-checkbox {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -905,13 +905,13 @@ footer a:hover {
 
 /* Stan zaznaczony (checked) */
 /* Używamy selektora rodzeństwa: gdy checkbox jest zaznaczony, stylujemy etykietę obok */
-.vibe-checkbox:checked + .vibe-card {
+.vibe-checkbox:checked + .vibe-card, .card-checkbox:checked + .cards-card {
     background-color: #e0f2fe; /* Bardzo jasny błękit */
     border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
 }
 
-.vibe-checkbox:checked + .vibe-card .vibe-label {
+.vibe-checkbox:checked + .vibe-card .vibe-label, .card-checkbox:checked + .cards-card .attraction-address {
     color: var(--color-primary);
 }
 

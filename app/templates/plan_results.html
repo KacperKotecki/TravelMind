@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             container.innerHTML = ''; // Wyczyść spinner
             
             if (data.attractions && data.attractions.length > 0) {
-                data.attractions.forEach(attraction => {
+                data.attractions.forEach((attraction, index) => {
                     const card = document.createElement('div');
                     card.className = 'attraction-card card';
                     
@@ -204,6 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Usunięto generowanie linku do OpenStreetMap
 
                     card.innerHTML = `
+                        <input class="card-checkbox" id="cards-${index}" name="cards" type="checkbox" value="${attraction.name}">
+                        <label for="cards-${index}" class="cards-card">
                         ${imageHtml}
                         <div class="card-header">
                             <h3 class="attraction-name">${attraction.name}</h3>
@@ -216,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             ${typesHtml}
                         </div>
+                        </label>
                     `;
                     container.appendChild(card);
                 });
