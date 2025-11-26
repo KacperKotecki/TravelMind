@@ -1030,3 +1030,11 @@ footer a:hover {
     font-size: 1.1rem;
     margin: 4px;
   }
+#logout-profile {
+    background-color: #e74c3c;
+    color: white !important;
+    width: 100%;
+    padding: 0,7rem;
+    font-size: 1.1rem;
+    margin: 4px;
+  }
