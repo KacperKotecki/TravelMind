@@ -858,9 +858,11 @@ footer a:hover {
 .vibes-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));;
     gap: 10px;
     margin-bottom: 1.5rem;
 }
+
 
 .vibe-item {
     position: relative;
@@ -884,11 +886,11 @@ footer a:hover {
     background-color: #fff;
     border: 2px solid #e5e7eb;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
     height: 100%;
-    text-align: center;
+    text-align: right;
 }
 
 .vibe-icon {
