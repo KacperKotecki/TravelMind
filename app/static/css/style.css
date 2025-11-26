@@ -1002,3 +1002,13 @@ footer a:hover {
     font-weight: 900;
 }
 
+  /*PROFIL */
+
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+  }
