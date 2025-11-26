@@ -273,6 +273,11 @@ def logout():
 def account():
     return render_template('account.html')
 
+@main.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')
+
 @main.route('/my-plans')
 @login_required
 def my_plans():
