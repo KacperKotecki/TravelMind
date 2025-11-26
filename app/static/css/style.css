@@ -72,6 +72,9 @@ header {
     background: var(--color-white);
     box-shadow: 0 2px 4px var(--color-shadow);
     padding: 1rem 0;
+    position: relative; 
+    z-index: 100;
+    
 }
 
 nav {
@@ -672,6 +675,9 @@ footer {
     text-align: center;
     padding: 1rem 0;
     margin-top: auto;
+    position: relative;
+    z-index: 100;
+
 }
 
 footer a {
