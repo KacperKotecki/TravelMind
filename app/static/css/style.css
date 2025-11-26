@@ -1012,3 +1012,21 @@ footer a:hover {
     border-radius: 12px;
     box-shadow: 0 4px 10px var(--color-shadow);
   }
+.profile-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+  }
+.profile-actions {
+    display: vertical;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 2rem;
+  }
+.profile-actions .btn {
+    width: 100%;
+    padding: 0,7rem;
+    font-size: 1.1rem;
+    margin: 4px;
+  }
