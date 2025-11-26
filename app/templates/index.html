@@ -28,13 +28,13 @@
                             {{ subfield(class="vibe-checkbox") }}
                             <label for="{{ subfield.id }}" class="vibe-card">
                                 <span class="vibe-icon">
-                                    {% if subfield.data == 'beach_sun' %}<div class="icon">🏖️</div>
-                                    {% elif subfield.data == 'mountains_trekking' %}<div class="icon">🏔️</div>
-                                    {% elif subfield.data == 'city_break' %}<div class="icon">🏙️</div>
-                                    {% elif subfield.data == 'history_culture' %}<div class="icon">🏛️</div>
-                                    {% elif subfield.data == 'nature' %}<div class="icon">🌲</div>
-                                    {% elif subfield.data == 'nightlife_parties' %}<div class="icon">🎉</div>
-                                    {% else %}<div class="icon">✨</div>{% endif %}
+                                    {% if subfield.data == 'beach_sun' %}🏖️
+                                    {% elif subfield.data == 'mountains_trekking' %}🏔️
+                                    {% elif subfield.data == 'city_break' %}🏙️
+                                    {% elif subfield.data == 'history_culture' %}🏛️
+                                    {% elif subfield.data == 'nature' %}🌲
+                                    {% elif subfield.data == 'nightlife_parties' %}🎉
+                                    {% else %}✨{% endif %}
                                 </span>
                                 <span class="vibe-label">{{ subfield.label.text }}</span>
                             </label>

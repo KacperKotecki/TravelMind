@@ -24,7 +24,7 @@ class PlanGeneratorForm(FlaskForm):
             ('city_break', 'City Break'),
             ('history_culture', 'Historia i Kultura'),
             ('nature', 'Natura i Relaks'),
-            ('nightlife_parties', 'Imprezy i Nocne Życie')
+            ('nightlife_parties', 'Nocne Życie')
         ],
         validators=[Optional()]
     )

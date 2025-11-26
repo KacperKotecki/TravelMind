@@ -858,7 +858,7 @@ footer a:hover {
 .vibes-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));;
+    grid-template-rows: repeat(auto-fit, minmax(40px, 1fr));;
     gap: 10px;
     margin-bottom: 1.5rem;
 }
@@ -886,22 +886,27 @@ footer a:hover {
     background-color: #fff;
     border: 2px solid #e5e7eb;
     border-radius: 10px;
-    padding: 5px;
+    padding: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
     height: 100%;
-    text-align: right;
+    text-align: center;
 }
 
 .vibe-icon {
-    font-size: 2rem;
-    margin-bottom: 5px;
+    font-size: 2.3rem;
+    margin-bottom: 1px;
+    padding: 0px;
+    margin-bottom: 0; 
+    line-height: 1;
+    display: block;
 }
 
 .vibe-label {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--color-text);
+    padding: 0px;
 }
 
 /* Efekt hover */
