@@ -6472,5 +6472,4150 @@
     "cost_tier": "high",
     "cost_multiplier": 2.5,
     "image_keyword": "Wybrze\u017ce Amalfi W\u0142ochy"
+  },
+  {
+    "name": "Sydney",
+    "country": "Australia",
+    "tags": [
+      "city_break",
+      "coastal",
+      "iconic_sights",
+      "architecture_design",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Sydney Australia"
+  },
+  {
+    "name": "Melbourne",
+    "country": "Australia",
+    "tags": [
+      "city_break",
+      "food_gastronomy",
+      "culture_arts",
+      "sports_events",
+      "education_university"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Melbourne Australia"
+  },
+  {
+    "name": "Brisbane",
+    "country": "Australia",
+    "tags": [
+      "city_break",
+      "river_side",
+      "nature",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Brisbane Australia"
+  },
+  {
+    "name": "Perth",
+    "country": "Australia",
+    "tags": [
+      "coastal",
+      "relaxed_pace",
+      "nature",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Perth Australia"
+  },
+  {
+    "name": "Adelaide",
+    "country": "Australia",
+    "tags": [
+      "wine_tourism",
+      "food_gastronomy",
+      "relaxed_pace",
+      "culture_arts"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Adelaide Australia"
+  },
+  {
+    "name": "Cairns",
+    "country": "Australia",
+    "tags": [
+      "great_barrier_reef",
+      "nature",
+      "adventure_sports",
+      "coastal"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Cairns Australia"
+  },
+  {
+    "name": "Gold Coast",
+    "country": "Australia",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "family_friendly",
+      "theme_parks"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Gold Coast Australia"
+  },
+  {
+    "name": "Hobart",
+    "country": "Australia",
+    "tags": [
+      "island_getaway",
+      "nature",
+      "history_culture",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Hobart Australia"
+  },
+  {
+    "name": "Canberra",
+    "country": "Australia",
+    "tags": [
+      "government_politics",
+      "art_museums",
+      "history_culture",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Canberra Australia"
+  },
+  {
+    "name": "Darwin",
+    "country": "Australia",
+    "tags": [
+      "unique_experience",
+      "nature",
+      "tropical_climate",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Darwin Australia"
+  },
+  {
+    "name": "St. John's",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "markets_shopping",
+      "history_culture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "St. John's Antigua i Barbuda"
+  },
+  {
+    "name": "English Harbour",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "history_culture",
+      "sea_port",
+      "unesco_site",
+      "yachting"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "English Harbour Antigua i Barbuda"
+  },
+  {
+    "name": "Nelson's Dockyard",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Nelson's Dockyard Antigua i Barbuda"
+  },
+  {
+    "name": "Dickenson Bay",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "beach_leisure",
+      "luxury_exclusive",
+      "relaxed_pace",
+      "water_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Dickenson Bay Antigua i Barbuda"
+  },
+  {
+    "name": "Jolly Harbour",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "beach_leisure",
+      "yachting",
+      "relaxed_pace",
+      "family_friendly"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Jolly Harbour Antigua i Barbuda"
+  },
+  {
+    "name": "Falmouth Harbour",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "yachting",
+      "luxury_exclusive",
+      "nightlife_parties",
+      "sea_port"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Falmouth Harbour Antigua i Barbuda"
+  },
+  {
+    "name": "Shirley Heights",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "scenic_views",
+      "nightlife_parties",
+      "nature",
+      "photography_spots"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.15,
+    "image_keyword": "Shirley Heights Antigua i Barbuda"
+  },
+  {
+    "name": "Barbuda (Wyspa)",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "island_getaway",
+      "nature",
+      "unique_experience",
+      "beach_leisure"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.6,
+    "image_keyword": "Barbuda Antigua i Barbuda"
+  },
+  {
+    "name": "Half Moon Bay",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "beach_leisure",
+      "nature",
+      "relaxed_pace",
+      "photography_spots"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.35,
+    "image_keyword": "Half Moon Bay Antigua i Barbuda"
+  },
+  {
+    "name": "Codrington",
+    "country": "Antigua i Barbuda",
+    "tags": [
+      "remote_destination",
+      "history_culture",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Codrington Antigua i Barbuda"
+  },
+  {
+    "name": "Nassau",
+    "country": "Bahamy",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "beach_leisure",
+      "markets_shopping",
+      "cruise_destination"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Nassau Bahamy"
+  },
+  {
+    "name": "Paradise Island",
+    "country": "Bahamy",
+    "tags": [
+      "luxury_exclusive",
+      "beach_leisure",
+      "family_friendly",
+      "casinos_gambling",
+      "water_sports"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.6,
+    "image_keyword": "Paradise Island Bahamy"
+  },
+  {
+    "name": "Freeport",
+    "country": "Bahamy",
+    "tags": [
+      "sea_port",
+      "beach_leisure",
+      "markets_shopping",
+      "cruise_destination",
+      "diving_snorkeling"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Freeport Bahamy"
+  },
+  {
+    "name": "Exuma",
+    "country": "Bahamy",
+    "tags": [
+      "unique_experience",
+      "nature",
+      "luxury_exclusive",
+      "beach_leisure",
+      "yachting"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Exuma Bahamy"
+  },
+  {
+    "name": "Harbour Island",
+    "country": "Bahamy",
+    "tags": [
+      "romantic_getaway",
+      "beach_leisure",
+      "unique_experience",
+      "luxury_exclusive",
+      "photography_spots"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Harbour Island Bahamy"
+  },
+  {
+    "name": "Bimini",
+    "country": "Bahamy",
+    "tags": [
+      "diving_snorkeling",
+      "fishing",
+      "short_trips",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Bimini Bahamy"
+  },
+  {
+    "name": "Abaco",
+    "country": "Bahamy",
+    "tags": [
+      "yachting",
+      "beach_leisure",
+      "diving_snorkeling",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Abaco Bahamy"
+  },
+  {
+    "name": "Andros",
+    "country": "Bahamy",
+    "tags": [
+      "ecotourism",
+      "diving_snorkeling",
+      "nature",
+      "unique_experience"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Andros Bahamy"
+  },
+  {
+    "name": "Eleuthera",
+    "country": "Bahamy",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "scenic_views",
+      "nature"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.15,
+    "image_keyword": "Eleuthera Bahamy"
+  },
+  {
+    "name": "San Salvador",
+    "country": "Bahamy",
+    "tags": [
+      "remote_destination",
+      "diving_snorkeling",
+      "history_culture",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "San Salvador Bahamy"
+  },
+  {
+    "name": "Bridgetown",
+    "country": "Barbados",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "sea_port",
+      "unesco_site",
+      "markets_shopping"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Bridgetown Barbados"
+  },
+  {
+    "name": "St. Michael",
+    "country": "Barbados",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "history_culture",
+      "education_university"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "St. Michael Barbados"
+  },
+  {
+    "name": "Holetown",
+    "country": "Barbados",
+    "tags": [
+      "luxury_exclusive",
+      "history_culture",
+      "beach_leisure",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Holetown Barbados"
+  },
+  {
+    "name": "Speightstown",
+    "country": "Barbados",
+    "tags": [
+      "history_culture",
+      "relaxed_pace",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Speightstown Barbados"
+  },
+  {
+    "name": "Oistins",
+    "country": "Barbados",
+    "tags": [
+      "food_gastronomy",
+      "unique_experience",
+      "nightlife_parties",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Oistins Barbados"
+  },
+  {
+    "name": "St. James",
+    "country": "Barbados",
+    "tags": [
+      "luxury_exclusive",
+      "beach_leisure",
+      "golfing",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "St. James Barbados"
+  },
+  {
+    "name": "St. Peter",
+    "country": "Barbados",
+    "tags": [
+      "relaxed_pace",
+      "history_culture",
+      "beach_leisure",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "St. Peter Barbados"
+  },
+  {
+    "name": "St. Lawrence Gap",
+    "country": "Barbados",
+    "tags": [
+      "nightlife_parties",
+      "beach_leisure",
+      "food_gastronomy",
+      "entertainment"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "St. Lawrence Gap Barbados"
+  },
+  {
+    "name": "Hastings",
+    "country": "Barbados",
+    "tags": [
+      "coastal",
+      "city_break",
+      "food_gastronomy",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Hastings Barbados"
+  },
+  {
+    "name": "Christ Church",
+    "country": "Barbados",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "family_friendly",
+      "coastal"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Christ Church Barbados"
+  },
+  {
+    "name": "Belize City",
+    "country": "Belize",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "sea_port",
+      "cruise_destination"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Belize City Belize"
+  },
+  {
+    "name": "San Pedro",
+    "country": "Belize",
+    "tags": [
+      "island_getaway",
+      "diving_snorkeling",
+      "nightlife_parties",
+      "beach_leisure"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "San Pedro Belize"
+  },
+  {
+    "name": "Caye Caulker",
+    "country": "Belize",
+    "tags": [
+      "island_getaway",
+      "relaxed_pace",
+      "diving_snorkeling",
+      "backpacker_friendly"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Caye Caulker Belize"
+  },
+  {
+    "name": "San Ignacio",
+    "country": "Belize",
+    "tags": [
+      "mountains_trekking",
+      "history_culture",
+      "eco_tourism",
+      "gateway_to_maya"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "San Ignacio Belize"
+  },
+  {
+    "name": "Placencia",
+    "country": "Belize",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "coastal",
+      "diving_snorkeling"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Placencia Belize"
+  },
+  {
+    "name": "Belmopan",
+    "country": "Belize",
+    "tags": [
+      "government_politics",
+      "city_break",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Belmopan Belize"
+  },
+  {
+    "name": "Corozal Town",
+    "country": "Belize",
+    "tags": [
+      "border_city",
+      "relaxed_pace",
+      "short_trips",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Corozal Town Belize"
+  },
+  {
+    "name": "Orange Walk Town",
+    "country": "Belize",
+    "tags": [
+      "history_culture",
+      "eco_tourism",
+      "sugar_industry",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Orange Walk Town Belize"
+  },
+  {
+    "name": "Dangriga",
+    "country": "Belize",
+    "tags": [
+      "unique_culture",
+      "coastal",
+      "relaxed_pace",
+      "culture_arts"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Dangriga Belize"
+  },
+  {
+    "name": "Punta Gorda",
+    "country": "Belize",
+    "tags": [
+      "remote_destination",
+      "eco_tourism",
+      "gateway_to_guatemala",
+      "unique_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Punta Gorda Belize"
+  },
+  {
+    "name": "Roseau",
+    "country": "Dominika",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "sea_port",
+      "markets_shopping",
+      "cruise_destination"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Roseau Dominika"
+  },
+  {
+    "name": "Portsmouth",
+    "country": "Dominika",
+    "tags": [
+      "eco_tourism",
+      "sea_port",
+      "relaxed_pace",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Portsmouth Dominika"
+  },
+  {
+    "name": "Marigot",
+    "country": "Dominika",
+    "tags": [
+      "short_trips",
+      "gateway_airport",
+      "relaxed_pace",
+      "coastal"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Marigot Dominika"
+  },
+  {
+    "name": "Soufri\u00e8re",
+    "country": "Dominika",
+    "tags": [
+      "nature",
+      "wellness_spa",
+      "diving_snorkeling",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Soufri\u00e8re Dominika"
+  },
+  {
+    "name": "Scott's Head",
+    "country": "Dominika",
+    "tags": [
+      "scenic_views",
+      "diving_snorkeling",
+      "coastal",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Scott's Head Dominika"
+  },
+  {
+    "name": "Calibishie",
+    "country": "Dominika",
+    "tags": [
+      "nature",
+      "relaxed_pace",
+      "coastal",
+      "rural_tourism"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Calibishie Dominika"
+  },
+  {
+    "name": "Salisbury",
+    "country": "Dominika",
+    "tags": [
+      "relaxed_pace",
+      "coastal",
+      "eco_tourism",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Salisbury Dominika"
+  },
+  {
+    "name": "Grand Bay",
+    "country": "Dominika",
+    "tags": [
+      "unique_culture",
+      "remote_destination",
+      "relaxed_pace",
+      "coastal"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Grand Bay Dominika"
+  },
+  {
+    "name": "Berekua",
+    "country": "Dominika",
+    "tags": [
+      "coastal",
+      "markets_shopping",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Berekua Dominika"
+  },
+  {
+    "name": "Mahaut",
+    "country": "Dominika",
+    "tags": [
+      "coastal",
+      "short_trips",
+      "eco_tourism",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Mahaut Dominika"
+  },
+  {
+    "name": "Santo Domingo",
+    "country": "Dominikana",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "unesco_site",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Santo Domingo Dominikana"
+  },
+  {
+    "name": "Punta Cana",
+    "country": "Dominikana",
+    "tags": [
+      "beach_leisure",
+      "family_friendly",
+      "luxury_exclusive",
+      "all_inclusive"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Punta Cana Dominikana"
+  },
+  {
+    "name": "Puerto Plata",
+    "country": "Dominikana",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "all_inclusive",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Puerto Plata Dominikana"
+  },
+  {
+    "name": "Santiago de los Caballeros",
+    "country": "Dominikana",
+    "tags": [
+      "city_break",
+      "culture_arts",
+      "education_university",
+      "food_gastronomy"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Santiago de los Caballeros Dominikana"
+  },
+  {
+    "name": "La Romana",
+    "country": "Dominikana",
+    "tags": [
+      "luxury_exclusive",
+      "golf",
+      "beach_leisure",
+      "resort_town"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "La Romana Dominikana"
+  },
+  {
+    "name": "Saman\u00e1",
+    "country": "Dominikana",
+    "tags": [
+      "nature",
+      "whale_watching",
+      "coastal",
+      "ecotourism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Saman\u00e1 Dominikana"
+  },
+  {
+    "name": "Sos\u00faa",
+    "country": "Dominikana",
+    "tags": [
+      "beach_leisure",
+      "diving_snorkeling",
+      "nightlife_parties",
+      "coastal"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Sos\u00faa Dominikana"
+  },
+  {
+    "name": "Cabarete",
+    "country": "Dominikana",
+    "tags": [
+      "adventure_sports",
+      "kite_surfing",
+      "coastal",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Cabarete Dominikana"
+  },
+  {
+    "name": "Las Terrenas",
+    "country": "Dominikana",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "coastal",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Las Terrenas Dominikana"
+  },
+  {
+    "name": "Barahona",
+    "country": "Dominikana",
+    "tags": [
+      "eco_tourism",
+      "nature",
+      "scenic_views",
+      "remote_destination"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Barahona Dominikana"
+  },
+  {
+    "name": "St. George's",
+    "country": "Grenada",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "history_culture",
+      "markets_shopping",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "St. George's Grenada"
+  },
+  {
+    "name": "Grand Anse",
+    "country": "Grenada",
+    "tags": [
+      "beach_leisure",
+      "luxury_exclusive",
+      "nightlife_parties",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Grand Anse Grenada"
+  },
+  {
+    "name": "Gouyave",
+    "country": "Grenada",
+    "tags": [
+      "food_gastronomy",
+      "unique_experience",
+      "fishing_town",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Gouyave Grenada"
+  },
+  {
+    "name": "Grenville",
+    "country": "Grenada",
+    "tags": [
+      "markets_shopping",
+      "sea_port",
+      "short_trips",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Grenville Grenada"
+  },
+  {
+    "name": "Hillsborough",
+    "country": "Grenada",
+    "tags": [
+      "island_getaway",
+      "relaxed_pace",
+      "sea_port",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Hillsborough Grenada"
+  },
+  {
+    "name": "Sauteurs",
+    "country": "Grenada",
+    "tags": [
+      "remote_destination",
+      "history_culture",
+      "scenic_views",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Sauteurs Grenada"
+  },
+  {
+    "name": "St. David's (Gmina)",
+    "country": "Grenada",
+    "tags": [
+      "coastal",
+      "relaxed_pace",
+      "nature",
+      "resort_town"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "St. David's Grenada"
+  },
+  {
+    "name": "Carriacou (Wyspa)",
+    "country": "Grenada",
+    "tags": [
+      "island_getaway",
+      "diving_snorkeling",
+      "nature",
+      "unique_experience"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Carriacou Grenada"
+  },
+  {
+    "name": "Petit Martinique",
+    "country": "Grenada",
+    "tags": [
+      "island_getaway",
+      "remote_destination",
+      "fishing_town",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Petit Martinique Grenada"
+  },
+  {
+    "name": "True Blue",
+    "country": "Grenada",
+    "tags": [
+      "education_university",
+      "resort_town",
+      "coastal",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "True Blue Grenada"
+  },
+  {
+    "name": "Gwatemala",
+    "country": "Gwatemala",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "markets_shopping",
+      "education_university"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Gwatemala Gwatemala"
+  },
+  {
+    "name": "Antigua Guatemala",
+    "country": "Gwatemala",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "romantic_getaway",
+      "architecture_design",
+      "volcanic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Antigua Guatemala Gwatemala"
+  },
+  {
+    "name": "Panajachel",
+    "country": "Gwatemala",
+    "tags": [
+      "scenic_views",
+      "nature",
+      "indigenous_culture",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Panajachel Gwatemala"
+  },
+  {
+    "name": "Flores",
+    "country": "Gwatemala",
+    "tags": [
+      "gateway_to_maya",
+      "history_culture",
+      "relaxed_pace",
+      "island_town"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Flores Gwatemala"
+  },
+  {
+    "name": "Quetzaltenango",
+    "country": "Gwatemala",
+    "tags": [
+      "city_break",
+      "mountains_trekking",
+      "education_university",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Quetzaltenango Gwatemala"
+  },
+  {
+    "name": "Chichicastenango",
+    "country": "Gwatemala",
+    "tags": [
+      "markets_shopping",
+      "unique_culture",
+      "indigenous_culture",
+      "spiritual_travel"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Chichicastenango Gwatemala"
+  },
+  {
+    "name": "Puerto Barrios",
+    "country": "Gwatemala",
+    "tags": [
+      "sea_port",
+      "coastal",
+      "border_city",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Puerto Barrios Gwatemala"
+  },
+  {
+    "name": "Livingston",
+    "country": "Gwatemala",
+    "tags": [
+      "coastal",
+      "unique_culture",
+      "remote_destination",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Livingston Gwatemala"
+  },
+  {
+    "name": "Cob\u00e1n",
+    "country": "Gwatemala",
+    "tags": [
+      "nature",
+      "eco_tourism",
+      "mountains_trekking",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Cob\u00e1n Gwatemala"
+  },
+  {
+    "name": "Lanqu\u00edn",
+    "country": "Gwatemala",
+    "tags": [
+      "eco_tourism",
+      "nature",
+      "remote_destination",
+      "adventure_sports"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Lanqu\u00edn Gwatemala"
+  },
+  {
+    "name": "Port-au-Prince",
+    "country": "Haiti",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "sea_port",
+      "markets_shopping"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Port-au-Prince Haiti"
+  },
+  {
+    "name": "Cap-Ha\u00eftien",
+    "country": "Haiti",
+    "tags": [
+      "history_culture",
+      "coastal",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Cap-Ha\u00eftien Haiti"
+  },
+  {
+    "name": "Milot",
+    "country": "Haiti",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "short_trips",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Milot Haiti"
+  },
+  {
+    "name": "Jacmel",
+    "country": "Haiti",
+    "tags": [
+      "coastal",
+      "culture_arts",
+      "architecture_design",
+      "film_festival"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Jacmel Haiti"
+  },
+  {
+    "name": "Les Cayes",
+    "country": "Haiti",
+    "tags": [
+      "coastal",
+      "sea_port",
+      "gateway_to_islands",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Les Cayes Haiti"
+  },
+  {
+    "name": "P\u00e9tion-Ville",
+    "country": "Haiti",
+    "tags": [
+      "city_break",
+      "affluent_area",
+      "food_gastronomy",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "P\u00e9tion-Ville Haiti"
+  },
+  {
+    "name": "Gona\u00efves",
+    "country": "Haiti",
+    "tags": [
+      "history_culture",
+      "coastal",
+      "religious_site",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Gona\u00efves Haiti"
+  },
+  {
+    "name": "Port-Salut",
+    "country": "Haiti",
+    "tags": [
+      "beach_leisure",
+      "coastal",
+      "relaxed_pace",
+      "remote_destination"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Port-Salut Haiti"
+  },
+  {
+    "name": "Kenscoff",
+    "country": "Haiti",
+    "tags": [
+      "nature",
+      "mountains_trekking",
+      "scenic_views",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Kenscoff Haiti"
+  },
+  {
+    "name": "Hinche",
+    "country": "Haiti",
+    "tags": [
+      "remote_destination",
+      "history_culture",
+      "religious_site",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Hinche Haiti"
+  },
+  {
+    "name": "Tegucigalpa",
+    "country": "Honduras",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "markets_shopping",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Tegucigalpa Honduras"
+  },
+  {
+    "name": "San Pedro Sula",
+    "country": "Honduras",
+    "tags": [
+      "city_break",
+      "business_center",
+      "short_trips",
+      "gateway_city"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "San Pedro Sula Honduras"
+  },
+  {
+    "name": "Cop\u00e1n Ruinas",
+    "country": "Honduras",
+    "tags": [
+      "history_culture",
+      "archeology",
+      "gateway_to_maya",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Cop\u00e1n Ruinas Honduras"
+  },
+  {
+    "name": "Roat\u00e1n",
+    "country": "Honduras",
+    "tags": [
+      "island_getaway",
+      "diving_snorkeling",
+      "beach_leisure",
+      "cruise_destination"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Roat\u00e1n Honduras"
+  },
+  {
+    "name": "La Ceiba",
+    "country": "Honduras",
+    "tags": [
+      "coastal",
+      "sea_port",
+      "nightlife_parties",
+      "gateway_to_islands"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "La Ceiba Honduras"
+  },
+  {
+    "name": "Montego Bay",
+    "country": "Jamajka",
+    "tags": [
+      "beach_leisure",
+      "all_inclusive",
+      "cruise_destination",
+      "nightlife_parties",
+      "airport_gateway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Montego Bay Jamajka"
+  },
+  {
+    "name": "Kingston",
+    "country": "Jamajka",
+    "tags": [
+      "city_break",
+      "music_heritage",
+      "culture_arts",
+      "history_culture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Kingston Jamajka"
+  },
+  {
+    "name": "Negril",
+    "country": "Jamajka",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "coastal",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Negril Jamajka"
+  },
+  {
+    "name": "Ocho Rios",
+    "country": "Jamajka",
+    "tags": [
+      "cruise_destination",
+      "all_inclusive",
+      "nature",
+      "adventure_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Ocho Rios Jamajka"
+  },
+  {
+    "name": "Port Antonio",
+    "country": "Jamajka",
+    "tags": [
+      "eco_tourism",
+      "nature",
+      "relaxed_pace",
+      "remote_destination"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Port Antonio Jamajka"
+  },
+  {
+    "name": "Toronto",
+    "country": "Kanada",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "culture_arts",
+      "nightlife_parties",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Toronto Kanada"
+  },
+  {
+    "name": "Vancouver",
+    "country": "Kanada",
+    "tags": [
+      "coastal",
+      "nature",
+      "city_break",
+      "scenic_views",
+      "mountains_trekking"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Vancouver Kanada"
+  },
+  {
+    "name": "Montreal",
+    "country": "Kanada",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties",
+      "education_university",
+      "bilingual_culture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Montreal Kanada"
+  },
+  {
+    "name": "Quebec City",
+    "country": "Kanada",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "romantic_getaway",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Quebec City Kanada"
+  },
+  {
+    "name": "Calgary",
+    "country": "Kanada",
+    "tags": [
+      "business_center",
+      "mountains_trekking",
+      "sports_events",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Calgary Kanada"
+  },
+  {
+    "name": "Ottawa",
+    "country": "Kanada",
+    "tags": [
+      "government_politics",
+      "history_culture",
+      "museums",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Ottawa Kanada"
+  },
+  {
+    "name": "Edmonton",
+    "country": "Kanada",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "culture_arts",
+      "technology_science"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Edmonton Kanada"
+  },
+  {
+    "name": "Halifax",
+    "country": "Kanada",
+    "tags": [
+      "coastal",
+      "sea_port",
+      "history_culture",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Halifax Kanada"
+  },
+  {
+    "name": "Victoria",
+    "country": "Kanada",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "relaxed_pace",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Victoria Kanada"
+  },
+  {
+    "name": "Banff",
+    "country": "Kanada",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "winter_sports",
+      "scenic_views",
+      "national_park"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Banff Kanada"
+  },
+  {
+    "name": "San Jos\u00e9",
+    "country": "Kostaryka",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "culture_arts",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "San Jos\u00e9 Kostaryka"
+  },
+  {
+    "name": "La Fortuna",
+    "country": "Kostaryka",
+    "tags": [
+      "nature",
+      "adventure_sports",
+      "scenic_views",
+      "geothermal"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "La Fortuna Kostaryka"
+  },
+  {
+    "name": "Santa Elena",
+    "country": "Kostaryka",
+    "tags": [
+      "nature",
+      "eco_tourism",
+      "mountains_trekking",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Santa Elena Kostaryka"
+  },
+  {
+    "name": "Tamarindo",
+    "country": "Kostaryka",
+    "tags": [
+      "beach_leisure",
+      "surfing",
+      "nightlife_parties",
+      "coastal"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Tamarindo Kostaryka"
+  },
+  {
+    "name": "Puerto Viejo de Talamanca",
+    "country": "Kostaryka",
+    "tags": [
+      "unique_culture",
+      "beach_leisure",
+      "relaxed_pace",
+      "eco_tourism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Puerto Viejo de Talamanca Kostaryka"
+  },
+  {
+    "name": "Hawana",
+    "country": "Kuba",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties",
+      "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Hawana Kuba"
+  },
+  {
+    "name": "Trynidad",
+    "country": "Kuba",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "romantic_getaway",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Trynidad Kuba"
+  },
+  {
+    "name": "Varadero",
+    "country": "Kuba",
+    "tags": [
+      "beach_leisure",
+      "all_inclusive",
+      "relaxed_pace",
+      "coastal"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Varadero Kuba"
+  },
+  {
+    "name": "Santiago de Cuba",
+    "country": "Kuba",
+    "tags": [
+      "history_culture",
+      "music_heritage",
+      "city_break",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Santiago de Cuba Kuba"
+  },
+  {
+    "name": "Vi\u00f1ales",
+    "country": "Kuba",
+    "tags": [
+      "nature",
+      "tobacco_culture",
+      "scenic_views",
+      "relaxed_pace",
+      "eco_tourism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Vi\u00f1ales Kuba"
+  },
+  {
+    "name": "Meksyk",
+    "country": "Meksyk",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "unesco_site",
+      "art_museums",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Meksyk Meksyk"
+  },
+  {
+    "name": "Canc\u00fan",
+    "country": "Meksyk",
+    "tags": [
+      "beach_leisure",
+      "all_inclusive",
+      "nightlife_parties",
+      "family_friendly"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Canc\u00fan Meksyk"
+  },
+  {
+    "name": "Tulum",
+    "country": "Meksyk",
+    "tags": [
+      "beach_leisure",
+      "archeology",
+      "eco_tourism",
+      "unique_experience"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Tulum Meksyk"
+  },
+  {
+    "name": "Guadalajara",
+    "country": "Meksyk",
+    "tags": [
+      "culture_arts",
+      "city_break",
+      "food_gastronomy",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Guadalajara Meksyk"
+  },
+  {
+    "name": "Oaxaca",
+    "country": "Meksyk",
+    "tags": [
+      "history_culture",
+      "indigenous_culture",
+      "food_gastronomy",
+      "unesco_site"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Oaxaca Meksyk"
+  },
+  {
+    "name": "Puebla",
+    "country": "Meksyk",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unesco_site",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Puebla Meksyk"
+  },
+  {
+    "name": "M\u00e9rida",
+    "country": "Meksyk",
+    "tags": [
+      "history_culture",
+      "gateway_to_maya",
+      "city_break",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "M\u00e9rida Meksyk"
+  },
+  {
+    "name": "Puerto Vallarta",
+    "country": "Meksyk",
+    "tags": [
+      "beach_leisure",
+      "romantic_getaway",
+      "coastal",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Puerto Vallarta Meksyk"
+  },
+  {
+    "name": "San Miguel de Allende",
+    "country": "Meksyk",
+    "tags": [
+      "romantic_getaway",
+      "history_culture",
+      "architecture_design",
+      "affluent_area"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.65,
+    "image_keyword": "San Miguel de Allende Meksyk"
+  },
+  {
+    "name": "Playa del Carmen",
+    "country": "Meksyk",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "diving_snorkeling",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Playa del Carmen Meksyk"
+  },
+  {
+    "name": "Granada",
+    "country": "Nikaragua",
+    "tags": [
+      "history_culture",
+      "romantic_getaway",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Granada Nikaragua"
+  },
+  {
+    "name": "Le\u00f3n",
+    "country": "Nikaragua",
+    "tags": [
+      "history_culture",
+      "education_university",
+      "adventure_sports",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Le\u00f3n Nikaragua"
+  },
+  {
+    "name": "San Juan del Sur",
+    "country": "Nikaragua",
+    "tags": [
+      "beach_leisure",
+      "surfing",
+      "nightlife_parties",
+      "coastal"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.25,
+    "image_keyword": "San Juan del Sur Nikaragua"
+  },
+  {
+    "name": "Managua",
+    "country": "Nikaragua",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "markets_shopping",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Managua Nikaragua"
+  },
+  {
+    "name": "Moyogalpa",
+    "country": "Nikaragua",
+    "tags": [
+      "island_getaway",
+      "nature",
+      "volcanic_views",
+      "eco_tourism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Moyogalpa Nikaragua"
+  },
+  {
+    "name": "Panama",
+    "country": "Panama",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "history_culture",
+      "architecture_design",
+      "coastal"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Panama Panama"
+  },
+  {
+    "name": "Boquete",
+    "country": "Panama",
+    "tags": [
+      "nature",
+      "mountains_trekking",
+      "eco_tourism",
+      "coffee_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Boquete Panama"
+  },
+  {
+    "name": "Bocas Town",
+    "country": "Panama",
+    "tags": [
+      "island_getaway",
+      "beach_leisure",
+      "diving_snorkeling",
+      "nightlife_parties"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Bocas Town Panama"
+  },
+  {
+    "name": "David",
+    "country": "Panama",
+    "tags": [
+      "city_break",
+      "gateway_city",
+      "markets_shopping",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "David Panama"
+  },
+  {
+    "name": "Coronado",
+    "country": "Panama",
+    "tags": [
+      "beach_leisure",
+      "relaxed_pace",
+      "coastal",
+      "resort_town"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Coronado Panama"
+  },
+  {
+    "name": "Kingstown",
+    "country": "Saint Vincent i Grenadyny",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "history_culture",
+      "cruise_destination",
+      "markets_shopping"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Kingstown Saint Vincent i Grenadyny"
+  },
+  {
+    "name": "Port Elizabeth",
+    "country": "Saint Vincent i Grenadyny",
+    "tags": [
+      "island_getaway",
+      "yachting",
+      "beach_leisure",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Port Elizabeth Saint Vincent i Grenadyny"
+  },
+  {
+    "name": "San Salvador",
+    "country": "Salwador",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "history_culture",
+      "markets_shopping"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "San Salvador Salwador"
+  },
+  {
+    "name": "Suchitoto",
+    "country": "Salwador",
+    "tags": [
+      "romantic_getaway",
+      "history_culture",
+      "architecture_design",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Suchitoto Salwador"
+  },
+  {
+    "name": "Santa Ana",
+    "country": "Salwador",
+    "tags": [
+      "city_break",
+      "volcanic_views",
+      "history_culture",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Santa Ana Salwador"
+  },
+  {
+    "name": "La Libertad",
+    "country": "Salwador",
+    "tags": [
+      "coastal",
+      "surfing",
+      "beach_leisure",
+      "sea_port"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "La Libertad Salwador"
+  },
+  {
+    "name": "Juay\u00faa",
+    "country": "Salwador",
+    "tags": [
+      "food_gastronomy",
+      "relaxed_pace",
+      "coffee_culture",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Juay\u00faa Salwador"
+  },
+  {
+    "name": "Nowy Jork",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "art_museums",
+      "nightlife_parties",
+      "iconic_sights"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.8,
+    "image_keyword": "Nowy Jork Stany Zjednoczone"
+  },
+  {
+    "name": "Los Angeles",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "entertainment_industry",
+      "coastal",
+      "city_break",
+      "nightlife_parties",
+      "markets_shopping"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Los Angeles Stany Zjednoczone"
+  },
+  {
+    "name": "Chicago",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "architecture_design",
+      "city_break",
+      "art_museums",
+      "food_gastronomy",
+      "music_heritage"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Chicago Stany Zjednoczone"
+  },
+  {
+    "name": "Waszyngton (D.C.)",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "government_politics",
+      "history_culture",
+      "museums",
+      "iconic_sights",
+      "monuments"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Waszyngton (D.C.) Stany Zjednoczone"
+  },
+  {
+    "name": "San Francisco",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "tech_industry",
+      "iconic_sights",
+      "coastal",
+      "romantic_getaway",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.6,
+    "image_keyword": "San Francisco Stany Zjednoczone"
+  },
+  {
+    "name": "Las Vegas",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "casinos_gambling",
+      "nightlife_parties",
+      "unique_experience",
+      "entertainment_industry"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Las Vegas Stany Zjednoczone"
+  },
+  {
+    "name": "Orlando",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "theme_parks",
+      "family_friendly",
+      "entertainment_industry",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Orlando Stany Zjednoczone"
+  },
+  {
+    "name": "Miami",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "coastal",
+      "nightlife_parties",
+      "architecture_design",
+      "luxury_exclusive",
+      "beach_leisure"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Miami Stany Zjednoczone"
+  },
+  {
+    "name": "Boston",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "history_culture",
+      "education_university",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.25,
+    "image_keyword": "Boston Stany Zjednoczone"
+  },
+  {
+    "name": "Seattle",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "tech_industry",
+      "coastal",
+      "nature",
+      "city_break",
+      "coffee_culture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.35,
+    "image_keyword": "Seattle Stany Zjednoczone"
+  },
+  {
+    "name": "San Diego",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "coastal",
+      "beach_leisure",
+      "relaxed_pace",
+      "family_friendly",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.95,
+    "image_keyword": "San Diego Stany Zjednoczone"
+  },
+  {
+    "name": "Honolulu",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "island_getaway",
+      "beach_leisure",
+      "scenic_views",
+      "surfing",
+      "military_history"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.7,
+    "image_keyword": "Honolulu Stany Zjednoczone"
+  },
+  {
+    "name": "Nowy Orlean",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "music_heritage",
+      "food_gastronomy",
+      "nightlife_parties",
+      "history_culture",
+      "unique_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Nowy Orlean Stany Zjednoczone"
+  },
+  {
+    "name": "Filadelfia",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "history_culture",
+      "iconic_sights",
+      "education_university",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Filadelfia Stany Zjednoczone"
+  },
+  {
+    "name": "Denver",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "mountains_trekking",
+      "city_break",
+      "nature",
+      "winter_sports"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Denver Stany Zjednoczone"
+  },
+  {
+    "name": "Dallas",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "business_center",
+      "history_culture",
+      "museums",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Dallas Stany Zjednoczone"
+  },
+  {
+    "name": "Atlanta",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "civil_rights_movement",
+      "business_center"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Atlanta Stany Zjednoczone"
+  },
+  {
+    "name": "Phoenix",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "desert_climate",
+      "relaxed_pace",
+      "architecture_design",
+      "wellness_spa"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Phoenix Stany Zjednoczone"
+  },
+  {
+    "name": "Nashville",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "music_heritage",
+      "nightlife_parties",
+      "culture_arts",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Nashville Stany Zjednoczone"
+  },
+  {
+    "name": "Salt Lake City",
+    "country": "Stany Zjednoczone",
+    "tags": [
+      "mountains_trekking",
+      "spiritual_travel",
+      "winter_sports",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Salt Lake City Stany Zjednoczone"
+  },
+  {
+    "name": "Buenos Aires",
+    "country": "Argentyna",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Buenos Aires Argentyna"
+  },
+  {
+    "name": "C\u00f3rdoba",
+    "country": "Argentyna",
+    "tags": [
+      "education_university",
+      "history_culture",
+      "architecture_design",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.1,
+    "image_keyword": "C\u00f3rdoba Argentyna"
+  },
+  {
+    "name": "Mendoza",
+    "country": "Argentyna",
+    "tags": [
+      "wine_tourism",
+      "mountains_trekking",
+      "nature",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Mendoza Argentyna"
+  },
+  {
+    "name": "Ushuaia",
+    "country": "Argentyna",
+    "tags": [
+      "remote_destination",
+      "gateway_to_antarctica",
+      "nature",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Ushuaia Argentyna"
+  },
+  {
+    "name": "Salta",
+    "country": "Argentyna",
+    "tags": [
+      "history_culture",
+      "colonial_architecture",
+      "scenic_views",
+      "mountains_trekking"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Salta Argentyna"
+  },
+  {
+    "name": "San Carlos de Bariloche",
+    "country": "Argentyna",
+    "tags": [
+      "mountains_trekking",
+      "winter_sports",
+      "romantic_getaway",
+      "nature",
+      "scenic_views"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "San Carlos de Bariloche Argentyna"
+  },
+  {
+    "name": "El Calafate",
+    "country": "Argentyna",
+    "tags": [
+      "nature",
+      "unique_experience",
+      "gateway_to_glacier",
+      "mountains_trekking"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.6,
+    "image_keyword": "El Calafate Argentyna"
+  },
+  {
+    "name": "Puerto Iguaz\u00fa",
+    "country": "Argentyna",
+    "tags": [
+      "nature",
+      "scenic_views",
+      "unique_experience",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Puerto Iguaz\u00fa Argentyna"
+  },
+  {
+    "name": "Rosario",
+    "country": "Argentyna",
+    "tags": [
+      "river_side",
+      "city_break",
+      "culture_arts",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Rosario Argentyna"
+  },
+  {
+    "name": "San Miguel de Tucum\u00e1n",
+    "country": "Argentyna",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "politics_history"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.05,
+    "image_keyword": "San Miguel de Tucum\u00e1n Argentyna"
+  },
+  {
+    "name": "La Paz",
+    "country": "Boliwia",
+    "tags": [
+      "city_break",
+      "high_altitude",
+      "unique_experience",
+      "markets_shopping",
+      "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "La Paz Boliwia"
+  },
+  {
+    "name": "Sucre",
+    "country": "Boliwia",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "education_university",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Sucre Boliwia"
+  },
+  {
+    "name": "Uyuni",
+    "country": "Boliwia",
+    "tags": [
+      "unique_experience",
+      "nature",
+      "photography_spots",
+      "remote_destination",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Uyuni Boliwia"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "country": "Brazylia",
+    "tags": [
+      "beach_leisure",
+      "iconic_sights",
+      "nightlife_parties",
+      "culture_arts",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Rio de Janeiro Brazylia"
+  },
+  {
+    "name": "S\u00e3o Paulo",
+    "country": "Brazylia",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "nightlife_parties",
+      "culture_arts",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "S\u00e3o Paulo Brazylia"
+  },
+  {
+    "name": "Salvador",
+    "country": "Brazylia",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "unique_culture",
+      "coastal",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Salvador Brazylia"
+  },
+  {
+    "name": "Bras\u00edlia",
+    "country": "Brazylia",
+    "tags": [
+      "architecture_design",
+      "government_politics",
+      "unesco_site",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Bras\u00edlia Brazylia"
+  },
+  {
+    "name": "Manaus",
+    "country": "Brazylia",
+    "tags": [
+      "eco_tourism",
+      "nature",
+      "unique_experience",
+      "river_side",
+      "history_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Manaus Brazylia"
+  },
+  {
+    "name": "Santiago",
+    "country": "Chile",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "mountains_trekking",
+      "culture_arts"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Santiago Chile"
+  },
+  {
+    "name": "Valpara\u00edso",
+    "country": "Chile",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "coastal",
+      "architecture_design",
+      "photography_spots"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Valpara\u00edso Chile"
+  },
+  {
+    "name": "San Pedro de Atacama",
+    "country": "Chile",
+    "tags": [
+      "remote_destination",
+      "nature",
+      "stargazing",
+      "unique_experience"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "San Pedro de Atacama Chile"
+  },
+  {
+    "name": "Puerto Natales",
+    "country": "Chile",
+    "tags": [
+      "remote_destination",
+      "gateway_to_patagonia",
+      "mountains_trekking",
+      "nature"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Puerto Natales Chile"
+  },
+  {
+    "name": "Puc\u00f3n",
+    "country": "Chile",
+    "tags": [
+      "nature",
+      "adventure_sports",
+      "volcanic_views",
+      "mountains_trekking"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Puc\u00f3n Chile"
+  },
+  {
+    "name": "Quito",
+    "country": "Ekwador",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "mountains_trekking",
+      "city_break",
+      "high_altitude"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Quito Ekwador"
+  },
+  {
+    "name": "Guayaquil",
+    "country": "Ekwador",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "coastal",
+      "finance_hub"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Guayaquil Ekwador"
+  },
+  {
+    "name": "Puerto Ayora",
+    "country": "Ekwador",
+    "tags": [
+      "nature",
+      "unique_experience",
+      "island_getaway",
+      "wildlife_watching"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Puerto Ayora Ekwador"
+  },
+  {
+    "name": "Georgetown",
+    "country": "Gujana",
+    "tags": [
+      "city_break",
+      "sea_port",
+      "history_culture",
+      "markets_shopping",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Georgetown Gujana"
+  },
+  {
+    "name": "Linden",
+    "country": "Gujana",
+    "tags": [
+      "short_trips",
+      "river_side",
+      "industrial_heritage",
+      "gateway_city"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Linden Gujana"
+  },
+  {
+    "name": "Lethem",
+    "country": "Gujana",
+    "tags": [
+      "remote_destination",
+      "gateway_to_nature",
+      "border_city",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Lethem Gujana"
+  },
+  {
+    "name": "Bogota",
+    "country": "Kolumbia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "high_altitude",
+      "art_museums",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Bogota Kolumbia"
+  },
+  {
+    "name": "Medell\u00edn",
+    "country": "Kolumbia",
+    "tags": [
+      "city_break",
+      "culture_arts",
+      "innovation",
+      "nightlife_parties",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Medell\u00edn Kolumbia"
+  },
+  {
+    "name": "Cartagena",
+    "country": "Kolumbia",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "coastal",
+      "romantic_getaway",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Cartagena Kolumbia"
+  },
+  {
+    "name": "Cali",
+    "country": "Kolumbia",
+    "tags": [
+      "music_heritage",
+      "nightlife_parties",
+      "culture_arts",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Cali Kolumbia"
+  },
+  {
+    "name": "Salento",
+    "country": "Kolumbia",
+    "tags": [
+      "coffee_culture",
+      "nature",
+      "mountains_trekking",
+      "relaxed_pace",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Salento Kolumbia"
+  },
+  {
+    "name": "Lima",
+    "country": "Peru",
+    "tags": [
+      "city_break",
+      "food_gastronomy",
+      "history_culture",
+      "coastal",
+      "archeology"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Lima Peru"
+  },
+  {
+    "name": "Cuzco",
+    "country": "Peru",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "high_altitude",
+      "mountains_trekking",
+      "archeology"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Cuzco Peru"
+  },
+  {
+    "name": "Arequipa",
+    "country": "Peru",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "volcanic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Arequipa Peru"
+  },
+  {
+    "name": "Puno",
+    "country": "Peru",
+    "tags": [
+      "remote_destination",
+      "high_altitude",
+      "unique_culture",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Puno Peru"
+  },
+  {
+    "name": "Iquitos",
+    "country": "Peru",
+    "tags": [
+      "remote_destination",
+      "nature",
+      "unique_experience",
+      "eco_tourism",
+      "river_side"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Iquitos Peru"
+  },
+  {
+    "name": "Montevideo",
+    "country": "Urugwaj",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "coastal",
+      "relaxed_pace",
+      "food_gastronomy"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Montevideo Urugwaj"
+  },
+  {
+    "name": "Punta del Este",
+    "country": "Urugwaj",
+    "tags": [
+      "beach_leisure",
+      "luxury_exclusive",
+      "nightlife_parties",
+      "coastal",
+      "short_trips"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Punta del Este Urugwaj"
+  },
+  {
+    "name": "Caracas",
+    "country": "Wenezuela",
+    "tags": [
+      "city_break",
+      "government_politics",
+      "history_culture",
+      "nightlife_parties",
+      "high_altitude"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Caracas Wenezuela"
+  },
+  {
+    "name": "M\u00e9rida",
+    "country": "Wenezuela",
+    "tags": [
+      "mountains_trekking",
+      "education_university",
+      "scenic_views",
+      "high_altitude"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "M\u00e9rida Wenezuela"
+  },
+  {
+    "name": "Canaima",
+    "country": "Wenezuela",
+    "tags": [
+      "remote_destination",
+      "nature",
+      "unique_experience",
+      "gateway_to_angel_falls"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Canaima Wenezuela"
+  },
+  {
+    "name": "Rijad",
+    "country": "Arabia Saudyjska",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "architecture_design",
+      "markets_shopping",
+      "culture_arts"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Rijad Arabia Saudyjska"
+  },
+  {
+    "name": "D\u017cudda",
+    "country": "Arabia Saudyjska",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "sea_port",
+      "red_sea",
+      "unesco_site"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "D\u017cudda Arabia Saudyjska"
+  },
+  {
+    "name": "Medyna",
+    "country": "Arabia Saudyjska",
+    "tags": [
+      "spiritual_travel",
+      "religious_site",
+      "history_culture",
+      "pilgrimage"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Medyna Arabia Saudyjska"
+  },
+  {
+    "name": "Al-'\u00dcla",
+    "country": "Arabia Saudyjska",
+    "tags": [
+      "archeology",
+      "unesco_site",
+      "scenic_views",
+      "unique_experience",
+      "remote_destination"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Al-'\u00dcla Arabia Saudyjska"
+  },
+  {
+    "name": "Dammam",
+    "country": "Arabia Saudyjska",
+    "tags": [
+      "coastal",
+      "city_break",
+      "oil_industry",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Dammam Arabia Saudyjska"
+  },
+  {
+    "name": "Erywa\u0144",
+    "country": "Armenia",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties",
+      "art_museums"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Erywa\u0144 Armenia"
+  },
+  {
+    "name": "Giumri",
+    "country": "Armenia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "short_trips",
+      "culture_arts"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Giumri Armenia"
+  },
+  {
+    "name": "Eczmiadzyn",
+    "country": "Armenia",
+    "tags": [
+      "spiritual_travel",
+      "unesco_site",
+      "religious_site",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Eczmiadzyn Armenia"
+  },
+  {
+    "name": "Dilid\u017can",
+    "country": "Armenia",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "relaxed_pace",
+      "eco_tourism"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Dilid\u017can Armenia"
+  },
+  {
+    "name": "Goris",
+    "country": "Armenia",
+    "tags": [
+      "remote_destination",
+      "history_culture",
+      "gateway_to_nature",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.95,
+    "image_keyword": "Goris Armenia"
+  },
+  {
+    "name": "Baku",
+    "country": "Azerbejd\u017can",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "history_culture",
+      "coastal",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Baku Azerbejd\u017can"
+  },
+  {
+    "name": "Gand\u017ca",
+    "country": "Azerbejd\u017can",
+    "tags": [
+      "history_culture",
+      "city_break",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Gand\u017ca Azerbejd\u017can"
+  },
+  {
+    "name": "Szaki",
+    "country": "Azerbejd\u017can",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "silk_road",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Szaki Azerbejd\u017can"
+  },
+  {
+    "name": "Gabala",
+    "country": "Azerbejd\u017can",
+    "tags": [
+      "mountains_trekking",
+      "nature",
+      "winter_sports",
+      "resort_town"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Gabala Azerbejd\u017can"
+  },
+  {
+    "name": "Kuba",
+    "country": "Azerbejd\u017can",
+    "tags": [
+      "mountains_trekking",
+      "history_culture",
+      "unique_culture",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Kuba Azerbejd\u017can"
+  },
+  {
+    "name": "Dhaka",
+    "country": "Bangladesz",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "markets_shopping",
+      "unique_experience"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.8,
+    "image_keyword": "Dhaka Bangladesz"
+  },
+  {
+    "name": "Czittagong",
+    "country": "Bangladesz",
+    "tags": [
+      "sea_port",
+      "mountains_trekking",
+      "city_break",
+      "coastal"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.75,
+    "image_keyword": "Czittagong Bangladesz"
+  },
+  {
+    "name": "Sylhet",
+    "country": "Bangladesz",
+    "tags": [
+      "tea_culture",
+      "nature",
+      "spiritual_travel",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Sylhet Bangladesz"
+  },
+  {
+    "name": "Cox's Bazar",
+    "country": "Bangladesz",
+    "tags": [
+      "beach_leisure",
+      "coastal",
+      "unique_experience",
+      "remote_destination"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Cox's Bazar Bangladesz"
+  },
+  {
+    "name": "Bagerhat",
+    "country": "Bangladesz",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.7,
+    "image_keyword": "Bagerhat Bangladesz"
+  },
+  {
+    "name": "Pekin",
+    "country": "Chiny",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "unesco_site",
+      "iconic_sights",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Pekin Chiny"
+  },
+  {
+    "name": "Szanghaj",
+    "country": "Chiny",
+    "tags": [
+      "finance_hub",
+      "architecture_design",
+      "nightlife_parties",
+      "city_break",
+      "markets_shopping"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Szanghaj Chiny"
+  },
+  {
+    "name": "Xi'an",
+    "country": "Chiny",
+    "tags": [
+      "history_culture",
+      "archeology",
+      "unesco_site",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Xi'an Chiny"
+  },
+  {
+    "name": "Kanton",
+    "country": "Chiny",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "food_gastronomy",
+      "coastal",
+      "business_center"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Kanton Chiny"
+  },
+  {
+    "name": "Chengdu",
+    "country": "Chiny",
+    "tags": [
+      "unique_experience",
+      "nature",
+      "food_gastronomy",
+      "culture_arts"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Chengdu Chiny"
+  },
+  {
+    "name": "Hong Kong",
+    "country": "Chiny",
+    "tags": [
+      "coastal",
+      "finance_hub",
+      "nightlife_parties",
+      "markets_shopping",
+      "high_altitude"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Hong Kong Chiny"
+  },
+  {
+    "name": "Hangzhou",
+    "country": "Chiny",
+    "tags": [
+      "scenic_views",
+      "history_culture",
+      "nature",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Hangzhou Chiny"
+  },
+  {
+    "name": "Suzhou",
+    "country": "Chiny",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "canals"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Suzhou Chiny"
+  },
+  {
+    "name": "Lhasa",
+    "country": "Chiny",
+    "tags": [
+      "spiritual_travel",
+      "high_altitude",
+      "unique_culture",
+      "remote_destination"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Lhasa Chiny"
+  },
+  {
+    "name": "Chongqing",
+    "country": "Chiny",
+    "tags": [
+      "mega_city",
+      "river_side",
+      "unique_experience",
+      "modern_architecture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Chongqing Chiny"
+  },
+  {
+    "name": "Limasol",
+    "country": "Cypr",
+    "tags": [
+      "coastal",
+      "beach_leisure",
+      "nightlife_parties",
+      "city_break",
+      "finance_hub"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Limasol Cypr"
+  },
+  {
+    "name": "Pafos",
+    "country": "Cypr",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "beach_leisure",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Pafos Cypr"
+  },
+  {
+    "name": "Larnaka",
+    "country": "Cypr",
+    "tags": [
+      "beach_leisure",
+      "sea_port",
+      "history_culture",
+      "short_trips",
+      "airport_gateway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Larnaka Cypr"
+  },
+  {
+    "name": "Manila",
+    "country": "Filipiny",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "markets_shopping",
+      "coastal"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Manila Filipiny"
+  },
+  {
+    "name": "Cebu City",
+    "country": "Filipiny",
+    "tags": [
+      "island_getaway",
+      "sea_port",
+      "history_culture",
+      "diving_snorkeling",
+      "city_break"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Cebu City Filipiny"
+  },
+  {
+    "name": "Tbilisi",
+    "country": "Gruzja",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "nightlife_parties",
+      "spiritual_travel"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Tbilisi Gruzja"
+  },
+  {
+    "name": "Batumi",
+    "country": "Gruzja",
+    "tags": [
+      "coastal",
+      "beach_leisure",
+      "architecture_design",
+      "nightlife_parties",
+      "resort_town"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Batumi Gruzja"
+  },
+  {
+    "name": "Kutaisi",
+    "country": "Gruzja",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "gateway_city",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Kutaisi Gruzja"
+  },
+  {
+    "name": "Mccheta",
+    "country": "Gruzja",
+    "tags": [
+      "spiritual_travel",
+      "unesco_site",
+      "history_culture",
+      "short_trips"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Mccheta Gruzja"
+  },
+  {
+    "name": "Signagi",
+    "country": "Gruzja",
+    "tags": [
+      "wine_tourism",
+      "romantic_getaway",
+      "scenic_views",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Signagi Gruzja"
+  },
+  {
+    "name": "Delhi",
+    "country": "Indie",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "iconic_sights",
+      "markets_shopping",
+      "government_politics"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Delhi Indie"
+  },
+  {
+    "name": "Mumbaj",
+    "country": "Indie",
+    "tags": [
+      "finance_hub",
+      "coastal",
+      "nightlife_parties",
+      "markets_shopping",
+      "entertainment_industry"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Mumbaj Indie"
+  },
+  {
+    "name": "Agra",
+    "country": "Indie",
+    "tags": [
+      "iconic_sights",
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.25,
+    "image_keyword": "Agra Indie"
+  },
+  {
+    "name": "Jaipur",
+    "country": "Indie",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "romantic_getaway",
+      "unique_culture"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.35,
+    "image_keyword": "Jaipur Indie"
+  },
+  {
+    "name": "Waranasi",
+    "country": "Indie",
+    "tags": [
+      "spiritual_travel",
+      "unique_experience",
+      "river_side",
+      "history_culture"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Waranasi Indie"
+  },
+  {
+    "name": "Goa",
+    "country": "Indie",
+    "tags": [
+      "beach_leisure",
+      "nightlife_parties",
+      "coastal",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Goa Indie"
+  },
+  {
+    "name": "Kalkuta",
+    "country": "Indie",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "unique_culture",
+      "city_break"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.0,
+    "image_keyword": "Kalkuta Indie"
+  },
+  {
+    "name": "Bengaluru",
+    "country": "Indie",
+    "tags": [
+      "tech_industry",
+      "city_break",
+      "modern_architecture",
+      "nightlife_parties"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Bengaluru Indie"
+  },
+  {
+    "name": "Ćennaj",
+    "country": "Indie",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "food_gastronomy",
+      "sea_port"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.15,
+    "image_keyword": "Ćennaj Indie"
+  },
+  {
+    "name": "Rishikesh",
+    "country": "Indie",
+    "tags": [
+      "spiritual_travel",
+      "nature",
+      "mountains_trekking",
+      "yoga_wellness"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Rishikesh Indie"
+  },
+  {
+    "name": "Denpasar",
+    "country": "Indonezja",
+    "tags": [
+      "beach_leisure",
+      "city_break",
+      "markets_shopping",
+      "airport_gateway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Denpasar Indonezja"
+  },
+  {
+    "name": "Yogyakarta",
+    "country": "Indonezja",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "spiritual_travel",
+      "education_university",
+      "food_gastronomy"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Yogyakarta Indonezja"
+  },
+  {
+    "name": "D\u017cakarta",
+    "country": "Indonezja",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "nightlife_parties",
+      "markets_shopping",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "D\u017cakarta Indonezja"
+  },
+  {
+    "name": "Ubud",
+    "country": "Indonezja",
+    "tags": [
+      "spiritual_travel",
+      "nature",
+      "yoga_wellness",
+      "culture_arts",
+      "relaxed_pace"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Ubud Indonezja"
+  },
+  {
+    "name": "Labuan Bajo",
+    "country": "Indonezja",
+    "tags": [
+      "diving_snorkeling",
+      "unique_experience",
+      "gateway_to_nature",
+      "coastal"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Labuan Bajo Indonezja"
+  },
+  {
+    "name": "Tokio",
+    "country": "Japonia",
+    "tags": [
+      "city_break",
+      "technology_science",
+      "nightlife_parties",
+      "markets_shopping",
+      "iconic_sights"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.5,
+    "image_keyword": "Tokio Japonia"
+  },
+  {
+    "name": "Kioto",
+    "country": "Japonia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "spiritual_travel",
+      "unesco_site",
+      "romantic_getaway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.4,
+    "image_keyword": "Kioto Japonia"
+  },
+  {
+    "name": "Osaka",
+    "country": "Japonia",
+    "tags": [
+      "food_gastronomy",
+      "city_break",
+      "nightlife_parties",
+      "modern_architecture"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.3,
+    "image_keyword": "Osaka Japonia"
+  },
+  {
+    "name": "Hiroszima",
+    "country": "Japonia",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "iconic_sights",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Hiroszima Japonia"
+  },
+  {
+    "name": "Nara",
+    "country": "Japonia",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "nature",
+      "unesco_site",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Nara Japonia"
+  },
+  {
+    "name": "Sapporo",
+    "country": "Japonia",
+    "tags": [
+      "winter_sports",
+      "food_gastronomy",
+      "city_break",
+      "unique_experience"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Sapporo Japonia"
+  },
+  {
+    "name": "Fukuoka",
+    "country": "Japonia",
+    "tags": [
+      "city_break",
+      "coastal",
+      "food_gastronomy",
+      "sea_port"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.9,
+    "image_keyword": "Fukuoka Japonia"
+  },
+  {
+    "name": "Nagoja",
+    "country": "Japonia",
+    "tags": [
+      "city_break",
+      "technology_science",
+      "history_culture",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Nagoja Japonia"
+  },
+  {
+    "name": "Kamakura",
+    "country": "Japonia",
+    "tags": [
+      "history_culture",
+      "spiritual_travel",
+      "coastal",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.95,
+    "image_keyword": "Kamakura Japonia"
+  },
+  {
+    "name": "Kanazawa",
+    "country": "Japonia",
+    "tags": [
+      "history_culture",
+      "architecture_design",
+      "culture_arts",
+      "romantic_getaway"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.85,
+    "image_keyword": "Kanazawa Japonia"
+  },
+  {
+    "name": "Amman",
+    "country": "Jordania",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "markets_shopping",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "Amman Jordania"
+  },
+  {
+    "name": "Wadi Musa",
+    "country": "Jordania",
+    "tags": [
+      "archeology",
+      "unesco_site",
+      "gateway_to_petra",
+      "remote_destination"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Wadi Musa Jordania"
+  },
+  {
+    "name": "Phnom Penh",
+    "country": "Kambod\u017ca",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "river_side",
+      "markets_shopping"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Phnom Penh Kambod\u017ca"
+  },
+  {
+    "name": "Siem Reap",
+    "country": "Kambod\u017ca",
+    "tags": [
+      "archeology",
+      "unesco_site",
+      "gateway_to_angkor",
+      "nightlife_parties",
+      "spiritual_travel"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.3,
+    "image_keyword": "Siem Reap Kambod\u017ca"
+  },
+  {
+    "name": "Doha",
+    "country": "Katar",
+    "tags": [
+      "city_break",
+      "finance_hub",
+      "architecture_design",
+      "coastal",
+      "luxury_exclusive"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Doha Katar"
+  },
+  {
+    "name": "Al Khor",
+    "country": "Katar",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "nature",
+      "relaxed_pace"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "Al Khor Katar"
+  },
+  {
+    "name": "Al Wakrah",
+    "country": "Katar",
+    "tags": [
+      "coastal",
+      "history_culture",
+      "sea_port",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Al Wakrah Katar"
+  },
+  {
+    "name": "Lusail",
+    "country": "Katar",
+    "tags": [
+      "modern_architecture",
+      "sports_events",
+      "luxury_exclusive",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.2,
+    "image_keyword": "Lusail Katar"
+  },
+  {
+    "name": "Mesaieed (Sealine)",
+    "country": "Katar",
+    "tags": [
+      "desert_adventure",
+      "coastal",
+      "nature",
+      "unique_experience"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Mesaieed Katar"
+  },
+  {
+    "name": "A\u0142maty",
+    "country": "Kazachstan",
+    "tags": [
+      "city_break",
+      "mountains_trekking",
+      "winter_sports",
+      "food_gastronomy",
+      "scenic_views"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.4,
+    "image_keyword": "A\u0142maty Kazachstan"
+  },
+  {
+    "name": "Astana",
+    "country": "Kazachstan",
+    "tags": [
+      "city_break",
+      "architecture_design",
+      "technology_science",
+      "modern_architecture",
+      "government_politics"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Astana Kazachstan"
+  },
+  {
+    "name": "Szymkent",
+    "country": "Kazachstan",
+    "tags": [
+      "history_culture",
+      "markets_shopping",
+      "gateway_city",
+      "relaxed_pace"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.85,
+    "image_keyword": "Szymkent Kazachstan"
+  },
+  {
+    "name": "Turkiestan",
+    "country": "Kazachstan",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "spiritual_travel",
+      "architecture_design"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 0.9,
+    "image_keyword": "Turkiestan Kazachstan"
+  },
+  {
+    "name": "Aktau",
+    "country": "Kazachstan",
+    "tags": [
+      "coastal",
+      "beach_leisure",
+      "sea_port",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.2,
+    "image_keyword": "Aktau Kazachstan"
+  },
+  {
+    "name": "Biszkek",
+    "country": "Kirgistan",
+    "tags": [
+      "city_break",
+      "history_culture",
+      "architecture_design",
+      "markets_shopping",
+      "mountains_trekking"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.1,
+    "image_keyword": "Biszkek Kirgistan"
+  },
+  {
+    "name": "Osz",
+    "country": "Kirgistan",
+    "tags": [
+      "history_culture",
+      "silk_road",
+      "markets_shopping",
+      "unique_experience",
+      "remote_destination"
+    ],
+    "cost_tier": "low",
+    "cost_multiplier": 1.05,
+    "image_keyword": "Osz Kirgistan"
+  },
+  {
+    "name": "Seul",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "city_break",
+      "technology_science",
+      "history_culture",
+      "nightlife_parties",
+      "architecture_design"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.1,
+    "image_keyword": "Seul Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Pusan",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "coastal",
+      "sea_port",
+      "beach_leisure",
+      "food_gastronomy",
+      "city_break"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 1.8,
+    "image_keyword": "Pusan Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Jeju City",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "island_getaway",
+      "nature",
+      "scenic_views",
+      "airport_gateway"
+    ],
+    "cost_tier": "high",
+    "cost_multiplier": 2.0,
+    "image_keyword": "Jeju City Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Inczen",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "airport_gateway",
+      "coastal",
+      "city_break",
+      "markets_shopping"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.65,
+    "image_keyword": "Inczen Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Ky\u014fngju",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "architecture_design",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.7,
+    "image_keyword": "Ky\u014fngju Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Tegu",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "city_break",
+      "markets_shopping",
+      "culture_arts",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.5,
+    "image_keyword": "Tegu Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Sokczo",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "coastal",
+      "mountains_trekking",
+      "nature",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.55,
+    "image_keyword": "Sokczo Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Ted\u017con",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "technology_science",
+      "city_break",
+      "education_university",
+      "short_trips"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.45,
+    "image_keyword": "Ted\u017con Korea Po\u0142udniowa"
+  },
+  {
+    "name": "D\u017cond\u017cu",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "history_culture",
+      "unique_culture",
+      "food_gastronomy",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.6,
+    "image_keyword": "D\u017cond\u017cu Korea Po\u0142udniowa"
+  },
+  {
+    "name": "Suwon",
+    "country": "Korea Po\u0142udniowa",
+    "tags": [
+      "history_culture",
+      "unesco_site",
+      "city_break",
+      "architecture_design"
+    ],
+    "cost_tier": "medium",
+    "cost_multiplier": 1.75,
+    "image_keyword": "Suwon Korea Po\u0142udniowa"
   }
 ]
