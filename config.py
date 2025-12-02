@@ -27,15 +27,17 @@ class BaseConfig:
 class DevelopmentConfig(BaseConfig):
     """Development configuration."""
     DEBUG = True
+    # Jeśli DEV_DATABASE_URL jest ustawiony w .env, używaj PostgreSQL
+    # W przeciwnym razie powróć do SQLite
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'app-dev.db')
+        'sqlite:///' + os.path.join(basedir,'app-dev.db')
 
 
 class ProductionConfig(BaseConfig):
     """Production configuration."""
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite') # Note: SQLite is not recommended for production
+    # DATABASE_URL powinien być ustawiony w zmiennych środowiskowych przy deployu
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'postgresql://localhost/travelmind')
 
 
 config = {
