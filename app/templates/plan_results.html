@@ -3,7 +3,7 @@
 {% block title %}Twój plan dla: {{ plan.query.city }}{% endblock %}
 
 {% block content %}
-<div class="container plan-results">
+<div class="container-plan-results">
     
     <header class="plan-header">
         <h1>Plan podróży: {{ plan.query.city }}</h1>
@@ -14,14 +14,18 @@
     </header>
 
     <!-- Pogoda - górna sekcja -->
-    <div class="card weather-card weather-top">
+ <div class="card weather-card weather-top">
 
         <h2><span class="icon">☀️</span> Pogoda</h2>
 
         <div class="weather-details">
-                {% if plan.weather.daily is defined %}
+            {% if plan.weather.daily is defined %}
 
-                <div class="daily-weather-list">
+            <div class="weather-carousel-wrapper">
+                
+                <button class="carousel-btn prev-btn" id="prevBtn" type="button">❮</button>
+
+                <div class="daily-weather-list" id="weatherTrack">
                     {% for day in plan.weather.daily %}
                     <div class="daily-item weather-card">
 
@@ -30,7 +34,6 @@
                         </div>
                         
                         <div class="day-icon-container">
-                            <!-- Zastępujemy ładowanie SVG prostą emoji/ikonką wklejoną inline -->
                             <div class="weather-emoji">{{ day.icon_emoji or day.icon or '🌤️' }}</div>
                             <div class="weather-icon-key {% if day.icon_key %}weather-{{ day.icon_key }}{% endif %}" data-weather="{{ day.weathercode or '' }}">{{ day.opis or 'Brak danych' }}</div>
                         </div>
@@ -64,21 +67,18 @@
                     {% endfor %}
                 </div>
 
-                <!-- {% else %}
-                <p>Średnia temperatura: <strong>{{ plan.weather.temperatura }}°C</strong></p>
-                {% if plan.weather.temperatura_min is defined and plan.weather.temperatura_max is defined %}
-                <p>Min / Max: <strong>{{ plan.weather.temperatura_min }}°C</strong> / <strong>{{ plan.weather.temperatura_max }}°C</strong></p>
-                {% endif %}
-                {% if plan.weather.wilgotnosc is defined %}
-                <p>Wilgotność: <strong>{{ plan.weather.wilgotnosc }}%</strong></p>
-                {% endif %}
-                <p>Warunki: {{ plan.weather.opis }}</p>
-                {% if plan.weather.wiatr_kmh is defined %}
-                <p>Prędkość wiatru: {{ plan.weather.wiatr_kmh }} km/h</p>
-                {% endif %}
-                {% endif %} -->
+                <button class="carousel-btn next-btn" id="nextBtn" type="button">❯</button>
+            </div> 
+
+            {% else %}
+                <p>Brak szczegółowych danych pogodowych dla tego terminu.</p>
+            {% endif %}
         </div>
     </div>
+
+              
+        
+    
 
     <div class="info-grid">
         
@@ -167,5 +167,43 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- Skrypty JS usunięte - renderowanie odbywa się po stronie serwera -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const track = document.getElementById('weatherTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Sprawdzamy czy elementy istnieją
+        if (track && prevBtn && nextBtn) {
+            
+            // Funkcja ukrywająca strzałki, jeśli wszystkie dni mieszczą się na ekranie
+            const checkArrows = () => {
+                if (track.scrollWidth <= track.clientWidth) {
+                    prevBtn.style.display = 'none';
+                    nextBtn.style.display = 'none';
+                } else {
+                    // Pokaż tylko na desktopie (na mobile CSS je ukrywa)
+                    if (window.innerWidth > 768) {
+                        prevBtn.style.display = 'flex';
+                        nextBtn.style.display = 'flex';
+                    }
+                }
+            };
+
+            checkArrows();
+            window.addEventListener('resize', checkArrows);
+
+            // Szerokość przewijania (szerokość karty + odstęp)
+            const scrollAmount = 280; 
+
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+        }
+    });
+</script>
 {% endblock %}

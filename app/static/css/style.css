@@ -131,7 +131,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     /* Pamiętaj o dodaniu pliku travel-background.jpg do app/static/images/ */
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('images/travel-background.jpg');
     background-size: cover;
@@ -255,6 +255,16 @@ main {
 /* ========================================= */
 /* WYNIKI PLANU (plan_results.html)    */
 /* ========================================= */
+.container-plan-results {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+}
+
 
 .plan-results {
     padding: 3rem;
@@ -1067,5 +1077,106 @@ footer a:hover {
     box-shadow: 0 4px 10px var(--color-shadow);
 }
 
+
+/* --- Przesuwanie pogody --- */
+
+/* Główny kontener trzymający listę i przyciski */
+.weather-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+/* Lista kart - zmieniamy z Grid na Flex z przewijaniem */
+.daily-weather-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;       /* Włącza przewijanie poziome */
+    scroll-behavior: smooth; /* Płynne animacje przesuwania */
+    flex-wrap: nowrap;      /* Zabrania zawijania do nowej linii */
+    padding: 10px 5px;      /* Margines na cienie */
+    width: 100%;
+    
+    /* Ukrywanie paska przewijania (scrollbar) - estetyka */
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE/Edge */
+}
+
+/* Ukrywanie scrollbara w Chrome/Safari/Opera */
+.daily-weather-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Styl pojedynczej karty w karuzeli */
+.daily-item.weather-card {
+    /* To jest KLUCZOWE: karta nie może się kurczyć */
+    flex: 0 0 auto; 
+    width: 260px; /* Stała szerokość karty */
+    
+    /* Reszta Twoich stylów */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e5e7eb; /* Opcjonalnie delikatna ramka */
+}
+
+/* --- PRZYCISKI (Strzałki) --- */
+.carousel-btn {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    min-width: 40px; /* Żeby się nie zgniótł */
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--color-primary);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+    transition: all 0.2s ease;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.prev-btn {
+    margin-right: 10px;
+}
+
+.next-btn {
+    margin-left: 10px;
+}
+
+/* Na telefonach ukrywamy przyciski - tam wygodniej przesuwać palcem (swipe) */
+@media (max-width: 768px) {
+    .carousel-btn {
+        display: none;
+    }
+    
+    .daily-weather-list {
+        gap: 15px;
+    }
+    
+    .daily-item.weather-card {
+        width: 220px; /* Nieco węższe karty na mobilu */
+    }
+}
+
+.container-plan-results {
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+}
 
 
