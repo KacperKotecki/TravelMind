@@ -28,3 +28,6 @@ __pycache__/
 *.pyo
 *.pyd
 
+travelmind.log
+*.log
+travelmind.log*

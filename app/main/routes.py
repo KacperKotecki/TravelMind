@@ -115,17 +115,7 @@ def index():
             flash("Musisz wpisać miasto LUB wybrać klimat podróży!", "error")
             return render_template("index.html", form=form)
 
-        # --- Reszta logiki (daty, przekierowanie) ---
-        start = form.start_date
-        end = form.end_date
-
-        # Oblicz liczbę dni na podstawie wybranych dat (włącznie)
-        if start and end:
-            delta = (end - start).days
-            days = delta + 1 if delta >= 0 else 1
-        else:
-            # fallback na wypadek braku dat — zachowaj krótki domyśl
-            days = 3
+       
 
         # Zapisz plan do bazy, jeśli użytkownik jest zalogowany
         if current_user.is_authenticated:

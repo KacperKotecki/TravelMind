@@ -16,7 +16,7 @@
             <h1><span class="icon">✈️</span> Travel Mind</h1>
             <p>Wpisz swój cel podróży, a my wygenerujemy spersonalizowany plan, pogodę i szacowany budżet.</p>
             
-            <form method="POST" action="">
+            <form method="POST" action="" autocomplete="off">
                 {{ form.hidden_tag() }}
                 
                 <!-- Sekcja wyboru klimatu (Kafelki) -->
@@ -46,7 +46,7 @@
                 <div class="form-group" style="position:relative;">
                     <label for="city-input-combined">Wpisz **lub** wybierz konkretne miasto z mapy:</label>
                     
-                    {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry", id="city-input-combined") }}
+                    {{ form.city(class="form-control", placeholder="np. Kraków, Rzym lub Tatry", id="city-input-combined", autocomplete="off") }}
                     
                     <button type="button" id="show-map-btn" class="btn btn-secondary" style="width:100%; margin-top: 5px;">
                         Wybierz Lokalizację na Mapie 🗺️
@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     {{ form.date_range.label(for="date_range_picker") }}
-                    {{ form.date_range(class="form-control", id="date_range_picker", placeholder="Wybierz datę początkową i końcową") }}
+                    {{ form.date_range(class="form-control", id="date_range_picker", placeholder="Wybierz datę początkową i końcową", autocomplete="off") }}
                     {% if form.date_range.errors %}
                         <div class="text-danger" style="font-size: 0.875em; margin-top: 0.25rem;">
                             {% for error in form.date_range.errors %}

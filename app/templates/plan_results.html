@@ -93,45 +93,63 @@
         </div>
         
         <!-- 'Ważne obiekty' section removed as requested -->
-        <div class="card nearby-card">
-            <h2><span class="icon">📍</span> Miejsca w pobliżu (30 km)</h2>
-            {% if plan.nearby_places and plan.nearby_places|length > 0 %}
-            <ul class="nearby-list">
-                {% for place in plan.nearby_places %}
-                <li class="nearby-item">
-                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
-                        <strong class="nearby-name">{{ place.name }}</strong>
-                        {% if place.dist_km %}<span class="muted">{{ place.dist_km }} km</span>{% endif %}
-                    </div>
-                    {% if place.category %}
-                    <div class="nearby-cat muted">{{ place.category }}</div>
-                    {% endif %}
-                    {% if place.address %}<div class="nearby-address">{{ place.address }}</div>{% endif %}
-                    {% if place.lat is defined and place.lon is defined and place.lat and place.lon %}
-                    <div style="margin-top:6px;">
-                        <a class="map-link" href="https://www.openstreetmap.org/?mlat={{ place.lat }}&mlon={{ place.lon }}#map=14/{{ place.lat }}/{{ place.lon }}" target="_blank" rel="noopener">Pokaż na mapie</a>
-                    </div>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <p class="info-note">Brak danych o miejscach w pobliżu lub brak klucza Geoapify.</p>
-            {% endif %}
-        </div>
     </div>
     
     <div class="attractions-section">
         <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
         
-        <!-- Kontener na atrakcje ładowane dynamicznie -->
-        <div class="attraction-cards" id="attractions-container">
-            <div class="loading-spinner" style="text-align:center; padding: 2rem;">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Ładowanie atrakcji...</span>
+        <div class="attraction-cards">
+            {% if plan.attractions and plan.attractions|length > 0 %}
+                {% for attraction in plan.attractions %}
+                <div class="attraction-card card">
+                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}">
+                    <label for="cards-{{ loop.index0 }}" class="cards-card">
+                        
+                        {% if attraction.photo_url %}
+                        <div class="attraction-image-container">
+                            <img src="{{ attraction.photo_url }}" alt="{{ attraction.name }}" class="attraction-photo">
+                        </div>
+                        {% elif attraction.icon %}
+                        <div class="attraction-icon-container">
+                            <img src="{{ attraction.icon }}" alt="Ikona" class="attraction-icon">
+                        </div>
+                        {% endif %}
+
+                        <div class="card-header">
+                            <h3 class="attraction-name">{{ attraction.name }}</h3>
+                        </div>
+                        
+                        <div class="card-body">
+                            {% if attraction.address %}
+                            <p class="attraction-address">{{ attraction.address }}</p>
+                            {% endif %}
+                            
+                            <div class="attraction-meta">
+                                {% if attraction.rating %}
+                                <span class="badge rating-badge">⭐ {{ attraction.rating }}</span>
+                                {% endif %}
+                                
+                                {% if attraction.price_level %}
+                                <span class="badge price-badge">
+                                    {% for i in range(attraction.price_level) %}${% endfor %}
+                                </span>
+                                {% endif %}
+                            </div>
+                            
+                            {% if attraction.types %}
+                            <div class="attraction-types">
+                                {% for type in attraction.types[:4] %}
+                                <span class="badge type-badge" style="text-transform:capitalize;">{{ type }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </label>
                 </div>
-                <p>Szukam najlepszych atrakcji...</p>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p>Brak danych o atrakcjach dla tego miasta.</p>
+            {% endif %}
         </div>
     </div>
 <div class="save">
@@ -146,90 +164,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const city = "{{ plan.query.city }}";
-    const container = document.getElementById('attractions-container');
-    
-    if (!city) return;
-
-    // Poprawiony URL: blueprint 'plans' jest zarejestrowany pod prefiksem '/plan' (liczba pojedyncza)
-    fetch(`/plan/api/attractions/${encodeURIComponent(city)}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Błąd sieci lub serwera');
-            }
-            return response.json();
-        })
-        .then(data => {
-            container.innerHTML = ''; // Wyczyść spinner
-            
-            if (data.attractions && data.attractions.length > 0) {
-                data.attractions.forEach((attraction, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'attraction-card card';
-                    
-                    // Logika wyświetlania obrazka: Zdjęcie > Ikona > Brak
-                    let imageHtml = '';
-                    if (attraction.photo_url) {
-                        imageHtml = `<div class="attraction-image-container">
-                                        <img src="${attraction.photo_url}" alt="${attraction.name}" class="attraction-photo">
-                                     </div>`;
-                    } else if (attraction.icon) {
-                        imageHtml = `<div class="attraction-icon-container">
-                                        <img src="${attraction.icon}" alt="Ikona" class="attraction-icon">
-                                     </div>`;
-                    }
-                    
-                    let ratingHtml = '';
-                    if (attraction.rating) {
-                        ratingHtml = `<span class="badge rating-badge">⭐ ${attraction.rating}</span>`;
-                    }
-                    
-                    let priceHtml = '';
-                    if (attraction.price_level) {
-                        const dollars = '$'.repeat(attraction.price_level);
-                        priceHtml = `<span class="badge price-badge">${dollars}</span>`;
-                    }
-                    
-                    let typesHtml = '';
-                    if (attraction.types && attraction.types.length > 0) {
-                        const types = attraction.types.slice(0, 4).map(t => {
-                            const cleanType = t.replace('_', ' ');
-                            return `<span class="badge type-badge" style="text-transform:capitalize;">${cleanType}</span>`;
-                        }).join(' ');
-                        typesHtml = `<div class="attraction-types">${types}</div>`;
-                    }
-
-                    // Usunięto generowanie linku do OpenStreetMap
-
-                    card.innerHTML = `
-                        <input class="card-checkbox" id="cards-${index}" name="cards" type="checkbox" value="${attraction.name}">
-                        <label for="cards-${index}" class="cards-card">
-                        ${imageHtml}
-                        <div class="card-header">
-                            <h3 class="attraction-name">${attraction.name}</h3>
-                        </div>
-                        <div class="card-body">
-                            ${attraction.address ? `<p class="attraction-address">${attraction.address}</p>` : ''}
-                            <div class="attraction-meta">
-                                ${ratingHtml}
-                                ${priceHtml}
-                            </div>
-                            ${typesHtml}
-                        </div>
-                        </label>
-                    `;
-                    container.appendChild(card);
-                });
-            } else {
-                container.innerHTML = '<p>Brak danych o atrakcjach dla tego miasta.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Błąd pobierania atrakcji:', error);
-            container.innerHTML = '<p class="text-danger">Nie udało się załadować atrakcji. Spróbuj odświeżyć stronę.</p>';
-        });
-});
-</script>
+<!-- Skrypty JS usunięte - renderowanie odbywa się po stronie serwera -->
 {% endblock %}
