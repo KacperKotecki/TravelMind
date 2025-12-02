@@ -34,4 +34,27 @@ def create_app(config_name: str):
     from .plans import plans as plans_blueprint
     app.register_blueprint(plans_blueprint, url_prefix='/plan')
 
+    # Konfiguracja logowania do pliku
+    import logging
+    import os
+    from logging.handlers import RotatingFileHandler
+
+    if not app.debug and not app.testing:
+        # W produkcji logujemy tylko błędy/ostrzeżenia, chyba że chcemy inaczej
+        pass
+
+    # Zawsze loguj do pliku w trybie deweloperskim (i produkcyjnym też warto)
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+    
+    file_handler = RotatingFileHandler('logs/travelmind.log', maxBytes=10240, backupCount=10)
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+    ))
+    file_handler.setLevel(logging.INFO)
+    app.logger.addHandler(file_handler)
+
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('TravelMind startup')
+
     return app

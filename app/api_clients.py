@@ -4,6 +4,7 @@ import unicodedata
 import requests
 from functools import lru_cache
 from flask import current_app
+from .constans import WEATHER_CODES_PL, PLACE_TYPES_PL
 
 
 def _weather_code_to_polish(code: int) -> str:
@@ -11,37 +12,7 @@ def _weather_code_to_polish(code: int) -> str:
 
     Źródło kodów: https://open-meteo.com/en/docs#weathercode
     """
-    mapping = {
-        0: "Bezchmurnie",
-        1: "Częściowo słonecznie",
-        2: "Częściowo pochmurnie",
-        3: "Pochmurnie",
-        45: "Mgła",
-        48: "Osadzanie mroźnej mgły",
-        51: "Słabe mżawki",
-        53: "Umiarkowane mżawki",
-        55: "Gwałtowne mżawki",
-        56: "Słabe mżawki (zamarzające)",
-        57: "Gwałtowne mżawki (zamarzające)",
-        61: "Lekki deszcz",
-        63: "Umiarkowany deszcz",
-        65: "Silny deszcz",
-        66: "Słaby deszcz (zamarzający)",
-        67: "Silny deszcz (zamarzający)",
-        71: "Lekki śnieg",
-        73: "Umiarkowany śnieg",
-        75: "Silny śnieg",
-        77: "Opady śniegu (grudki)",
-        80: "Przelotne opady deszczu",
-        81: "Częste przelotne opady deszczu",
-        82: "Silne przelotne opady deszczu",
-        85: "Przelotne opady śniegu",
-        86: "Silne przelotne opady śniegu",
-        95: "Burze",
-        96: "Burze z gradem (słabe)",
-        99: "Burze z gradem (silne)",
-    }
-    return mapping.get(code, "Nieznane warunki pogodowe")
+    return WEATHER_CODES_PL.get(code, "Nieznane warunki pogodowe")
 
 
 def _format_date_val(val):
@@ -418,9 +389,19 @@ def get_coordinates_for_city(city: str) -> dict | None:
         return None
 
 
-def get_attractions(city: str, limit: int = 5) -> list | None:
-    """
-    Pobiera listę atrakcji dla danego miasta z Google Places API.
+GOOGLE_PLACES_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
+
+
+def get_attractions(city: str, limit: int = 5) -> list[dict] | None:
+    """Pobiera listę atrakcji dla danego miasta z Google Places API.
+
+    Args:
+        city: Nazwa miasta.
+        limit: Maksymalna liczba atrakcji do pobrania (domyślnie 5).
+
+    Returns:
+        Lista słowników z danymi atrakcji (nazwa, adres, ocena, zdjęcie itp.)
+        lub None w przypadku błędu.
     """
     api_key = current_app.config.get("GOOGLE_PLACES_API_KEY")
     if not api_key:
@@ -428,11 +409,8 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
         return None
     current_app.logger.info("Klucz API Google Places został wczytany.")
 
-    base_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
-    query = f"atrakcje w {city}"
-
     params = {
-        "query": query,
+        "query": f"atrakcje w {city}",
         "key": api_key,
         "language": "pl",
     }
@@ -441,234 +419,85 @@ def get_attractions(city: str, limit: int = 5) -> list | None:
     )
 
     try:
-        response = requests.get(base_url, params=params, timeout=10)
+        response = requests.get(GOOGLE_PLACES_URL, params=params, timeout=20)
         current_app.logger.info(
-            f"Otrzymano odpowiedź od Google Places API. Status: {response.status_code}"
+            f"Otrzymano odpowiedź od Google Places API. Status HTTP: {response.status_code}"
         )
         response.raise_for_status()
         data = response.json()
+        
+        # Sprawdź status wewnątrz odpowiedzi JSON (Google API zwraca 200 nawet przy błędach logicznych)
+        api_status = data.get("status")
+        if api_status != "OK":
+            error_msg = data.get("error_message", "Brak szczegółów")
+            current_app.logger.error(f"Google Places API zwróciło błąd logiczny. Status: {api_status}, Komunikat: {error_msg}")
+            # Jeśli ZERO_RESULTS, to nie jest błąd krytyczny, ale warto zalogować
+            if api_status == "ZERO_RESULTS":
+                current_app.logger.info(f"Brak wyników dla zapytania: {params['query']}")
+                return []
+            return None
+
         current_app.logger.debug(f"Surowa odpowiedź z Google Places API: {data}")
 
         results = data.get("results", [])
-
         attractions = []
+
         for place in results[:limit]:
-            # Spróbuj wydobyć współrzędne jeśli są dostępne (geometry.location)
-            lat = None
-            lon = None
-            geom = place.get("geometry") or {}
-            loc = geom.get("location") if geom else None
-            if loc:
-                lat = loc.get("lat")
-                lon = loc.get("lng")
-
-            # Obsługa zdjęć - pobieramy pierwsze zdjęcie jako główne
-            photo_url = None
-            photos = place.get("photos")
-            if photos and len(photos) > 0:
-                photo_ref = photos[0].get("photo_reference")
-                if photo_ref:
-                    # Budujemy URL do zdjęcia (max width 400px dla optymalizacji transferu)
-                    photo_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={photo_ref}&key={api_key}"
-
-            attractions.append(
-                {
-                    "name": place.get("name"),
-                    "address": place.get("formatted_address"),
-                    "rating": place.get("rating"),
-                    "price_level": place.get("price_level"),
-                    "types": place.get("types", []),
-                    "icon": place.get("icon"),
-                    "photo_url": photo_url,
-                    "lat": lat,
-                    "lon": lon,
-                }
-            )
+            attractions.append(_parse_place_data(place, api_key))
 
         current_app.logger.info(
-            f"Znaleziono i przetworzono {len(attractions)} atrakcji."
+            f"Prawidłowy klucz API. Pobrano {len(attractions)} obiektów z zapytania do API dla miasta: {city}."
         )
         return attractions
 
     except requests.exceptions.RequestException as e:
-        current_app.logger.error(f"Błąd podczas zapytania do Google Places API: {e}")
+        current_app.logger.error(f"Błąd sieciowy/HTTP podczas zapytania do Google Places API: {e}")
         return None
 
 
-def get_nearby_places(lat: float, lon: float, radius_km: int = 30, limit: int = 10) -> list | None:
-    """
-    Pobiera listę punktów zainteresowania (POI) w promieniu `radius_km` od podanych współrzędnych.
-    Korzysta najpierw z Geoapify Places API jeśli dostępny klucz, w przeciwnym razie zwraca None.
+def _parse_place_data(place: dict, api_key: str) -> dict:
+    """Pomocnicza funkcja do ekstrakcji danych pojedynczego miejsca."""
+    # Współrzędne
+    geom = place.get("geometry", {})
+    loc = geom.get("location", {})
+    lat = loc.get("lat") if loc else None
+    lon = loc.get("lng") if loc else None
 
-    Zwraca listę słowników: {name, dist_km, category, address, lat, lon, lonlat}
-    """
-    api_key = current_app.config.get("GEOAPIFY_API_KEY")
-    radius_m = int(radius_km * 1000)
-
-    # Jeśli mamy klucz Geoapify, użyjemy ich API (bardziej kompletne wyniki)
-    if api_key:
-        base = "https://api.geoapify.com/v2/places"
-        try:
-            # Geoapify expects filter circle in format "circle:lon,lat,radius"
-            filter_str = f"circle:{lon},{lat},{radius_m}"
-            # Szukamy parków, terenów naturalnych, zbiorników wodnych i atrakcji turystycznych
-            # Rozszerzone kategorie: parki, natura, turystyka, muzea, zabytki itp.
-            categories = (
-                "leisure.park,natural,tourism,leisure,water,landuse,"
-                "tourism.museum,tourism.attraction,tourism.viewpoint,historic"
+    # Zdjęcie
+    photo_url = None
+    photos = place.get("photos", [])
+    if photos:
+        photo_ref = photos[0].get("photo_reference")
+        if photo_ref:
+            photo_url = (
+                f"https://maps.googleapis.com/maps/api/place/photo"
+                f"?maxwidth=400&photo_reference={photo_ref}&key={api_key}"
             )
-            params = {
-                "filter": filter_str,
-                "limit": limit,
-                "categories": categories,
-                "apiKey": api_key,
-                "lang": "pl",
-            }
 
-            resp = requests.get(base, params=params, timeout=10)
-            resp.raise_for_status()
-            data = resp.json()
-            features = data.get("features") or []
-            results = []
-            for f in features:
-                props = f.get("properties", {})
-                # distance may be provided in meters as 'distance', else compute later
-                dist_m = props.get("distance")
-                if dist_m is None:
-                    dist_km = None
-                else:
-                    try:
-                        dist_km = round(float(dist_m) / 1000.0, 1)
-                    except Exception:
-                        dist_km = None
+    # Mapowanie typów miejsc na język polski
+    raw_types = place.get("types", [])
+    translated_types = []
+    for t in raw_types:
+        pl_name = PLACE_TYPES_PL.get(t)
+        if pl_name:  # Dodaj tylko jeśli mamy tłumaczenie i nie jest None
+            translated_types.append(pl_name)
 
-                # wymagamy sensownej nazwy (props.name lub props['name:pl'] itp.) — bez nazwy pomijamy wynik
-                name = props.get("name") or props.get("name:pl") or props.get("name:en")
-                if not name or not str(name).strip():
-                    # pomijamy nieoznaczone obiekty (np. viewpoint bez nazwy)
-                    continue
+    # Jeśli nie udało się przetłumaczyć żadnego typu, użyj pierwszego surowego (fallback)
+    # lub zostaw pustą listę, zależnie od preferencji. Tutaj: fallback do pierwszego surowego.
+    if not translated_types and raw_types:
+        translated_types.append(raw_types[0].replace("_", " ").capitalize())
 
-                results.append({
-                    "name": name,
-                    "dist_km": dist_km,
-                    "category": props.get("categories"),
-                    "address": props.get("formatted") or props.get("address_line2") or props.get("address_line1"),
-                    "lat": props.get("lat"),
-                    "lon": props.get("lon"),
-                })
-
-            # jeśli mamy dystanse, posortuj rosnąco
-            try:
-                results = sorted(results, key=lambda r: (r.get("dist_km") is None, r.get("dist_km") or 0))
-            except Exception:
-                pass
-
-            return results
-
-        except requests.exceptions.RequestException as e:
-            current_app.logger.error(f"Błąd podczas zapytania Geoapify Places API: {e}")
-            # Nie zwracamy None od razu — spróbuj fallback do Overpass poniżej
-
-    # Fallback: jeśli brak klucza Geoapify albo wystąpił błąd, użyj Overpass API (OpenStreetMap) — nie wymaga klucza
-    try:
-        current_app.logger.info("Używam Overpass (OpenStreetMap) jako fallback dla pobliskich miejsc.")
-        overpass_url = "https://overpass-api.de/api/interpreter"
-        # Zestaw tagów przydatnych dla parków/natura/woda/turystyka
-        # Zapytanie pobiera node/way/relation w promieniu radius_m
-        q_parts = [
-            f"node(around:{radius_m},{lat},{lon})[leisure=park];",
-            f"way(around:{radius_m},{lat},{lon})[leisure=park];",
-            f"relation(around:{radius_m},{lat},{lon})[leisure=park];",
-            f"node(around:{radius_m},{lat},{lon})[natural~\"water|wood|coastline|wetland\"];",
-            f"way(around:{radius_m},{lat},{lon})[natural~\"water|wood|coastline|wetland\"];",
-            f"relation(around:{radius_m},{lat},{lon})[natural~\"water|wood|coastline|wetland\"];",
-            f"node(around:{radius_m},{lat},{lon})[tourism~\"viewpoint|attraction|museum|zoo\"];",
-            f"way(around:{radius_m},{lat},{lon})[tourism~\"viewpoint|attraction|museum|zoo\"];",
-            f"relation(around:{radius_m},{lat},{lon})[tourism~\"viewpoint|attraction|museum|zoo\"];",
-            f"node(around:{radius_m},{lat},{lon})[waterway];",
-            f"way(around:{radius_m},{lat},{lon})[waterway];",
-        ]
-        query = "[out:json][timeout:25];(" + "".join(q_parts) + ");out center %s;" % ("%d" % limit)
-
-        resp = requests.post(overpass_url, data={'data': query}, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
-        elements = data.get('elements', [])
-        results = []
-        seen = set()
-        for el in elements:
-            tags = el.get('tags') or {}
-            # Wymagamy pola 'name' (lub name:pl / official_name). Jeśli brak nazwy, pomiń obiekt.
-            name = tags.get('name') or tags.get('name:pl') or tags.get('official_name')
-            if not name or not str(name).strip():
-                # pomijamy obiekty bez nazwy (np. viewpoint bez nazwy)
-                continue
-
-            # compute coordinates (use center for ways/relations)
-            if el.get('type') == 'node':
-                el_lat = el.get('lat')
-                el_lon = el.get('lon')
-            else:
-                center = el.get('center') or {}
-                el_lat = center.get('lat')
-                el_lon = center.get('lon')
-
-            if el_lat is None or el_lon is None:
-                continue
-
-            # distance in km
-            try:
-                from math import radians, sin, cos, sqrt, atan2
-
-                R = 6371.0
-                dlat = radians(el_lat - lat)
-                dlon = radians(el_lon - lon)
-                a = sin(dlat / 2) ** 2 + cos(radians(lat)) * cos(radians(el_lat)) * sin(dlon / 2) ** 2
-                c = 2 * atan2(sqrt(a), sqrt(1 - a))
-                dist_km = round(R * c, 1)
-            except Exception:
-                dist_km = None
-
-            key = (name, round(el_lat, 5), round(el_lon, 5))
-            if key in seen:
-                continue
-            seen.add(key)
-
-            category = None
-            if tags.get('leisure'):
-                category = tags.get('leisure')
-            elif tags.get('natural'):
-                category = tags.get('natural')
-            elif tags.get('tourism'):
-                category = tags.get('tourism')
-            elif tags.get('waterway'):
-                category = tags.get('waterway')
-
-            address = None
-            if tags.get('addr:street'):
-                address = tags.get('addr:street')
-                if tags.get('addr:housenumber'):
-                    address += ' ' + tags.get('addr:housenumber')
-            results.append({
-                'name': name,
-                'dist_km': dist_km,
-                'category': category,
-                'address': address,
-                'lat': el_lat,
-                'lon': el_lon,
-            })
-
-        # sort and limit
-        try:
-            results = sorted(results, key=lambda r: (r.get('dist_km') is None, r.get('dist_km') or 0))[:limit]
-        except Exception:
-            results = results[:limit]
-
-        return results
-
-    except requests.exceptions.RequestException as e:
-        current_app.logger.error(f"Błąd podczas zapytania Overpass API: {e}")
-        return None
+    return {
+        "name": place.get("name"),
+        "address": place.get("formatted_address"),
+        "rating": place.get("rating"),
+        "price_level": place.get("price_level"),
+        "types": translated_types, 
+        "icon": place.get("icon"),
+        "photo_url": photo_url,
+        "lat": lat,
+        "lon": lon,
+    }
 
 
 def get_exchange_rate(base_currency: str, target_currency: str = "PLN") -> float | None:
