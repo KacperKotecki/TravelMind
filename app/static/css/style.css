@@ -1038,3 +1038,34 @@ footer a:hover {
     font-size: 1.1rem;
     margin: 4px;
   }
+
+  .plans-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+  }
+.plans-container a, .account-container a, .auth-container a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+.plans-container a:hover, .account-container a:hover, .auth-container a:hover {
+    color: var(--color-secondary);
+  }
+
+.account-container, .auth-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+}
+
+
+
