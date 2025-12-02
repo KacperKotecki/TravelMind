@@ -37,33 +37,24 @@ def load_destinations():
 def index():
     form = PlanGeneratorForm()
     if form.validate_on_submit():
-        # Pobierz dane z formularza
         city_input = form.city.data
         vibes_input = form.vibes.data
         style = form.travel_style.data
         
-        # Ładujemy bazę miast
         destinations = load_destinations()
         
-        # --- Przygotowanie dat i dni (wspólne dla obu ścieżek) ---
-        # start_date i end_date są ustawiane w metodzie validate_date_range formularza jako atrybuty instancji,
-        # a nie jako pola WTForms, więc nie mają atrybutu .data
         start = form.start_date
         end = form.end_date
         
-        # Oblicz liczbę dni
         if start and end:
             delta = (end - start).days
             days = delta + 1 if delta >= 0 else 1
         else:
             days = 3
             
-        # Formatowanie dat do stringów (dla URL i szablonu)
         start_iso = start.isoformat() if start else None
         end_iso = end.isoformat() if end else None
 
-        # Krok 6: Logika decyzyjna (Routing)
-        
         # Ścieżka A: Użytkownik wpisał miasto
         if city_input and city_input.strip():
             normalized_city = normalize_city_name(city_input, destinations)
@@ -75,12 +66,28 @@ def index():
                 selected_city_name = city_input.strip()
                 cost_multiplier = 1.2
             
-            # Parametry URL
+            # ZAPISZ PLAN DO BAZY (zalogowany użytkownik)
+            if current_user.is_authenticated:
+                plan = GeneratedPlan(
+                    city=selected_city_name,
+                    days=days,
+                    travel_style=style,
+                    data_start=start,
+                    data_end=end,
+                    user_id=current_user.id
+                )
+                try:
+                    db.session.add(plan)
+                    db.session.commit()
+                    current_app.logger.info(f"Plan saved for user {current_user.id}: {selected_city_name}")
+                except Exception as e:
+                    db.session.rollback()
+                    current_app.logger.exception(f"Error saving plan: {e}")
+            
             params = {"cost_mult": cost_multiplier}
             if start_iso: params["start"] = start_iso
             if end_iso: params["end"] = end_iso
             
-            # Współrzędne z autocomplete
             lat = request.form.get("city_lat")
             lon = request.form.get("city_lon")
             if lat: params["lat"] = lat
@@ -92,11 +99,9 @@ def index():
         
         # Ścieżka B: Użytkownik wybrał kafelki (i NIE wpisał miasta) -> SUGESTIE
         elif vibes_input:
-            # Pobieramy pogrupowane rekomendacje
             grouped_suggestions = get_grouped_recommendations(vibes_input, destinations, budget_style=style)
             
             if grouped_suggestions:
-                # Renderujemy nowy widok sugestii
                 return render_template(
                     "suggestions.html",
                     grouped_suggestions=grouped_suggestions,
@@ -108,59 +113,15 @@ def index():
                 )
             else:
                 flash("Niestety nie znaleźliśmy idealnych miast dla wybranych kryteriów. Spróbuj zmienić filtry.", "warning")
-                return render_template("index.html", form=form)
         
         # Walidacja: Ani miasto, ani kafelki nie wybrane
         else:
             flash("Musisz wpisać miasto LUB wybrać klimat podróży!", "error")
-            return render_template("index.html", form=form)
-
-       
-
-        # Zapisz plan do bazy, jeśli użytkownik jest zalogowany
-        if current_user.is_authenticated:
-            plan = GeneratedPlan(
-                city=city,
-                days=days,
-                travel_style=style,
-                data_start=start,
-                data_end=end,
-                user_id=current_user.id
-            )
-            try:
-                db.session.add(plan)
-                db.session.commit()
-            except Exception as e:
-                db.session.rollback()
-                current_app.logger.error(f"Błąd zapisywania planu: {e}")
-
-        # Dołącz daty jako parametry zapytania, aby widok planów mógł pobrać pogodę dla zakresu
-        params = {}
-        try:
-            if start:
-                params["start"] = start.isoformat()
-            if end:
-                params["end"] = end.isoformat()
-            # jeśli front-end podał współrzędne (autocomplete), dołącz je
-            lat = request.form.get("city_lat")
-            lon = request.form.get("city_lon")
-            if lat:
-                params["lat"] = lat
-            if lon:
-                params["lon"] = lon
-            
-            # Przekazujemy mnożnik kosztów jako parametr URL
-            params["cost_mult"] = cost_multiplier
-            
-        except Exception:
-            # jeśli start/end nie są obiektami daty, pomiń
-            pass
-            
-        return redirect(
-            url_for("plans.show_plan", city=selected_city_name, days=days, style=style, **params)
-        )
+        
+        return render_template("index.html", form=form)
+    
     return render_template("index.html", form=form)
-
+# ...existing code...
 
 @main.route("/api/geocode")
 def api_geocode():
@@ -227,6 +188,7 @@ def login():
     return render_template("login.html", form=form)
 
 
+# ...existing code...
 @main.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -249,9 +211,13 @@ def register():
             return redirect(url_for('main.login'))
         except Exception as e:
             db.session.rollback()
-            flash('Wystąpił błąd podczas rejestracji. Spróbuj ponownie.', 'danger')
+            # Log full stacktrace to log file and console
+            current_app.logger.exception("Registration error")
+            # In development show the error message to help debugging
+            flash(f'Wystąpił błąd podczas rejestracji: {e}', 'danger')
     
     return render_template("register.html", form=form)
+# ...existing code...
 @main.route('/logout')
 def logout():
     logout_user()
