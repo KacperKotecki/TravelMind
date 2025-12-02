@@ -102,7 +102,7 @@
             {% if plan.attractions and plan.attractions|length > 0 %}
                 {% for attraction in plan.attractions %}
                 <div class="attraction-card card">
-                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}">
+                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}" form="save-form">
                     <label for="cards-{{ loop.index0 }}" class="cards-card">
                         
                         {% if attraction.photo_url %}
@@ -153,7 +153,10 @@
         </div>
     </div>
 <div class="save">
-        <button class="zapisz btn btn-primary"><span class="icon">💾</span> Zapisz plan</button>
+    <form id="save-form" method="POST" action="{{ url_for('plans.save_plan') }}">
+        <input type="hidden" name="plan_data" value='{{ plan | tojson }}'>
+        <button type="submit" class="zapisz btn btn-primary"><span class="icon">💾</span> Zapisz plan</button>
+    </form>
 </div>
 
     <div class="action-buttons">
