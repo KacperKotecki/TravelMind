@@ -267,7 +267,32 @@ def logout():
     logout_user()
     flash('Zostałeś wylogowany.', 'info')
     return redirect(url_for('main.login'))
+@main.route('/sync-auth-user', methods=['POST'])
+def sync_auth_user():
+    """
+    Oczekuje JSON: { "email": "user@example.com", "supabase_uid": "uuid-string" }
+    Znajduje lokalnego usera po email i ustawia auth_uuid = supabase_uid.
+    Zwraca 200 OK lub odpowiedni błąd.
+    """
+    data = request.get_json() or {}
+    email = data.get('email')
+    supabase_uid = data.get('supabase_uid')
+    if not email or not supabase_uid:
+        return jsonify({"error": "email and supabase_uid required"}), 400
 
+    user = User.query.filter_by(email=email.lower()).first()
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+
+    user.auth_uuid = supabase_uid
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Failed to set auth_uuid: {e}")
+        return jsonify({"error": "db error"}), 500
+
+    return jsonify({"status": "ok"}), 200
 @main.route('/account')
 @login_required
 def account():

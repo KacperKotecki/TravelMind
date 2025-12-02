@@ -4,12 +4,14 @@ from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer
 from flask import current_app
 from . import db # Zostanie zaimportowane w kolejnym kroku
-
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
 
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    auth_uuid=db.Column(UUID(as_uuid=True), unique=True, nullable=True, default=None)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
