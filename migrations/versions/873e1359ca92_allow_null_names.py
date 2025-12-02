@@ -18,14 +18,15 @@ depends_on = None
 
 
 def upgrade():
-    # Usuń indeks tylko dla DB, które go wspierają (np. PostgreSQL)
-    with op.batch_alter_table('generated_plans', schema=None) as batch_op:
-        if op.get_context().dialect.name != 'sqlite':
-            try:
-                batch_op.drop_index(batch_op.f('idx_generated_plans_user_id'))
-            except Exception:
-                pass
+    # Bezpiecznie dodaj kolumnę auth_uuid (jeśli nie istnieje)
+    try:
+        with op.batch_alter_table('users', schema=None) as batch_op:
+            batch_op.add_column(sa.Column('auth_uuid', sa.String(length=255), nullable=True))
+    except Exception:
+        # jeśli kolumna już istnieje lub DB nie pozwala, pomijamy
+        pass
 
+    # Dostosuj pola first_name/last_name/password_hash
     with op.batch_alter_table('users', schema=None) as batch_op:
         batch_op.alter_column('first_name',
                existing_type=sa.VARCHAR(length=100),
@@ -38,26 +39,46 @@ def upgrade():
                type_=sa.String(length=255),
                existing_nullable=False)
 
-        # Operacje na indeksach/constraintach tylko poza SQLite
-        if op.get_context().dialect.name != 'sqlite':
+    # Operacje na indeksach/constraintach tylko dla DB obsługujących je (np. PostgreSQL)
+    if op.get_context().dialect.name != 'sqlite':
+        with op.batch_alter_table('generated_plans', schema=None) as batch_op:
+            try:
+                batch_op.drop_index(batch_op.f('idx_generated_plans_user_id'))
+            except Exception:
+                pass
+
+        with op.batch_alter_table('users', schema=None) as batch_op:
             try:
                 batch_op.drop_index(batch_op.f('idx_users_auth_uuid'))
             except Exception:
                 pass
-            # Nadaj nazwę constraintowi — Alembic wymaga nazwy przy tworzeniu/droppingu
-            batch_op.create_unique_constraint('uq_users_auth_uuid', ['auth_uuid'])
+            # Nadaj jawnie nazwę constraintowi
+            try:
+                batch_op.create_unique_constraint('uq_users_auth_uuid', ['auth_uuid'])
+            except Exception:
+                pass
 
 
 def downgrade():
-    with op.batch_alter_table('users', schema=None) as batch_op:
-        # Usuń nazwany constraint tylko jeśli istnieje (poza SQLite)
-        if op.get_context().dialect.name != 'sqlite':
+    # Cofnięcie zmian; zachowujemy ostrożność
+    if op.get_context().dialect.name != 'sqlite':
+        with op.batch_alter_table('users', schema=None) as batch_op:
             try:
                 batch_op.drop_constraint('uq_users_auth_uuid', type_='unique')
             except Exception:
                 pass
-            batch_op.create_index(batch_op.f('idx_users_auth_uuid'), ['auth_uuid'], unique=False)
+            try:
+                batch_op.create_index(batch_op.f('idx_users_auth_uuid'), ['auth_uuid'], unique=False)
+            except Exception:
+                pass
 
+        with op.batch_alter_table('generated_plans', schema=None) as batch_op:
+            try:
+                batch_op.create_index(batch_op.f('idx_generated_plans_user_id'), ['user_id'], unique=False)
+            except Exception:
+                pass
+
+    with op.batch_alter_table('users', schema=None) as batch_op:
         batch_op.alter_column('password_hash',
                existing_type=sa.String(length=255),
                type_=sa.VARCHAR(length=128),
@@ -68,11 +89,4 @@ def downgrade():
         batch_op.alter_column('first_name',
                existing_type=sa.VARCHAR(length=100),
                nullable=False)
-
-    with op.batch_alter_table('generated_plans', schema=None) as batch_op:
-        if op.get_context().dialect.name != 'sqlite':
-            try:
-                batch_op.create_index(batch_op.f('idx_generated_plans_user_id'), ['user_id'], unique=False)
-            except Exception:
-                pass
 # ...existing code...
