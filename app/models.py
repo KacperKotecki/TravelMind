@@ -62,3 +62,15 @@ class GeneratedPlan(db.Model):
     
     def __repr__(self):
         return f'<GeneratedPlan for {self.city} ({self.days} days)>'
+class Destination(db.Model):
+    __tablename__ = 'destinations'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    country = db.Column(db.String(100), nullable=False)
+    tags = db.Column(db.JSON) # Przechowujemy listę tagów jako JSON
+    cost_tier = db.Column(db.String(50))
+    cost_multiplier = db.Column(db.Float)
+    image_keyword = db.Column(db.String(255))
+
+    def __repr__(self):
+        return f'<Destination {self.name}, {self.country}>'
