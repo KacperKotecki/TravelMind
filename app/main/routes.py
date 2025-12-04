@@ -59,34 +59,23 @@ def index():
         if city_input and city_input.strip():
             normalized_city = normalize_city_name(city_input, destinations)
             
+            # Wprowadzamy zmienne dla nazwy miasta i kraju
             if normalized_city:
                 selected_city_name = normalized_city['name']
                 cost_multiplier = normalized_city.get('cost_multiplier', 1.2)
+                city_country = normalized_city.get('country') # <--- Pobieramy kraj
             else:
                 selected_city_name = city_input.strip()
                 cost_multiplier = 1.2
+                city_country = None
             
-            # ZAPISZ PLAN DO BAZY (zalogowany użytkownik)
-            if current_user.is_authenticated:
-                plan = GeneratedPlan(
-                    city=selected_city_name,
-                    days=days,
-                    travel_style=style,
-                    data_start=start,
-                    data_end=end,
-                    user_id=current_user.id
-                )
-                try:
-                    db.session.add(plan)
-                    db.session.commit()
-                    current_app.logger.info(f"Plan saved for user {current_user.id}: {selected_city_name}")
-                except Exception as e:
-                    db.session.rollback()
-                    current_app.logger.exception(f"Error saving plan: {e}")
+            # --- USUNIĘTO BLOK AUTOMATYCZNEGO ZAPISU DO BAZY DANYCH ---
             
             params = {"cost_mult": cost_multiplier}
             if start_iso: params["start"] = start_iso
             if end_iso: params["end"] = end_iso
+            # --- Dodajemy country do parametrów URL ---
+            if city_country: params["country"] = city_country
             
             lat = request.form.get("city_lat")
             lon = request.form.get("city_lon")

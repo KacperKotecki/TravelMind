@@ -1,54 +1,96 @@
 from flask import abort, jsonify, render_template, request, flash, redirect, url_for
-from flask_login import current_user
+from flask_login import current_user, login_required
 import json
-import os
 from datetime import datetime
 from . import plans
 from ..services import get_plan_details
 from ..api_clients import get_attractions
+from app.models import GeneratedPlan, db
 
-
+# -------------------------------------------------------------------------
+# 1. GENEROWANIE NOWEGO PLANU (Dla niezapisanych)
+# -------------------------------------------------------------------------
 @plans.route("/<string:city>/<int:days>/<string:style>")
 def show_plan(city, days, style):
-    # Pobierz ewentualne daty z query params (start,end) w formacie YYYY-MM-DD
+    # Pobieramy parametry z URL
     start = request.args.get("start")
     end = request.args.get("end")
-    # Przytnij nazwę miasta na wypadek przypadkowych spacji/znaków
-    if isinstance(city, str):
-        city = city.strip()
-    # Pobierz współrzędne jeśli przekazano z formularza/autocomplete
+    country = request.args.get("country")
     lat = request.args.get("lat")
     lon = request.args.get("lon")
-    # Pobierz mnożnik kosztów (domyślnie 1.2 jeśli brak)
+    
+    if isinstance(city, str):
+        city = city.strip()
+
     try:
         cost_mult = float(request.args.get("cost_mult", 1.2))
     except (ValueError, TypeError):
         cost_mult = 1.2
 
+    # Generujemy plan (pogoda, atrakcje z API)
     plan_data = get_plan_details(
         city, days, style, start_date=start, end_date=end, lat=lat, lon=lon, cost_mult=cost_mult
     )
+    
     if plan_data.get("error"):
-        # Prosta obsługa błędów z serwisu
         abort(404, description=plan_data["error"])
-    return render_template("plan_results.html", plan=plan_data)
+    
+    # Przekazujemy kraj, by nie zgubił się przy zapisie
+    if country:
+        plan_data['query']['country'] = country
+    
+    # is_saved=False -> Pokazujemy przycisk "Zapisz plan"
+    return render_template("plan_results.html", plan=plan_data, is_saved=False)
 
 
-@plans.route("/api/attractions/<string:city>")
-def api_get_attractions(city):
-    """API endpoint to fetch attractions for a given city."""
-    attractions_data = get_attractions(city, limit=10)  # Użyjmy rozsądnego limitu
+# -------------------------------------------------------------------------
+# 2. PODGLĄD ZAPISANEGO PLANU (Z bazy danych) - TEGO BRAKOWAŁO
+# -------------------------------------------------------------------------
+@plans.route("/view/<int:plan_id>")
+@login_required
+def view_saved_plan(plan_id):
+    # Pobieramy plan z bazy
+    saved_plan = GeneratedPlan.query.get_or_404(plan_id)
+    
+    # Zabezpieczenie: czy to plan tego użytkownika?
+    if saved_plan.user_id != current_user.id:
+        abort(403) # Brak dostępu
 
-    if attractions_data is None:
-        # Błąd po stronie serwera lub problem z API Google
-        return jsonify({"error": "Nie udało się pobrać danych o atrakcjach."}), 500
+    # Odtwarzamy strukturę danych dla szablonu
+    # W attractions_data są już TYLKO TE atrakcje, które użytkownik wybrał przy zapisie
+    plan_data = {
+        "query": {
+            "city": saved_plan.city,
+            "days": saved_plan.days,
+            "style": saved_plan.travel_style,
+            "country": saved_plan.country,
+            "start": saved_plan.data_start.isoformat() if saved_plan.data_start else None,
+            "end": saved_plan.data_end.isoformat() if saved_plan.data_end else None
+        },
+        "cost": {
+            "total_pln": saved_plan.total_cost_pln,
+            "total_local": saved_plan.total_cost_local_currency,
+            "currency": saved_plan.local_currency_code
+        },
+        "weather": saved_plan.weather_data or {},
+        "attractions": saved_plan.attractions_data or [] 
+    }
 
-    return jsonify({"attractions": attractions_data})
+    # is_saved=True -> Ukrywamy przycisk "Zapisz plan", bo już jest zapisany
+    return render_template("plan_results.html", plan=plan_data, is_saved=True)
 
 
+# -------------------------------------------------------------------------
+# 3. ZAPISYWANIE PLANU DO BAZY (Logika wyboru atrakcji)
+# -------------------------------------------------------------------------
 @plans.route("/save_plan", methods=["POST"])
+@login_required 
 def save_plan():
+    # Pobieramy cały JSON planu (ukryte pole w formularzu)
     plan_json = request.form.get("plan_data")
+    # Pobieramy listę nazw zaznaczonych kafelków
+    selected_cards = request.form.getlist('cards')
+    
     if not plan_json:
         flash("Błąd: Brak danych planu do zapisu.", "danger")
         return redirect(request.referrer or url_for('main.index'))
@@ -59,67 +101,77 @@ def save_plan():
         flash("Błąd: Nieprawidłowe dane planu.", "danger")
         return redirect(request.referrer or url_for('main.index'))
 
-    user_email = current_user.email if current_user.is_authenticated else "Nieznany (niezalogowany)"
+    # --- FILTROWANIE ATRAKCJI ---
+    full_attractions_list = plan.get('attractions', [])
     
-    # Pobierz zaznaczone atrakcje z formularza
-    selected_cards = request.form.getlist('cards')
+    # Logika: Jeśli lista 'selected_cards' jest pusta -> zapisz wszystkie.
+    # Jeśli zawiera elementy -> zapisz tylko te, które są na liście.
+    if not selected_cards:
+        selected_attractions_data = full_attractions_list
+        flash_msg = "Zapisano cały plan (nie wybrano konkretnych atrakcji)."
+    else:
+        # Filtrujemy listę słowników, zostawiając te, których 'name' jest w selected_cards
+        selected_attractions_data = [
+            attr for attr in full_attractions_list 
+            if attr.get('name') in selected_cards
+        ]
+        flash_msg = "Zapisano plan z wybranymi atrakcjami!"
+
+    # Przygotowanie reszty danych
+    query = plan.get('query', {})
+    cost = plan.get('cost', {})
     
-    # Pobierz styl i koszt
-    style = plan.get('query', {}).get('style', 'Nieznany')
-    total_cost = plan.get('cost', {}).get('total_pln', 'Brak danych')
-    
-    # Formatowanie danych zgodnie z życzeniem:
-    # data | mail uzytkownika | styl | koszt | dane pogodowe na podane dni :{} | Atrakcje {nazwa atrakcji adres, rating, typy }
-    
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # Pogoda
-    weather_summary = {}
-    if 'weather' in plan and isinstance(plan['weather'], dict):
-        daily = plan['weather'].get('daily', [])
-        if isinstance(daily, list):
-            for day in daily:
-                date_str = day.get('date', 'N/A')
-                desc = day.get('opis', '')
-                temp_min = day.get('temperatura_min', '-')
-                temp_max = day.get('temperatura_max', '-')
-                weather_summary[date_str] = f"{desc} ({temp_min}/{temp_max}°C)"
-    
-    # Atrakcje
-    attractions_summary = []
-    if 'attractions' in plan and isinstance(plan['attractions'], list):
-        # Jeśli użytkownik zaznaczył jakieś atrakcje, filtrujemy listę
-        # Jeśli nie zaznaczył nic (lista selected_cards jest pusta), bierzemy wszystkie
-        
-        source_attractions = plan['attractions']
-        if selected_cards:
-            # Filtrujemy po nazwie
-            source_attractions = [attr for attr in source_attractions if attr.get('name') in selected_cards]
-            
-        for attr in source_attractions:
-            # Format: {nazwa atrakcji adres, rating, typy }
-            name = attr.get('name', 'Brak nazwy')
-            address = attr.get('address', 'Brak adresu')
-            rating = attr.get('rating', 'N/A')
-            types = attr.get('types', [])
-            types_str = ", ".join(types) if types else "Brak typów"
-            
-            attr_str = f"{{nazwa: {name}, adres: {address}, rating: {rating}, typy: {types_str}}}"
-            attractions_summary.append(attr_str)
-            
-    attractions_text = ", ".join(attractions_summary)
-    
-    line = f"{now} | {user_email} | Styl: {style} | Koszt: {total_cost} PLN | Dane pogodowe: {weather_summary} | Atrakcje: {attractions_text}\n"
-    
-    # Zapis do pliku saved_plans.txt w głównym katalogu
+    data_start = None
+    data_end = None
     try:
-        with open("saved_plans.txt", "a", encoding="utf-8") as f:
-            f.write(line)
-        flash("Plan został pomyślnie zapisany!", "success")
+        if query.get('start'):
+            data_start = datetime.strptime(query['start'], "%Y-%m-%d").date()
+        if query.get('end'):
+            data_end = datetime.strptime(query['end'], "%Y-%m-%d").date()
+    except ValueError:
+        pass 
+
+    try:
+        total_cost_pln = float(cost.get('total_pln')) if cost.get('total_pln') is not None else None
+    except (ValueError, TypeError):
+        total_cost_pln = None
+            
+    try:
+        total_cost_local = float(cost.get('total_local')) if cost.get('total_local') is not None else None
+    except (ValueError, TypeError):
+        total_cost_local = None
+
+    # Tworzenie obiektu bazy danych
+    new_plan = GeneratedPlan(
+        city=query.get('city', 'Nieznane'),
+        country=query.get('country'),
+        days=query.get('days'),
+        travel_style=query.get('style'),
+        vacation_type=None, 
+        data_start=data_start,
+        data_end=data_end,
+        total_cost_pln=total_cost_pln,
+        total_cost_local_currency=total_cost_local,
+        local_currency_code=cost.get('currency'),
+        weather_data=plan.get('weather'),
+        attractions_data=selected_attractions_data, # ZAPISUJEMY PRZEFILTROWANE DANE
+        user_id=current_user.id
+    )
+    
+    try:
+        db.session.add(new_plan)
+        db.session.commit()
+        flash(flash_msg, "success")
     except Exception as e:
-        flash(f"Wystąpił błąd podczas zapisywania pliku: {e}", "danger")
-        
-    return redirect(request.referrer or url_for('main.index'))
+        db.session.rollback()
+        flash(f"Błąd zapisu bazy danych: {e}", "danger")
+    
+    return redirect(url_for('main.my_plans'))
 
 
-# Dodaj inne trasy
+@plans.route("/api/attractions/<string:city>")
+def api_get_attractions(city):
+    attractions_data = get_attractions(city, limit=10)
+    if attractions_data is None:
+        return jsonify({"error": "Nie udało się pobrać danych o atrakcjach."}), 500
+    return jsonify({"attractions": attractions_data})

@@ -14,7 +14,8 @@
                 <p><strong>Liczba dni:</strong> {{ plan.days }}</p>
                 <p><strong>Styl podróży:</strong> {{ plan.travel_style }}</p>
                 <p><strong>Utworzono:</strong> {{ plan.created_at.strftime('%d.%m.%Y') }}</p>
-                <a href="{{ url_for('plans.show_plan', city=plan.city, days=plan.days, style=plan.travel_style) }}" class="btn">Zobacz plan</a>
+                <!-- ZMIANA: Linkujemy do view_saved_plan, aby zobaczyć TO CO ZAPISALIŚMY -->
+                <a href="{{ url_for('plans.view_saved_plan', plan_id=plan.id) }}" class="btn">Zobacz plan</a>
             </div>
             {% endfor %}
         </div>

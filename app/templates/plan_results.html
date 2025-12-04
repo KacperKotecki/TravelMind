@@ -76,10 +76,6 @@
         </div>
     </div>
 
-              
-        
-    
-
     <div class="info-grid">
         
         <div class="card budget-card">
@@ -91,23 +87,24 @@
                 <p class="info-note">Dla tego miasta nie mamy jeszcze danych o szacunkowych kosztach.</p>
             {% endif %}
         </div>
-        
-        <!-- 'Ważne obiekty' section removed as requested -->
     </div>
     
     <div class="attractions-section">
         <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
+        {% if not is_saved %}
+        <p>Kliknij na atrakcje, które chcesz zachować w swoim planie.</p>
+        {% endif %}
         
         <div class="attraction-cards">
             {% if plan.attractions and plan.attractions|length > 0 %}
                 {% for attraction in plan.attractions %}
                 <div class="attraction-card card">
-                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}" form="save-form">
+                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}" form="save-form" {% if is_saved %}disabled{% endif %}>
                     <label for="cards-{{ loop.index0 }}" class="cards-card">
                         
                         {% if attraction.photo_url %}
                         <div class="attraction-image-container">
-                            <img src="{{ attraction.photo_url }}" alt="{{ attraction.name }}" class="attraction-photo">
+                            <img src="{{ attraction.photo_url }}" alt="{{ attraction.name }}" class="attraction-photo" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text={{ attraction.name }}';" >
                         </div>
                         {% elif attraction.icon %}
                         <div class="attraction-icon-container">
@@ -148,19 +145,25 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <p>Brak danych o atrakcjach dla tego miasta.</p>
+                <p>Brak danych o atrakcjach dla tego planu.</p>
             {% endif %}
         </div>
     </div>
+
+{% if not is_saved %}
 <div class="save">
     <form id="save-form" method="POST" action="{{ url_for('plans.save_plan') }}">
         <input type="hidden" name="plan_data" value='{{ plan | tojson }}'>
         <button type="submit" class="zapisz btn btn-primary"><span class="icon">💾</span> Zapisz plan</button>
     </form>
 </div>
+{% endif %}
 
     <div class="action-buttons">
         <button class="btn btn-secondary"><span class="icon">📄</span> Pobierz jako PDF</button>
+        {% if is_saved %}
+        <a href="{{ url_for('main.my_plans') }}" class="btn btn-secondary">Wróć do listy planów</a>
+        {% endif %}
     </div>
     
 </div>
@@ -173,16 +176,12 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
-        // Sprawdzamy czy elementy istnieją
         if (track && prevBtn && nextBtn) {
-            
-            // Funkcja ukrywająca strzałki, jeśli wszystkie dni mieszczą się na ekranie
             const checkArrows = () => {
                 if (track.scrollWidth <= track.clientWidth) {
                     prevBtn.style.display = 'none';
                     nextBtn.style.display = 'none';
                 } else {
-                    // Pokaż tylko na desktopie (na mobile CSS je ukrywa)
                     if (window.innerWidth > 768) {
                         prevBtn.style.display = 'flex';
                         nextBtn.style.display = 'flex';
@@ -193,7 +192,6 @@
             checkArrows();
             window.addEventListener('resize', checkArrows);
 
-            // Szerokość przewijania (szerokość karty + odstęp)
             const scrollAmount = 280; 
 
             nextBtn.addEventListener('click', () => {

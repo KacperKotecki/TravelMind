@@ -1210,4 +1210,8 @@ footer a:hover {
     text-decoration: none;
     color: var(--color-secondary);
 }
-
+.vibe-checkbox:checked + .vibe-card, .card-checkbox:checked + .cards-card {
+    background-color: #e0f2fe; /* Bardzo jasny błękit */
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
+}
