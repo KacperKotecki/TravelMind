@@ -12,7 +12,12 @@
             <span class="badge style-badge">{{ plan.query.style }}</span>
         </p>
     </header>
-
+    {% if plan.is_dangerous %}
+    <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; margin-bottom: 20px; border-radius: 8px; text-align: center;">
+        <strong>⚠️ OSTRZEŻENIE:</strong> Podróż do kraju <strong>{{ plan.query.country }}</strong> może być niebezpieczna. 
+        <br>Ministerstwo Spraw Zagranicznych odradza podróże do tego regionu lub zaleca zachowanie szczególnej ostrożności.
+    </div>
+    {% endif %}
     <!-- Pogoda - górna sekcja -->
  <div class="card weather-card weather-top">
 

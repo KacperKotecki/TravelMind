@@ -8,15 +8,11 @@ from .constans import WEATHER_CODES_PL, PLACE_TYPES_PL
 
 
 def _weather_code_to_polish(code: int) -> str:
-    """Mapuje kod pogodowy Open-Meteo na opis po polsku.
-
-    Źródło kodów: https://open-meteo.com/en/docs#weathercode
-    """
+    """Mapuje kod pogodowy Open-Meteo na opis po polsku."""
     return WEATHER_CODES_PL.get(code, "Nieznane warunki pogodowe")
 
 
 def _format_date_val(val):
-    # Akceptujemy daty jako obiekty date/datetime lub jako string YYYY-MM-DD
     from datetime import date, datetime
 
     if val is None:
@@ -25,7 +21,6 @@ def _format_date_val(val):
         return val.isoformat()
     if isinstance(val, datetime):
         return val.date().isoformat()
-    # załóżmy że jest to już string
     return str(val)
 
 
@@ -38,11 +33,6 @@ def normalize_to_ascii(s: str) -> str:
 
 
 def build_geocode_variants(raw: str) -> list:
-    """Zwraca listę wariantów zapytania geokodującego w kolejności próby.
-
-    Przykład:
-      'Łódź, Województwo łódzkie, Polska' -> ['Łódź, Województwo łódzkie, Polska', 'Łódź', 'Lodz']
-    """
     if not raw:
         return []
 
@@ -50,19 +40,15 @@ def build_geocode_variants(raw: str) -> list:
     if not s:
         return []
 
-    # znormalizuj wielokrotne spacje
     s = re.sub(r"\s+", " ", s)
 
     variants = []
-    # pełny (oryginalny)
     variants.append(s)
 
-    # pierwszy token przed przecinkiem (zwykle nazwa miasta)
     first = s.split(",")[0].strip()
     if first and first not in variants:
         variants.append(first)
 
-    # usuń typy administracyjne (heurystyka)
     admin_words = [
         r"\bwojew[dóo]ztwo\b",
         r"\bpowiat\b",
@@ -79,7 +65,6 @@ def build_geocode_variants(raw: str) -> list:
     if first_clean and first_clean not in variants:
         variants.append(first_clean)
 
-    # transliteracja ASCII
     first_ascii = normalize_to_ascii(first_clean)
     if first_ascii and first_ascii not in variants:
         variants.append(first_ascii)
@@ -94,14 +79,6 @@ def get_weather(
     lat: float = None,
     lon: float = None,
 ) -> dict | None:
-    """Pobiera dane pogodowe dla danego miasta.
-
-    Jeśli przekazano start_date i end_date (YYYY-MM-DD lub obiekty date),
-    pobierz dane dzienne z Open-Meteo dla całego zakresu (daily arrays).
-    Zwraca strukturę zawierającą 'daily': [ {date, temperatura_min, temperatura_max, opis, opad, wiatr} , ... ]
-    W przypadku braku zakresu zachowuje częściową kompatybilność z poprzednią implementacją (current_weather + daily dla bieżącego dnia).
-    """
-    # Jeśli współrzędne (lat, lon) nie zostały przekazane, spróbuj je uzyskać z nazwy miasta
     if lat is None or lon is None:
         if not city:
             current_app.logger.error(
@@ -119,7 +96,6 @@ def get_weather(
         lat = coords.get("lat")
         lon = coords.get("lon")
 
-    # Sprawdzenie, czy na pewno mamy współrzędne
     if lat is None or lon is None:
         current_app.logger.error(
             f"Nieprawidłowe lub brakujące współrzędne dla zapytania pogodowego (miasto: {city})"
@@ -137,7 +113,6 @@ def get_weather(
         "temperature_unit": "celsius",
     }
 
-    # Przygotuj wartości start/end jeśli przekazano
     s = _format_date_val(start_date)
     e = _format_date_val(end_date)
     if s:
@@ -145,20 +120,16 @@ def get_weather(
     if e:
         params["end_date"] = e
 
-    # Wykonaj zapytanie HTTP i obsłuż ewentualne błędy/zakresy
     try:
         response = requests.get(base_url, params=params, timeout=10)
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as http_err:
-            # Spróbuj odczytać treść odpowiedzi i ewentualnie przyciąć zakres
             try:
                 body = response.text
             except Exception:
                 body = ""
             current_app.logger.error(f"Open-Meteo HTTPError: {http_err} - body: {body}")
-            # Jeśli odpowiedź wskazuje na "out of allowed range" spróbuj przyciąć zakres (prosty fallback)
-            # lub pobrać bieżącą pogodę jeśli zakres jest całkowicie poza oknem prognozy.
             if body and "out of allowed range" in body:
                 fixed = False
                 if s and e:
@@ -177,7 +148,6 @@ def get_weather(
                             if new_s <= new_e:
                                 params["start_date"] = new_s.isoformat()
                                 params["end_date"] = new_e.isoformat()
-                                # ponów zapytanie raz
                                 response = requests.get(base_url, params=params, timeout=10)
                                 response.raise_for_status()
                                 fixed = True
@@ -185,7 +155,6 @@ def get_weather(
                             pass
                 
                 if not fixed:
-                    # Fallback: pobierz bieżącą pogodę bez daily (gdyż zakres jest nieprawidłowy)
                     params.pop("start_date", None)
                     params.pop("end_date", None)
                     params.pop("daily", None)
@@ -210,7 +179,6 @@ def get_weather(
         current_app.logger.error(f"Niepełne dane pogodowe od Open-Meteo dla: {city} -> {current}")
         return None
 
-    # Wilgotność z sekcji hourly (dopasuj godzinę najbliższą current.time)
     humidity = None
     hourly = data.get("hourly")
     if hourly:
@@ -257,7 +225,6 @@ def get_weather(
     description = _weather_code_to_polish(int(code))
     result = {"temperatura": round(float(temp)), "opis": description}
 
-    # Buduj listę dziennych wartości jeśli dostępne
     daily_section = data.get("daily")
     if daily_section:
         d_times = daily_section.get("time", [])
@@ -295,8 +262,6 @@ def get_weather(
                     code_i = int(d_codes[i])
                     day_obj["weathercode"] = code_i
                     day_obj["opis"] = _weather_code_to_polish(code_i)
-                    day_obj["icon"] = _weather_code_to_icon(code_i)
-                    day_obj["icon_key"] = _weather_code_to_key(code_i)
                 else:
                     day_obj["opis"] = description
             except Exception:
@@ -312,7 +277,6 @@ def get_weather(
         except (TypeError, ValueError):
             pass
 
-    # Dodaj informacje o wietrze jeśli są dostępne
     windspeed = current.get("windspeed")
     if windspeed is not None:
         try:
@@ -325,11 +289,6 @@ def get_weather(
 
 @lru_cache(maxsize=256)
 def get_coordinates_for_city(city: str) -> dict | None:
-    """
-    Pobiera współrzędne geograficzne (szerokość i długość) dla danego miasta.
-    """
-    # Najpierw spróbuj Geoapify, ale jeśli klucz jest nieprawidłowy lub brak wyników,
-    # spróbuj automatycznie geokodowania przez Open-Meteo (bez klucza).
     api_key = current_app.config.get("GEOAPIFY_API_KEY")
     if api_key:
         base_url = "https://api.geoapify.com/v1/geocode/search"
@@ -337,7 +296,6 @@ def get_coordinates_for_city(city: str) -> dict | None:
 
         try:
             response = requests.get(base_url, params=params, timeout=8)
-            # Jeśli autoryzacja nie przeszła, zaloguj i spróbuj fallback
             if response.status_code == 401:
                 current_app.logger.warning(
                     "Geoapify zwrócił 401 Unauthorized - spróbuję fallback geokodowania."
@@ -358,7 +316,6 @@ def get_coordinates_for_city(city: str) -> dict | None:
                 f"Błąd podczas zapytania Geoapify Geocoding API: {e}"
             )
 
-    # Fallback: Open-Meteo geocoding (nie wymaga klucza)
     try:
         om_url = "https://geocoding-api.open-meteo.com/v1/search"
         om_params = {"name": city, "count": 1, "language": "pl"}
@@ -372,7 +329,6 @@ def get_coordinates_for_city(city: str) -> dict | None:
             )
             return None
         first = results[0]
-        # Open-Meteo zwraca pola 'latitude' i 'longitude'
         lat = first.get("latitude")
         lon = first.get("longitude")
         if lat is None or lon is None:
@@ -392,25 +348,22 @@ def get_coordinates_for_city(city: str) -> dict | None:
 GOOGLE_PLACES_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 
 
-def get_attractions(city: str, limit: int = 5) -> list[dict] | None:
-    """Pobiera listę atrakcji dla danego miasta z Google Places API.
-
-    Args:
-        city: Nazwa miasta.
-        limit: Maksymalna liczba atrakcji do pobrania (domyślnie 5).
-
-    Returns:
-        Lista słowników z danymi atrakcji (nazwa, adres, ocena, zdjęcie itp.)
-        lub None w przypadku błędu.
-    """
+# ZMIANA: Dodano parametr country z domyślną wartością None
+def get_attractions(city: str, country: str = None, limit: int = 5) -> list[dict] | None:
+    """Pobiera listę atrakcji dla danego miasta (i opcjonalnie kraju) z Google Places API."""
     api_key = current_app.config.get("GOOGLE_PLACES_API_KEY")
     if not api_key:
         current_app.logger.error("Brak klucza API dla Google Places!")
         return None
     current_app.logger.info("Klucz API Google Places został wczytany.")
 
+    # Budujemy zapytanie uwzględniając kraj, jeśli jest podany
+    query_str = f"atrakcje w {city}"
+    if country:
+        query_str += f", {country}"
+
     params = {
-        "query": f"atrakcje w {city}",
+        "query": query_str,
         "key": api_key,
         "language": "pl",
     }
@@ -426,12 +379,10 @@ def get_attractions(city: str, limit: int = 5) -> list[dict] | None:
         response.raise_for_status()
         data = response.json()
         
-        # Sprawdź status wewnątrz odpowiedzi JSON (Google API zwraca 200 nawet przy błędach logicznych)
         api_status = data.get("status")
         if api_status != "OK":
             error_msg = data.get("error_message", "Brak szczegółów")
             current_app.logger.error(f"Google Places API zwróciło błąd logiczny. Status: {api_status}, Komunikat: {error_msg}")
-            # Jeśli ZERO_RESULTS, to nie jest błąd krytyczny, ale warto zalogować
             if api_status == "ZERO_RESULTS":
                 current_app.logger.info(f"Brak wyników dla zapytania: {params['query']}")
                 return []
@@ -446,7 +397,7 @@ def get_attractions(city: str, limit: int = 5) -> list[dict] | None:
             attractions.append(_parse_place_data(place, api_key))
 
         current_app.logger.info(
-            f"Prawidłowy klucz API. Pobrano {len(attractions)} obiektów z zapytania do API dla miasta: {city}."
+            f"Prawidłowy klucz API. Pobrano {len(attractions)} obiektów z zapytania do API dla miasta: {city}, kraj: {country}."
         )
         return attractions
 
@@ -457,13 +408,11 @@ def get_attractions(city: str, limit: int = 5) -> list[dict] | None:
 
 def _parse_place_data(place: dict, api_key: str) -> dict:
     """Pomocnicza funkcja do ekstrakcji danych pojedynczego miejsca."""
-    # Współrzędne
     geom = place.get("geometry", {})
     loc = geom.get("location", {})
     lat = loc.get("lat") if loc else None
     lon = loc.get("lng") if loc else None
 
-    # Zdjęcie
     photo_url = None
     photos = place.get("photos", [])
     if photos:
@@ -474,16 +423,13 @@ def _parse_place_data(place: dict, api_key: str) -> dict:
                 f"?maxwidth=400&photo_reference={photo_ref}&key={api_key}"
             )
 
-    # Mapowanie typów miejsc na język polski
     raw_types = place.get("types", [])
     translated_types = []
     for t in raw_types:
         pl_name = PLACE_TYPES_PL.get(t)
-        if pl_name:  # Dodaj tylko jeśli mamy tłumaczenie i nie jest None
+        if pl_name:
             translated_types.append(pl_name)
 
-    # Jeśli nie udało się przetłumaczyć żadnego typu, użyj pierwszego surowego (fallback)
-    # lub zostaw pustą listę, zależnie od preferencji. Tutaj: fallback do pierwszego surowego.
     if not translated_types and raw_types:
         translated_types.append(raw_types[0].replace("_", " ").capitalize())
 
@@ -501,11 +447,6 @@ def _parse_place_data(place: dict, api_key: str) -> dict:
 
 
 def get_exchange_rate(base_currency: str, target_currency: str = "PLN") -> float | None:
-    """
-    Pobiera aktualny kurs wymiany walut.
-    TODO: Zaimplementować wywołanie do API kursów walut.
-    """
-    # Tymczasowy, sztywny kurs
     if base_currency == "EUR" and target_currency == "PLN":
         return 4.3
     return None

@@ -72,6 +72,7 @@ class Country(db.Model):
     __tablename__ = 'countries'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
+    danger = db.Column(db.Boolean, default=False)  # Nowe pole
     # Relacja: jeden kraj ma wiele miast
     cities = db.relationship('City', backref='country', lazy=True)
 

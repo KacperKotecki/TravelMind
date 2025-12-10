@@ -3,7 +3,8 @@ from datetime import date, timedelta, datetime
 from .api_clients import get_weather, get_attractions, get_exchange_rate, get_coordinates_for_city
 from .constans import BASE_COSTS, WEATHERCODE_TO_KEY, ICON_TO_EMOJI
 
-def get_plan_details(city: str, days: int, style: str, start_date=None, end_date=None, lat: float = None, lon: float = None, cost_mult: float = 1.2) -> dict:
+# ZMIANA: Dodano parametr 'country' do definicji funkcji
+def get_plan_details(city: str, days: int, style: str, country: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None, cost_mult: float = 1.2) -> dict:
     """
     Główna funkcja serwisu, obsługująca dynamiczne miasta.
     """
@@ -12,7 +13,6 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
         city = city.strip()
 
     # Uproszczona obsługa dat
-    # Jeśli daty nie są podane, generujemy domyślny zakres od dzisiaj
     if not start_date or not end_date:
         start = date.today()
         days_int = int(days)
@@ -48,11 +48,11 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
                 if 'icon_key' in first:
                     weather_info['icon_key'] = first.get('icon_key')
     
-    # Pobierz atrakcje (SSR)
-    attractions_list = get_attractions(city, limit=12) or []
+    # Pobierz atrakcje (SSR) - TERAZ PRZEKAZUJEMY KRAJ
+    # ZMIANA: Przekazujemy country do get_attractions
+    attractions_list = get_attractions(city, country=country, limit=12) or []
 
     # Obliczanie kosztów
-    # Używamy BASE_COSTS z constants.py oraz cost_mult przekazanego w argumencie (z destinations.json)
     base_rate = BASE_COSTS.get(style, 500) # Domyślnie Standardowy
     
     # Obliczenie: Koszt = Stawka Bazowa * Mnożnik Miasta * Liczba Dni
@@ -66,7 +66,7 @@ def get_plan_details(city: str, days: int, style: str, start_date=None, end_date
 
     # Zwrócenie odpowiedzi
     result = {
-        "query": {"city": city, "days": days, "style": style, "start": start_date, "end": end_date},
+        "query": {"city": city, "country": country, "days": days, "style": style, "start": start_date, "end": end_date},
         "cost": cost_info,
         "weather": weather_info or {"opis": "Brak danych pogodowych"},
         "attractions": attractions_list,

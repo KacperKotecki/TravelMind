@@ -5,17 +5,16 @@ from datetime import datetime
 from . import plans
 from ..services import get_plan_details
 from ..api_clients import get_attractions
-from app.models import GeneratedPlan, db
+from app.models import GeneratedPlan, db, Country
 
 # -------------------------------------------------------------------------
 # 1. GENEROWANIE NOWEGO PLANU (Dla niezapisanych)
 # -------------------------------------------------------------------------
 @plans.route("/<string:city>/<int:days>/<string:style>")
 def show_plan(city, days, style):
-    # Pobieramy parametry z URL
     start = request.args.get("start")
     end = request.args.get("end")
-    country = request.args.get("country")
+    country_name = request.args.get("country") # Zmienna z nazwą kraju
     lat = request.args.get("lat")
     lon = request.args.get("lon")
     
@@ -27,24 +26,26 @@ def show_plan(city, days, style):
     except (ValueError, TypeError):
         cost_mult = 1.2
 
-    # Generujemy plan (pogoda, atrakcje z API)
     plan_data = get_plan_details(
-        city, days, style, start_date=start, end_date=end, lat=lat, lon=lon, cost_mult=cost_mult
+        city, days, style, country=country_name, start_date=start, end_date=end, lat=lat, lon=lon, cost_mult=cost_mult
     )
     
     if plan_data.get("error"):
         abort(404, description=plan_data["error"])
     
-    # Przekazujemy kraj, by nie zgubił się przy zapisie
-    if country:
-        plan_data['query']['country'] = country
+    if country_name:
+        plan_data['query']['country'] = country_name
+        
+        # SPRAWDZANIE BEZPIECZEŃSTWA
+        country_obj = Country.query.filter_by(name=country_name).first()
+        if country_obj and country_obj.danger:
+            plan_data['is_dangerous'] = True
     
-    # is_saved=False -> Pokazujemy przycisk "Zapisz plan"
     return render_template("plan_results.html", plan=plan_data, is_saved=False)
 
 
 # -------------------------------------------------------------------------
-# 2. PODGLĄD ZAPISANEGO PLANU (Z bazy danych) - TEGO BRAKOWAŁO
+# 2. PODGLĄD ZAPISANEGO PLANU (Z bazy danych)
 # -------------------------------------------------------------------------
 @plans.route("/view/<int:plan_id>")
 @login_required
@@ -57,7 +58,6 @@ def view_saved_plan(plan_id):
         abort(403) # Brak dostępu
 
     # Odtwarzamy strukturę danych dla szablonu
-    # W attractions_data są już TYLKO TE atrakcje, które użytkownik wybrał przy zapisie
     plan_data = {
         "query": {
             "city": saved_plan.city,
@@ -76,8 +76,18 @@ def view_saved_plan(plan_id):
         "attractions": saved_plan.attractions_data or [] 
     }
 
-    # is_saved=True -> Ukrywamy przycisk "Zapisz plan", bo już jest zapisany
     return render_template("plan_results.html", plan=plan_data, is_saved=True)
+
+
+@plans.route("/api/attractions/<string:city>")
+def api_get_attractions(city):
+    # --- ZMIANA: Obsługa kraju również w endpointcie API ---
+    country = request.args.get("country")
+    attractions_data = get_attractions(city, country=country, limit=10)
+    
+    if attractions_data is None:
+        return jsonify({"error": "Nie udało się pobrać danych o atrakcjach."}), 500
+    return jsonify({"attractions": attractions_data})
 
 
 # -------------------------------------------------------------------------
@@ -164,14 +174,8 @@ def save_plan():
         flash(flash_msg, "success")
     except Exception as e:
         db.session.rollback()
+        from flask import current_app
+        current_app.logger.exception(f"Błąd zapisu planu do DB: {e}")
         flash(f"Błąd zapisu bazy danych: {e}", "danger")
     
     return redirect(url_for('main.my_plans'))
-
-
-@plans.route("/api/attractions/<string:city>")
-def api_get_attractions(city):
-    attractions_data = get_attractions(city, limit=10)
-    if attractions_data is None:
-        return jsonify({"error": "Nie udało się pobrać danych o atrakcjach."}), 500
-    return jsonify({"attractions": attractions_data})
