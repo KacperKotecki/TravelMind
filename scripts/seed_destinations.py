@@ -6,7 +6,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app import create_app, db
-from app.models import Destination
+from app.models import Country, City
 
 def seed_destinations():
     app = create_app(os.getenv('FLASK_CONFIG') or 'development')
@@ -23,31 +23,60 @@ def seed_destinations():
         data = json.load(f)
 
     with app.app_context():
-        print("Zapisywanie do bazy danych...")
-        count = 0
-        skipped = 0
+        print("Rozpoczynam aktualizację bazy danych...")
+        
+        # 1. Dodawanie Krajów (Country)
+        # Pobieramy unikalne nazwy krajów z pliku JSON
+        unique_countries = {item['country'] for item in data if item.get('country')}
+        countries_added = 0
+        
+        for country_name in unique_countries:
+            # Sprawdzamy czy kraj już istnieje
+            if not Country.query.filter_by(name=country_name).first():
+                db.session.add(Country(name=country_name))
+                countries_added += 1
+        
+        # Zapisujemy kraje, aby mieć pewność, że istnieją i mają ID przed dodawaniem miast
+        db.session.commit()
+        print(f"Dodano {countries_added} nowych krajów.")
+
+        # 2. Dodawanie Miast (City)
+        cities_added = 0
+        cities_skipped = 0
         
         for item in data:
-            # Sprawdź, czy taki wpis już istnieje (po nazwie i kraju)
-            exists = Destination.query.filter_by(name=item['name'], country=item['country']).first()
+            country_name = item.get('country')
+            city_name = item.get('name')
             
-            if not exists:
-                dest = Destination(
-                    name=item['name'],
-                    country=item['country'],
-                    tags=item['tags'],
-                    cost_tier=item.get('cost_tier'),
-                    cost_multiplier=item.get('cost_multiplier'),
-                    image_keyword=item.get('image_keyword')
-                )
-                db.session.add(dest)
-                count += 1
+            if not country_name or not city_name:
+                continue
+
+            # Pobieramy obiekt kraju z bazy
+            country_obj = Country.query.filter_by(name=country_name).first()
+            
+            if country_obj:
+                # Sprawdź, czy miasto już istnieje w tym kraju
+                exists = City.query.filter_by(name=city_name, country_id=country_obj.id).first()
+                
+                if not exists:
+                    city = City(
+                        name=city_name,
+                        country=country_obj, # SQLAlchemy automatycznie przypisze country_id
+                        tags=item.get('tags'),
+                        cost_tier=item.get('cost_tier'),
+                        cost_multiplier=item.get('cost_multiplier'),
+                        image_keyword=item.get('image_keyword')
+                    )
+                    db.session.add(city)
+                    cities_added += 1
+                else:
+                    cities_skipped += 1
             else:
-                skipped += 1
+                print(f"Ostrzeżenie: Nie znaleziono kraju '{country_name}' dla miasta '{city_name}'")
         
         try:
             db.session.commit()
-            print(f"Sukces! Dodano {count} nowych miejsc. Pominięto {skipped} istniejących.")
+            print(f"Sukces! Dodano {cities_added} nowych miast. Pominięto {cities_skipped} istniejących.")
         except Exception as e:
             db.session.rollback()
             print(f"Błąd zapisu do bazy: {e}")
