@@ -1,7 +1,7 @@
 import requests
 import re
 from flask import current_app
-from app.constans import WEATHER_CODES_PL
+from app.constants import WEATHER_CODES_PL
 from .utils import format_date_val
 from .places import get_coordinates_for_city
 

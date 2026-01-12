@@ -1,7 +1,7 @@
 import requests
 from flask import current_app
 from functools import lru_cache
-from app.constans import PLACE_TYPES_PL
+from app.constants import PLACE_TYPES_PL
 
 # URL stale
 GOOGLE_PLACES_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
@@ -97,3 +97,33 @@ def _parse_place_data(place: dict, api_key: str) -> dict:
         "lat": loc.get("lat"),
         "lon": loc.get("lng"),
     }
+
+def search_city_suggestions(query: str) -> list[dict]:
+    """Wyszukuje sugestie miast używając Open-Meteo Geocoding."""
+    if not query:
+        return []
+    try:
+        om_url = "https://geocoding-api.open-meteo.com/v1/search"
+        params = {"name": query, "count": 6, "language": "pl"}
+        resp = requests.get(om_url, params=params, timeout=6)
+        resp.raise_for_status()
+        data = resp.json()
+        
+        results = []
+        for r in data.get("results", []):
+            name = r.get("name") or ""
+            admin1 = r.get("admin1") or ""
+            country = r.get("country") or ""
+            display = name
+            if admin1: display += f", {admin1}"
+            if country: display += f", {country}"
+            
+            results.append({
+                "name": display, 
+                "lat": r.get("latitude"), 
+                "lon": r.get("longitude")
+            })
+        return results
+    except Exception as e:
+        current_app.logger.error(f"Błąd wyszukiwania miast: {e}")
+        return []

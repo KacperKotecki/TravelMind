@@ -1,6 +1,6 @@
 from datetime import date, timedelta, datetime
 from app.api import get_weather, get_attractions, get_exchange_rate, get_coordinates_for_city
-from .constans import BASE_COSTS, WEATHERCODE_TO_KEY, ICON_TO_EMOJI
+from .constants import BASE_COSTS, WEATHERCODE_TO_KEY, ICON_TO_EMOJI
 
 def get_plan_details(city: str, days: int, style: str, country: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None, cost_mult: float = 1.2) -> dict:
     """
