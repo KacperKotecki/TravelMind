@@ -2,7 +2,7 @@ from flask import session, flash, redirect, url_for, request, render_template, a
 from flask_login import current_user, login_required
 from datetime import datetime
 from . import plans
-from ..services import get_plan_details
+from ..services import get_plan_details, orchestrate_plan_creation 
 from app.api import get_attractions
 from app.models import GeneratedPlan, db, Country
 
@@ -11,40 +11,30 @@ from app.models import GeneratedPlan, db, Country
 # -------------------------------------------------------------------------
 @plans.route("/<string:city>/<int:days>/<string:style>")
 def show_plan(city, days, style):
-    start = request.args.get("start")
-    end = request.args.get("end")
-    country_name = request.args.get("country")
-    lat = request.args.get("lat")
-    lon = request.args.get("lon")
-    
-    if isinstance(city, str):
-        city = city.strip()
+    # 1. Zbierz parametry zapytania (Query Params) do jednego słownika
+    query_params = {
+        "start": request.args.get("start"),
+        "end": request.args.get("end"),
+        "country": request.args.get("country"),
+        "lat": request.args.get("lat"),
+        "lon": request.args.get("lon"),
+        "cost_mult": request.args.get("cost_mult")
+    }
 
-    try:
-        cost_mult = float(request.args.get("cost_mult", 1.2))
-    except (ValueError, TypeError):
-        cost_mult = 1.2
+    # 2. Deleguj całą pracę do serwisu
+    result = orchestrate_plan_creation(city, days, style, query_params)
 
-    # Pobieramy dane planu z serwisu
-    plan_data = get_plan_details(
-        city, days, style, country=country_name, start_date=start, end_date=end, lat=lat, lon=lon, cost_mult=cost_mult
-    )
-    
-    if plan_data.get("error"):
-        abort(404, description=plan_data["error"])
-    
-    if country_name:
-        plan_data['query']['country'] = country_name
-        
-        # SPRAWDZANIE BEZPIECZEŃSTWA
-        country_obj = Country.query.filter_by(name=country_name).first()
-        if country_obj and country_obj.danger:
-            plan_data['is_dangerous'] = True
+    # 3. Obsłuż wynik (Errror handling)
+    if result.get("error"):
+        # Serwis decyduje co jest błędem, kontroler decyduje jak to pokazać (np. abort 404)
+        abort(result["status"], description=result["error"])
 
-    # --- KLUCZOWA POPRAWKA: Zapisz wygenerowany plan do sesji, aby save_plan mógł go odczytać ---
-    # Używamy sesji jako bezpiecznego bufora między wyświetleniem a zapisem
+    plan_data = result["data"]
+
+    # 4. Zapisz w sesji (to zostaje tutaj, bo dotyczy stanu HTTP, a nie logiki biznesowej)
     session['current_generated_plan'] = plan_data
 
+    # 5. Wyrenderuj widok
     return render_template("plan_results.html", plan=plan_data, is_saved=False)
 
 
