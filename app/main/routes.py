@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, jsonify, current_
 from flask_login import login_user, logout_user, current_user, login_required
 from . import main
 from .forms import PlanGeneratorForm
-from ..api_clients import build_geocode_variants
+from app.api import build_geocode_variants
 from app.forms import LoginForm 
 import json
 import os

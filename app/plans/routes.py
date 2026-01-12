@@ -4,8 +4,9 @@ import json
 from datetime import datetime
 from . import plans
 from ..services import get_plan_details
-from ..api_clients import get_attractions
+from app.api import get_attractions
 from app.models import GeneratedPlan, db, Country
+
 
 # -------------------------------------------------------------------------
 # 1. GENEROWANIE NOWEGO PLANU (Dla niezapisanych)
