@@ -1,12 +1,10 @@
-from flask import abort, jsonify, render_template, request, flash, redirect, url_for
+from flask import session, flash, redirect, url_for, request, render_template, abort, jsonify
 from flask_login import current_user, login_required
-import json
 from datetime import datetime
 from . import plans
 from ..services import get_plan_details
 from app.api import get_attractions
 from app.models import GeneratedPlan, db, Country
-
 
 # -------------------------------------------------------------------------
 # 1. GENEROWANIE NOWEGO PLANU (Dla niezapisanych)
@@ -15,7 +13,7 @@ from app.models import GeneratedPlan, db, Country
 def show_plan(city, days, style):
     start = request.args.get("start")
     end = request.args.get("end")
-    country_name = request.args.get("country") # Zmienna z nazwą kraju
+    country_name = request.args.get("country")
     lat = request.args.get("lat")
     lon = request.args.get("lon")
     
@@ -27,6 +25,7 @@ def show_plan(city, days, style):
     except (ValueError, TypeError):
         cost_mult = 1.2
 
+    # Pobieramy dane planu z serwisu
     plan_data = get_plan_details(
         city, days, style, country=country_name, start_date=start, end_date=end, lat=lat, lon=lon, cost_mult=cost_mult
     )
@@ -41,7 +40,11 @@ def show_plan(city, days, style):
         country_obj = Country.query.filter_by(name=country_name).first()
         if country_obj and country_obj.danger:
             plan_data['is_dangerous'] = True
-    
+
+    # --- KLUCZOWA POPRAWKA: Zapisz wygenerowany plan do sesji, aby save_plan mógł go odczytać ---
+    # Używamy sesji jako bezpiecznego bufora między wyświetleniem a zapisem
+    session['current_generated_plan'] = plan_data
+
     return render_template("plan_results.html", plan=plan_data, is_saved=False)
 
 
@@ -58,7 +61,7 @@ def view_saved_plan(plan_id):
     if saved_plan.user_id != current_user.id:
         abort(403) # Brak dostępu
 
-    # Odtwarzamy strukturę danych dla szablonu
+    # Odtwarzamy strukturę danych dla szablonu (mapowanie z modelu DB na obiekt dla widoku)
     plan_data = {
         "query": {
             "city": saved_plan.city,
@@ -82,7 +85,6 @@ def view_saved_plan(plan_id):
 
 @plans.route("/api/attractions/<string:city>")
 def api_get_attractions(city):
-    # --- ZMIANA: Obsługa kraju również w endpointcie API ---
     country = request.args.get("country")
     attractions_data = get_attractions(city, country=country, limit=10)
     
@@ -92,91 +94,62 @@ def api_get_attractions(city):
 
 
 # -------------------------------------------------------------------------
-# 3. ZAPISYWANIE PLANU DO BAZY (Logika wyboru atrakcji)
+# 3. ZAPISYWANIE PLANU DO BAZY
 # -------------------------------------------------------------------------
-@plans.route("/save_plan", methods=["POST"])
-@login_required 
+@plans.route('/save_plan', methods=['POST'])
+@login_required
 def save_plan():
-    # Pobieramy cały JSON planu (ukryte pole w formularzu)
-    plan_json = request.form.get("plan_data")
-    # Pobieramy listę nazw zaznaczonych kafelków
-    selected_cards = request.form.getlist('cards')
-    
-    if not plan_json:
-        flash("Błąd: Brak danych planu do zapisu.", "danger")
-        return redirect(request.referrer or url_for('main.index'))
-    
-    try:
-        plan = json.loads(plan_json)
-    except json.JSONDecodeError:
-        flash("Błąd: Nieprawidłowe dane planu.", "danger")
-        return redirect(request.referrer or url_for('main.index'))
+    # 1. Pobierz dane z sesji server-side (zamiast z formularza HTML)
+    plan_data = session.get('current_generated_plan')
 
-    # --- FILTROWANIE ATRAKCJI ---
-    full_attractions_list = plan.get('attractions', [])
-    
-    # Logika: Jeśli lista 'selected_cards' jest pusta -> zapisz wszystkie.
-    # Jeśli zawiera elementy -> zapisz tylko te, które są na liście.
-    if not selected_cards:
-        selected_attractions_data = full_attractions_list
-        flash_msg = "Zapisano cały plan (nie wybrano konkretnych atrakcji)."
-    else:
-        # Filtrujemy listę słowników, zostawiając te, których 'name' jest w selected_cards
-        selected_attractions_data = [
-            attr for attr in full_attractions_list 
-            if attr.get('name') in selected_cards
-        ]
-        flash_msg = "Zapisano plan z wybranymi atrakcjami!"
+    if not plan_data:
+        flash("Twoja sesja wygasła lub plan nie został znaleziony. Wygeneruj plan ponownie.", "danger")
+        return redirect(url_for('main.index'))
 
-    # Przygotowanie reszty danych
-    query = plan.get('query', {})
-    cost = plan.get('cost', {})
-    
-    data_start = None
-    data_end = None
+    # 2. Parsowanie dat z powrotem do obiektów date (bo JSON w sesji przechowuje je jako stringi)
+    # Zakładamy format ISO YYYY-MM-DD
     try:
-        if query.get('start'):
-            data_start = datetime.strptime(query['start'], "%Y-%m-%d").date()
-        if query.get('end'):
-            data_end = datetime.strptime(query['end'], "%Y-%m-%d").date()
+        start_str = plan_data['query'].get('start')
+        end_str = plan_data['query'].get('end')
+        
+        d_start = datetime.strptime(start_str, "%Y-%m-%d").date() if start_str else None
+        d_end = datetime.strptime(end_str, "%Y-%m-%d").date() if end_str else None
     except ValueError:
-        pass 
+        d_start = None
+        d_end = None
 
-    try:
-        total_cost_pln = float(cost.get('total_pln')) if cost.get('total_pln') is not None else None
-    except (ValueError, TypeError):
-        total_cost_pln = None
-            
-    try:
-        total_cost_local = float(cost.get('total_local')) if cost.get('total_local') is not None else None
-    except (ValueError, TypeError):
-        total_cost_local = None
-
-    # Tworzenie obiektu bazy danych
+    # 3. Utwórz obiekt GeneratedPlan (zgodny z Twoim model.py)
     new_plan = GeneratedPlan(
-        city=query.get('city', 'Nieznane'),
-        country=query.get('country'),
-        days=query.get('days'),
-        travel_style=query.get('style'),
-        vacation_type=None, 
-        data_start=data_start,
-        data_end=data_end,
-        total_cost_pln=total_cost_pln,
-        total_cost_local_currency=total_cost_local,
-        local_currency_code=cost.get('currency'),
-        weather_data=plan.get('weather'),
-        attractions_data=selected_attractions_data, # ZAPISUJEMY PRZEFILTROWANE DANE
-        user_id=current_user.id
+        user_id=current_user.id,
+        city=plan_data['query']['city'],
+        country=plan_data['query'].get('country'),
+        days=plan_data['query']['days'],
+        travel_style=plan_data['query']['style'],
+        
+        data_start=d_start,
+        data_end=d_end,
+        
+        total_cost_pln=plan_data['cost'].get('total_pln'),
+        total_cost_local_currency=plan_data['cost'].get('total_local'),
+        local_currency_code=plan_data['cost'].get('currency'),
+        
+        weather_data=plan_data.get('weather'),
+        attractions_data=plan_data.get('attractions')
     )
-    
+
     try:
         db.session.add(new_plan)
         db.session.commit()
-        flash(flash_msg, "success")
+        
+        # 4. Czyścimy plan z sesji po udanym zapisie
+        session.pop('current_generated_plan', None)
+        
+        # Przekierowujemy do listy planów użytkownika po zapisie
+        flash("Twój plan podróży został pomyślnie zapisany!", "success")
+        return redirect(url_for('main.my_plans'))
+        
     except Exception as e:
         db.session.rollback()
-        from flask import current_app
-        current_app.logger.exception(f"Błąd zapisu planu do DB: {e}")
-        flash(f"Błąd zapisu bazy danych: {e}", "danger")
-    
-    return redirect(url_for('main.my_plans'))
+        # Logowanie błędu warto dodać w przyszłości np. current_app.logger.error(str(e))
+        flash(f"Wystąpił błąd bazy danych podczas zapisywania: {str(e)}", "danger")
+        return redirect(url_for('main.index'))
