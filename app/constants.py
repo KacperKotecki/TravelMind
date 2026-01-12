@@ -284,3 +284,30 @@ ICON_TO_EMOJI = {
     'thunder': '⛈️',
     'unknown': '🌤️'
 }
+
+# Tłumaczenia tagów klimatu podróży (używane w suggestions.html)
+TAG_TRANSLATIONS = {
+    "beach_sun": "Plaża i Słońce",
+    "nature": "Natura i Przyroda",
+    "city_break": "City Break",
+    "history_culture": "Historia i Kultura",
+    "mountains_trekking": "Góry i Trekking",
+    "food": "Kulinaria",
+    "adventure": "Przygoda",
+    "relaxation": "Relaks",
+    "nightlife": "Życie Nocne",
+    "nightlife_parties": "Życie Nocne i Imprezy",
+    "luxury": "Luksus",
+    "budget": "Budżetowo",
+    "family": "Dla Rodzin",
+    "wintersports": "Sporty Zimowe",
+    "water_sports": "Sporty Wodne",
+    "romantic": "Romantycznie",
+    "solo_travel": "Podróż Solo",
+    "shopping": "Zakupy",
+    "art_design": "Sztuka i Design",
+    "festivals": "Festiwale",
+    "wellness_spa": "Wellness & Spa",
+    "hidden_gems": "Ukryte Perełki",
+    "road_trip": "Road Trip"
+}
