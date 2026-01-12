@@ -1,0 +1,54 @@
+# --- Kontrola wersji ---
+.git
+.gitignore
+
+# --- Python i Cache (TO JEST KLUCZOWE) ---
+# Nie chcemy skompilowanych plików z Twojego lokalnego komputera,
+# kontener stworzy własne.
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Środowisko wirtualne ---
+# Docker instaluje zależności z requirements.txt systemowo w kontenerze.
+# Kopiowanie lokalnego venv zepsułoby obraz (różnice w ścieżkach i systemie).
+venv/
+.venv/
+env/
+
+# --- Zmienne środowiskowe i Sekrety ---
+# NIGDY nie kopiuj pliku .env do obrazu!
+# Zmienne podaje się przy uruchamianiu kontenera lub przez docker-compose.
+.env
+
+# --- Konfiguracje IDE ---
+.vscode/
+.idea/
+
+# --- Logi i pliki tymczasowe ---
+logs/
+*.log
+
+# --- Lokalne bazy danych ---
+# Baza w kontenerze powinna być wolumenem lub zewnętrznym serwisem.
+# Nie chcemy nadpisać bazy produkcyjnej Twoją lokalną bazą testową.
+*.db
+*.sqlite3
+app.db
+app-dev.db
+app-test.db
+
+# --- Pliki testowe i brudnopisy ---
+# Na produkcji testy nie są potrzebne
+tests/
+orm_test.py
+scripts/inspect_db.py
+
+# --- System operacyjny ---
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+Dockerfile
+.dockerignore
+README.md

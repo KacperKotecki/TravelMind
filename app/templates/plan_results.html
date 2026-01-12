@@ -22,7 +22,11 @@
  <div class="card weather-card weather-top">
 
         <h2><span class="icon">☀️</span> Pogoda</h2>
-
+        {% if plan.weather.warning_note %}
+            <div class="alert alert-info">
+                ℹ️ {{ plan.weather.warning_note }}
+            </div>
+        {% endif %}
         <div class="weather-details">
             {% if plan.weather.daily is defined %}
 
@@ -157,10 +161,10 @@
 
 {% if not is_saved %}
 <div class="save">
-    <form id="save-form" method="POST" action="{{ url_for('plans.save_plan') }}">
-        <input type="hidden" name="plan_data" value='{{ plan | tojson }}'>
-        <button type="submit" class="zapisz btn btn-primary"><span class="icon">💾</span> Zapisz plan</button>
-    </form>
+    <form action="{{ url_for('plans.save_plan') }}" method="POST">
+    <input type="text" name="plan_name" placeholder="Nazwij swój plan" required>
+    <button type="submit" class="btn btn-primary">Zapisz plan</button>
+</form>
 </div>
 {% endif %}
 

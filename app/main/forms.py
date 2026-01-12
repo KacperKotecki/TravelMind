@@ -81,11 +81,3 @@ class PlanGeneratorForm(FlaskForm):
     submit = SubmitField("Generuj Plan")
 
 
-class RequestResetForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Poproś o reset hasła')
-
-class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Hasło', validators=[DataRequired()])
-    confirm_password = PasswordField('Potwierdź hasło', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Zresetuj hasło')

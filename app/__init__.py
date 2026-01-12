@@ -18,7 +18,7 @@ def create_app(config_name: str):
     login_manager.init_app(app)
     mail.init_app(app)
     
-    login_manager.login_view = 'main.login'
+    login_manager.login_view = 'auth.login' 
     login_manager.login_message = 'Zaloguj się, aby uzyskać dostęp do tej strony.'
     login_manager.login_message_category = 'info'
     
@@ -30,6 +30,9 @@ def create_app(config_name: str):
     
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint) 
 
     from .plans import plans as plans_blueprint
     app.register_blueprint(plans_blueprint, url_prefix='/plan')

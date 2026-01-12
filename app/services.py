@@ -1,9 +1,8 @@
-# app/services.py
 from datetime import date, timedelta, datetime
-from .api_clients import get_weather, get_attractions, get_exchange_rate, get_coordinates_for_city
-from .constans import BASE_COSTS, WEATHERCODE_TO_KEY, ICON_TO_EMOJI
+from app.api import get_weather, get_attractions, get_coordinates_for_city
+from .constants import BASE_COSTS, WEATHERCODE_TO_KEY, ICON_TO_EMOJI
+from app.models import Country
 
-# ZMIANA: Dodano parametr 'country' do definicji funkcji
 def get_plan_details(city: str, days: int, style: str, country: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None, cost_mult: float = 1.2) -> dict:
     """
     Główna funkcja serwisu, obsługująca dynamiczne miasta.
@@ -78,3 +77,50 @@ def get_plan_details(city: str, days: int, style: str, country: str = None, star
         result['center'] = {'lat': lat, 'lon': lon}
 
     return result
+
+
+def orchestrate_plan_creation(city, days, style, query_params):
+    """
+    Główna funkcja orkiestratora.
+    Przyjmuje surowe dane, waliduje, pobiera dane (pogoda, atrakcje) 
+    i zwraca kompletny obiekt planu lub słownik z błędem.
+    """
+    
+    # 1. Walidacja parametrów wejściowych (to co było w routes)
+    if isinstance(city, str):
+        city = city.strip()
+        
+    cost_mult = query_params.get("cost_mult", 1.2)
+    try:
+        cost_mult = float(cost_mult)
+    except (ValueError, TypeError):
+        cost_mult = 1.2
+
+    country_name = query_params.get("country")
+
+    # 2. Wywołanie twojej istniejącej logiki (zakładam, że get_plan_details to ta funkcja)
+    #    Możemy tu przekazać oczyszczone parametry.
+    plan_data = get_plan_details(
+        city, 
+        days, 
+        style, 
+        country=country_name, 
+        start_date=query_params.get("start"), 
+        end_date=query_params.get("end"), 
+        lat=query_params.get("lat"), 
+        lon=query_params.get("lon"), 
+        cost_mult=cost_mult
+    )
+    
+    if plan_data.get("error"):
+        return {"error": plan_data["error"], "status": 404}
+
+    # 3. Logika biznesowa: Sprawdzanie bezpieczeństwa kraju (wyjęte z routes)
+    if country_name:
+        plan_data['query']['country'] = country_name
+        
+        country_obj = Country.query.filter_by(name=country_name).first()
+        if country_obj and country_obj.danger:
+            plan_data['is_dangerous'] = True
+    
+    return {"data": plan_data, "status": 200}

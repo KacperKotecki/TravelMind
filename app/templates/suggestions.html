@@ -6,7 +6,7 @@
 <div class="container suggestions-container">
     <header class="suggestions-header">
         <h1>Polecane kierunki dla Ciebie 🌍</h1>
-        <p>Na podstawie wybranych preferencji: <strong>{{ vibes|join(', ') }}</strong></p>
+        <p>Na podstawie wybranych preferencji: <strong>{{ vibes|map('translate_tag')|join(', ') }}</strong></p>
     </header>
 
     <div class="suggestions-grid">
@@ -21,7 +21,7 @@
                             <h3>{{ city.name }}</h3>
                             <span class="city-tags">
                                 {% for tag in city.tags[:2] %}
-                                <span class="tag-pill">{{ tag }}</span>
+                                <span class="tag-pill">{{ tag|translate_tag }}</span>
                                 {% endfor %}
                             </span>
                         </div>
