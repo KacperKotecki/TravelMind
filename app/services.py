@@ -1,5 +1,5 @@
 from datetime import date, timedelta, datetime
-from app.api import get_weather, get_attractions, get_exchange_rate, get_coordinates_for_city
+from app.api import get_weather, get_attractions, get_coordinates_for_city
 from .constants import BASE_COSTS, WEATHERCODE_TO_KEY, ICON_TO_EMOJI
 from app.models import Country
 
