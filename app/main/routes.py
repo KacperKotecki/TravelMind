@@ -4,10 +4,9 @@ from . import main
 from .forms import PlanGeneratorForm
 import json
 import os
-from app.utils import normalize_city_name
 from app.recommendations import get_grouped_recommendations
-from app.api import build_geocode_variants, search_city_suggestions
-
+from app.utils import build_geocode_variants, normalize_city_name
+from app.api import search_city_suggestions 
 from app.models import GeneratedPlan # Import User jest tu zbędny, jeśli nie używasz go bezpośrednio w query
 
 

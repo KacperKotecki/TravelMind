@@ -3,7 +3,7 @@ import re
 from datetime import datetime, timedelta
 from flask import current_app
 from app.constants import WEATHER_CODES_PL
-from .utils import format_date_val
+from app.utils import format_date_val
 from .places import get_coordinates_for_city
 
 def _weather_code_to_polish(code: int) -> str:
