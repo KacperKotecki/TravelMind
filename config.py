@@ -31,6 +31,12 @@ class DevelopmentConfig(BaseConfig):
     # W przeciwnym razie powróć do SQLite
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir,'app-dev.db')
+    
+class TestingConfig(BaseConfig):
+    """Configuration for tests."""
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app-test.db')
+    WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(BaseConfig):
@@ -43,5 +49,6 @@ class ProductionConfig(BaseConfig):
 config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig,
+    'testing': TestingConfig,
     'default': DevelopmentConfig
 }

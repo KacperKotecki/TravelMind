@@ -6,6 +6,7 @@ from ..api_clients import build_geocode_variants
 from app.forms import LoginForm 
 import json
 import os
+import uuid
 from app.utils import normalize_city_name
 from app.recommendations import recommend_city, get_grouped_recommendations
 
@@ -222,16 +223,20 @@ def sync_auth_user():
     data = request.get_json() or {}
     email = data.get('email')
     supabase_uid = data.get('supabase_uid')
+    
     if not email or not supabase_uid:
         return jsonify({"error": "email and supabase_uid required"}), 400
 
     user = User.query.filter_by(email=email.lower()).first()
     if not user:
         return jsonify({"error": "user not found"}), 404
-
     user.auth_uuid = supabase_uid
     try:
+        # KONWERSJA: Zamieniamy string na obiekt UUID
+        user.auth_uuid = uuid.UUID(supabase_uid) 
         db.session.commit()
+    except ValueError:
+        return jsonify({"error": "Invalid UUID format"}), 400
     except Exception as e:
         db.session.rollback()
         current_app.logger.error(f"Failed to set auth_uuid: {e}")
@@ -298,3 +303,11 @@ def reset_token(token):
         return redirect(url_for('main.login'))
     
     return render_template('reset_token.html', form=form)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+@main.route('/contact')
+def contact():
+    return render_template('contact.html')
