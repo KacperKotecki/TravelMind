@@ -1,5 +1,6 @@
 import requests
 import re
+from datetime import datetime, timedelta
 from flask import current_app
 from app.constants import WEATHER_CODES_PL
 from .utils import format_date_val
@@ -18,6 +19,7 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
             return None
         lat, lon = coords.get("lat"), coords.get("lon")
 
+    # 2. PRZYGOTOWANIE PARAMETRÓW BAZOWYCH
     base_url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": lat,
@@ -29,28 +31,53 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
         "temperature_unit": "celsius",
     }
 
-    s = format_date_val(start_date)
-    e = format_date_val(end_date)
-    if s: params["start_date"] = s
-    if e: params["end_date"] = e
+    # 3. WALIDACJA DAT (Refaktoryzacja)
+    
+    use_dates = False
+    date_warning_msg = None
+    
+    s_str = format_date_val(start_date)
+    e_str = format_date_val(end_date)
+    
+    if s_str and e_str:
+        try:
+            today = datetime.now().date()
+            d_start = datetime.strptime(s_str, "%Y-%m-%d").date()
+            
+            # Limit API (przyjmujemy 14 dni)
+            max_future = today + timedelta(days=14)
+            
+            # Warunki: data zbyt stara lub zbyt daleko w przyszłość
+            is_too_old = d_start < (today - timedelta(days=1)) 
+            is_too_far = d_start > max_future
+            
+            if not is_too_old and not is_too_far:
+                params["start_date"] = s_str
+                params["end_date"] = e_str
+                use_dates = True
+            else:
+                # --- LOGOWANIE OSTRZEŻENIA DLA DEVELOPERA ---
+                current_app.logger.warning(
+                    f"[Pogoda] Zignorowano daty dla miasta {city}. Żądana data: {s_str}. "
+                    f"Powód: Poza zakresem API Open-Meteo (Max 14 dni w przód)."
+                )
+                # --- INFORMACJA DLA UŻYTKOWNIKA ---
+                date_warning_msg = "Prognoza dotyczy najbliższych dni, ponieważ wybrana data podróży wykracza poza zakres prognozy długoterminowej."
+                
+        except ValueError:
+            current_app.logger.error(f"[Pogoda] Błąd formatu daty dla miasta {city}: {s_str}")
+            pass
 
+    # 4. WYSŁANIE ŻĄDANIA
     try:
         response = requests.get(base_url, params=params, timeout=10)
-        
-        # Obsługa błędu zakresu dat (prosta naprawa)
-        if response.status_code == 400 and "out of allowed range" in response.text:
-             # Tutaj uproszczony fallback: pobierz bez dat (domyślna prognoza)
-             params.pop("start_date", None)
-             params.pop("end_date", None)
-             response = requests.get(base_url, params=params, timeout=10)
-
-        response.raise_for_status()
+        response.raise_for_status() 
         data = response.json()
     except requests.exceptions.RequestException as e:
-        current_app.logger.error(f"Open-Meteo Error: {e}")
+        current_app.logger.error(f"[Pogoda] Błąd połączenia z Open-Meteo API: {e}")
         return None
 
-    # Parsowanie wyniku
+    # 5. Parsowanie wyniku
     current = data.get("current_weather", {})
     if not current:
         return None
@@ -58,7 +85,9 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
     result = {
         "temperatura": round(float(current.get("temperature", 0))),
         "opis": _weather_code_to_polish(current.get("weathercode")),
-        "wiatr_kmh": current.get("windspeed")
+        "wiatr_kmh": current.get("windspeed"),
+        # Przekazujemy ostrzeżenie do frontendu
+        "warning_note": date_warning_msg
     }
 
     # Parsowanie dziennych (Daily)
@@ -73,8 +102,8 @@ def get_weather(city: str = None, start_date=None, end_date=None, lat: float = N
         
         for i, t in enumerate(times):
             day_obj = {"date": t}
-            if i < len(max_temps): day_obj["temperatura_max"] = round(max_temps[i])
-            if i < len(min_temps): day_obj["temperatura_min"] = round(min_temps[i])
+            if i < len(max_temps) and max_temps[i] is not None: day_obj["temperatura_max"] = round(max_temps[i])
+            if i < len(min_temps) and min_temps[i] is not None: day_obj["temperatura_min"] = round(min_temps[i])
             if i < len(rain): day_obj["opad_mm"] = rain[i]
             if i < len(codes): 
                 day_obj["weathercode"] = codes[i]
