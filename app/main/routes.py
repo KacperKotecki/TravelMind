@@ -155,3 +155,8 @@ def about():
 @main.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+@main.route('/o-nas')  
+def onas():            
+    return render_template('onas.html') 

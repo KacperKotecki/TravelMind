@@ -1,21 +1,97 @@
 {% extends "base.html" %}
 
-{% block title %}Travel Mind - Twój Inteligentny Asystent Podróży{% endblock %}
+{% block title %}Travel Mind - O nas{% endblock %}
 
 {% block content %}
-    <div class="aboutus-container">
-        <h2>Informacje o autorach</h2>
-        <div class="aboutus-info">
-            <p><strong>Kacepr Kotecki</strong> </p>
-            <p><strong>Emil Górski</strong></p>
-            <p><strong>Kacper Bednarek</strong></p>
-            <p><strong>Weronika Kusideł</strong></p>
-            <p><strong></strong></p>
-            
-            
-        </div>
-       
+<div class="container about-page">
+    <div class="about-header">
+        <h1>O autorach</h1>
+        <p>Zespół tworzący Travel Mind</p>
     </div>
 
- 
-{% endblock %} 
+    <div class="team-grid">
+        
+        <div class="team-card">
+            <h3>Kacper Kotecki</h3>
+            <p class="role">Developer</p>
+             <div class="description">
+                <p> W projekcie pełniłem rolę głównego architekta, odpowiadając za zaprojektowanie modularnej struktury całej aplikacji. Skupiłem się na zaawansowanej integracji z zewnętrznymi interfejsami, w tym pełnym wdrożeniu Google Places API do obsługi atrakcji turystycznych. Zaimplementowałem kluczowy moduł interfejsu pozwalający użytkownikom na wybór stylu podróży oraz z sukcesem przeprowadziłem deployment aplikacji na serwer produkcyjny. </p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Emil Górski</h3>
+            <p class="role">Bazodanowiec</p>
+            <div class="description">
+                <p>Odpowiadałem: za implementację bazy danych online (supabase, utworzenie tabel, pól do tabel, wprowadzenie danych o państwach i miastach w tych państwach i relacje: jeden użytkownik może mieć wiele planów, jedno państwo może zawierać wiele miast), za resetowanie  hasła( postawienie SMTP i integracja z Gmail)</p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Kacper Bednarek</h3>
+            <p class="role"> Full-stack Developer</p>
+            <div class="description">
+                <p>Wprowadziłem Api geoapify do zczytywania współrzędnych podanego miasta,wprowadzenie API open-meteo. Do pobierania wartości podgodowych z konkretnych współrzędnych geolokalizacyjnych. Zintegrowane obu api z naszym kodem i zdefiniowanie odpowiednich pól do wyswietlania i wprowadzenia. Stworzenie możliwości interakcji user-api-server. Zaprojektowanie prototypu wyglądu sekcji wyświetlanej pogody. Korekcja błędów w kodzie, szukanie bugów oraz testowanie innych api, które nie zostały użyte w finalnej wersji projektu. Stworzenie maila projektowego do tworzenia nowych kluczy API.</p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Weronika Kusideł</h3>
+            <p class="role">Frontend Developer</p>
+            <div class="description">
+                <p>Jestem odpowiedzialna za frontend aplikacji, czyli interfejs użytkownika. Dodałam również elementy JavaScriptu, aby poprawić działąnie aplikacji. Łączyłam prace z serwrem z efektem wizualny. Stworzyłam działające formularze, które były podstawą do działąnia bazy danych. </p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Adrianna Kamińska</h3>
+            <p class="role">Analityk</p>
+            <div class="description">
+                <p>Odpowiadałam za tworzenie specyfikacji technicznej projektu, dbając o wysokie standardy i przejrzystość informacji. Stworzyłam spójne źródło wiedzy o działaniu aplikacji, które służy jako fundament dla obecnych i przyszłych prac programistycznych..</p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Julia Gonera</h3>
+            <p class="role">Developer</p>
+            <div class="description">
+                <p>Odpowiadałam za przygotowanie danych o miastach turystycznych świata. Przekazałam Emilowi pliki json. 1 zawierający listę wszystkich uznawanych krajów świata, drugi zawierający miasta turystyczne z tych krajów, m.in. ich nazwy, tagi opisujące sposób jaki można tam wypocząć i przeliczniki kosztów.</p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Natalia Flaszka</h3>
+            <p class="role">Developer</p>
+            <div class="description">
+                <p>W projekcie odpowiadałam za integrację mapy oraz dopracowałam wygląd. Podpięłam bibliotekę Leaflet, którą wykorzystałam do stworzenia statycznej mapy w tle oraz do umożliwienia interaktywnego wyboru lokalizacji. Zaimplementowałam mechanizm oparty na API Nominatim, które odpowiada za zamianę współrzędnych geograficznych na nazwę miejscowości. Dzięki temu system sam uzupełnia nazwę miejscowości. Dodatkowo zrobiłam redesign sekcji pogodowej zmieniając sposób wyświetlania prognozy na bardziej czytelny.</p>
+            </div>
+        </div>
+
+        <div class="team-card">
+            
+            <h3>Zuzanna Jończyk</h3>
+            <p class="role">Tester</p>
+            <div class="description">
+                <p>QA: testy funkcjonalne i integracyjne (m.in: dostępności stron, autoryzacji, generatora planu podróży, api i mockowania, bezpieczeństwa i prywatności, integracji z Supabase), mechanizm tworzenia i usuwania tymczasowej bazy danych na potrzeby testów, automatyzacja przygotowująca dane przed każdym testem i sprzątająca po nim.</p>
+            </div>
+        </div>
+
+      <!--  <div class="team-card">-->
+            
+            <!--<h3>Aleksander Płoszaj</h3>
+            <p class="role">Rola w zespole</p>
+
+            <div class="description">
+                <p>Testy funkcjonalne modułu autoryzacji ( testy rejestracji , logowania ) , weryfikacja spójności danych api ( testowanie przypadow literówek miast ,  spójność jednostek i formatowania ) , testy responsywnosci ( prawidłowe wyświetlanie na  różnych przegladarkach i urządzeniach  )</p>
+            </div>
+        </div>-->
+
+    </div>
+</div>
+{% endblock %}
