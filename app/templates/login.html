@@ -18,10 +18,10 @@
                 {{ form.password(class="form-control", placeholder="Wprowadź swoje hasło") }}
             </div>
             <div class="unknown-password">
-                <a href="{{ url_for('main.reset_request') }}">Nie pamiętasz hasła?</a>
+                <a href="{{ url_for('auth.reset_request') }}">Nie pamiętasz hasła?</a>
             </div>
             <div class="register"> 
-              <p>Nie masz konta? <a href="{{ url_for('main.register') }}">Zarejestruj się</a></p>
+              <p>Nie masz konta? <a href="{{ url_for('auth.register') }}">Zarejestruj się</a></p>
             </div>
             {{ form.submit(class="btn btn-primary") }}
         </form>

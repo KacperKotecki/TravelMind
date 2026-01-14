@@ -12,12 +12,21 @@
             <span class="badge style-badge">{{ plan.query.style }}</span>
         </p>
     </header>
-
+    {% if plan.is_dangerous %}
+    <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; margin-bottom: 20px; border-radius: 8px; text-align: center;">
+        <strong>⚠️ OSTRZEŻENIE:</strong> Podróż do kraju <strong>{{ plan.query.country }}</strong> może być niebezpieczna. 
+        <br>Ministerstwo Spraw Zagranicznych odradza podróże do tego regionu lub zaleca zachowanie szczególnej ostrożności.
+    </div>
+    {% endif %}
     <!-- Pogoda - górna sekcja -->
  <div class="card weather-card weather-top">
 
         <h2><span class="icon">☀️</span> Pogoda</h2>
-
+        {% if plan.weather.warning_note %}
+            <div class="alert alert-info">
+                ℹ️ {{ plan.weather.warning_note }}
+            </div>
+        {% endif %}
         <div class="weather-details">
             {% if plan.weather.daily is defined %}
 
@@ -76,10 +85,6 @@
         </div>
     </div>
 
-              
-        
-    
-
     <div class="info-grid">
         
         <div class="card budget-card">
@@ -91,23 +96,24 @@
                 <p class="info-note">Dla tego miasta nie mamy jeszcze danych o szacunkowych kosztach.</p>
             {% endif %}
         </div>
-        
-        <!-- 'Ważne obiekty' section removed as requested -->
     </div>
     
     <div class="attractions-section">
         <h2><span class="icon">🏛️</span> Główne atrakcje</h2>
+        {% if not is_saved %}
+        <p>Kliknij na atrakcje, które chcesz zachować w swoim planie.</p>
+        {% endif %}
         
         <div class="attraction-cards">
             {% if plan.attractions and plan.attractions|length > 0 %}
                 {% for attraction in plan.attractions %}
                 <div class="attraction-card card">
-                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}" form="save-form">
+                    <input class="card-checkbox" id="cards-{{ loop.index0 }}" name="cards" type="checkbox" value="{{ attraction.name }}" form="save-form" {% if is_saved %}disabled{% endif %}>
                     <label for="cards-{{ loop.index0 }}" class="cards-card">
                         
                         {% if attraction.photo_url %}
                         <div class="attraction-image-container">
-                            <img src="{{ attraction.photo_url }}" alt="{{ attraction.name }}" class="attraction-photo">
+                            <img src="{{ attraction.photo_url }}" alt="{{ attraction.name }}" class="attraction-photo" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text={{ attraction.name }}';" >
                         </div>
                         {% elif attraction.icon %}
                         <div class="attraction-icon-container">
@@ -148,19 +154,25 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <p>Brak danych o atrakcjach dla tego miasta.</p>
+                <p>Brak danych o atrakcjach dla tego planu.</p>
             {% endif %}
         </div>
     </div>
+
+{% if not is_saved %}
 <div class="save">
-    <form id="save-form" method="POST" action="{{ url_for('plans.save_plan') }}">
-        <input type="hidden" name="plan_data" value='{{ plan | tojson }}'>
-        <button type="submit" class="zapisz btn btn-primary"><span class="icon">💾</span> Zapisz plan</button>
-    </form>
+    <form action="{{ url_for('plans.save_plan') }}" method="POST">
+    <input type="text" name="plan_name" placeholder="Nazwij swój plan" required>
+    <button type="submit" class="btn btn-primary">Zapisz plan</button>
+</form>
 </div>
+{% endif %}
 
     <div class="action-buttons">
         <button class="btn btn-secondary"><span class="icon">📄</span> Pobierz jako PDF</button>
+        {% if is_saved %}
+        <a href="{{ url_for('main.my_plans') }}" class="btn btn-secondary">Wróć do listy planów</a>
+        {% endif %}
     </div>
     
 </div>
@@ -173,16 +185,12 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
-        // Sprawdzamy czy elementy istnieją
         if (track && prevBtn && nextBtn) {
-            
-            // Funkcja ukrywająca strzałki, jeśli wszystkie dni mieszczą się na ekranie
             const checkArrows = () => {
                 if (track.scrollWidth <= track.clientWidth) {
                     prevBtn.style.display = 'none';
                     nextBtn.style.display = 'none';
                 } else {
-                    // Pokaż tylko na desktopie (na mobile CSS je ukrywa)
                     if (window.innerWidth > 768) {
                         prevBtn.style.display = 'flex';
                         nextBtn.style.display = 'flex';
@@ -193,7 +201,6 @@
             checkArrows();
             window.addEventListener('resize', checkArrows);
 
-            // Szerokość przewijania (szerokość karty + odstęp)
             const scrollAmount = 280; 
 
             nextBtn.addEventListener('click', () => {

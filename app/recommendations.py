@@ -3,16 +3,20 @@ from collections import defaultdict
 
 def recommend_city(selected_tags: list, cities_list: list, budget_style: str = None) -> dict | None:
     """
-    Rekomenduje miasto na podstawie wybranych tagów i opcjonalnie stylu budżetowego.
+    Wybiera jedno rekomendowane miasto na podstawie preferencji użytkownika (algorytm losujący).
+
+    Funkcja filtruje dostępną bazę miast, szukając takich, które posiadają 
+    przynajmniej jeden z wybranych tagów. Jeśli wybrano styl "Ekonomiczny",
+    dodatkowo odrzucane są miasta flgowane jako drogie (`cost_tier: high`).
 
     Args:
-        selected_tags (list): Lista tagów wybranych przez użytkownika (np. ["city_break", "beach_sun"]).
-        cities_list (list): Lista słowników reprezentujących miasta (z pliku JSON).
-        budget_style (str, optional): Styl podróży ("Ekonomiczny", "Standardowy", "Komfortowy").
-                                      Jeśli "Ekonomiczny", odrzuca miasta z cost_tier="high".
+        selected_tags (list): Lista stringów z tagami (np. ["beach_sun", "history"]).
+        cities_list (list): Pełna lista słowników z danymi miast (zwykle z pliku JSON).
+        budget_style (str, optional): Styl podróży. Wartość "Ekonomiczny" aktywuje filtr cenowy.
 
     Returns:
-        dict | None: Wylosowany obiekt miasta spełniający kryteria lub None, jeśli brak pasujących miast.
+        dict | None: Losowo wybrany obiekt miasta spełniający kryteria 
+                     lub None, jeśli żadne miasto nie pasuje do filtrów.
     """
     if not cities_list or not selected_tags:
         return None
@@ -41,9 +45,24 @@ def recommend_city(selected_tags: list, cities_list: list, budget_style: str = N
 
 def get_grouped_recommendations(selected_tags: list, cities_list: list, budget_style: str = None) -> dict:
     """
-    Zwraca słownik pogrupowany krajami z listą miast spełniających kryteria.
-    Struktura: { "Kraj": [miasto1, miasto2, ...], ... }
-    Maksymalnie 4 kraje, w każdym maksymalnie 4 miasta.
+    Generuje zestaw rekomendacji pogrupowanych według krajów, idealny do widoków typu "Odkrywaj".
+
+    W przeciwieństwie do `recommend_city`, ta funkcja zwraca wiele wyników.
+    Aby zapewnić różnorodność i nie przytłoczyć użytkownika, wyniki są tasowane (shuffle),
+    a ich liczba jest limitowana (max 4 kraje, max 4 miasta na kraj).
+
+    Args:
+        selected_tags (list): Lista tagów preferencji użytkownika.
+        cities_list (list): Pełna lista dostępnych miast.
+        budget_style (str, optional): Filtr budżetowy ("Ekonomiczny" odrzuca drogie miasta).
+
+    Returns:
+        dict: Słownik, gdzie kluczem jest nazwa kraju, a wartością lista obiektów miast.
+              Przykład:
+              {
+                  "Włochy": [{"city": "Rzym", ...}, {"city": "Mediolan", ...}],
+                  "Hiszpania": [{"city": "Barcelona", ...}]
+              }
     """
     if not cities_list or not selected_tags:
         return {}
