@@ -5,18 +5,19 @@ from datetime import date, datetime
 
 def normalize_city_name(user_input: str, cities_list: list, threshold: int = 75) -> dict | None:
     """
-    Normalizuje nazwę miasta wpisaną przez użytkownika, znajdując najlepsze dopasowanie
-    w liście miast z pliku JSON.
+    Wyszukuje miasto w lokalnej bazie JSON, używając algorytmu rozmytego dopasowania (fuzzy matching).
+
+    Dzięki bibliotece `thefuzz`, funkcja potrafi obsłużyć literówki, brak polskich znaków 
+    oraz zmianę kolejności słów (np. "Krakow" zamiast "Kraków").
 
     Args:
-        user_input (str): Tekst wpisany przez użytkownika (np. "krakow", "warsaw").
-        cities_list (list): Lista słowników reprezentujących miasta (np. z pliku JSON).
-                            Oczekuje, że każdy słownik ma klucz 'city'.
-        threshold (int): Minimalny próg dopasowania (0-100). Domyślnie 75.
+        user_input (str): Nazwa miasta wpisana przez użytkownika.
+        cities_list (list): Lista słowników z danymi miast (musi zawierać klucz 'city').
+        threshold (int, optional): Minimalny procent pewności dopasowania (0-100). Domyślnie 75.
 
     Returns:
-        dict | None: Pełny obiekt miasta z listy, jeśli znaleziono dopasowanie powyżej progu.
-                     W przeciwnym razie None.
+        dict | None: Słownik z danymi znalezionego miasta lub None, jeśli nie znaleziono 
+                     pasującego wyniku powyżej progu pewności.
     """
     if not user_input or not cities_list:
         return None
@@ -42,14 +43,40 @@ def normalize_city_name(user_input: str, cities_list: list, threshold: int = 75)
     return None
 
 def normalize_to_ascii(s: str) -> str:
-    """Prosta transliteracja do ASCII: Łódź -> Lodz"""
+    """
+    Konwertuje tekst z polskimi znakami diakrytycznymi na format ASCII (bez ogonków).
+    
+    Wykorzystuje normalizację Unicode NFKD do oddzielenia znaków od ich akcentów,
+    a następnie usuwa same akcenty.
+
+    Przykład:
+        "Łódź" -> "Lodz"
+        "Zażółć" -> "Zazolc"
+
+    Args:
+        s (str): Tekst wejściowy.
+
+    Returns:
+        str: Tekst pozbawiony znaków spoza tablicy ASCII.
+    """
     if not s:
         return s
     nk = unicodedata.normalize("NFKD", s)
     return "".join(c for c in nk if not unicodedata.combining(c))
 
 def format_date_val(val):
-    """Formatuje datę do formatu YYYY-MM-DD wymaganego przez API."""
+    """
+    Bezpiecznie konwertuje różne typy obiektów daty na format tekstowy 'YYYY-MM-DD'.
+
+    Potrzebne do ujednolicenia formatu daty przesyłanego do zewnętrznych API (np. OpenMeteo),
+    niezależnie od tego, czy źródłem jest obiekt `date`, `datetime` czy string.
+
+    Args:
+        val (date | datetime | str | None): Wartość daty do sformatowania.
+
+    Returns:
+        str | None: Data w formacie ISO (np. "2023-05-20") lub None, jeśli wejście było puste.
+    """
     if val is None:
         return None
     if isinstance(val, date):
@@ -59,7 +86,22 @@ def format_date_val(val):
     return str(val)
 
 def build_geocode_variants(raw: str) -> list:
-    """Tworzy warianty nazwy miasta do geokodowania."""
+    """
+    Generuje listę alternatywnych nazw lokalizacji, aby zwiększyć szansę na znalezienie jej w API map.
+
+    Funkcja czyści surowy ciąg znaków (np. z autouzupełniania przeglądarki), usuwając
+    nazwy administracyjne (województwo, powiat) oraz tworząc wariant bez polskich znaków.
+
+    Przykład:
+        Input: "Wrocław, województwo dolnośląskie"
+        Output: ["Wrocław, województwo dolnośląskie", "Wrocław", "Wroclaw"]
+
+    Args:
+        raw (str): Surowa nazwa lokalizacji (np. z formularza).
+
+    Returns:
+        list: Lista unikalnych wariantów nazwy, posortowana od najbardziej precyzyjnej do ogólnej.
+    """
     if not raw:
         return []
 

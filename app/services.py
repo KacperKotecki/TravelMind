@@ -5,9 +5,30 @@ from app.models import Country
 
 def get_plan_details(city: str, days: int, style: str, country: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None, cost_mult: float = 1.2) -> dict:
     """
-    Główna funkcja serwisu, obsługująca dynamiczne miasta.
+    Agreguje szczegółowe dane dla planu podróży z zewnętrznych API (pogoda, atrakcje) i oblicza koszty.
+
+    Funkcja pobiera dane pogodowe dla zadanego zakresu dat, przetwarza kody pogody na ikony/emotikony,
+    pobiera listę atrakcji turystycznych oraz wylicza szacunkowy koszt wyjazdu na podstawie stylu podróży.
+    
+    Args:
+        city (str): Nazwa miasta docelowego.
+        days (int): Czas trwania podróży w dniach.
+        style (str): Wybrany styl podróży (klucz do mapy BASE_COSTS, np. 'low_budget').
+        country (str, optional): Nazwa kraju (ułatwia wyszukiwanie atrakcji).
+        start_date (str/date, optional): Data początkowa (ISO format lub obiekt date).
+        end_date (str/date, optional): Data końcowa (ISO format lub obiekt date).
+        lat (float, optional): Szerokość geograficzna miasta (dla dokładniejszej pogody).
+        lon (float, optional): Długość geograficzna miasta (dla dokładniejszej pogody).
+        cost_mult (float, optional): Mnożnik kosztów specyficzny dla danego kraju/miasta. Domyślnie 1.2.
+
+    Returns:
+        dict: Słownik zawierający komplet danych planu:
+            - 'query': Metadane zapytania (miasto, daty, styl).
+            - 'cost': Obliczone koszty (PLN + waluta lokalna).
+            - 'weather': Przetworzone dane pogodowe z ikonami.
+            - 'attractions': Lista atrakcji turystycznych.
+            - 'center': Współrzędne geograficzne (jeśli podano).
     """
-    # Normalizuj nazwę miasta
     if isinstance(city, str):
         city = city.strip()
 
@@ -81,12 +102,29 @@ def get_plan_details(city: str, days: int, style: str, country: str = None, star
 
 def orchestrate_plan_creation(city, days, style, query_params):
     """
-    Główna funkcja orkiestratora.
-    Przyjmuje surowe dane, waliduje, pobiera dane (pogoda, atrakcje) 
-    i zwraca kompletny obiekt planu lub słownik z błędem.
+    Zarządza procesem tworzenia planu podróży: waliduje dane wejściowe, wywołuje serwisy i sprawdza reguły biznesowe.
+
+    Pełni rolę warstwy pośredniej (facade) między kontrolerem (Route) a logiką pobierania danych (`get_plan_details`).
+    Odpowiada za przygotowanie (rzutowanie) typów danych z żądania HTTP oraz sprawdzenie, czy kraj jest bezpieczny (baza danych).
+
+    Args:
+        city (str): Nazwa miasta przesłana z formularza.
+        days (int): Liczba dni przesłana z formularza.
+        style (str): Styl podróży przesłany z formularza.
+        query_params (dict): Słownik dodatkowych parametrów (np. `request.args`), zawierający:
+            - 'cost_mult': Mnożnik kosztów (oczekiwany float).
+            - 'country': Nazwa kraju.
+            - 'start', 'end': Daty podróży.
+            - 'lat', 'lon': Współrzędne geograficzne.
+
+    Returns:
+        dict: Struktura odpowiedzi dla widoku:
+            - 'data': Wygenerowany plan podróży (dict) lub komunikat błędu.
+            - 'status': Kod statusu HTTP (200 dla sukcesu, 404 dla błędu).
+            - 'error': Opcjonalny opis błędu.
+            W przypadku niebezpiecznego kraju, do 'data' dodawana jest flaga 'is_dangerous'.
     """
     
-    # 1. Walidacja parametrów wejściowych (to co było w routes)
     if isinstance(city, str):
         city = city.strip()
         

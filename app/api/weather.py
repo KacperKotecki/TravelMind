@@ -10,7 +10,31 @@ def _weather_code_to_polish(code: int) -> str:
     return WEATHER_CODES_PL.get(code, "Nieznane warunki pogodowe")
 
 def get_weather(city: str = None, start_date=None, end_date=None, lat: float = None, lon: float = None) -> dict | None:
-    # 1. Uzupełnienie współrzędnych jeśli brak
+    """
+    Pobiera aktualną prognozę pogody oraz dane dzienne dla podanego miasta i zakresu dat.
+
+    Funkcja korzysta z darmowego API Open-Meteo. Jeśli daty wykraczają poza
+    dostępny zakres prognozy (max 14 dni w przód), API zwraca pogodę "na teraz",
+    a funkcja dołącza ostrzeżenie (`warning_note`) dla użytkownika.
+
+    Jeśli współrzędne (lat/lon) nie są podane, funkcja spróbuje je "dogeokodować"
+    na podstawie nazwy miasta (używając `get_coordinates_for_city`).
+
+    Args:
+        city (str, optional): Nazwa miasta (używana jako backup do geokodowania).
+        start_date (date/str, optional): Data początkowa podróży.
+        end_date (date/str, optional): Data końcowa podróży.
+        lat (float, optional): Szerokość geograficzna.
+        lon (float, optional): Długość geograficzna.
+
+    Returns:
+        dict | None: Słownik z danymi pogodowymi:
+            - 'temperatura': Aktualna temperatura.
+            - 'opis': Słowny opis pogody po polsku.
+            - 'daily': Lista obiektów z prognozą na każdy dzień.
+            - 'warning_note': Komunikat, jeśli daty zostały zignorowane przez limit API.
+            Zwraca None w przypadku błędu sieci lub braku danych.
+    """
     if lat is None or lon is None:
         if not city:
             return None

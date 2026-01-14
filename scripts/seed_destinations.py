@@ -8,6 +8,19 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from app import create_app, db
 from app.models import Country, City
 
+
+"""
+Skrypt zasilający bazę danych (Database Seeder).
+
+Służy do inicjalizacji i aktualizacji danych geograficznych w aplikacji.
+Łączy dane z dwóch źródeł:
+1. Plik `destinations.json`: Zawiera szczegółowe dane o miastach, tagach i kosztach.
+2. Stała `DANGER_LIST`: Zawiera informacje o bezpieczeństwie w poszczególnych krajach.
+
+Może być uruchamiany wielokrotnie – potrafi zaktualizować statusy bezpieczeństwa istniejących krajów
+oraz dodać nowe miasta, nie dublując tych już zapisanych.
+"""
+
 # Lista krajów z informacją o bezpieczeństwie (na podstawie Twoich danych)
 DANGER_LIST = [
   { "name": "Afganistan", "danger": "yes" },
@@ -207,6 +220,25 @@ DANGER_LIST = [
 ]
 
 def seed_destinations():
+    """
+    Główna funkcja procedury importu danych.
+
+    Uruchamia kontekst aplikacji Flask, aby uzyskać dostęp do bazy danych SQLAlchemy.
+    
+    Proces przebiega w dwóch etapach:
+    1. Synchronizacja Krajów (Country):
+       - Tworzy nowe kraje, jeśli nie istnieją.
+       - Aktualizuje status `danger` dla istniejących krajów na podstawie `DANGER_LIST`.
+    
+    2. Import Miast (City):
+       - Wczytuje miasta z pliku JSON.
+       - Sprawdza, czy miasto już istnieje w bazie (unikanie duplikatów).
+       - Dodaje tylko nowe miasta (istniejące rekordy miast pozostają nienaruszone, 
+         co chroni ewentualne ręczne edycje).
+
+    W przypadku błędu (Exception), cała transakcja jest wycofywana (rollback),
+    aby zachować spójność bazy danych.
+    """
     app = create_app(os.getenv('FLASK_CONFIG') or 'development')
     
     json_path = os.path.join(app.root_path, 'plans', 'destinations.json')

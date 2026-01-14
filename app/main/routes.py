@@ -19,7 +19,18 @@ BASE_COSTS = {
 }
 
 def load_destinations():
-    """Ładuje listę miast z pliku JSON."""
+    """
+    Wczytuje bazę dostępnych destynacji podróży z lokalnego pliku JSON.
+    
+    Plik `destinations.json` zawiera listę obiektów miast wraz z ich metadanymi 
+    (takimi jak tagi, mnożniki kosztów, kraj). Funkcja ta jest wykorzystywana 
+    przez system rekomendacji oraz wyszukiwarkę.
+
+    Returns:
+        list[dict]: Lista słowników reprezentujących miasta. W przypadku błędu 
+                    odczytu pliku (np. brak pliku, błąd składni JSON), 
+                    zwraca pustą listę i loguje błąd, aby nie przerywać działania aplikacji.
+    """
     try:
         json_path = os.path.join(current_app.root_path, 'plans', 'destinations.json')
         with open(json_path, 'r', encoding='utf-8') as f:

@@ -8,6 +8,19 @@ GOOGLE_PLACES_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 
 @lru_cache(maxsize=256)
 def get_coordinates_for_city(city: str) -> dict | None:
+    """
+    Pobiera współrzędne geograficzne (lat/lon) dla podanego miasta, korzystając z mechanizmu "failover".
+
+    Najpierw próbuje użyć dokładniejszego API Geoapify (jeśli skonfigurowano klucz).
+    W przypadku błędu lub braku klucza, przełącza się na darmowe API Open-Meteo Geocoding.
+    Wyniki są cache'owane w pamięci (LRU Cache) dla 256 ostatnich zapytań, aby oszczędzać limity API.
+
+    Args:
+        city (str): Nazwa miasta do wyszukania.
+
+    Returns:
+        dict | None: Słownik `{'lat': float, 'lon': float}` lub `None` w przypadku niepowodzenia.
+    """
     api_key = current_app.config.get("GEOAPIFY_API_KEY")
     
     # 1. Próba Geoapify
@@ -43,6 +56,21 @@ def get_coordinates_for_city(city: str) -> dict | None:
     return None
 
 def get_attractions(city: str, country: str = None, limit: int = 5) -> list[dict] | None:
+    """
+    Pobiera listę atrakcji turystycznych w okolicy używając Google Places Text Search API.
+
+    Funkcja konstruuje zapytanie w języku naturalnym (np. "atrakcje w Paryż, Francja") 
+    i wysyła je do Google. Wyniki są ograniczone liczbą zdefiniowaną w parametrze `limit`.
+
+    Args:
+        city (str): Nazwa miasta.
+        country (str, optional): Nazwa kraju (dla doprecyzowania wyników).
+        limit (int, optional): Maksymalna liczba zwracanych atrakcji (domyślnie 5).
+
+    Returns:
+        list[dict] | None: Lista przetworzonych obiektów atrakcji (nazwa, ocena, zdjęcie) 
+                           lub None w przypadku błędu (np. brak klucza API, błąd sieci).
+    """
     api_key = current_app.config.get("GOOGLE_PLACES_API_KEY")
     if not api_key:
         current_app.logger.error("Brak klucza API dla Google Places!")
@@ -70,6 +98,19 @@ def get_attractions(city: str, country: str = None, limit: int = 5) -> list[dict
         return None
 
 def _parse_place_data(place: dict, api_key: str) -> dict:
+    """
+    Funkcja pomocnicza parsująca surową odpowiedź JSON z Google Places API.
+
+    Wyciąga tylko istotne dla nas informacje, tłumaczy typy miejsc na język polski (np. 'museum' -> 'Muzeum')
+    oraz konstruuje pełny URL do zdjęcia miejsca (Google zwraca tylko referencję).
+
+    Args:
+        place (dict): Surowy obiekt miejsca z API Google.
+        api_key (str): Klucz API potrzebny do zbudowania linku do zdjęcia.
+
+    Returns:
+        dict: Uproszczony obiekt miejsca gotowy do wyświetlenia na froncie.
+    """
     geom = place.get("geometry", {})
     loc = geom.get("location", {})
     
@@ -99,7 +140,21 @@ def _parse_place_data(place: dict, api_key: str) -> dict:
     }
 
 def search_city_suggestions(query: str) -> list[dict]:
-    """Wyszukuje sugestie miast używając Open-Meteo Geocoding."""
+    """
+    Wyszukuje sugestie miast (autocomplete) używając darmowego Open-Meteo Geocoding API.
+
+    Używana głównie przez dynamiczny formularz na stronie głównej, aby podpowiadać 
+    użytkownikowi nazwy miast w trakcie pisania.
+
+    Args:
+        query (str): Fragment nazwy miasta wpisany przez użytkownika.
+
+    Returns:
+        list[dict]: Lista do 6 podpowiedzi. Każdy element zawiera:
+            - 'name': Sformatowana nazwa (Miasto, Region, Kraj).
+            - 'lat', 'lon': Współrzędne.
+    """
+        
     if not query:
         return []
     try:
