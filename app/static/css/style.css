@@ -1206,7 +1206,9 @@ footer a:hover {
     margin-bottom: 2.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #e5e7eb;
-}.plan-card a {
+}
+
+.plan-card a {
     text-decoration: none;
     color: var(--color-secondary);
 }
